@@ -4,6 +4,6 @@ package entidades;
  *
  * @author Nicolas
  */
-public class Entrenador {
+public class inscribirseClase {
     
 }
