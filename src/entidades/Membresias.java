@@ -4,9 +4,6 @@ package entidades;
  *
  * @author Nicolas
  */
-public class Clase {
-    /*
-  
+public class Membresias {
     
-    */
 }
