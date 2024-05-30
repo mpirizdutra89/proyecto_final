@@ -38,7 +38,8 @@ public class Clase {
         this.horario = horario;
         this.capacidad = capacidad;
     }
-
+    
+    /*Getters & Setters*/
     public int getIdClases() {
         return idClases;
     }
@@ -78,7 +79,8 @@ public class Clase {
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
-
+    
+    /*toString*/
     @Override
     public String toString() {
         return "idClases: " + idClases + ", idEntrenadores: " + idEntrenadores + ", nombre: " + nombre + ", horario: " + horario + ", capacidad: " + capacidad;
