@@ -1,6 +1,7 @@
 package entidades;
 
-import java.time.LocalDate;
+
+import java.time.LocalTime;
 
 /**
  *
@@ -11,27 +12,27 @@ public class Clase {
     private int idClases;
     private int idEntrenadores;
     private String nombre;
-    private LocalDate horario;
+    private LocalTime horario;
     private int capacidad;
     
     /*Constructores*/
     public Clase() {
     }
 
-    public Clase(String nombre, LocalDate horario, int capacidad) {
+    public Clase(String nombre, LocalTime horario, int capacidad) {
         this.nombre = nombre;
         this.horario = horario;
         this.capacidad = capacidad;
     }
 
-    public Clase(int idEntrenadores, String nombre, LocalDate horario, int capacidad) {
+    public Clase(int idEntrenadores, String nombre, LocalTime horario, int capacidad) {
         this.idEntrenadores = idEntrenadores;
         this.nombre = nombre;
         this.horario = horario;
         this.capacidad = capacidad;
     }
 
-    public Clase(int idClases, int idEntrenadores, String nombre, LocalDate horario, int capacidad) {
+    public Clase(int idClases, int idEntrenadores, String nombre, LocalTime horario, int capacidad) {
         this.idClases = idClases;
         this.idEntrenadores = idEntrenadores;
         this.nombre = nombre;
@@ -64,11 +65,11 @@ public class Clase {
         this.nombre = nombre;
     }
 
-    public LocalDate getHorario() {
+    public LocalTime getHorario() {
         return horario;
     }
 
-    public void setHorario(LocalDate horario) {
+    public void setHorario(LocalTime horario) {
         this.horario = horario;
     }
 
