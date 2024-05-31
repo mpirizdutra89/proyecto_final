@@ -2,7 +2,7 @@ package entidades;
 
 /**
  *
- * @author Nicolas
+ * @author martin
  */
 public class Socio {
     //`idSocio`, `dni`, `nombre`, `apellido`, `edad`, `correo`, `telefono` FROM `socios`
