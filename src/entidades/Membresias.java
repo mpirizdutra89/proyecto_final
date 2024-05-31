@@ -2,7 +2,7 @@ package entidades;
 
 /**
  *
- * @author Nicolas
+ * @author Ariel
  */
 public class Membresias {
     
