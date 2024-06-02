@@ -84,7 +84,8 @@ public class Clase {
     /*toString*/
     @Override
     public String toString() {
-        return "idClases: " + idClases + ", idEntrenadores: " + idEntrenadores + ", nombre: " + nombre + ", horario: " + horario + ", capacidad: " + capacidad;
+        return "idClases: " + idClases + ", idEntrenadores: " + idEntrenadores + ", nombre: " + nombre + 
+                ", horario: " + horario + ", capacidad: " + capacidad;
     }
     
     
