@@ -1,6 +1,5 @@
 package entidades;
 
-
 import java.time.LocalTime;
 
 /**
@@ -8,53 +7,60 @@ import java.time.LocalTime;
  * @author Carlos
  */
 public class Clase {
-    
-    private int idClases;
-    private int idEntrenadores;
+
+    private int idClase;
+    private int idEntrenador;
     private String nombre;
     private LocalTime horario;
     private int capacidad;
-    
-    /*Constructores*/
+    private boolean estado;
+
+   
+
+    /*CONSTRUCTORES*/
     public Clase() {
-    }
-
-    public Clase(String nombre, LocalTime horario, int capacidad) {
-        this.nombre = nombre;
-        this.horario = horario;
-        this.capacidad = capacidad;
-    }
-
-    public Clase(int idEntrenadores, String nombre, LocalTime horario, int capacidad) {
-        this.idEntrenadores = idEntrenadores;
-        this.nombre = nombre;
-        this.horario = horario;
-        this.capacidad = capacidad;
-    }
-
-    public Clase(int idClases, int idEntrenadores, String nombre, LocalTime horario, int capacidad) {
-        this.idClases = idClases;
-        this.idEntrenadores = idEntrenadores;
-        this.nombre = nombre;
-        this.horario = horario;
-        this.capacidad = capacidad;
+        
     }
     
-    /*Getters & Setters*/
-    public int getIdClases() {
-        return idClases;
+    public Clase(String nombre, LocalTime horario, int capacidad, boolean estado) {
+        this.nombre = nombre;
+        this.horario = horario;
+        this.capacidad = capacidad;
+        this.estado = estado;
     }
 
-    public void setIdClases(int idClases) {
-        this.idClases = idClases;
+    public Clase(int idEntrenador, String nombre, LocalTime horario, int capacidad, boolean estado) {
+        this.idEntrenador = idEntrenador;
+        this.nombre = nombre;
+        this.horario = horario;
+        this.capacidad = capacidad;
+        this.estado = estado;
     }
 
-    public int getIdEntrenadores() {
-        return idEntrenadores;
+    public Clase(int idClase, int idEntrenador, String nombre, LocalTime horario, int capacidad, boolean estado) {
+        this.idClase = idClase;
+        this.idEntrenador = idEntrenador;
+        this.nombre = nombre;
+        this.horario = horario;
+        this.capacidad = capacidad;
+        this.estado = estado;
     }
 
-    public void setIdEntrenadores(int idEntrenadores) {
-        this.idEntrenadores = idEntrenadores;
+    /*GETTERS AND SETTERS*/
+    public int getIdClase() {
+        return idClase;
+    }
+
+    public void setIdClase(int idClase) {
+        this.idClase = idClase;
+    }
+
+    public int getIdEntrenador() {
+        return idEntrenador;
+    }
+
+    public void setIdEntrenador(int idEntrenador) {
+        this.idEntrenador = idEntrenador;
     }
 
     public String getNombre() {
@@ -80,17 +86,19 @@ public class Clase {
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
-    
-    /*toString*/
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    /*METODO SOBREESCRITO toString*/
     @Override
     public String toString() {
-        return "idClases: " + idClases + ", idEntrenadores: " + idEntrenadores + ", nombre: " + nombre + 
-                ", horario: " + horario + ", capacidad: " + capacidad;
+        return "idClases: " + idClase + ", idEntrenadores: " + idEntrenador + ", nombre: " + nombre
+                + ", horario: " + horario + ", capacidad: " + capacidad + ", estado: " + estado;
     }
-    
-    
-    
-    
-            
-    
 }
