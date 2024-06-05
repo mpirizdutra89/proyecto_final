@@ -53,6 +53,39 @@ public class SocioData {
     }
     
     
+    public ArrayList<Socio> listarSocio() {
+
+        String sql = "SELECT * FROM socios WHERE estado = 1";
+
+        ArrayList<Socio> lista = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                 this.socio = new Socio();
+
+                this.socio.setIdSocio(rs.getInt("idSocio"));
+                this.socio.setDni(rs.getString("dni"));
+                this.socio.setApellido(rs.getString("apellido"));
+                this.socio.setNombre(rs.getString("nombre"));
+                this.socio.setCorreo(rs.getString("correo"));
+                this.socio.setTelefono(rs.getString("telefono"));
+               
+                this.socio.setEstado(true);
+                lista.add(this.socio);
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException  | NullPointerException ex) {
+            Conexion.msjError.add("Socios: listarSocio ->" + ex.getMessage());
+        }
+        return lista;
+    }
+    
+    
     
     
     
