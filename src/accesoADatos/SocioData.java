@@ -52,6 +52,34 @@ public class SocioData {
         return res;
     }
     
+        public boolean modificarSocios(Socio socio) {
+            boolean res=false;
+            String sql = "UPDATE socios SET dni=?,nombre=?,apellido=?,edad=?,correo=?,telefono=?,estado=? WHERE idSocio=?";
+            
+
+
+            try {
+                PreparedStatement ps = conec.prepareStatement(sql);
+                ps.setString(1, socio.getDni());
+                ps.setString(2, socio.getNombre());
+                ps.setString(3, socio.getApellido());
+                ps.setInt(4, socio.getEdad());
+                ps.setString(5, socio.getCorreo());
+                ps.setString(6, socio.getTelefono());
+                ps.setBoolean(7, socio.getEstado());
+                ps.setInt(8, socio.getIdSocio());
+                int resultado = ps.executeUpdate();
+                if (resultado == 1) {
+                   res=true;
+                }
+                ps.close();
+            } catch (SQLException | NullPointerException ex) {
+                Conexion.msjError.add("Socios: modificarSocios ->" + ex.getMessage());
+            }
+            return res;
+
+    }
+    
     
     public ArrayList<Socio> listarSocio() {
         this.socio=null;
