@@ -13,11 +13,12 @@ public class Socio {
     private int edad;
     private String correo;
     private String telefono;
+    private boolean estado;
 
     public Socio() {
     }
 
-    public Socio(int idSocio, String dni, String nombre, String apellido, int edad, String correo, String telefono) {
+    public Socio(int idSocio, String dni, String nombre, String apellido, int edad, String correo, String telefono, boolean estado) {
         this.idSocio = idSocio;
         this.dni = dni;
         this.nombre = nombre;
@@ -25,15 +26,25 @@ public class Socio {
         this.edad = edad;
         this.correo = correo;
         this.telefono = telefono;
+        this.estado=estado;
     }
 
-    public Socio(String dni, String nombre, String apellido, int edad, String correo, String telefono) {
+    public Socio(String dni, String nombre, String apellido, int edad, String correo, String telefono, boolean estado) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
         this.correo = correo;
         this.telefono = telefono;
+         this.estado=estado;
+    }
+
+    public boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     @Override
