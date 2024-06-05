@@ -90,7 +90,7 @@ public class SocioData {
       public Socio buscarSocioPorId(int id) {
         this.socio = null;
         PreparedStatement ps = null;
-        String consulta = "SELECT * FROM socios WHERE  idSocio= ? and estado=1";
+        String consulta = "SELECT * FROM socios WHERE  idSocio= ? AND estado=1";
 
         try {
             ps = conec.prepareStatement(consulta);
@@ -110,11 +110,61 @@ public class SocioData {
             ps.close();
             res.close();
         } catch (SQLException | NullPointerException ex) {
-            Conexion.msjError.add("Alumnos: BuscarAlumno ->" + ex.getMessage());
+            Conexion.msjError.add("Socio: BuscarSocioPorId ->" + ex.getMessage());
         }
 
         return this.socio;
     }
+      //buscar por conisidencia, devulve el listado
+      public ArrayList<Socio> buscarSocioPorNombre(String nombre) {
+        this.socio = null;
+        PreparedStatement ps = null;
+        ArrayList<Socio> lista = new ArrayList<>();
+        String consulta = "SELECT * FROM socios WHERE  nombre LIKE '%?'  AND estado=1";
+
+        try {
+            ps = conec.prepareStatement(consulta);
+            ps.setString(1, nombre);
+            ResultSet res = ps.executeQuery();
+            while (res.next()) {
+                this.socio = new Socio();
+                this.socio.setIdSocio(res.getInt("idSocio"));
+                this.socio.setDni(res.getString("dni"));
+                this.socio.setApellido(res.getString("apellido"));
+                this.socio.setNombre(res.getString("nombre"));
+                this.socio.setEdad(res.getInt("edad"));
+                this.socio.setCorreo(res.getString("correo"));
+                this.socio.setTelefono(res.getString("telefono"));
+                this.socio.setEstado(res.getBoolean("estado"));
+                lista.add(this.socio);
+            }
+            ps.close();
+            res.close();
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("Socio: BuscarSocioPorNombre ->" + ex.getMessage());
+        }
+
+        return lista;
+    }
     
+      //si es true se borra;
+    public boolean bajaSocio(int id) {
+        boolean res=false;
+        PreparedStatement ps;
+        String consulta = "UPDATE socios SET estado = 0 WHERE idSocio = ?";
+
+        try {
+            ps = conec.prepareStatement(consulta);
+            ps.setInt(1, id);
+            int borrado = ps.executeUpdate();
+            if (borrado == 1) {
+                res=true;
+            }
+            ps.close();
+        } catch (SQLException  | NullPointerException ex) {
+            Conexion.msjError.add("Socios: bajaSocio() ->" + ex.getMessage());
+        }
+        return res;
+    }
     
 }
