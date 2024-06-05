@@ -4,8 +4,6 @@ import entidades.Clase;
 import java.sql.*;
 import java.time.*;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -57,14 +55,16 @@ public class ClaseData {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Clase clas = new Clase();
+                this.clase = new Clase();
 
-                clas.setIdClase(rs.getInt("idClase"));
-                clas.setIdEntrenador(rs.getInt("idEntrenador"));
-                clas.setNombre(rs.getString("nombre"));
-                clas.setHorario(rs.getTime("horario").toLocalTime());
-                clas.setCapacidad(rs.getInt("capacidad"));
-                clas.setEstado(rs.getBoolean("estado"));
+                clase.setIdClase(rs.getInt("idClase"));
+                clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                clase.setNombre(rs.getString("nombre"));
+                clase.setHorario(rs.getTime("horario").toLocalTime());
+                clase.setCapacidad(rs.getInt("capacidad"));
+                clase.setEstado(rs.getBoolean("estado"));
+                
+                listaClases.add(clase);
             }
             ps.close();
             rs.close();
@@ -75,7 +75,7 @@ public class ClaseData {
     }
     
     public Clase buscarClasePorNombre(String nombre){
-        Clase clas = null;
+        this.clase = null;
         
         String query = "SELECT idClase,idEntrenador,nombre,horario,capacidad,estado "
                      + "FROM clases "
@@ -87,14 +87,14 @@ public class ClaseData {
             ResultSet rs = ps.executeQuery();
             
             if(rs.next()){
-                clas = new Clase();
+                this.clase = new Clase();
                 
-                clas.setIdClase(rs.getInt("idClase"));
-                clas.setIdEntrenador(rs.getInt("idEntrenador"));
-                clas.setNombre(rs.getString("nombre"));
-                clas.setHorario(rs.getTime("horario").toLocalTime());
-                clas.setCapacidad(rs.getInt("capacidad"));
-                clas.setEstado(rs.getBoolean("estado"));
+                clase.setIdClase(rs.getInt("idClase"));
+                clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                clase.setNombre(rs.getString("nombre"));
+                clase.setHorario(rs.getTime("horario").toLocalTime());
+                clase.setCapacidad(rs.getInt("capacidad"));
+                clase.setEstado(rs.getBoolean("estado"));
             }else{
                 JOptionPane.showMessageDialog(null,"La clase no existe!!.");
             }
@@ -103,7 +103,7 @@ public class ClaseData {
         } catch (SQLException ex) {
              Conexion.msjError.add("Clase: buscarClasePorNommbre -> " + ex.getMessage());
         }
-        return clas;
+        return clase;
     }
 
     public void bajaClase(int id) {
