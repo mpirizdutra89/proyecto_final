@@ -54,7 +54,7 @@ public class SocioData {
     
     
     public ArrayList<Socio> listarSocio() {
-
+        this.socio=null;
         String sql = "SELECT * FROM socios WHERE estado = 1";
 
         ArrayList<Socio> lista = new ArrayList<>();
@@ -87,7 +87,34 @@ public class SocioData {
     
     
     
-    
+      public Socio buscarSocioPorId(int id) {
+        this.socio = null;
+        PreparedStatement ps = null;
+        String consulta = "SELECT * FROM socios WHERE  idSocio= ? and estado=1";
+
+        try {
+            ps = conec.prepareStatement(consulta);
+            ps.setInt(1, id);
+            ResultSet res = ps.executeQuery();
+            if (res.next()) {
+                this.socio = new Socio();
+                this.socio.setIdSocio(id);
+                this.socio.setDni(res.getString("dni"));
+                this.socio.setApellido(res.getString("apellido"));
+                this.socio.setNombre(res.getString("nombre"));
+                this.socio.setEdad(res.getInt("edad"));
+                this.socio.setCorreo(res.getString("correo"));
+                this.socio.setTelefono(res.getString("telefono"));
+                this.socio.setEstado(res.getBoolean("estado"));
+            }
+            ps.close();
+            res.close();
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("Alumnos: BuscarAlumno ->" + ex.getMessage());
+        }
+
+        return this.socio;
+    }
     
     
 }
