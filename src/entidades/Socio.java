@@ -29,14 +29,15 @@ public class Socio {
         this.estado=estado;
     }
 
-    public Socio(String dni, String nombre, String apellido, int edad, String correo, String telefono, boolean estado) {
+    //estado se guardar solo por default en la base de datos
+    public Socio(String dni, String nombre, String apellido, int edad, String correo, String telefono) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
         this.correo = correo;
         this.telefono = telefono;
-         this.estado=estado;
+        
     }
 
     public boolean getEstado() {

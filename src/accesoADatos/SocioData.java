@@ -21,7 +21,7 @@ public class SocioData {
         conec = Conexion.getConexion();
     }
     
-    //SELECT `idSocio`, `dni`, `nombre`, `apellido`, `edad`, `correo`, `telefono`, `estado` FROM `socios`
+    //estado se guardar solo en la base de datos, su valor por default es true (1)
     public boolean guardarSocio(Socio socio) {
         String query = "INSERT INTO socios (dni,nombre,apellido,edad,correo,telefono) VALUES (?,?,?,?,?,?)";
 
