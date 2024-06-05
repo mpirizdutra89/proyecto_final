@@ -212,8 +212,8 @@ m1=n..1</panel_attributes>
 
 --
 -int idAsistencia
--int idSocio
--int idClase
+-Socio socio
+-Clase clase
 -fecha_asistencia
 
 
@@ -222,12 +222,12 @@ m1=n..1</panel_attributes>
 Asistencia()
 
 Asistencia(int idAsistencia,
-				int idSocio,
-			   int idClase,
+				Socio socio,
+			   Clase clase,
 			   fecha_asistencia)
 			   
-Asistencia(int idSocio,
-			   int idClase,
+Asistencia(Socio socio,
+			   Clase clase,
 			   fecha_asistencia)
 			   
 +void setNames()

@@ -14,6 +14,13 @@ public class Entrenador {
 
     public Entrenador() {
     }
+
+    public Entrenador(String nombre, String especialidad) {
+        this.nombre = nombre;
+        this.especialidad = especialidad;
+    }
+    
+    
     
     public Entrenador(String dni, String nombre, String apellido, String especialidad, boolean estado) {
         this.dni = dni;

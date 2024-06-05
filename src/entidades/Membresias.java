@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  *
- * @author Nicolas
+ * @author Ariel
  */
 public class Membresias {
     private int idMembresia;
