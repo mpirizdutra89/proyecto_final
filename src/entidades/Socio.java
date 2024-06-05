@@ -16,6 +16,8 @@ public class Socio {
 
     public Socio() {
     }
+    
+    
 
     public Socio(int idSocio, String dni, String nombre, String apellido, int edad, String correo, String telefono) {
         this.idSocio = idSocio;
