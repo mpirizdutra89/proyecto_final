@@ -26,10 +26,10 @@ public class ClaseData {
             PreparedStatement ps = con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, clase.getIdEntrenador());
             ps.setString(2, clase.getNombre());
-            ps.setDate(3, Date.valueOf(clase.getHorario()));
+            ps.setTime(3, Time.valueOf(clase.getHorario()));
             ps.setInt(4,clase.getCapacidad());
             ps.setBoolean(5,clase.isEstado());
-            
+    
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             
