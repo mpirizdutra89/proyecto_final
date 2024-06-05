@@ -21,15 +21,24 @@ public class ClaseData {
     public void guardarClase(Clase clase){
         //Sentencia SQL
         String query = "INSERT INTO clases(idEntrenador, nombre, horario, capacidad, estado) VALUES(?,?,?,?,?)";
-        
-        
+       
         try {
             PreparedStatement ps = con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, clase.getIdEntrenador());
             ps.setString(2, clase.getNombre());
             ps.setDate(3, Date.valueOf(clase.getHorario()));
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error ");
+            ps.setInt(4,clase.getCapacidad());
+            ps.setBoolean(5,clase.isEstado());
+            
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            
+            if (rs.next()) {
+                clase.setIdClase(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "Clase guardada exitosamente.");
+            }
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("Clase: guardarClase -> "+ex.getMessage());
         }
     }
 }
