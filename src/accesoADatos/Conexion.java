@@ -20,7 +20,7 @@ public class Conexion {
     public static Connection conec = null;
     private static final String HOST = "jdbc:mariadb://localhost/";
     private static final String USER = "root";
-    private static final String PASS = "nicolas89";
+    private static final String PASS = "";
     private static final String BD = "gimnasio";
     private static final String DRIVER = "org.mariadb.jdbc.Driver";
     public static ArrayList<String> msjError = new ArrayList<String>();
