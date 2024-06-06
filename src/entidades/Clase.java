@@ -1,6 +1,6 @@
 package entidades;
 
-import java.time.*;
+import java.time.LocalTime;
 
 /**
  *
@@ -9,7 +9,7 @@ import java.time.*;
 public class Clase {
 
     private int idClase;
-    private int idEntrenador;
+    private Entrenador entrenador;
     private String nombre;
     private LocalTime horario;
     private int capacidad;
@@ -29,17 +29,17 @@ public class Clase {
         this.estado = estado;
     }
 
-    public Clase(int idEntrenador, String nombre, LocalTime horario, int capacidad, boolean estado) {
-        this.idEntrenador = idEntrenador;
+    public Clase(Entrenador entrenador, String nombre, LocalTime horario, int capacidad, boolean estado) {
+        this.entrenador = entrenador;
         this.nombre = nombre;
         this.horario = horario;
         this.capacidad = capacidad;
         this.estado = estado;
     }
 
-    public Clase(int idClase, int idEntrenador, String nombre, LocalTime horario, int capacidad, boolean estado) {
+    public Clase(int idClase,Entrenador entrenador, String nombre, LocalTime horario, int capacidad, boolean estado) {
         this.idClase = idClase;
-        this.idEntrenador = idEntrenador;
+        this.entrenador = entrenador;
         this.nombre = nombre;
         this.horario = horario;
         this.capacidad = capacidad;
@@ -55,13 +55,15 @@ public class Clase {
         this.idClase = idClase;
     }
 
-    public int getIdEntrenador() {
-        return idEntrenador;
+    public Entrenador getEntrenador() {
+        return entrenador;
     }
 
-    public void setIdEntrenador(int idEntrenador) {
-        this.idEntrenador = idEntrenador;
+    public void setEntrenador(Entrenador entrenador) {
+        this.entrenador = entrenador;
     }
+
+    
 
     public String getNombre() {
         return nombre;
@@ -98,7 +100,7 @@ public class Clase {
     /*METODO SOBREESCRITO toString*/
     @Override
     public String toString() {
-        return "idClases: " + idClase + ", idEntrenadores: " + idEntrenador + ", nombre: " + nombre
+        return "idClases: " + idClase + ", Entrenadores: " + entrenador + ", nombre: " + nombre
                 + ", horario: " + horario + ", capacidad: " + capacidad + ", estado: " + estado;
     }
 }
