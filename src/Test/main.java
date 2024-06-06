@@ -1,5 +1,6 @@
 package Test;
 
+import accesoADatos.Conexion;
 import entidades.Socio;
 import entidades.Entrenador;
 import java.util.ArrayList;
@@ -45,9 +46,10 @@ public class main {
 
     private static void pruebaClases() {
         accesoADatos.ClaseData claseData = new accesoADatos.ClaseData();
-        Entrenador e1 = new Entrenador("35678345", "Raul", "Flores", "Zumba", true);
-        Clase c1 = new Clase("Zumba", LocalTime.of(17, 00), 20, true);
+        Entrenador e1 = new Entrenador(1,"35678345", "Raul", "Flores", "Zumba", true);
+        Clase c1 = new Clase(e1,"Zumba", LocalTime.of(17, 00), 20, true);
         claseData.guardarClase(c1);
+        Conexion.mostrarErrores();
     }
     
     
