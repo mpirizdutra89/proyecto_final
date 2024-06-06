@@ -196,8 +196,8 @@ public class ClaseData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
             Conexion.msjError.add("Clase: bajaClase -> " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
         }
     }
 }
