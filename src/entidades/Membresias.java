@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class Membresias {
     private int idMembresia;
-    private int idSocio;
+    private Socio socio;
     private int cantidadPases;
     private double costo;
     private Date fechaInicio;
@@ -17,12 +17,10 @@ public class Membresias {
 
     public Membresias() {
     }
-    
-    
 
-    public Membresias(int idMembresia, int idSocio, int cantidadPases, double costo, Date fechaInicio, Date fechaFin, boolean estado) {
+    public Membresias(int idMembresia, Socio socio, int cantidadPases, double costo, Date fechaInicio, Date fechaFin, boolean estado) {
         this.idMembresia = idMembresia;
-        this.idSocio = idSocio;
+        this.socio = socio;
         this.cantidadPases = cantidadPases;
         this.costo = costo;
         this.fechaInicio = fechaInicio;
@@ -38,12 +36,12 @@ public class Membresias {
         this.idMembresia = idMembresia;
     }
 
-    public int getIdSocio() {
-        return idSocio;
+    public Socio getSocio() {
+        return socio;
     }
 
-    public void setIdSocio(int idSocio) {
-        this.idSocio = idSocio;
+    public void setSocio(Socio socio) {
+        this.socio = socio;
     }
 
     public int getCantidadPases() {
@@ -88,8 +86,14 @@ public class Membresias {
 
     @Override
     public String toString() {
-        return "Membresias{" + "idMembresia=" + idMembresia + ", idSocio=" + idSocio + ", cantidadPases=" + cantidadPases + ", costo=" + costo + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + '}';
+        return "Membresias{" + "idMembresia=" + idMembresia + ", socio=" + socio + ", cantidadPases=" + cantidadPases + ", costo=" + costo + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + '}';
     }
+    
+    
+
+    
+
+    
 
     
 }
