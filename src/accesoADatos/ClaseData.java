@@ -4,6 +4,8 @@ import entidades.Clase;
 import java.sql.*;
 import java.time.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,11 +21,12 @@ public class ClaseData {
         //Se incializa la conexión a la BD usando el método estático `getConexion` de la clase Conexion
         con = Conexion.getConexion();
     }
+
     /*METODOS*/
     public void guardarClase(Clase clase) {
         //Consulta SQL para insertar una nueva clase
         String query = "INSERT INTO clases(idEntrenador, nombre, horario, capacidad, estado) "
-                     + "VALUES(?,?,?,?,?)";
+                + "VALUES(?,?,?,?,?)";
 
         try {
             //Prepara la consulta y permite obtener las claves generadas automáticamente
@@ -65,12 +68,12 @@ public class ClaseData {
             while (rs.next()) {
                 this.clase = new Clase();//Nueva instancia de clase
                 //Se establecen los datos de la clase
-                clase.setIdClase(rs.getInt("idClase"));
-                clase.setIdEntrenador(rs.getInt("idEntrenador"));
-                clase.setNombre(rs.getString("nombre"));
-                clase.setHorario(rs.getTime("horario").toLocalTime());
-                clase.setCapacidad(rs.getInt("capacidad"));
-                clase.setEstado(true);
+                this.clase.setIdClase(rs.getInt("idClase"));
+                this.clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                this.clase.setNombre(rs.getString("nombre"));
+                this.clase.setHorario(rs.getTime("horario").toLocalTime());
+                this.clase.setCapacidad(rs.getInt("capacidad"));
+                this.clase.setEstado(true);
                 //Se añade la clase a la lista
                 listaClases.add(clase);
             }
@@ -84,35 +87,95 @@ public class ClaseData {
         //Se retorna la lista de clases disponibles
         return listaClases;
     }
-    
-    public Clase buscarClasePorNombre(String nombre){
+
+    public Clase buscarClasePorNombre(String nombre) {
+        //Nueva instancia de clase
         this.clase = null;
-        
+        //Consulta SQL
         String query = "SELECT idClase,idEntrenador,nombre,horario,capacidad,estado "
-                     + "FROM clases "
-                     + "WHERE nombre = ? and estado = 1 ";
-        
+                + "FROM clases "
+                + "WHERE nombre = ? and estado = 1 ";
+
         try {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, nombre);
             ResultSet rs = ps.executeQuery();
-            
-            if(rs.next()){
+
+            if (rs.next()) {
                 this.clase = new Clase();
-                
-                clase.setIdClase(rs.getInt("idClase"));
-                clase.setIdEntrenador(rs.getInt("idEntrenador"));
-                clase.setNombre(rs.getString("nombre"));
-                clase.setHorario(rs.getTime("horario").toLocalTime());
-                clase.setCapacidad(rs.getInt("capacidad"));
-                clase.setEstado(rs.getBoolean("estado"));
-            }else{
-                JOptionPane.showMessageDialog(null,"La clase no existe!!.");
+
+                this.clase.setIdClase(rs.getInt("idClase"));
+                this.clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                this.clase.setNombre(rs.getString("nombre"));
+                this.clase.setHorario(rs.getTime("horario").toLocalTime());
+                this.clase.setCapacidad(rs.getInt("capacidad"));
+                this.clase.setEstado(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "La clase no existe!!.");
             }
             ps.close();
             rs.close();
-        } catch (SQLException ex) {
-             Conexion.msjError.add("Clase: buscarClasePorNommbre -> " + ex.getMessage());
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("Clase: buscarClasePorNommbre -> " + ex.getMessage());
+        }
+        return this.clase;
+    }
+
+    public Clase buscarEntrenador(int id) {
+        this.clase = null;
+        String query = "SELECT idClase,idEntrenador,nombre,horario,capacidad,estado "
+                + "FROM clases "
+                + "WHERE idEntrenador = ? and estado = 1 ";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                this.clase = new Clase();
+
+                this.clase.setIdClase(rs.getInt("idClase"));
+                this.clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                this.clase.setNombre(rs.getString("nombre"));
+                this.clase.setHorario(rs.getTime("horario").toLocalTime());
+                this.clase.setCapacidad(rs.getInt("capacidad"));
+                this.clase.setEstado(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "El entrenador id: "+id+" no existe!!.");
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("Clase: buscarEntrenador -> " + ex.getMessage());
+        }
+        return clase;
+    }
+
+    public Clase buscarHorario(LocalTime horario) {
+        this.clase = null;
+       String query = "SELECT idClase,idEntrenador,nombre,horario,capacidad,estado "
+                + "FROM clases "
+                + "WHERE horario = ? and estado = 1 ";
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setTime(1, Time.valueOf(horario));
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                this.clase = new Clase();
+
+                this.clase.setIdClase(rs.getInt("idClase"));
+                this.clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                this.clase.setNombre(rs.getString("nombre"));
+                this.clase.setHorario(rs.getTime("horario").toLocalTime());
+                this.clase.setCapacidad(rs.getInt("capacidad"));
+                this.clase.setEstado(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "El horario: "+horario+" no existe!!.");
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException |NullPointerException ex) {
+            Conexion.msjError.add("Clase: buscarHorario -> " + ex.getMessage());
         }
         return clase;
     }
