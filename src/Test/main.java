@@ -1,5 +1,6 @@
 package Test;
 
+import accesoADatos.Conexion;
 import entidades.Socio;
 import entidades.Entrenador;
 import java.util.ArrayList;
