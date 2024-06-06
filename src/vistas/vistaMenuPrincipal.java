@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vistas;
-
+import accesoADatos.Conexion;
 /**
  *
  * @author Nicolas
@@ -72,7 +72,12 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vistaMenuPrincipal().setVisible(true);
+                if(Conexion.VerificarConexion()){
+                     new vistaMenuPrincipal().setVisible(true);
+                }else{
+                    
+                }
+               
             }
         });
     }
