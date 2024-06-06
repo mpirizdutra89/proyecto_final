@@ -54,7 +54,7 @@ Entrenador( String dni,
 
 --
 -int idClase
--int idEntrenador
+-Entrenador entrenador
 -String nombre
 -LocalTime horario
 -int capacidad
@@ -63,13 +63,13 @@ Entrenador( String dni,
 --
 Clase()
 Clase(int idClase,
-				int idEntrenador,
+				Entrenador entrenador,
 			   String nombre,
 			   LocalTime horario,
 			   int capacidad,
 			   boolean estado)
 			   
-Clase(int idEntrenador,
+Clase(Entrenador entrenador,
 			   String nombre,
 			   LocalTime horario,
 			   int capacidad,
@@ -143,7 +143,7 @@ Socios(String dni,
 
 --
 -int idMembresia
--int idSocio
+-Socio socio
 -int CantidadPases
 -Double Costo
 -LocalDate fecha_inicio
@@ -154,14 +154,14 @@ Socios(String dni,
 Membresia()
 
 Membresia(int idMembresia,
-				int idSocio,
+				Socio socio,
 			   int CantidadPases,
 			   Double Costo,
 			 	LocalDate fecha_inicio,
 			 	LocalDate fecha_fin,
 			   boolean estado)
 			   
-Membresia(int idSocio,
+Membresia(  Socio socio,
 			   int CantidadPases,
 			   Double Costo,
 			 	LocalDate fecha_inicio,

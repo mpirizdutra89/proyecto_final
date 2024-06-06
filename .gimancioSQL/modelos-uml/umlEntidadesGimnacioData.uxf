@@ -98,7 +98,7 @@
 -Connection conec
 --
 
-+void GuardarEntrenadoro(Entrenador entrenador)
++void GuardarEntrenador(Entrenador entrenador)
 
 +ArrayList&lt;Entrenador&gt;  listar()
 
@@ -137,6 +137,7 @@
 
 #controlar antes que no este vencido la membresia y
 #controlar antes que tenga pases disponibles
+
 +boolean InscribirSocioClase(int idClase,int idSocio)
 
 
@@ -175,7 +176,7 @@
 #baja logica
 +boolean renovarMembresia(int id) 
 
-#COmentarios
+#Comentarios
 #Actualiza la fecha desde hasta y se renueva los pases
 #Vamos hacer de cuenta que siempre es mensual.
 #antes de guardar un socio hay que verificar que no exita
