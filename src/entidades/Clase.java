@@ -15,13 +15,11 @@ public class Clase {
     private int capacidad;
     private boolean estado;
 
-   
-
     /*CONSTRUCTORES*/
     public Clase() {
-        
+
     }
-    
+
     public Clase(String nombre, LocalTime horario, int capacidad, boolean estado) {
         this.nombre = nombre;
         this.horario = horario;
@@ -45,6 +43,7 @@ public class Clase {
         this.capacidad = capacidad;
         this.estado = estado;
     }
+
 
     /*GETTERS AND SETTERS*/
     public int getIdClase() {

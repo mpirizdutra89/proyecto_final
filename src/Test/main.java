@@ -1,8 +1,10 @@
 package Test;
 
 import entidades.Socio;
+import entidades.Entrenador;
 import java.util.ArrayList;
 import entidades.Clase;
+import java.time.LocalTime;
 /**
  *
  * @author Nicolas
@@ -14,7 +16,7 @@ public class main {
      */
     public static void main(String[] args) {
         //Martin Pruebas SocioData
-        pruebasSocios();
+        //pruebasSocios();
         pruebaClases();
     }
     
@@ -43,6 +45,9 @@ public class main {
 
     private static void pruebaClases() {
         accesoADatos.ClaseData claseData = new accesoADatos.ClaseData();
+        Entrenador e1 = new Entrenador("35678345", "Raul", "Flores", "Zumba", true);
+        Clase c1 = new Clase("Zumba", LocalTime.of(17, 00), 20, true);
+        claseData.guardarClase(c1);
     }
     
     

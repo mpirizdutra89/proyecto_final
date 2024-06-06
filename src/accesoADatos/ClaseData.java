@@ -4,7 +4,6 @@ import entidades.Clase;
 import java.sql.*;
 import java.time.*;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 /**
@@ -17,11 +16,11 @@ public class ClaseData {
 
     /*CONSTRUCTOR*/
     public ClaseData() {
-        //Se incializa la conexión a la BD usando el método estático `getConexion` de la clase Conexion
+        //Se inicializa la conexión a la BD usando el método estático `getConexion` de la clase Conexión
         con = Conexion.getConexion();
     }
 
-    /*METODOS*/
+    /*MÉTODOS*/
     public void guardarClase(Clase clase) {
         //Consulta SQL para insertar una nueva clase
         String query = "INSERT INTO clases(idEntrenador, nombre, horario, capacidad, estado) "
@@ -31,7 +30,7 @@ public class ClaseData {
             //Prepara la consulta y permite obtener las claves generadas automáticamente
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             //Se establecen los valores de los parámetros 
-            ps.setInt(1, clase.getIdEntrenador());
+            ps.setInt(1, clase.getEntrenador().getIdEntrenador());
             ps.setString(2, clase.getNombre());
             ps.setTime(3, Time.valueOf(clase.getHorario()));
             ps.setInt(4, clase.getCapacidad());
@@ -50,6 +49,7 @@ public class ClaseData {
             rs.close();
             //Captura de excepciones y se añade el error a una lista de errores 
         } catch (SQLException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
             Conexion.msjError.add("Clase: guardarClase -> " + ex.getMessage());
         }
     }
@@ -68,7 +68,7 @@ public class ClaseData {
                 this.clase = new Clase();//Nueva instancia de clase
                 //Se establecen los datos de la clase
                 this.clase.setIdClase(rs.getInt("idClase"));
-                this.clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                this.clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
                 this.clase.setNombre(rs.getString("nombre"));
                 this.clase.setHorario(rs.getTime("horario").toLocalTime());
                 this.clase.setCapacidad(rs.getInt("capacidad"));
@@ -81,6 +81,7 @@ public class ClaseData {
             rs.close();
             //Captura de excepciones y se añade el error a una lista de errores 
         } catch (SQLException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
             Conexion.msjError.add("Clase: ClasesDisponibles -> " + ex.getMessage());
         }
         //Se retorna la lista de clases disponibles
@@ -104,7 +105,7 @@ public class ClaseData {
                 this.clase = new Clase();
 
                 this.clase.setIdClase(rs.getInt("idClase"));
-                this.clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                this.clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
                 this.clase.setNombre(rs.getString("nombre"));
                 this.clase.setHorario(rs.getTime("horario").toLocalTime());
                 this.clase.setCapacidad(rs.getInt("capacidad"));
@@ -115,6 +116,7 @@ public class ClaseData {
             ps.close();
             rs.close();
         } catch (SQLException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
             Conexion.msjError.add("Clase: buscarClasePorNommbre -> " + ex.getMessage());
         }
         return this.clase;
@@ -134,7 +136,7 @@ public class ClaseData {
                 this.clase = new Clase();
 
                 this.clase.setIdClase(rs.getInt("idClase"));
-                this.clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                this.clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
                 this.clase.setNombre(rs.getString("nombre"));
                 this.clase.setHorario(rs.getTime("horario").toLocalTime());
                 this.clase.setCapacidad(rs.getInt("capacidad"));
@@ -145,6 +147,7 @@ public class ClaseData {
             ps.close();
             rs.close();
         } catch (SQLException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
             Conexion.msjError.add("Clase: buscarEntrenador -> " + ex.getMessage());
         }
         return clase;
@@ -163,7 +166,7 @@ public class ClaseData {
                 this.clase = new Clase();
 
                 this.clase.setIdClase(rs.getInt("idClase"));
-                this.clase.setIdEntrenador(rs.getInt("idEntrenador"));
+                this.clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
                 this.clase.setNombre(rs.getString("nombre"));
                 this.clase.setHorario(rs.getTime("horario").toLocalTime());
                 this.clase.setCapacidad(rs.getInt("capacidad"));
@@ -174,6 +177,7 @@ public class ClaseData {
             ps.close();
             rs.close();
         } catch (SQLException |NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
             Conexion.msjError.add("Clase: buscarHorario -> " + ex.getMessage());
         }
         return clase;
@@ -192,6 +196,7 @@ public class ClaseData {
             }
             ps.close();
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
             Conexion.msjError.add("Clase: bajaClase -> " + ex.getMessage());
         }
     }
