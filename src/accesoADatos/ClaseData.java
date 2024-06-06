@@ -17,7 +17,7 @@ public class ClaseData {
     private static Connection con = null;//Conexión estática a la BD 
 
     /*CONSTRUCTOR*/
-    public ClaseData(Clase clase) {
+    public ClaseData() {
         //Se incializa la conexión a la BD usando el método estático `getConexion` de la clase Conexion
         con = Conexion.getConexion();
     }
