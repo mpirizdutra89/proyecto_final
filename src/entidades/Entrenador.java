@@ -14,6 +14,10 @@ public class Entrenador {
 
     public Entrenador() {
     }
+    
+    public Entrenador( boolean estado){
+        this.estado = estado;
+    }
 
     public Entrenador(String nombre, String especialidad) {
         this.nombre = nombre;
@@ -95,7 +99,7 @@ public class Entrenador {
     
         @Override
     public String toString() {
-        return nombre+", "+apellido+", "+idEntrenador+", "+especialidad;
+        return "DNI: "+dni +", " +nombre+", "+apellido+", "+idEntrenador+", "+especialidad;
     }
     
     

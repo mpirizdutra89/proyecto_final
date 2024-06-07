@@ -19,9 +19,9 @@ public class main {
     public static void main(String[] args) {
         //Martin Pruebas SocioData
         //ruebasSocios();
-        pruebaClases();
+//        pruebaClases();
         
-    }
+    
     
 //    public static void pruebasSocios(){
 
@@ -58,6 +58,7 @@ public class main {
 //    for (Entrenador entrenador : entrenadores){
 //        System.out.println(entrenador);
 //    }
+        //La busqueda de parametros (null,null,null) devuelve todos los entrenadores activos
         
         //Prueba buscarEntrenador por nombre y especialidad juntos
 //        List<Entrenador> res1 = eData.buscarEntrenadores("Juan", null, "Atletis");
@@ -66,20 +67,23 @@ public class main {
 //        System.out.println(entrenador);
 //    }
         //Prueba buscarEntrenador solo por apellido
-//        List<Entrenador> res2 = eData.buscarEntrenadores(null, "L", null);
-//        System.out.println("Resultados de la busqueda solo con apellido:");
-//        for (Entrenador entrenador : res2) {
-//        System.out.println(entrenador);
-//    }
-
-
-    private static void pruebaClases() {
-        accesoADatos.ClaseData claseData = new accesoADatos.ClaseData();
-        Entrenador e1 = new Entrenador(1,"23456987", "Juan Pablo", "Robledo", "Zumba", true);
-        Clase c1 = new Clase(e1,"Zumba",LocalTime.of(17, 0), 20, true);
-        //claseData.guardarClase(c1);
-        claseData.buscarClasePorNombre("Zumba");
-      
-    }
+        List<Entrenador> res2 = eData.buscarEntrenadores(null, "L", null);
+        System.out.println("Resultados de la busqueda solo con apellido:");
+        for (Entrenador entrenador : res2) {
+        System.out.println(entrenador);
+        
+        //Prueba modificarEntrenador()
+//        entrenador.setEstado(true);
+//        eData.modificarEntrenador(entrenador);//
+        }
     
-}
+//    private static void pruebaClases() {
+//        accesoADatos.ClaseData claseData = new accesoADatos.ClaseData();
+//        Entrenador e1 = new Entrenador(1,"23456987", "Juan Pablo", "Robledo", "Zumba", true);
+//        Clase c1 = new Clase(e1,"Zumba",LocalTime.of(17, 0), 20, true);
+//        //claseData.guardarClase(c1);
+//        claseData.buscarClasePorNombre("Zumba");
+//      
+//    }
+    
+    }}
