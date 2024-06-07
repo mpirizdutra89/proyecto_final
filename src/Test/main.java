@@ -17,8 +17,9 @@ public class main {
      */
     public static void main(String[] args) {
         //Martin Pruebas SocioData
-        pruebasSocios();
-        //pruebaClases();
+        //ruebasSocios();
+        pruebaClases();
+        
     }
     
     public static void pruebasSocios(){
@@ -47,9 +48,10 @@ public class main {
     private static void pruebaClases() {
         accesoADatos.ClaseData claseData = new accesoADatos.ClaseData();
         Entrenador e1 = new Entrenador(1,"23456987", "Juan Pablo", "Robledo", "Zumba", true);
-        Clase c1 = new Clase(e1,"Zumba", LocalTime.of(17, 00), 20, true);
-        claseData.guardarClase(c1);
-      //  claseData.clasesDisponibles()
+        Clase c1 = new Clase(e1,"Zumba",LocalTime.of(17, 0), 20, true);
+        //claseData.guardarClase(c1);
+        claseData.buscarClasePorNombre("Zumba");
+      
     }
     
     
