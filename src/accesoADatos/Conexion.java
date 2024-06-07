@@ -64,7 +64,7 @@ public class Conexion {
                 }
             
         } else {
-            msjError.add("Servicio mysql esta caido.- llamada en getConeccion()");
+            msjError.add("Servicio mysql esta caido.- llamada en VerificarConexion()");
         }
         return activo;
 

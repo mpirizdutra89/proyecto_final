@@ -5,7 +5,7 @@ package entidades;
  * @author martin
  */
 public class Socio {
-    //`idSocio`, `dni`, `nombre`, `apellido`, `edad`, `correo`, `telefono` FROM `socios`
+   
     private int idSocio;
     private String dni;
     private String nombre;
@@ -14,7 +14,12 @@ public class Socio {
     private String correo;
     private String telefono;
     private boolean estado;
-
+    
+    public enum CabeceraSocio{
+        Dni,Nombre,Apellido,Edad
+    }
+    
+    
     public Socio() {
     }
 
