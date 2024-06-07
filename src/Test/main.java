@@ -9,7 +9,6 @@ import entidades.Clase;
 import java.time.LocalTime;
 import java.util.List;
 /**
- *
  * @author Nicolas
  */
 public class main {

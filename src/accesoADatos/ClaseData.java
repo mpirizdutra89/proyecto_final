@@ -1,5 +1,5 @@
 package accesoADatos;
-
+import entidades.Entrenador;
 import entidades.Clase;
 import java.sql.*;
 import java.time.*;
@@ -49,7 +49,7 @@ public class ClaseData {
             rs.close();
             //Captura de excepciones y se añade el error a una lista de errores 
         } catch (SQLException | NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!.");
             Conexion.msjError.add("Clase: guardarClase -> " + ex.getMessage());
         }
     }
