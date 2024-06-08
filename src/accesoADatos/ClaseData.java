@@ -5,7 +5,6 @@ import entidades.Clase;
 import java.sql.*;
 import java.time.*;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -60,7 +59,6 @@ public class ClaseData {
     public ArrayList<Clase> listarClasesDisponibles() {
         //Lista para almacenar las clases disponibles
         ArrayList<Clase> listaClases = new ArrayList<>();
-
         //Consulta SQL
         String query = "SELECT * FROM clases WHERE estado = 1";
 
@@ -72,13 +70,16 @@ public class ClaseData {
                 clase = new Clase();//Nueva instancia de clase
                 //Se establecen los datos de la clase
                 clase.setIdClase(rs.getInt("idClase"));
-                Clase cl = buscarEntrenador(rs.getInt("idEntrenador"));
+                int idEntrenador = rs.getInt("idEntrenador"); // Guarda el ID del entrenador
+                 // Establece el ID del entrenador en la clase
+                Entrenador el = EntrenadorData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
+                clase.setIdEntrenador(idEntrenador);
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
                 clase.setCapacidad(rs.getInt("capacidad"));
                 clase.setEstado(true);
                 //Se añade la clase a la lista
-                clase.setEntrenador(cl.getEntrenador());
+                clase.setEntrenador(el);
                 listaClases.add(clase);
             }
             //Se cierran el PreparedStatement y el ResultSet.
@@ -143,12 +144,8 @@ public class ClaseData {
                 this.clase = new Clase();
 
                 this.clase.setIdClase(rs.getInt("idClase"));
-                 String nombreEntrenador = rs.getString("nombre"); 
-                String dniEntrenador = rs.getString("dni");
-                int idEntrenador = rs.getInt("idEntrenador");
-                Entrenador entrenador = new Entrenador(idEntrenador);
-                clase.setEntrenador(entrenador);
-
+                Clase cl = buscarEntrenador(rs.getInt("idEntrenador"));
+                clase.setEntrenador(cl.getEntrenador());
                 this.clase.setNombre(rs.getString("nombre"));
                 this.clase.setHorario(rs.getTime("horario").toLocalTime());
                 this.clase.setCapacidad(rs.getInt("capacidad"));

@@ -203,7 +203,7 @@ public class EntrenadorData {
     }
     
     
-    public Entrenador buscarEntrenadorPorId(int idEntrenador) {
+    public static Entrenador buscarEntrenadorPorId(int idEntrenador) {
     String query = "SELECT * FROM entrenadores WHERE idEntrenador = ? AND estado = 1";
     Entrenador entrenador = null;
     try {

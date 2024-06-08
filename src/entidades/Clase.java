@@ -14,6 +14,8 @@ public class Clase {
     private LocalTime horario;
     private int capacidad;
     private boolean estado;
+    
+    private int idEntrenador;
 
     /*CONSTRUCTORES*/
     public Clase() {
@@ -46,6 +48,16 @@ public class Clase {
 
 
     /*GETTERS AND SETTERS*/
+    
+    
+    public int getIdEntrenador() {
+        return idEntrenador;
+    }
+
+    public void setIdEntrenador(int idEntrenador) {
+        this.idEntrenador = idEntrenador;
+    }
+
     public int getIdClase() {
         return idClase;
     }
@@ -99,7 +111,7 @@ public class Clase {
     /*METODO SOBREESCRITO toString*/
     @Override
     public String toString() {
-        return "idClases: " + idClase + ", idEntrenador: " + entrenador+ ", nombre: " + nombre
+        return "idClases: " + idClase + ", idEntrenador: " + idEntrenador+ ", nombre: " + nombre
                 + ", horario: " + horario + ", capacidad: " + capacidad + ", estado: " + estado;
     }
 }
