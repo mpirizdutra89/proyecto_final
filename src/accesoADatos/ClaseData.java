@@ -68,10 +68,9 @@ public class ClaseData {
             //Se itera sobre los resultados de la consulta
             while (rs.next()) {
                 clase = new Clase();//Nueva instancia de clase
-                //Se establecen los datos de la clase
+                //Se establecen los datos de la clase 
                 clase.setIdClase(rs.getInt("idClase"));
                 int idEntrenador = rs.getInt("idEntrenador"); // Guarda el ID del entrenador
-                 // Establece el ID del entrenador en la clase
                 Entrenador el = EntrenadorData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
                 clase.setIdEntrenador(idEntrenador);
                 clase.setNombre(rs.getString("nombre"));
