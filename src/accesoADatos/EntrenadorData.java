@@ -203,6 +203,31 @@ public class EntrenadorData {
     }
     
     
+    public Entrenador buscarEntrenadorPorId(int idEntrenador) {
+    String query = "SELECT * FROM entrenadores WHERE idEntrenador = ? AND estado = 1";
+    Entrenador entrenador = null;
+    try {
+        PreparedStatement ps = conec.prepareStatement(query);
+        ps.setInt(1, idEntrenador);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            entrenador = new Entrenador();
+            entrenador.setIdEntrenador(rs.getInt("idEntrenador"));
+            entrenador.setDni(rs.getString("dni"));
+            entrenador.setNombre(rs.getString("nombre"));
+            entrenador.setApellido(rs.getString("apellido"));
+            entrenador.setEspecialidad(rs.getString("especialidad"));
+            entrenador.setEstado(rs.getBoolean("estado"));
+        }
+        ps.close();
+        rs.close();
+    } catch (SQLException | NullPointerException ex) {
+        Conexion.msjError.add("Entrenador: buscarEntrenadorPorId() ->" + ex.getMessage());
+    }
+    return entrenador;
+}
+    
+    
     
     //Baja logica por id
     public void eliminarEntrenador(int id){

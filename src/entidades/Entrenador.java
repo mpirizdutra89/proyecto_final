@@ -14,6 +14,9 @@ public class Entrenador {
 
     public Entrenador() {
     }
+        public Entrenador(int idEntrenador){
+        this.idEntrenador = idEntrenador;
+    }
     
     public Entrenador( boolean estado){
         this.estado = estado;

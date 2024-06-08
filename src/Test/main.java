@@ -1,5 +1,6 @@
 package Test;
 
+import accesoADatos.ClaseData;
 import accesoADatos.Conexion;
 import accesoADatos.EntrenadorData;
 import entidades.Socio;
@@ -20,7 +21,7 @@ public class main {
     public static void main(String[] args) {
         //Martin Pruebas SocioData
         //ruebasSocios();
-        pruebaClases();
+//        pruebaClases();
         Conexion.mostrarErrores();
 
 //    public static void pruebasSocios(){
@@ -38,7 +39,7 @@ public class main {
 //            System.out.println(socio);
 //        } 
         // EntrenadorData eData = new EntrenadorData();
-        //Entrenador e = new Entrenador("12345678", "Juan", "Lucero", "Atletismo");
+        Entrenador e = new Entrenador(1);
         //boolean ok = eData.guardarEntrenador(e);
 //    List<Entrenador> entrenadores = eData.listarEntrenadores();
 //    
@@ -60,18 +61,36 @@ public class main {
         //Prueba modificarEntrenador()
 //        entrenador.setEstado(true);
 //        eData.modificarEntrenador(entrenador);//
+
+
+//      PRUEBAS CLASEDATA
+
+        ClaseData claseD = new ClaseData();
+        Clase clase = new Clase(e, "Natacion", LocalTime.now(), 20, true);
+        
+        //GUARDAR CLASE
+//        claseD.guardarClase(clase);
+
+//      LISTAR CLASES
+
+        ArrayList<Clase> clasesActivas = claseD.listarClasesDisponibles();
+           for (Clase clases : clasesActivas) {
+            System.out.println(clases);
+           }
+
+        
     }
 
-    private static void pruebaClases() {
-        accesoADatos.ClaseData claseData = new accesoADatos.ClaseData();
-        //Entrenador e1 = new Entrenador(2, "12345678", "Juan", "Lucero", "Atletismo", true);
-        //Clase c1 = new Clase(e1, "Atletismo", LocalTime.of(10, 00), 10, true);
-        //claseData.guardarClase(c1);
-        ArrayList<Clase> lista = new ArrayList<Clase>();
-        lista = claseData.listarClasesDisponibles();
-        for (Clase clase : lista) {
-            System.out.println(clase);
-        }
-    }
+//    private static void pruebaClases() {
+//        accesoADatos.ClaseData claseData = new accesoADatos.ClaseData();
+//        //Entrenador e1 = new Entrenador(2, "12345678", "Juan", "Lucero", "Atletismo", true);
+//        //Clase c1 = new Clase(e1, "Atletismo", LocalTime.of(10, 00), 10, true);
+//        //claseData.guardarClase(c1);
+//        ArrayList<Clase> lista = new ArrayList<Clase>();
+//        lista = claseData.listarClasesDisponibles();
+//        for (Clase clase : lista) {
+//            System.out.println(clase);
+//        }
+//    }
 
 }
