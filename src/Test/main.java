@@ -26,6 +26,7 @@ public class main {
         //ruebasSocios();
 //        pruebaClases();
         Conexion.mostrarErrores();
+        pruebaMembresias();
 
 //    public static void pruebasSocios(){
 //        accesoADatos.SocioData socioDat=new accesoADatos.SocioData();
@@ -97,11 +98,39 @@ public class main {
 //    }
 
 //}
+//    private static void pruebaMembresias() {
+//    MembresiasData membresiaD = new MembresiasData();
+//    Socio socio = new Socio("34877112","martin","piriz",32,"mpirizdutra@ulp.edu.ar","2664859913");
+//    Membresias membresia = new Membresias(socio,3,34,new Date(),new Date(),true);
+//    
+//    
+    }
+     private static void pruebaMembresias() {
+        // Crear una instancia de MembresiasData
+        MembresiasData membresiasData = new MembresiasData();
 
-    MembresiasData membresiaD = new MembresiasData();
-    Socio socio = new Socio("34877112","martin","piriz",32,"mpirizdutra@ulp.edu.ar","2664859913");
-    membresiaD = new Membresias(socio,3,34,new Date(),new Date(),true);
-    membresiaD.guardarMembresias(membresia);
-    
+        // Crear un socio de ejemplo
+        Socio socio = new Socio();
+        socio.setIdSocio(1); // Asegúrate de que este socio exista en la base de datos
+
+        // Crear una membresía de ejemplo
+        Membresias membresia = new Membresias();
+        membresia.setSocio(socio) set.idSocio();
+        membresia.setCantidadPases(10);
+        membresia.setCosto(50.0);
+        membresia.setFechaInicio(new Date());
+        membresia.setFechaFin(new Date(System.currentTimeMillis() + (30L * 24 * 60 * 60 * 1000))); // 30 días más tarde
+        membresia.setEstado(true);
+
+        // Guardar la membresía en la base de datos
+        membresiasData.guardarMembresia(membresia);
+
+        // Verificar si se guardó correctamente
+        if (membresia.getIdMembresia() > 0) {
+            System.out.println("Membresía guardada con ID: " + membresia.getIdMembresia());
+        } else {
+            System.out.println("No se pudo guardar la membresía.");
+        }
     }
     }
+   
