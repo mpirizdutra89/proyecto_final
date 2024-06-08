@@ -100,7 +100,7 @@ public class main {
 
     MembresiasData membresiaD = new MembresiasData();
     Socio socio = new Socio("34877112","martin","piriz",32,"mpirizdutra@ulp.edu.ar","2664859913");
-    Membresias membresia = new Membresias(socio,3,34,new Date(),new Date(),true);
+    membresiaD = new Membresias(socio,3,34,new Date(),new Date(),true);
     membresiaD.guardarMembresias(membresia);
     
     }

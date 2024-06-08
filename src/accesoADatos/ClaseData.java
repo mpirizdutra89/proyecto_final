@@ -20,6 +20,7 @@ public class ClaseData {
     public ClaseData() {
         //Se inicializa la conexión a la BD usando el método estático `getConexion` de la clase Conexión
         con = Conexion.getConexion();
+        clase = null;
     }
 
     /*MÉTODOS*/
@@ -94,8 +95,7 @@ public class ClaseData {
     }
 
     public Clase buscarClasePorNombre(String nombre) {
-        //Nueva instancia de clase
-        this.clase = null;
+        
         //Consulta SQL
         String query = "SELECT idClase,idEntrenador,nombre,horario,capacidad,estado "
                 + "FROM clases "
@@ -110,14 +110,14 @@ public class ClaseData {
                 this.clase = new Clase();
 
                 this.clase.setIdClase(rs.getInt("idClase"));
-                Clase cl = buscarEntrenador(rs.getInt("idEntrenador"));
-                clase.setEntrenador(cl.getEntrenador());
+                int idEntrenador = rs.getInt("idEntrenador"); // Guarda el ID del entrenador
+                this.clase.setIdEntrenador(idEntrenador);
                 this.clase.setNombre(rs.getString("nombre"));
                 this.clase.setHorario(rs.getTime("horario").toLocalTime());
                 this.clase.setCapacidad(rs.getInt("capacidad"));
                 this.clase.setEstado(true);
             } else {
-                JOptionPane.showMessageDialog(null, "La clase no existe!!.");
+                JOptionPane.showMessageDialog(null, "La clase no existe!.");
             }
             ps.close();
             rs.close();
@@ -125,12 +125,12 @@ public class ClaseData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
             Conexion.msjError.add("Clase: buscarClasePorNommbre -> " + ex.getMessage());
         }
-
+        
         return clase;
     }
 
     public Clase buscarEntrenador(int id) {
-        this.clase = null;
+        
         String query = "SELECT idClase,idEntrenador,nombre,horario,capacidad,estado "
                 + "FROM clases "
                 + "WHERE idEntrenador = ? and estado = 1 ";
@@ -143,8 +143,9 @@ public class ClaseData {
                 this.clase = new Clase();
 
                 this.clase.setIdClase(rs.getInt("idClase"));
-                Clase cl = buscarEntrenador(rs.getInt("idEntrenador"));
-                clase.setEntrenador(cl.getEntrenador());
+                int idEntrenador = rs.getInt("idEntrenador"); // Guarda el ID del entrenador
+                Entrenador el = EntrenadorData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
+                clase.setIdEntrenador(idEntrenador);
                 this.clase.setNombre(rs.getString("nombre"));
                 this.clase.setHorario(rs.getTime("horario").toLocalTime());
                 this.clase.setCapacidad(rs.getInt("capacidad"));
@@ -174,8 +175,9 @@ public class ClaseData {
                 this.clase = new Clase();
 
                 this.clase.setIdClase(rs.getInt("idClase"));
-                Clase cl = buscarEntrenador(rs.getInt("idEntrenador"));
-                clase.setEntrenador(cl.getEntrenador());
+                int idEntrenador = rs.getInt("idEntrenador"); // Guarda el ID del entrenador
+                Entrenador el = EntrenadorData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
+                clase.setIdEntrenador(idEntrenador);
                 this.clase.setNombre(rs.getString("nombre"));
                 this.clase.setHorario(rs.getTime("horario").toLocalTime());
                 this.clase.setCapacidad(rs.getInt("capacidad"));
