@@ -99,7 +99,7 @@ public class Clase {
     /*METODO SOBREESCRITO toString*/
     @Override
     public String toString() {
-        return "idClases: " + idClase + ", Entrenadores: " + entrenador + ", nombre: " + nombre
+        return "idClases: " + idClase + ", idEntrenador: " + entrenador+ ", nombre: " + nombre
                 + ", horario: " + horario + ", capacidad: " + capacidad + ", estado: " + estado;
     }
 }

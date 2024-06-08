@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 public class ClaseData {
 
     private Clase clase;//Instancia de la clase `Clase`
+    private EntrenadorData entrenadorData;
     private static Connection con = null;//Conexión estática a la BD 
 
     /*CONSTRUCTOR*/
@@ -54,7 +55,7 @@ public class ClaseData {
         }
     }
 
-    public ArrayList<Clase> clasesDisponibles() {
+    public ArrayList<Clase> listarClasesDisponibles() {
         //Lista para almacenar las clases disponibles
         ArrayList<Clase> listaClases = new ArrayList<>();
         //Consulta SQL
@@ -68,12 +69,13 @@ public class ClaseData {
                 this.clase = new Clase();//Nueva instancia de clase
                 //Se establecen los datos de la clase
                 this.clase.setIdClase(rs.getInt("idClase"));
-                this.clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
+                Clase cl = buscarEntrenador(rs.getInt("idEntrenador"));
                 this.clase.setNombre(rs.getString("nombre"));
                 this.clase.setHorario(rs.getTime("horario").toLocalTime());
                 this.clase.setCapacidad(rs.getInt("capacidad"));
                 this.clase.setEstado(true);
                 //Se añade la clase a la lista
+                clase.setEntrenador(cl.getEntrenador());
                 listaClases.add(clase);
             }
             //Se cierran el PreparedStatement y el ResultSet.
