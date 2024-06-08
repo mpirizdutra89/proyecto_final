@@ -1,4 +1,5 @@
 package accesoADatos;
+
 import entidades.Entrenador;
 import entidades.Clase;
 import java.sql.*;
@@ -107,7 +108,8 @@ public class ClaseData {
                 this.clase = new Clase();
 
                 this.clase.setIdClase(rs.getInt("idClase"));
-                this.clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
+                Clase cl = buscarEntrenador(rs.getInt("idEntrenador"));
+                clase.setEntrenador(cl.getEntrenador());
                 this.clase.setNombre(rs.getString("nombre"));
                 this.clase.setHorario(rs.getTime("horario").toLocalTime());
                 this.clase.setCapacidad(rs.getInt("capacidad"));
@@ -121,7 +123,8 @@ public class ClaseData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
             Conexion.msjError.add("Clase: buscarClasePorNommbre -> " + ex.getMessage());
         }
-        return this.clase;
+
+        return clase;
     }
 
     public Clase buscarEntrenador(int id) {
@@ -138,13 +141,14 @@ public class ClaseData {
                 this.clase = new Clase();
 
                 this.clase.setIdClase(rs.getInt("idClase"));
-                this.clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
+                Clase cl = buscarEntrenador(rs.getInt("idEntrenador"));
+                clase.setEntrenador(cl.getEntrenador());
                 this.clase.setNombre(rs.getString("nombre"));
                 this.clase.setHorario(rs.getTime("horario").toLocalTime());
                 this.clase.setCapacidad(rs.getInt("capacidad"));
                 this.clase.setEstado(true);
-            }else{
-                JOptionPane.showMessageDialog(null, "El entrenador id: "+id+" no existe!!.");
+            } else {
+                JOptionPane.showMessageDialog(null, "El entrenador id: " + id + " no existe!!.");
             }
             ps.close();
             rs.close();
@@ -157,7 +161,7 @@ public class ClaseData {
 
     public Clase buscarHorario(LocalTime horario) {
         this.clase = null;
-       String query = "SELECT idClase,idEntrenador,nombre,horario,capacidad,estado "
+        String query = "SELECT idClase,idEntrenador,nombre,horario,capacidad,estado "
                 + "FROM clases "
                 + "WHERE horario = ? and estado = 1 ";
         try {
@@ -168,17 +172,18 @@ public class ClaseData {
                 this.clase = new Clase();
 
                 this.clase.setIdClase(rs.getInt("idClase"));
-                this.clase.getEntrenador().setIdEntrenador(rs.getInt("idEntrenador"));
+                Clase cl = buscarEntrenador(rs.getInt("idEntrenador"));
+                clase.setEntrenador(cl.getEntrenador());
                 this.clase.setNombre(rs.getString("nombre"));
                 this.clase.setHorario(rs.getTime("horario").toLocalTime());
                 this.clase.setCapacidad(rs.getInt("capacidad"));
                 this.clase.setEstado(true);
-            }else{
-                JOptionPane.showMessageDialog(null, "El horario: "+horario+" no existe!!.");
+            } else {
+                JOptionPane.showMessageDialog(null, "El horario: " + horario + " no existe!!.");
             }
             ps.close();
             rs.close();
-        } catch (SQLException |NullPointerException ex) {
+        } catch (SQLException | NullPointerException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
             Conexion.msjError.add("Clase: buscarHorario -> " + ex.getMessage());
         }
