@@ -3,11 +3,14 @@ package Test;
 import accesoADatos.ClaseData;
 import accesoADatos.Conexion;
 import accesoADatos.EntrenadorData;
+import accesoADatos.MembresiasData;
 import entidades.Socio;
 import entidades.Entrenador;
 import java.util.ArrayList;
 import entidades.Clase;
+import entidades.Membresias;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -64,22 +67,22 @@ public class main {
 
 
 //      PRUEBAS CLASEDATA
+//
+//        ClaseData claseD = new ClaseData();
+//        Clase clase = new Clase(e, "Natacion", LocalTime.now(), 20, true);
+//        
+//        //GUARDAR CLASE
+////        claseD.guardarClase(clase);
+//
+////      LISTAR CLASES
+//
+//        ArrayList<Clase> clasesActivas = claseD.listarClasesDisponibles();
+//           for (Clase clases : clasesActivas) {
+//            System.out.println(clases);
+//           }
 
-        ClaseData claseD = new ClaseData();
-        Clase clase = new Clase(e, "Natacion", LocalTime.now(), 20, true);
         
-        //GUARDAR CLASE
-//        claseD.guardarClase(clase);
-
-//      LISTAR CLASES
-
-        ArrayList<Clase> clasesActivas = claseD.listarClasesDisponibles();
-           for (Clase clases : clasesActivas) {
-            System.out.println(clases);
-           }
-
-        
-    }
+  //  }
 
 //    private static void pruebaClases() {
 //        accesoADatos.ClaseData claseData = new accesoADatos.ClaseData();
@@ -93,4 +96,12 @@ public class main {
 //        }
 //    }
 
-}
+//}
+
+    MembresiasData membresiaD = new MembresiasData();
+    Socio socio = new Socio("34877112","martin","piriz",32,"mpirizdutra@ulp.edu.ar","2664859913");
+    Membresias membresia = new Membresias(socio,3,34,new Date(),new Date(),true);
+    membresiaD.guardarMembresias(membresia);
+    
+    }
+    }
