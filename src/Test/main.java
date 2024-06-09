@@ -111,8 +111,8 @@ public class main {
         Calendar fechafin = Calendar.getInstance();
         fechafin.setTime(fechaIn);
         fechafin.add(Calendar.DAY_OF_MONTH, 30);
-
-        membresiasData.guardarMembresia(new Membresias(1, sc1, 10, 50.0, fechaIn, fechaIn, true));
+        System.out.println( fechaIn+ "------- "+fechafin.getTime() );
+        membresiasData.guardarMembresia(new Membresias(1, sc1, 10, 50.0, fechaIn, fechafin.getTime(), true));
 
         // Crear un socio de ejemplo
         //Socio socio = new Socio();
