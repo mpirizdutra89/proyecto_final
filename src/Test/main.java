@@ -102,35 +102,119 @@ public class main {
 //    
     }
 
+        //private static void pruebaMembresias() {
+//        // Crear una instancia de MembresiasData
+//        accesoADatos.MembresiasData membresiasData = new MembresiasData();
+//        accesoADatos.SocioData socioDat = new accesoADatos.SocioData();
+//        Socio sc1 = socioDat.buscarSocioPorId(1);
+//        Date fechaIn = new Date();
+//        Calendar fechafin = Calendar.getInstance();
+//        fechafin.setTime(fechaIn);
+//        fechafin.add(Calendar.DAY_OF_MONTH, 30);
+//        System.out.println( fechaIn+ "Sat Jun 08 22:02:45 ART 2024------- Mon Jul 08 22:02:45 ART 2024"+fechafin.getTime() );
+//        membresiasData.guardarMembresia(new Membresias(1, sc1, 10, 50.0, fechaIn, fechafin.getTime(), true));
+//        
+//
+//         //Crear un socio de ejemplo
+//        Socio socio = new Socio();
+//        socio.getIdSocio(); // Asegúrate de que este socio exista en la base de datos
+//         //Crear una membresía de ejemplo
+//        Membresias membresia = new Membresias();
+//        membresia.setSocio(socio);
+//        membresia.setCantidadPases(10);
+//        membresia.setCosto(50.0);
+//        membresia.setFechaInicio(new Date());
+//        membresia.setFechaFin(new Date(System.currentTimeMillis() + (30L * 24 * 60 * 60 * 1000))); 
+//        membresia.setEstado(true);
+//         
+//       
+//         
+//        
+//         //Verificar si se guardó correctamente
+//         if (membresia.getIdMembresia() > 0) {
+//            System.out.println("Membresía guardada con ID: " + membresia.getIdMembresia());
+//        } else {
+//            System.out.println("No se pudo guardar la membresía.");
+//        }
+//    }
+//}
+// Buscar Membresias 
+//        private static void pruebaMembresias() {
+//    // Crear una instancia de MembresiasData
+//        MembresiasData membresiasData = new MembresiasData();
+//
+//        // ID del socio a buscar
+//        int idSocio = 1;
+//
+//        // Obtener el historial de membresías del socio
+//        ArrayList<Membresias> historial = membresiasData.historialMembresias(idSocio);
+//
+//        // Verificar si se obtuvieron membresías y mostrar la información
+//        if (historial.isEmpty()) {
+//            System.out.println("No se encontraron membresías para el socio con ID: " + idSocio);
+//        } else {
+//            System.out.println("Historial de membresías para el socio con ID: " + idSocio);
+//            for (Membresias membresia : historial) {
+//                System.out.println("ID Membresía: " + membresia.getIdMembresia());
+//                System.out.println("ID Socio: " + membresia.getSocio().getIdSocio());
+//                System.out.println("Cantidad de Pases: " + membresia.getCantidadPases());
+//                System.out.println("Costo: " + membresia.getCosto());
+//                System.out.println("Fecha de Inicio: " + membresia.getFechaInicio());
+//                System.out.println("Fecha de Fin: " + membresia.getFechaFin());
+//                System.out.println("Estado: " + membresia.isEstado());
+//                System.out.println("-----------------------");
+//            }
+//        }
+//    }
+//    
+//   }
+
+// Buscar socio por id
+    // Crear una instancia de MembresiasData
+//        MembresiasData membresiasData = new MembresiasData();
+//
+//        // ID del socio a buscar
+//        int idSocio = 1;
+//
+//        // Buscar la membresía del socio
+//        Membresias membresia = membresiasData.buscarSocio(idSocio);
+//
+//        // Verificar si se obtuvo una membresía y mostrar la información
+//        if (membresia == null) {
+//            System.out.println("No existe una membresía activa para el socio con ID: " + idSocio);
+//        } else {
+//            System.out.println("Membresía encontrada:");
+//            System.out.println("ID Membresía: " + membresia.getIdMembresia());
+//            System.out.println("ID Socio: " + membresia.getSocio().getIdSocio());
+//            System.out.println("Nombre Socio: " + membresia.getSocio().getNombre());
+//            System.out.println("Cantidad de Pases: " + membresia.getCantidadPases());
+//            System.out.println("Costo: " + membresia.getCosto());
+//            System.out.println("Fecha de Inicio: " + membresia.getFechaInicio());
+//            System.out.println("Fecha de Fin: " + membresia.getFechaFin());
+//            System.out.println("Estado: " + membresia.isEstado());
+//        }
+//    }
+//}
+
     private static void pruebaMembresias() {
         // Crear una instancia de MembresiasData
         accesoADatos.MembresiasData membresiasData = new MembresiasData();
-        accesoADatos.SocioData socioDat = new accesoADatos.SocioData();
-        Socio sc1 = socioDat.buscarSocioPorId(1);
-        Date fechaIn = new Date();
-        Calendar fechafin = Calendar.getInstance();
-        fechafin.setTime(fechaIn);
-        fechafin.add(Calendar.DAY_OF_MONTH, 30);
-        System.out.println( fechaIn+ "------- "+fechafin.getTime() );
-        membresiasData.guardarMembresia(new Membresias(1, sc1, 10, 50.0, fechaIn, fechafin.getTime(), true));
 
-        // Crear un socio de ejemplo
-        //Socio socio = new Socio();
-        //socio.getIdSocio(); // Asegúrate de que este socio exista en la base de datos
-        // Crear una membresía de ejemplo
-        //Membresias membresia = new Membresias();
-        //membresia.setSocio(socio);
-        //membresia.setCantidadPases(10);
-        //membresia.setCosto(50.0);
-        //membresia.setFechaInicio(new Date());
-        //membresia.setFechaFin(new Date(System.currentTimeMillis() + (30L * 24 * 60 * 60 * 1000))); // 30 días más tarde
-        //membresia.setEstado(true);
-        // Guardar la membresía en la base de datos
-        // Verificar si se guardó correctamente
-        /* if (membresia.getIdMembresia() > 0) {
-            System.out.println("Membresía guardada con ID: " + membresia.getIdMembresia());
+        // Buscar una membresía activa para un socio por ID
+        Membresias membresia = membresiasData.buscarSocio(1);
+
+        // Verificar si se encontró una membresía activa
+        if (membresia != null) {
+            System.out.println("Membresía encontrada:");
+            System.out.println("ID de Membresía: " + membresia.getIdMembresia());
+            System.out.println("ID de Socio: " + membresia.getSocio().getIdSocio());
+            System.out.println("Cantidad de Pases: " + membresia.getCantidadPases());
+            System.out.println("Costo: " + membresia.getCosto());
+            System.out.println("Fecha de Inicio: " + membresia.getFechaInicio());
+            System.out.println("Fecha de Fin: " + membresia.getFechaFin());
+            System.out.println("Estado: " + membresia.isEstado());
         } else {
-            System.out.println("No se pudo guardar la membresía.");
-        }*/
+            System.out.println("No se encontró una membresía activa para el socio especificado.");
+        }
     }
-}
+    }
