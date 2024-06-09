@@ -24,7 +24,7 @@ public class main {
      */
     public static void main(String[] args) {
         //Martin Pruebas SocioData
-        //pruebaSocioData();
+        pruebaSocioData();
         //pruebaEntrenadorData();
         //pruebaClaseData();
         //pruebaMembresiasData();
@@ -33,20 +33,49 @@ public class main {
     }
 
     private static void pruebaSocioData() {
+        //boolean guardarSocio(Socio socio)*
+        //boolean modificarSocios(Socio socio)*
+        //ArrayList<Socio> listarSocio()*
+        //Socio buscarSocioPorId(int id)*
+        //ArrayList<Socio> buscarSocioPorNombre(String nombre)
+        //boolean bajaSocio(int id)*
+        
         accesoADatos.SocioData socioDat = new accesoADatos.SocioData();
         //guardarSocio
-        socioDat.guardarSocio(new Socio("34877112", "martin", "piriz", 32, "mpirizdutra@ulp.edu.ar", "2664859913"));
-        socioDat.guardarSocio(new Socio("18762864", "Walter", "piriz", 32, "wepo56@gmail.com", "2664855569"));
-        socioDat.guardarSocio(new Socio("52909515", "Silvia", "Dutra", 32, "dialviacaetano63@gmail.com", "2664761074"));
-        socioDat.guardarSocio(new Socio("28173863", "Carlos", "Ferrando", 44, "cferrando2015@gmail.com", "2664235019"));
+        //socioDat.guardarSocio(new Socio("34877112", "martin", "piriz", 32, "mpirizdutra@ulp.edu.ar", "2664859913"));
+        //socioDat.guardarSocio(new Socio("18762864", "Walter", "piriz", 32, "wepo56@gmail.com", "2664855569"));
+        //socioDat.guardarSocio(new Socio("52909515", "Silvia", "Dutra", 32, "dialviacaetano63@gmail.com", "2664761074"));
+        //socioDat.guardarSocio(new Socio("28173863", "Carlos", "Ferrando", 44, "cferrando2015@gmail.com", "2664235019"));
 
-        socioDat.listarSocio();
+        //socioDat.listarSocio();
 
         ArrayList<Socio> lista = new ArrayList<Socio>();
-        lista = socioDat.listarSocio();
+        //lista = socioDat.listarSocio();
+        lista = socioDat.buscarSocioPorNombre("martin");
         for (Socio socio : lista) {
             System.out.println(socio);
         }
+        
+        //Socio s = socioDat.buscarSocioPorId(1);
+        
+        //if(s != null){
+        //    System.out.println("ID: " + s.getIdSocio());
+        //    System.out.println("DNI: " + s.getDni());
+        //    System.out.println("Nombre: " + s.getNombre());
+        //    System.out.println("Apellido: " + s.getApellido());
+        //    System.out.println("Edad: " + s.getEdad());
+        //    System.out.println("Email: " + s.getCorreo());
+        //    System.out.println("Teléfono: " + s.getTelefono());
+        //}
+        
+        //boolean verdad = socioDat.modificarSocios(new Socio(1, "34877112", "Martin", "piriz", 32, "mpirizdutra@ulp.edu.ar", "2664859913", true));
+        //if(verdad){
+        //    System.out.println("socio modificado");
+        //}
+        //boolean verdad =socioDat.bajaSocio(7);
+        //if(verdad){
+        //   System.out.println("socio eliminado");
+        //}
     }
 
     private static void pruebaClaseData() {
@@ -59,7 +88,18 @@ public class main {
         for (Clase clase : lista) {
             System.out.println(clase);
         }
-        //La busqueda de parametros (null,null,null) devuelve todos los entrenadores activos
+       
+    }
+
+    private static void pruebaEntrenadorData() {
+        EntrenadorData eData = new EntrenadorData();
+        Entrenador e = new Entrenador(1);
+        boolean ok = eData.guardarEntrenador(e);
+        List<Entrenador> entrenadores = eData.listarEntrenadores();
+        for (Entrenador entrenador : entrenadores) {
+            System.out.println(entrenador);
+        }
+         //La busqueda de parametros (null,null,null) devuelve todos los entrenadores activos
         //Prueba buscarEntrenador por nombre y especialidad juntos
         //List<Entrenador> res1 = eData.buscarEntrenadores("Juan", null, "Atletis");
         //System.out.println("Resultados de la busqueda:");
@@ -74,16 +114,6 @@ public class main {
         //Prueba modificarEntrenador()
         //entrenador.setEstado(true);
         //eData.modificarEntrenador(entrenador);
-    }
-
-    private static void pruebaEntrenadorData() {
-        EntrenadorData eData = new EntrenadorData();
-        Entrenador e = new Entrenador(1);
-        boolean ok = eData.guardarEntrenador(e);
-        List<Entrenador> entrenadores = eData.listarEntrenadores();
-        for (Entrenador entrenador : entrenadores) {
-            System.out.println(entrenador);
-        }
     }
 
     private static void pruebaMembresiasData() {
