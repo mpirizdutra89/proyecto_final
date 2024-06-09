@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import entidades.Clase;
 import entidades.Membresias;
 import java.time.LocalTime;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -25,8 +26,8 @@ public class main {
         //Martin Pruebas SocioData
         //ruebasSocios();
 //        pruebaClases();
-        Conexion.mostrarErrores();
         pruebaMembresias();
+        Conexion.mostrarErrores();
 
 //    public static void pruebasSocios(){
 //        accesoADatos.SocioData socioDat=new accesoADatos.SocioData();
@@ -66,7 +67,6 @@ public class main {
 //        entrenador.setEstado(true);
 //        eData.modificarEntrenador(entrenador);//
 
-
 //      PRUEBAS CLASEDATA
 //
 //        ClaseData claseD = new ClaseData();
@@ -81,10 +81,7 @@ public class main {
 //           for (Clase clases : clasesActivas) {
 //            System.out.println(clases);
 //           }
-
-        
-  //  }
-
+        //  }
 //    private static void pruebaClases() {
 //        accesoADatos.ClaseData claseData = new accesoADatos.ClaseData();
 //        //Entrenador e1 = new Entrenador(2, "12345678", "Juan", "Lucero", "Atletismo", true);
@@ -96,7 +93,6 @@ public class main {
 //            System.out.println(clase);
 //        }
 //    }
-
 //}
 //    private static void pruebaMembresias() {
 //    MembresiasData membresiaD = new MembresiasData();
@@ -105,32 +101,36 @@ public class main {
 //    
 //    
     }
-     private static void pruebaMembresias() {
+
+    private static void pruebaMembresias() {
         // Crear una instancia de MembresiasData
-        MembresiasData membresiasData = new MembresiasData();
+        accesoADatos.MembresiasData membresiasData = new MembresiasData();
+        accesoADatos.SocioData socioDat = new accesoADatos.SocioData();
+        Socio sc1 = socioDat.buscarSocioPorId(1);
+        Date fechaIn = new Date();
+        Calendar fechafin = Calendar.getInstance();
+        fechafin.setTime(fechaIn);
+        fechafin.add(Calendar.DAY_OF_MONTH, 30);
+
+        membresiasData.guardarMembresia(new Membresias(1, sc1, 10, 50.0, fechaIn, fechaIn, true));
 
         // Crear un socio de ejemplo
-        Socio socio = new Socio();
-        socio.setIdSocio(1); // Asegúrate de que este socio exista en la base de datos
-
+        //Socio socio = new Socio();
+        //socio.getIdSocio(); // Asegúrate de que este socio exista en la base de datos
         // Crear una membresía de ejemplo
-        Membresias membresia = new Membresias();
-        membresia.setSocio(socio) set.idSocio();
-        membresia.setCantidadPases(10);
-        membresia.setCosto(50.0);
-        membresia.setFechaInicio(new Date());
-        membresia.setFechaFin(new Date(System.currentTimeMillis() + (30L * 24 * 60 * 60 * 1000))); // 30 días más tarde
-        membresia.setEstado(true);
-
+        //Membresias membresia = new Membresias();
+        //membresia.setSocio(socio);
+        //membresia.setCantidadPases(10);
+        //membresia.setCosto(50.0);
+        //membresia.setFechaInicio(new Date());
+        //membresia.setFechaFin(new Date(System.currentTimeMillis() + (30L * 24 * 60 * 60 * 1000))); // 30 días más tarde
+        //membresia.setEstado(true);
         // Guardar la membresía en la base de datos
-        membresiasData.guardarMembresia(membresia);
-
         // Verificar si se guardó correctamente
-        if (membresia.getIdMembresia() > 0) {
+        /* if (membresia.getIdMembresia() > 0) {
             System.out.println("Membresía guardada con ID: " + membresia.getIdMembresia());
         } else {
             System.out.println("No se pudo guardar la membresía.");
-        }
+        }*/
     }
-    }
-   
+}

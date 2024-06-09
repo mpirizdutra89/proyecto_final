@@ -1,5 +1,5 @@
-
 package accesoADatos;
+
 import entidades.Membresias;
 import entidades.Socio;
 import java.sql.Connection;
@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Ariel Zurita
  */
 public class MembresiasData {
-    
+
 //    private static Connection conec = null;
 //
 //    public MembresiasData() {
@@ -53,102 +53,100 @@ public class MembresiasData {
 //  }
 //   }
     private Membresias membresias;
-    
-        
+
     private static Connection conec = null;
 
     public MembresiasData() {
         conec = Conexion.getConexion();
-     }
-    
-    
-/* METODOS */
-public void guardarMembresia(Membresias membresia) {
-    // Consulta SQL para insertar una nueva membresía
-    String query = "INSERT INTO membresias(idSocio, cantidadPases, costo, fecha_inicio, fecha_fin, estado) "
-                 + "VALUES(?,?,?,?,?,?)";
-
-    try {
-        // Prepara la consulta y permite obtener las claves generadas automáticamente
-        PreparedStatement ps = conec.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-        
-        // Se establecen los valores de los parámetros
-        ps.setInt(1, membresia.getSocio().getIdSocio());  // Suponiendo que Socio tiene un método getIdSocio()
-        ps.setInt(2, membresia.getCantidadPases());
-        ps.setDouble(3, membresia.getCosto());
-        ps.setDate(4, new java.sql.Date(membresia.getFechaInicio().getTime()));
-        ps.setDate(5, new java.sql.Date(membresia.getFecha_fin().getTime()));
-        ps.setBoolean(6, membresia.isEstado());
-        
-        // Se ejecuta la actualización en la BD
-        ps.executeUpdate();
-        
-        // Se obtienen las claves generadas automáticamente
-        ResultSet rs = ps.getGeneratedKeys();
-        
-        // Si hay claves, son asignadas a la membresía
-        if (rs.next()) {
-            membresia.setIdMembresia(rs.getInt(1));
-            JOptionPane.showMessageDialog(null, "Membresía guardada exitosamente!!");
-        }
-        
-        // Se cierran el PreparedStatement y el ResultSet
-        ps.close();
-        rs.close();
-    } catch (SQLException | NullPointerException ex) {
-        Conexion.msjError.add("Membresía: guardarMembresia -> " + ex.getMessage());
-    }
     }
 
-    
-    
+    /* METODOS */
+    public void guardarMembresia(Membresias membresia) {
+        // Consulta SQL para insertar una nueva membresía
+        String query = "INSERT INTO membresias(idSocio, cantidadPases, costo, fecha_inicio, fecha_fin, estado) "
+                + "VALUES(?,?,?,?,?,?)";
 
-public ArrayList<Membresias> historialMembresias(int idSocio) {
-    ArrayList<Membresias> membresiasList = new ArrayList<>();
-    String query = "SELECT * FROM membresias WHERE idSocio = ?";
-
-    PreparedStatement ps = null;
-    ResultSet rs = null;
-
-    try {
-        
-        ps = conec.prepareStatement(query);
-        ps.setInt(1, idSocio);
-        
-        // Ejecuta la consulta y obtiene el ResultSet
-        rs = ps.executeQuery();
-        
-        // Itera sobre el ResultSet y crea objetos Membresias
-        while (rs.next()) {
-            int idMembresia = rs.getInt("idMembresia");
-            int socioId = rs.getInt("idSocio");
-            Socio socio = new Socio(); 
-            socio.setIdSocio(socioId);
-            
-            int cantidadPases = rs.getInt("cantidadPases");
-            double costo = rs.getDouble("costo");
-            Date fechaInicio = rs.getDate("fechaInicio");
-            Date fechaFin = rs.getDate("fechaFin");
-            boolean estado = rs.getBoolean("estado");
-
-            Membresias membresia = new Membresias(idMembresia, socio, cantidadPases, costo, fechaInicio, fechaFin, estado);
-            membresiasList.add(membresia);
-        }
-    } catch (SQLException ex) {
-        Conexion.msjError.add("Error al obtener el historial de membresías: " + ex.getMessage());
-    } finally {
-        // Cierra ResultSet y PreparedStatement
         try {
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-        } catch (SQLException ex) {
-            Conexion.msjError.add("Error al cerrar recursos: " + ex.getMessage());
+            // Prepara la consulta y permite obtener las claves generadas automáticamente
+            PreparedStatement ps = conec.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+            // Se establecen los valores de los parámetros
+            ps.setInt(1, membresia.getSocio().getIdSocio());  // Suponiendo que Socio tiene un método getIdSocio()
+            ps.setInt(2, membresia.getCantidadPases());
+            ps.setDouble(3, membresia.getCosto());
+            ps.setDate(4, new java.sql.Date(membresia.getFechaInicio().getTime()));
+            ps.setDate(5, new java.sql.Date(membresia.getFechaFin().getTime()));
+            ps.setBoolean(6, membresia.isEstado());
+
+            // Se ejecuta la actualización en la BD
+            ps.executeUpdate();
+
+            // Se obtienen las claves generadas automáticamente
+            ResultSet rs = ps.getGeneratedKeys();
+
+            // Si hay claves, son asignadas a la membresía
+            if (rs.next()) {
+                membresia.setIdMembresia(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "Membresía guardada exitosamente!!");
+            }
+
+            // Se cierran el PreparedStatement y el ResultSet
+            ps.close();
+            rs.close();
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("Membresía: guardarMembresia -> " + ex.getMessage());
         }
     }
 
-    return membresiasList;
-}
+    public ArrayList<Membresias> historialMembresias(int idSocio) {
+        ArrayList<Membresias> membresiasList = new ArrayList<>();
+        String query = "SELECT * FROM membresias WHERE idSocio = ?";
 
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+
+            ps = conec.prepareStatement(query);
+            ps.setInt(1, idSocio);
+
+            // Ejecuta la consulta y obtiene el ResultSet
+            rs = ps.executeQuery();
+
+            // Itera sobre el ResultSet y crea objetos Membresias
+            while (rs.next()) {
+                int idMembresia = rs.getInt("idMembresia");
+                int socioId = rs.getInt("idSocio");
+                Socio socio = new Socio();
+                socio.setIdSocio(socioId);
+
+                int cantidadPases = rs.getInt("cantidadPases");
+                double costo = rs.getDouble("costo");
+                Date fechaInicio = rs.getDate("fechaInicio");
+                Date fechaFin = rs.getDate("fechaFin");
+                boolean estado = rs.getBoolean("estado");
+
+                Membresias membresia = new Membresias(idMembresia, socio, cantidadPases, costo, fechaInicio, fechaFin, estado);
+                membresiasList.add(membresia);
+            }
+        } catch (SQLException ex) {
+            Conexion.msjError.add("Error al obtener el historial de membresías: " + ex.getMessage());
+        } finally {
+            // Cierra ResultSet y PreparedStatement
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException ex) {
+                Conexion.msjError.add("Error al cerrar recursos: " + ex.getMessage());
+            }
+        }
+
+        return membresiasList;
+    }
 
 //
 //// en este ejemplo (ArrayList<Membreias> historialMembreias()) no entiendo bien si lo tengo que hacer general
@@ -236,7 +234,6 @@ public ArrayList<Membresias> historialMembresias(int idSocio) {
 //    }
 //    return membresia;
 //}
-
 //    public ArrayList<Membresias> buscarSocioCancelados(int idSocio) {
 //        ArrayList<Membresias> lista = new ArrayList<>();
 //        ResultSet res = null;
@@ -297,7 +294,6 @@ public ArrayList<Membresias> historialMembresias(int idSocio) {
 //        }
 //        return socio;
 //    }
-
 // public boolean cancelarMembresias(int id) {
 //        String sql = "UPDATE membresias SET estado = 0 WHERE idMembresia = ?";
 //        boolean resultado = false;
@@ -403,7 +399,4 @@ public ArrayList<Membresias> historialMembresias(int idSocio) {
 //
 //        return resultado;
 //    }
-
-    
-
 }

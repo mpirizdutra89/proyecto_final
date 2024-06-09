@@ -144,8 +144,8 @@ public class ClaseData {
 
                 this.clase.setIdClase(rs.getInt("idClase"));
                 int idEntrenador = rs.getInt("idEntrenador"); // Guarda el ID del entrenador
-                Entrenador el = EntrenadorData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
-                clase.setIdEntrenador(idEntrenador);
+                //Entrenador el = EntrenadorData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
+                this.clase.setIdEntrenador(idEntrenador);
                 this.clase.setNombre(rs.getString("nombre"));
                 this.clase.setHorario(rs.getTime("horario").toLocalTime());
                 this.clase.setCapacidad(rs.getInt("capacidad"));
@@ -176,8 +176,8 @@ public class ClaseData {
 
                 this.clase.setIdClase(rs.getInt("idClase"));
                 int idEntrenador = rs.getInt("idEntrenador"); // Guarda el ID del entrenador
-                Entrenador el = EntrenadorData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
-                clase.setIdEntrenador(idEntrenador);
+                //Entrenador el = EntrenadorData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
+                this.clase.setIdEntrenador(idEntrenador);
                 this.clase.setNombre(rs.getString("nombre"));
                 this.clase.setHorario(rs.getTime("horario").toLocalTime());
                 this.clase.setCapacidad(rs.getInt("capacidad"));
