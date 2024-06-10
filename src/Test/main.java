@@ -26,15 +26,12 @@ public class main {
     public static void main(String[] args) {
         //Martin, Agustin, Ariel y Carlos Pruebas
         //pruebaSocioData();
-<<<<<<< Updated upstream
         pruebaEntrenadorData();
         //pruebaClaseData();
         //pruebaMembresiasData();
-=======
         //pruebaEntrenadorData();
         //pruebaClaseData();
         pruebaMembresiasData();
->>>>>>> Stashed changes
         Conexion.mostrarErrores();
 
     }
@@ -104,7 +101,6 @@ public class main {
 
         //Clase c1 = new Clase(e4, "Natación", LocalTime.of(9, 00), 7, true);
         //claseData.guardarClase(c1);
-<<<<<<< Updated upstream
         /*claseData.listarClasesDisponibles().forEach(item ->{
             System.out.println("ID clase: " + item.getIdClase());
             System.out.println("ID Entrenador: " + item.getIdEntrenador());
@@ -142,7 +138,6 @@ public class main {
             System.out.println("Capacidad: " + item.getCapacidad());
         });*/
         
-=======
         //claseData.listarClasesDisponibles().forEach(item ->{
         //    System.out.println("ID clase: " + item.getIdClase());
         //    System.out.println("ID Entrenador: " + item.getIdEntrenador());
@@ -156,7 +151,6 @@ public class main {
 //        System.out.println("Nombre: " + c1.getNombre());
 //        System.out.println("Horario: " + c1.getHorario());
 //        System.out.println("Capacidad: " + c1.getCapacidad());
->>>>>>> Stashed changes
     }
 
     private static void pruebaEntrenadorData() {
@@ -168,30 +162,12 @@ public class main {
         //void eliminarEntrenador(int id)*
         //void modificarEntrenador(Entrenador entrenador)
         EntrenadorData eData = new EntrenadorData();
-<<<<<<< Updated upstream
-        //Entrenador e = new Entrenador(2);
-        //boolean ok = eData.guardarEntrenador(e);
-        //List<Entrenador> entrenadores = eData.listarEntrenadores();
-        //List<Entrenador> entrenadores = eData.buscarEntrenadores("Juan", "Lucero", "Atletismo");
-        /*Entrenador ent = eData.buscarEntrenadorPorId(4);
-        System.out.println("Nombre: " + ent.getNombre());*/
-        
-        /*eData.eliminarEntrenador(4);
-        
-        List<Entrenador> entrenadores = eData.buscarEntrenadoresInactivos("Cristina", "Paez", "Pilates");
-        for (Entrenador entrenador : entrenadores) {
-            System.out.println(entrenador);
-        }*/
-        //eData.modificarEntrenador(new Entrenador(2, "12345678", "Juan Pablo", "Lucero", "Atletismo", true));
-        
-=======
         Entrenador e = new Entrenador(1);
         boolean ok = eData.guardarEntrenador(e);
 //        List<Entrenador> entrenadores = eData.listarEntrenadores();
 //        for (Entrenador entrenador : entrenadores) {
 //            System.out.println(entrenador);
 //        }
->>>>>>> Stashed changes
         //La busqueda de parametros (null,null,null) devuelve todos los entrenadores activos
         //Prueba buscarEntrenador por nombre y especialidad juntos
         //List<Entrenador> res1 = eData.buscarEntrenadores("Juan", null, "Atletis");
