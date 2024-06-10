@@ -40,7 +40,7 @@ public class main {
         //Socio buscarSocioPorId(int id)*
         //ArrayList<Socio> buscarSocioPorNombre(String nombre)
         //boolean bajaSocio(int id)*
-        
+
         accesoADatos.SocioData socioDat = new accesoADatos.SocioData();
         //guardarSocio
         //socioDat.guardarSocio(new Socio("34877112", "martin", "piriz", 32, "mpirizdutra@ulp.edu.ar", "2664859913"));
@@ -49,24 +49,19 @@ public class main {
         //socioDat.guardarSocio(new Socio("28173863", "Carlos", "Ferrando", 44, "cferrando2015@gmail.com", "2664235019"));
 
         //socioDat.listarSocio();
-
         //ArrayList<Socio> lista = new ArrayList<Socio>();
         //lista = socioDat.listarSocio();
-        socioDat.buscarSocioPorNombre("Martin").forEach((item) -> {
-            System.out.println(item.getIdSocio());
-            System.out.println(item.getDni());
-            System.out.println(item.getNombre());
-            System.out.println(item.getApellido());
-            System.out.println(item.getEdad());
-            System.out.println(item.getCorreo());
-            System.out.println(item.getTelefono());
-            System.out.println(item.getEstado());
-            
-        });
-        
-        
+        /*Socio s1 = socioDat.buscarSocioPorNombre("Martin");            
+            System.out.println(s1.getIdSocio());
+            System.out.println(s1.getDni());
+            System.out.println(s1.getNombre());
+            System.out.println(s1.getApellido());
+            System.out.println(s1.getEdad());
+            System.out.println(s1.getCorreo());
+            System.out.println(s1.getTelefono());
+            System.out.println(s1.getEstado());*/
+
         //Socio s = socioDat.buscarSocioPorId(1);
-        
         //if(s != null){
         //    System.out.println("ID: " + s.getIdSocio());
         //    System.out.println("DNI: " + s.getDni());
@@ -76,7 +71,6 @@ public class main {
         //    System.out.println("Email: " + s.getCorreo());
         //    System.out.println("Teléfono: " + s.getTelefono());
         //}
-        
         //boolean verdad = socioDat.modificarSocios(new Socio(1, "34877112", "Martin", "piriz", 32, "mpirizdutra@ulp.edu.ar", "2664859913", true));
         //if(verdad){
         //    System.out.println("socio modificado");
@@ -89,7 +83,7 @@ public class main {
 
     private static void pruebaClaseData() {
         //void guardarClase(Clase clase)*
-        //ArrayList<Clase> listarClasesDisponibles()
+        //ArrayList<Clase> listarClasesDisponibles()*
         //Clase buscarClasePorNombre(String nombre)
         //Clase buscarEntrenador(int id)
         //Clase buscarHorario(LocalTime horario)
@@ -101,17 +95,22 @@ public class main {
         //Entrenador e3 = new Entrenador(4, "25647389", "Cristina", "Paez", "Pilates", true);
         //Entrenador e4 = new Entrenador(5, "29876345", "Georgina", "Bardach", "Natación", true);
         //entData.guardarEntrenador(e4);
-       
+
         //Clase c1 = new Clase(e4, "Natación", LocalTime.of(9, 00), 7, true);
         //claseData.guardarClase(c1);
-        
-       claseData.listarClasesDisponibles().forEach(item ->{
-           System.out.println(item.getIdClase());
-           System.out.println(item.getIdEntrenador());
-           System.out.println(item.getNombre());
-           System.out.println(item.getHorario());
-           System.out.println(item.getCapacidad());
-       });
+        //claseData.listarClasesDisponibles().forEach(item ->{
+        //    System.out.println("ID clase: " + item.getIdClase());
+        //    System.out.println("ID Entrenador: " + item.getIdEntrenador());
+        //    System.out.println("Nombre: " + item.getNombre());
+        //    System.out.println("Horario: " + item.getHorario());
+        //    System.out.println("Capacidad: " + item.getCapacidad());
+        //});
+        Clase c1 = claseData.buscarClasePorNombre("Pilates");
+        System.out.println("ID clase: " + c1.getIdClase());
+        System.out.println("ID Entrenador: " + c1.getIdEntrenador());
+        System.out.println("Nombre: " + c1.getNombre());
+        System.out.println("Horario: " + c1.getHorario());
+        System.out.println("Capacidad: " + c1.getCapacidad());
     }
 
     private static void pruebaEntrenadorData() {
@@ -123,7 +122,7 @@ public class main {
         for (Entrenador entrenador : entrenadores) {
             System.out.println(entrenador);
         }
-         //La busqueda de parametros (null,null,null) devuelve todos los entrenadores activos
+        //La busqueda de parametros (null,null,null) devuelve todos los entrenadores activos
         //Prueba buscarEntrenador por nombre y especialidad juntos
         //List<Entrenador> res1 = eData.buscarEntrenadores("Juan", null, "Atletis");
         //System.out.println("Resultados de la busqueda:");
