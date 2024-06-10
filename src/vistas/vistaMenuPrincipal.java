@@ -4,12 +4,16 @@
  */
 package vistas;
 import accesoADatos.Conexion;
+import javax.swing.JFrame;
+import libs.Escritorio;
 /**
  *
  * @author Nicolas
  */
 public class vistaMenuPrincipal extends javax.swing.JFrame {
-
+    
+   private static vistaMenuPrincipal vmp;
+   private static final libs.Escritorio deskpto=new Escritorio();
     /**
      * Creates new form vistaMenuPrincipal
      */
@@ -63,6 +67,11 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMasistencia.setText("Asistencias");
+        jMasistencia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMasistenciaMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMasistencia);
 
         setJMenuBar(jMenuBar1);
@@ -84,6 +93,10 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
     private void jMclasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMclasesActionPerformed
         
     }//GEN-LAST:event_jMclasesActionPerformed
+
+    private void jMasistenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMasistenciaMouseClicked
+        // VISTA asistencia
+    }//GEN-LAST:event_jMasistenciaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -116,9 +129,15 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 if(Conexion.VerificarConexion()){
-                     new vistaMenuPrincipal().setVisible(true);
-                }else{
+                    vmp=new vistaMenuPrincipal();
+                    vmp.setContentPane(deskpto);
+                    vmp.setLocationRelativeTo(null);
+                    vmp.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    vmp.setVisible(true);
+                    vmp.setVisible(true);
                     
+                }else{
+                    libs.FuncionesComunes.vistaDialogo("No se pudo establecer una conexion.", 0);
                 }
                
             }
