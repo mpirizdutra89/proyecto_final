@@ -107,7 +107,7 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMclasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMclasesActionPerformed
-        vistaClases vc=new vistaClases();
+        vistaClase vc=new vistaClase();
         cargarVistasInternas(vc);
         
     }//GEN-LAST:event_jMclasesActionPerformed
