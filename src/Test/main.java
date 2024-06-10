@@ -26,8 +26,8 @@ public class main {
     public static void main(String[] args) {
         //Martín, Agustín, Ariel y Carlos Pruebas
         //pruebaSocioData();
-        //pruebaEntrenadorData();
-        pruebaClaseData();
+        pruebaEntrenadorData();
+        //pruebaClaseData();
         //pruebaMembresiasData();
         Conexion.mostrarErrores();
 
@@ -84,10 +84,10 @@ public class main {
     private static void pruebaClaseData() {
         //void guardarClase(Clase clase)*
         //ArrayList<Clase> listarClasesDisponibles()*
-        //Clase buscarClasePorNombre(String nombre)
-        //Clase buscarEntrenador(int id)
-        //Clase buscarHorario(LocalTime horario)
-        //void bajaClase(int id)
+        //Clase buscarClasePorNombre(String nombre)*
+        //Clase buscarEntrenador(int id)*
+        //Clase buscarHorario(LocalTime horario)*
+        //void bajaClase(int id)*
         accesoADatos.ClaseData claseData = new accesoADatos.ClaseData();
         accesoADatos.EntrenadorData entData = new accesoADatos.EntrenadorData();
         //Entrenador e1 = new Entrenador(2, "12345678", "Juan", "Lucero", "Atletismo", true);
@@ -98,30 +98,69 @@ public class main {
 
         //Clase c1 = new Clase(e4, "Natación", LocalTime.of(9, 00), 7, true);
         //claseData.guardarClase(c1);
-        //claseData.listarClasesDisponibles().forEach(item ->{
-        //    System.out.println("ID clase: " + item.getIdClase());
-        //    System.out.println("ID Entrenador: " + item.getIdEntrenador());
-        //    System.out.println("Nombre: " + item.getNombre());
-        //    System.out.println("Horario: " + item.getHorario());
-        //    System.out.println("Capacidad: " + item.getCapacidad());
-        //});
-        Clase c1 = claseData.buscarClasePorNombre("Pilates");
+        /*claseData.listarClasesDisponibles().forEach(item ->{
+            System.out.println("ID clase: " + item.getIdClase());
+            System.out.println("ID Entrenador: " + item.getIdEntrenador());
+            System.out.println("Nombre: " + item.getNombre());
+            System.out.println("Horario: " + item.getHorario());
+            System.out.println("Capacidad: " + item.getCapacidad());
+        });*/
+        /*Clase c1 = claseData.buscarClasePorNombre("Pilates");
         System.out.println("ID clase: " + c1.getIdClase());
         System.out.println("ID Entrenador: " + c1.getIdEntrenador());
         System.out.println("Nombre: " + c1.getNombre());
         System.out.println("Horario: " + c1.getHorario());
-        System.out.println("Capacidad: " + c1.getCapacidad());
+        System.out.println("Capacidad: " + c1.getCapacidad());*/
+        
+        /*Clase c1 = claseData.buscarEntrenador(3);
+        System.out.println("ID clase: " + c1.getIdClase());
+        System.out.println("ID Entrenador: " + c1.getIdEntrenador());
+        System.out.println("Nombre: " + c1.getNombre());
+        System.out.println("Horario: " + c1.getHorario());
+        System.out.println("Capacidad: " + c1.getCapacidad());*/
+        
+        /*Clase c1 = claseData.buscarHorario(LocalTime.of(10, 0));
+        System.out.println("ID clase: " + c1.getIdClase());
+        System.out.println("ID Entrenador: " + c1.getIdEntrenador());
+        System.out.println("Nombre: " + c1.getNombre());
+        System.out.println("Horario: " + c1.getHorario());
+        System.out.println("Capacidad: " + c1.getCapacidad());*/
+        
+        /*claseData.bajaClase(15);
+        claseData.listarClasesDisponibles().forEach(item ->{
+            System.out.println("ID clase: " + item.getIdClase());
+            System.out.println("ID Entrenador: " + item.getIdEntrenador());
+            System.out.println("Nombre: " + item.getNombre());
+            System.out.println("Horario: " + item.getHorario());
+            System.out.println("Capacidad: " + item.getCapacidad());
+        });*/
+        
     }
 
     private static void pruebaEntrenadorData() {
         //boolean guardarEntrenador(Entrenador entrenador)*
+        //List<Entrenador> listarEntrenadores()*
+        //List<Entrenador> buscarEntrenadores(String nombre,String apellido,String especialidad)*
+        //List<Entrenador> buscarEntrenadoresInactivos(String nombre,String apellido,String especialidad)
+        //Entrenador buscarEntrenadorPorId(int idEntrenador)*
+        //void eliminarEntrenador(int id)*
+        //void modificarEntrenador(Entrenador entrenador)
         EntrenadorData eData = new EntrenadorData();
-        Entrenador e = new Entrenador(1);
-        boolean ok = eData.guardarEntrenador(e);
-        List<Entrenador> entrenadores = eData.listarEntrenadores();
+        //Entrenador e = new Entrenador(2);
+        //boolean ok = eData.guardarEntrenador(e);
+        //List<Entrenador> entrenadores = eData.listarEntrenadores();
+        //List<Entrenador> entrenadores = eData.buscarEntrenadores("Juan", "Lucero", "Atletismo");
+        /*Entrenador ent = eData.buscarEntrenadorPorId(4);
+        System.out.println("Nombre: " + ent.getNombre());*/
+        
+        /*eData.eliminarEntrenador(4);
+        
+        List<Entrenador> entrenadores = eData.buscarEntrenadoresInactivos("Cristina", "Paez", "Pilates");
         for (Entrenador entrenador : entrenadores) {
             System.out.println(entrenador);
-        }
+        }*/
+        //eData.modificarEntrenador(new Entrenador(2, "12345678", "Juan Pablo", "Lucero", "Atletismo", true));
+        
         //La busqueda de parametros (null,null,null) devuelve todos los entrenadores activos
         //Prueba buscarEntrenador por nombre y especialidad juntos
         //List<Entrenador> res1 = eData.buscarEntrenadores("Juan", null, "Atletis");

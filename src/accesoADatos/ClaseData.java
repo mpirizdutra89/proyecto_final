@@ -203,7 +203,9 @@ public class ClaseData {
             int baja = ps.executeUpdate();
 
             if (baja == 1) {
-                JOptionPane.showMessageDialog(null, "Clase dada de baja!!.");
+                JOptionPane.showMessageDialog(null, "Clase eliminada!.");
+            }else{
+                JOptionPane.showMessageDialog(null, "Clase ya eliminada!.");
             }
             ps.close();
         } catch (SQLException ex) {
