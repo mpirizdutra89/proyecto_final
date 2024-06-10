@@ -129,7 +129,8 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMsocioActionPerformed
 
     private void jMentrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMentrenadorActionPerformed
-        // vista entrenador:
+        vistaEntrenador ve = new vistaEntrenador();
+        cargarVistasInternas(ve);
     }//GEN-LAST:event_jMentrenadorActionPerformed
 
     /**

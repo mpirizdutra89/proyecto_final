@@ -1,19 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package vistas;
 
 /**
  *
  * @author agus1
  */
-public class vistaEntrenadores extends javax.swing.JInternalFrame {
+public class vistaEntrenador extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form NewJInternalFrame
-     */
-    public vistaEntrenadores() {
+    public vistaEntrenador() {
         initComponents();
     }
 
