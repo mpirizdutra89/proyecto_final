@@ -15,6 +15,9 @@ public class vistaSocio extends javax.swing.JInternalFrame {
      */
     public vistaSocio() {
         initComponents();
+        textModificado();
+        disableButtonInicio();
+        jTxtBuscar.requestFocus();
     }
 
     /**
@@ -26,7 +29,8 @@ public class vistaSocio extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jtbp = new javax.swing.JTabbedPane();
+        btnGrup = new javax.swing.ButtonGroup();
+        jtbpContenedor = new javax.swing.JTabbedPane();
         jPnlSocios = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -56,6 +60,12 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setTitle("Gestion de socios");
 
+        jtbpContenedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtbpContenedorMouseClicked(evt);
+            }
+        });
+
         jPnlSocios.setBackground(new java.awt.Color(51, 153, 255));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -73,12 +83,15 @@ public class vistaSocio extends javax.swing.JInternalFrame {
 
         jTxtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        btnGrup.add(jRbTodos);
         jRbTodos.setForeground(new java.awt.Color(255, 255, 255));
         jRbTodos.setText("Baja");
 
+        btnGrup.add(jRbCodigo);
         jRbCodigo.setForeground(new java.awt.Color(255, 255, 255));
         jRbCodigo.setText("Codigo");
 
+        btnGrup.add(jRbNombreApellido);
         jRbNombreApellido.setForeground(new java.awt.Color(255, 255, 255));
         jRbNombreApellido.setText("Nombre y apellido");
 
@@ -88,6 +101,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("# Seleccione  la fila para gestionar al socio");
 
+        btnGrup.add(jRbTodos1);
         jRbTodos1.setForeground(new java.awt.Color(255, 255, 255));
         jRbTodos1.setSelected(true);
         jRbTodos1.setText("Todos");
@@ -106,9 +120,9 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPnlSociosLayout.createSequentialGroup()
-                        .addGroup(jPnlSociosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(53, 53, 53)
+                        .addGroup(jPnlSociosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPnlSociosLayout.createSequentialGroup()
-                                .addGap(53, 53, 53)
                                 .addComponent(jRbTodos1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jRbTodos)
@@ -116,9 +130,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                                 .addComponent(jRbCodigo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jRbNombreApellido))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlSociosLayout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addComponent(jTxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTxtBuscar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -134,8 +146,9 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                             .addComponent(jRbCodigo)
                             .addComponent(jRbNombreApellido)
                             .addComponent(jRbTodos1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
@@ -144,7 +157,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                 .addGap(38, 38, 38))
         );
 
-        jtbp.addTab("Busqueda", jPnlSocios);
+        jtbpContenedor.addTab("Busqueda", jPnlSocios);
 
         jPnlEdicion.setBackground(new java.awt.Color(51, 153, 255));
 
@@ -161,7 +174,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         jTxtCorreo.setNextFocusableComponent(jTxtTelefono);
 
         jTxtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTxtTelefono.setNextFocusableComponent(jBtnGuardar);
+        jTxtTelefono.setNextFocusableComponent(jCbActivo);
 
         jTxtApellido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTxtApellido.setNextFocusableComponent(jTxtEdad);
@@ -176,6 +189,11 @@ public class vistaSocio extends javax.swing.JInternalFrame {
 
         jBtnSalir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBtnSalir.setText("Salir");
+        jBtnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnSalirActionPerformed(evt);
+            }
+        });
 
         jBtnEliminar.setText("Eliminar");
 
@@ -251,7 +269,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                 .addGap(143, 143, 143))
         );
 
-        jtbp.addTab("Gestion", jPnlEdicion);
+        jtbpContenedor.addTab("Gestion", jPnlEdicion);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -259,22 +277,42 @@ public class vistaSocio extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jtbp)
+                .addComponent(jtbpContenedor)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jtbp, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtbpContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jtbpContenedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbpContenedorMouseClicked
+        //jTxtBuscar.requestFocusInWindow();
+       // jPnlSocios.getV
+                int selectedIndex = jtbpContenedor.getSelectedIndex();
+                
+                if(selectedIndex==0){
+                    System.out.println(selectedIndex);
+                    //jTxtDni.requestFocusInWindow();
+                    jTxtBuscar.requestFocus();
+                }else{
+                     jTxtDni.requestFocus();
+                    
+                }
+    }//GEN-LAST:event_jtbpContenedorMouseClicked
+
+    private void jBtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jBtnSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btnGrup;
     private javax.swing.JButton jBtnEliminar;
     private javax.swing.JButton jBtnGuardar;
     private javax.swing.JButton jBtnNuevo;
@@ -299,6 +337,29 @@ public class vistaSocio extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTxtNombre;
     private javax.swing.JTextField jTxtTelefono;
     private javax.swing.JLabel jlbliDsocio;
-    private javax.swing.JTabbedPane jtbp;
+    private javax.swing.JTabbedPane jtbpContenedor;
     // End of variables declaration//GEN-END:variables
+
+    private void textModificado(){
+        libs.FuncionesComunes.textPrompt(jTxtDni,"D.N.I");
+        libs.FuncionesComunes.textPrompt(jTxtNombre,"Nombre");
+        libs.FuncionesComunes.textPrompt(jTxtApellido,"Apellido");
+        libs.FuncionesComunes.textPrompt(jTxtCorreo,"Correo");
+        libs.FuncionesComunes.textPrompt(jTxtTelefono,"Telefono");
+        libs.FuncionesComunes.textPrompt(jTxtEdad,"Edad");
+        
+        
+    }
+    
+    private void disableButtonInicio(){
+        jBtnEliminar.setEnabled(false);
+        jBtnNuevo.setEnabled(false);
+    }
+    
+    private void disableButtonEditar(){
+        jBtnEliminar.setEnabled(true);
+        jBtnNuevo.setEnabled(true);
+    }
+    
+   
 }
