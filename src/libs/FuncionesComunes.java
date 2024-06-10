@@ -170,5 +170,21 @@ public class FuncionesComunes {
     public static void closeAll(){
         System.exit(0);
     }
+    
+//      private void cargarVistasInternas(JInternalFrame view) {
+//        jDpEscritorio.removeAll();
+//        jDpEscritorio.repaint();
+//        view.setVisible(true);
+//        int w = jDpEscritorio.getWidth();
+//        int h = jDpEscritorio.getHeight();
+//        int x = (w - view.getWidth()) / 2;
+//        int y = (h - view.getHeight()) / 2;
+//        view.setLocation(x, y);
+//
+//        jDpEscritorio.add(view);
+//
+//        jDpEscritorio.moveToFront(view);
+//
+//    }
 
 }
