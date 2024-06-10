@@ -24,11 +24,17 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //Martín, Agustín, Ariel y Carlos Pruebas
+        //Martin, Agustin, Ariel y Carlos Pruebas
         //pruebaSocioData();
+<<<<<<< Updated upstream
         pruebaEntrenadorData();
         //pruebaClaseData();
         //pruebaMembresiasData();
+=======
+        //pruebaEntrenadorData();
+        //pruebaClaseData();
+        pruebaMembresiasData();
+>>>>>>> Stashed changes
         Conexion.mostrarErrores();
 
     }
@@ -98,6 +104,7 @@ public class main {
 
         //Clase c1 = new Clase(e4, "Natación", LocalTime.of(9, 00), 7, true);
         //claseData.guardarClase(c1);
+<<<<<<< Updated upstream
         /*claseData.listarClasesDisponibles().forEach(item ->{
             System.out.println("ID clase: " + item.getIdClase());
             System.out.println("ID Entrenador: " + item.getIdEntrenador());
@@ -135,6 +142,21 @@ public class main {
             System.out.println("Capacidad: " + item.getCapacidad());
         });*/
         
+=======
+        //claseData.listarClasesDisponibles().forEach(item ->{
+        //    System.out.println("ID clase: " + item.getIdClase());
+        //    System.out.println("ID Entrenador: " + item.getIdEntrenador());
+        //    System.out.println("Nombre: " + item.getNombre());
+        //    System.out.println("Horario: " + item.getHorario());
+        //    System.out.println("Capacidad: " + item.getCapacidad());
+//        //});
+//        Clase c1 = claseData.buscarClasePorNombre("Pilates");
+//        System.out.println("ID clase: " + c1.getIdClase());
+//        System.out.println("ID Entrenador: " + c1.getIdEntrenador());
+//        System.out.println("Nombre: " + c1.getNombre());
+//        System.out.println("Horario: " + c1.getHorario());
+//        System.out.println("Capacidad: " + c1.getCapacidad());
+>>>>>>> Stashed changes
     }
 
     private static void pruebaEntrenadorData() {
@@ -146,6 +168,7 @@ public class main {
         //void eliminarEntrenador(int id)*
         //void modificarEntrenador(Entrenador entrenador)
         EntrenadorData eData = new EntrenadorData();
+<<<<<<< Updated upstream
         //Entrenador e = new Entrenador(2);
         //boolean ok = eData.guardarEntrenador(e);
         //List<Entrenador> entrenadores = eData.listarEntrenadores();
@@ -161,6 +184,14 @@ public class main {
         }*/
         //eData.modificarEntrenador(new Entrenador(2, "12345678", "Juan Pablo", "Lucero", "Atletismo", true));
         
+=======
+        Entrenador e = new Entrenador(1);
+        boolean ok = eData.guardarEntrenador(e);
+//        List<Entrenador> entrenadores = eData.listarEntrenadores();
+//        for (Entrenador entrenador : entrenadores) {
+//            System.out.println(entrenador);
+//        }
+>>>>>>> Stashed changes
         //La busqueda de parametros (null,null,null) devuelve todos los entrenadores activos
         //Prueba buscarEntrenador por nombre y especialidad juntos
         //List<Entrenador> res1 = eData.buscarEntrenadores("Juan", null, "Atletis");
@@ -182,34 +213,39 @@ public class main {
         //Crear una instancia de MembresiasData
         accesoADatos.MembresiasData membresiasData = new MembresiasData();
         accesoADatos.SocioData socioDat = new accesoADatos.SocioData();
-        Socio sc1 = socioDat.buscarSocioPorId(1);
+        Socio sc1 = socioDat.buscarSocioPorId(2);
         Date fechaIn = new Date();
         Calendar fechafin = Calendar.getInstance();
         fechafin.setTime(fechaIn);
         fechafin.add(Calendar.DAY_OF_MONTH, 30);
         //System.out.println( fechaIn+ "Sat Jun 08 22:02:45 ART 2024------- Mon Jul 08 22:02:45 ART 2024"+fechafin.getTime() );
-        membresiasData.guardarMembresia(new Membresias(1, sc1, 10, 50.0, fechaIn, fechafin.getTime(), true));
+        //membresiasData.guardarMembresia(new Membresias(1, sc1, 15, 300.0, fechaIn, fechafin.getTime(), true));
         //Buscar Membresias
         // ID del socio a buscar
-        //int idSocio = 1;
-        // Obtener el historial de membresías del socio
-        //ArrayList<Membresias> historial = membresiasData.historialMembresias(idSocio);
-        // Verificar si se obtuvieron membresías y mostrar la información
-        //if (historial.isEmpty()) {
-        //  System.out.println("No se encontraron membresías para el socio con ID: " + idSocio);
-        //} else {
-        //    System.out.println("Historial de membresías para el socio con ID: " + idSocio);
-        //    for (Membresias membresia : historial) {
-        //        System.out.println("ID Membresía: " + membresia.getIdMembresia());
-        //        System.out.println("ID Socio: " + membresia.getSocio().getIdSocio());
-        //        System.out.println("Cantidad de Pases: " + membresia.getCantidadPases());
-        //        System.out.println("Costo: " + membresia.getCosto());
-        //        System.out.println("Fecha de Inicio: " + membresia.getFechaInicio());
-        //        System.out.println("Fecha de Fin: " + membresia.getFechaFin());
-        //        System.out.println("Estado: " + membresia.isEstado());
-        //        System.out.println("-----------------------");
-        //    }
-        //}
+        int idSocio = 2;
+////        // Obtener el historial de membresias del socio
+//        ArrayList<Membresias> historial = membresiasData.historialMembresias(idSocio);
+////        // Verificar si se obtuvieron membresias y mostrar la información
+//        if (historial.isEmpty()) {
+//          System.out.println("No se encontraron membresias para el socio con ID: " + idSocio);
+//        } else {
+//            System.out.println("Historial de membresias para el socio con ID: " + idSocio);
+//            for (Membresias membresia : historial) {
+//                System.out.println("ID Membresia: " + membresia.getIdMembresia());
+//                System.out.println("ID Socio: " + membresia.getSocio().getIdSocio());
+//                System.out.println("Cantidad de Pases: " + membresia.getCantidadPases());
+//                System.out.println("Costo: " + membresia.getCosto());
+//                System.out.println("Fecha de Inicio: " + membresia.getFechaInicio());
+//                System.out.println("Fecha de Fin: " + membresia.getFechaFin());
+//                System.out.println("Estado: " + membresia.isEstado());
+//                System.out.println("-----------------------");
+//            }
+//        }
+    int idMembresia = 3;
+    //membresiasData.removerMembresias(idMembresia);
+    //membresiasData.renovarMembresias(idMembresia);
+    //membresiasData.darAltaMembresia(idMembresia);
+
     }
 
 }

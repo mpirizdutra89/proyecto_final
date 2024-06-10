@@ -122,8 +122,8 @@ public class MembresiasData {
 
                 int cantidadPases = rs.getInt("cantidadPases");
                 double costo = rs.getDouble("costo");
-                Date fechaInicio = rs.getDate("fechaInicio");
-                Date fechaFin = rs.getDate("fechaFin");
+                Date fechaInicio = rs.getDate("fecha_inicio");
+                Date fechaFin = rs.getDate("fecha_fin");
                 boolean estado = rs.getBoolean("estado");
 
                 Membresias membresia = new Membresias(idMembresia, socio, cantidadPases, costo, fechaInicio, fechaFin, estado);
@@ -299,28 +299,6 @@ public Membresias buscarSocio(int idSocio) {
     }
     
     
-    
-    
- public boolean cancelarMembresias(int id) {
-        String sql = "UPDATE membresias SET estado = 0 WHERE idMembresia = ?";
-        boolean resultado = false;
-
-        try {
-            PreparedStatement ps = conec.prepareStatement(sql);
-            ps.setInt(1, id);
-            int filasAfectadas = ps.executeUpdate();
-            if (filasAfectadas > 0) {
-                resultado = true;
-            }
-            ps.close();
-        } catch (SQLException | NullPointerException ex) {
-            Conexion.msjError.add("MembresiasData: cancelarMembresias() ->" + ex.getMessage());
-        }
-
-        return resultado;
-    }
-
-
    // Método para baja lógica de una membresía
     public boolean removerMembresias(int id) {
         String sql = "UPDATE membresias SET estado = 0 WHERE idMembresia = ?";
@@ -332,6 +310,10 @@ public Membresias buscarSocio(int idSocio) {
             int filasAfectadas = ps.executeUpdate();
             if (filasAfectadas > 0) {
                 resultado = true;
+            }
+            if(resultado){
+            
+            JOptionPane.showMessageDialog(null, "Membresia cancelada!!");
             }
             ps.close();
         } catch (SQLException | NullPointerException ex) {
@@ -346,7 +328,7 @@ public Membresias buscarSocio(int idSocio) {
 
     // Método para renovar una membresía
     public boolean renovarMembresias(int id) {
-        String sql = "UPDATE membresias SET fechaInicio = ?, fechaFin = ?, cantidadPases = ? WHERE idMembresia = ? AND estado = 1";
+        String sql = "UPDATE membresias SET fecha_inicio = ?, fecha_fin = ?, cantidadPases = ? WHERE idMembresia = ? AND estado = 1";
         boolean resultado = false;
         Date fechaInicio = new Date(System.currentTimeMillis());
         Date fechaFin = new Date(fechaInicio.getTime() + (30L * 24 * 60 * 60 * 1000)); // 30 días
@@ -360,6 +342,10 @@ public Membresias buscarSocio(int idSocio) {
             int filasAfectadas = ps.executeUpdate();
             if (filasAfectadas > 0) {
                 resultado = true;
+            }
+            if(resultado){
+            
+            JOptionPane.showMessageDialog(null, "Membresia renovada con exito!!");
             }
             ps.close();
         } catch (SQLException | NullPointerException ex) {
@@ -409,4 +395,28 @@ public Membresias buscarSocio(int idSocio) {
 
         return resultado;
     }
+    
+    
+        public boolean darAltaMembresia(int idMembresia) {
+        String sql = "UPDATE membresias SET estado = ? WHERE idMembresia = ?";
+        boolean resultado = false;
+
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setBoolean(1, true);
+            ps.setInt(2, idMembresia);
+            int filasAfectadas = ps.executeUpdate();
+            if (filasAfectadas > 0) {
+                resultado = true;
+                JOptionPane.showMessageDialog(null, "Alta de membresia exitosa!!");
+            }
+            
+            ps.close();
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("MembresiasData: darAltaMembresia() -> " + ex.getMessage());
+        }
+
+        return resultado;
+    }
 }
+
