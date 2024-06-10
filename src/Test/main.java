@@ -25,9 +25,9 @@ public class main {
      */
     public static void main(String[] args) {
         //Martín, Agustín, Ariel y Carlos Pruebas
-        pruebaSocioData();
+        //pruebaSocioData();
         //pruebaEntrenadorData();
-        //pruebaClaseData();
+        pruebaClaseData();
         //pruebaMembresiasData();
         Conexion.mostrarErrores();
 
@@ -88,19 +88,34 @@ public class main {
     }
 
     private static void pruebaClaseData() {
+        //void guardarClase(Clase clase)*
+        //ArrayList<Clase> listarClasesDisponibles()
+        //Clase buscarClasePorNombre(String nombre)
+        //Clase buscarEntrenador(int id)
+        //Clase buscarHorario(LocalTime horario)
+        //void bajaClase(int id)
         accesoADatos.ClaseData claseData = new accesoADatos.ClaseData();
-        Entrenador e1 = new Entrenador(2, "12345678", "Juan", "Lucero", "Atletismo", true);
-        Clase c1 = new Clase(e1, "Atletismo", LocalTime.of(10, 00), 10, true);
-        claseData.guardarClase(c1);
-        ArrayList<Clase> lista = new ArrayList<Clase>();
-        lista = claseData.listarClasesDisponibles();
-        for (Clase clase : lista) {
-            System.out.println(clase);
-        }
+        accesoADatos.EntrenadorData entData = new accesoADatos.EntrenadorData();
+        //Entrenador e1 = new Entrenador(2, "12345678", "Juan", "Lucero", "Atletismo", true);
+        //Entrenador e2 = new Entrenador(3, "34765098", "Jorge", "Castro", "CrossFit", true);
+        //Entrenador e3 = new Entrenador(4, "25647389", "Cristina", "Paez", "Pilates", true);
+        //Entrenador e4 = new Entrenador(5, "29876345", "Georgina", "Bardach", "Natación", true);
+        //entData.guardarEntrenador(e4);
        
+        //Clase c1 = new Clase(e4, "Natación", LocalTime.of(9, 00), 7, true);
+        //claseData.guardarClase(c1);
+        
+       claseData.listarClasesDisponibles().forEach(item ->{
+           System.out.println(item.getIdClase());
+           System.out.println(item.getIdEntrenador());
+           System.out.println(item.getNombre());
+           System.out.println(item.getHorario());
+           System.out.println(item.getCapacidad());
+       });
     }
 
     private static void pruebaEntrenadorData() {
+        //boolean guardarEntrenador(Entrenador entrenador)*
         EntrenadorData eData = new EntrenadorData();
         Entrenador e = new Entrenador(1);
         boolean ok = eData.guardarEntrenador(e);
