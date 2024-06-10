@@ -199,204 +199,214 @@ public class MembresiasData {
 //    return membresiasList;
 //}
 //
-//public Membresias buscarSocio(int idSocio) {
-//
-//    String sql = "SELECT idMembresia, socio_id, cantidadPases, costo, fechaInicio, fechaFin, estado FROM membresias WHERE socio_id = ? AND estado = 1";
-//
-//    Membresias membresia = null;
-//
-//    try {
-//        PreparedStatement ps = conec.prepareStatement(sql);
-//        ps.setInt(1, idSocio);
-//        ResultSet rs = ps.executeQuery();
-//        if (rs.next()) {
-//            membresia = new Membresias();
-//
-//            membresia.setIdMembresia(rs.getInt("idMembresia"));
-//            
-//            // Supongamos que tienes un método para buscar un socio por ID
-//            Socio socio = buscarSocioPorId(rs.getInt("socio_id")); 
-//            membresia.setSocio(socio);
-//            
-//            membresia.setCantidadPases(rs.getInt("cantidadPases"));
-//            membresia.setCosto(rs.getDouble("costo"));
-//            membresia.setFechaInicio(rs.getDate("fechaInicio"));
-//            membresia.setFechaFin(rs.getDate("fechaFin"));
-//            membresia.setEstado(rs.getBoolean("estado"));
-//
-//        } else {
-//            JOptionPane.showMessageDialog(null, "No existe esa membresía para el socio especificado");
-//        }
-//        ps.close();
-//        rs.close();
-//    } catch (SQLException | NullPointerException ex) {
-//        Conexion.msjError.add("Membresias: buscarSocio ->" + ex.getMessage());
-//    }
-//    return membresia;
-//}
-//    public ArrayList<Membresias> buscarSocioCancelados(int idSocio) {
-//        ArrayList<Membresias> lista = new ArrayList<>();
-//        ResultSet res = null;
-//        PreparedStatement ps = null;
-//
-//        String consulta = "SELECT * FROM membresias WHERE socio_id = ? AND estado = 0";
-//
-//        try {
-//            ps = conec.prepareStatement(consulta);
-//            ps.setInt(1, idSocio);
-//
-//            res = ps.executeQuery();
-//            while (res.next()) {
-//                int idMembresia = res.getInt("idMembresia");
-//                int socioId = res.getInt("socio_id");
-//                int cantidadPases = res.getInt("cantidadPases");
-//                double costo = res.getDouble("costo");
-//                Date fechaInicio = res.getDate("fechaInicio");
-//                Date fechaFin = res.getDate("fechaFin");
-//                boolean estado = res.getBoolean("estado");
-//
-//                Socio socio = buscarSocioPorId(socioId); // Implementa este método
-//
-//                Membresias membresia = new Membresias(idMembresia, socio, cantidadPases, costo, fechaInicio, fechaFin, estado);
-//                lista.add(membresia);
-//            }
-//
-//            ps.close();
-//            res.close();
-//
-//        } catch (SQLException | NullPointerException ex) {
-//            Conexion.msjError.add("MembresiasData: buscarSocioCancelados() ->" + ex.getMessage());
-//        }
-//
-//        return lista;
-//    }
-//
-//    // Método de ejemplo para buscar un socio por ID
-//    private Socio buscarSocioPorId(int id) {
-//        String sql = "SELECT id, nombre, apellido, dni FROM socios WHERE id = ?";
-//        Socio socio = null;
-//
-//        try {
-//            PreparedStatement ps = conec.prepareStatement(sql);
-//            ps.setInt(1, id);
-//            ResultSet rs = ps.executeQuery();
-//            if (rs.next()) {
-//                socio = new Socio();
-//                socio.setId(rs.getInt("id"));
-//                socio.setNombre(rs.getString("nombre"));
-//                socio.setApellido(rs.getString("apellido"));
-//                socio.setDni(rs.getInt("dni"));
-//            }
-//            ps.close();
-//            rs.close();
-//        } catch (SQLException | NullPointerException ex) {
-//            Conexion.msjError.add("Socios: buscarSocioPorId() ->" + ex.getMessage());
-//        }
-//        return socio;
-//    }
-// public boolean cancelarMembresias(int id) {
-//        String sql = "UPDATE membresias SET estado = 0 WHERE idMembresia = ?";
-//        boolean resultado = false;
-//
-//        try {
-//            PreparedStatement ps = conec.prepareStatement(sql);
-//            ps.setInt(1, id);
-//            int filasAfectadas = ps.executeUpdate();
-//            if (filasAfectadas > 0) {
-//                resultado = true;
-//            }
-//            ps.close();
-//        } catch (SQLException | NullPointerException ex) {
-//            Conexion.msjError.add("MembresiasData: cancelarMembresias() ->" + ex.getMessage());
-//        }
-//
-//        return resultado;
-//    }
-//
-//
-//   // Método para baja lógica de una membresía
-//    public boolean removerMembresias(int id) {
-//        String sql = "UPDATE membresias SET estado = 0 WHERE idMembresia = ?";
-//        boolean resultado = false;
-//
-//        try {
-//            PreparedStatement ps = conec.prepareStatement(sql);
-//            ps.setInt(1, id);
-//            int filasAfectadas = ps.executeUpdate();
-//            if (filasAfectadas > 0) {
-//                resultado = true;
-//            }
-//            ps.close();
-//        } catch (SQLException | NullPointerException ex) {
-//            Conexion.msjError.add("MembresiasData: removerMembresias() -> " + ex.getMessage());
-//        }
-//
-//        return resultado;
-//    }
-//
-//    // Método para renovar una membresía
-//    public boolean renovarMembresias(int id) {
-//        String sql = "UPDATE membresias SET fechaInicio = ?, fechaFin = ?, cantidadPases = ? WHERE idMembresia = ? AND estado = 1";
-//        boolean resultado = false;
-//        Date fechaInicio = new Date(System.currentTimeMillis());
-//        Date fechaFin = new Date(fechaInicio.getTime() + (30L * 24 * 60 * 60 * 1000)); // 30 días
-//
-//        try {
-//            PreparedStatement ps = conec.prepareStatement(sql);
-//            ps.setDate(1, (java.sql.Date) fechaInicio);
-//            ps.setDate(2, (java.sql.Date) fechaFin);
-//            ps.setInt(3, 30); // Suponiendo que cada mes tiene 30 pases
-//            ps.setInt(4, id);
-//            int filasAfectadas = ps.executeUpdate();
-//            if (filasAfectadas > 0) {
-//                resultado = true;
-//            }
-//            ps.close();
-//        } catch (SQLException | NullPointerException ex) {
-//            Conexion.msjError.add("MembresiasData: renovarMembresias() -> " + ex.getMessage());
-//        }
-//
-//        return resultado;
-//    }
-//
-//    // Método para verificar si un socio existe por su DNI
-//    public boolean existeSocio(int dni) {
-//        String sql = "SELECT 1 FROM socios WHERE dni = ?";
-//        boolean existe = false;
-//
-//        try {
-//            PreparedStatement ps = conec.prepareStatement(sql);
-//            ps.setInt(1, dni);
-//            ResultSet rs = ps.executeQuery();
-//            if (rs.next()) {
-//                existe = true;
-//            }
-//            ps.close();
-//            rs.close();
-//        } catch (SQLException | NullPointerException ex) {
-//            Conexion.msjError.add("MembresiasData: existeSocio() -> " + ex.getMessage());
-//        }
-//
-//        return existe;
-//    }
-//
-//    // Método para dar de alta un socio que se dio de baja y vuelve
-//    public boolean darAltaSocio(int idSocio) {
-//        String sql = "UPDATE socios SET estado = 1 WHERE idSocio = ?";
-//        boolean resultado = false;
-//
-//        try {
-//            PreparedStatement ps = conec.prepareStatement(sql);
-//            ps.setInt(1, idSocio);
-//            int filasAfectadas = ps.executeUpdate();
-//            if (filasAfectadas > 0) {
-//                resultado = true;
-//            }
-//            ps.close();
-//        } catch (SQLException | NullPointerException ex) {
-//            Conexion.msjError.add("MembresiasData: darAltaSocio() -> " + ex.getMessage());
-//        }
-//
-//        return resultado;
-//    }
+public Membresias buscarSocio(int idSocio) {
+
+    String sql = "SELECT idMembresia, socio_id, cantidadPases, costo, fechaInicio, fechaFin, estado FROM membresias WHERE socio_id = ? AND estado = 1";
+
+    Membresias membresia = null;
+
+    try {
+        PreparedStatement ps = conec.prepareStatement(sql);
+        ps.setInt(1, idSocio);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            membresia = new Membresias();
+
+            membresia.setIdMembresia(rs.getInt("idMembresia"));
+            
+            // Supongamos que tienes un método para buscar un socio por ID
+            Socio socio = buscarSocioPorId(rs.getInt("socio_id")); 
+            membresia.setSocio(socio);
+            
+            membresia.setCantidadPases(rs.getInt("cantidadPases"));
+            membresia.setCosto(rs.getDouble("costo"));
+            membresia.setFechaInicio(rs.getDate("fechaInicio"));
+            membresia.setFechaFin(rs.getDate("fechaFin"));
+            membresia.setEstado(rs.getBoolean("estado"));
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No existe esa membresía para el socio especificado");
+        }
+        ps.close();
+        rs.close();
+    } catch (SQLException | NullPointerException ex) {
+        Conexion.msjError.add("Membresias: buscarSocio ->" + ex.getMessage());
+    }
+    return membresia;
+    
+    
+    
+}
+    public ArrayList<Membresias> buscarSocioCancelados(int idSocio) {
+        ArrayList<Membresias> lista = new ArrayList<>();
+        ResultSet res = null;
+        PreparedStatement ps = null;
+
+        String consulta = "SELECT * FROM membresias WHERE socio_id = ? AND estado = 0";
+
+        try {
+            ps = conec.prepareStatement(consulta);
+            ps.setInt(1, idSocio);
+
+            res = ps.executeQuery();
+            while (res.next()) {
+                int idMembresia = res.getInt("idMembresia");
+                int socioId = res.getInt("socio_id");
+                int cantidadPases = res.getInt("cantidadPases");
+                double costo = res.getDouble("costo");
+                Date fechaInicio = res.getDate("fechaInicio");
+                Date fechaFin = res.getDate("fechaFin");
+                boolean estado = res.getBoolean("estado");
+
+                Socio socio = buscarSocioPorId(socioId);
+
+                Membresias membresia = new Membresias(idMembresia, socio, cantidadPases, costo, fechaInicio, fechaFin, estado);
+                lista.add(membresia);
+            }
+
+            ps.close();
+            res.close();
+
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("MembresiasData: buscarSocioCancelados() ->" + ex.getMessage());
+        }
+
+        return lista;
+    }
+
+    // Método de ejemplo para buscar un socio por ID
+    private Socio buscarSocioPorId(int id) {
+        String sql = "SELECT id, nombre, apellido, dni FROM socios WHERE id = ?";
+        Socio socio = null;
+
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                socio = new Socio();
+                socio.setIdSocio(rs.getInt("idSocio"));
+                socio.setNombre(rs.getString("nombre"));
+                socio.setApellido(rs.getString("apellido"));
+                socio.setDni(rs.getString("dni"));
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("Socios: buscarSocioPorId() ->" + ex.getMessage());
+        }
+        return socio;
+    }
+    
+    
+    
+    
+ public boolean cancelarMembresias(int id) {
+        String sql = "UPDATE membresias SET estado = 0 WHERE idMembresia = ?";
+        boolean resultado = false;
+
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, id);
+            int filasAfectadas = ps.executeUpdate();
+            if (filasAfectadas > 0) {
+                resultado = true;
+            }
+            ps.close();
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("MembresiasData: cancelarMembresias() ->" + ex.getMessage());
+        }
+
+        return resultado;
+    }
+
+
+   // Método para baja lógica de una membresía
+    public boolean removerMembresias(int id) {
+        String sql = "UPDATE membresias SET estado = 0 WHERE idMembresia = ?";
+        boolean resultado = false;
+
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, id);
+            int filasAfectadas = ps.executeUpdate();
+            if (filasAfectadas > 0) {
+                resultado = true;
+            }
+            ps.close();
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("MembresiasData: removerMembresias() -> " + ex.getMessage());
+        }
+
+        return resultado;
+    }
+    
+    
+    
+
+    // Método para renovar una membresía
+    public boolean renovarMembresias(int id) {
+        String sql = "UPDATE membresias SET fechaInicio = ?, fechaFin = ?, cantidadPases = ? WHERE idMembresia = ? AND estado = 1";
+        boolean resultado = false;
+        Date fechaInicio = new Date(System.currentTimeMillis());
+        Date fechaFin = new Date(fechaInicio.getTime() + (30L * 24 * 60 * 60 * 1000)); // 30 días
+
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setDate(1, (java.sql.Date) fechaInicio);
+            ps.setDate(2, (java.sql.Date) fechaFin);
+            ps.setInt(3, 30); // Suponiendo que cada mes tiene 30 pases
+            ps.setInt(4, id);
+            int filasAfectadas = ps.executeUpdate();
+            if (filasAfectadas > 0) {
+                resultado = true;
+            }
+            ps.close();
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("MembresiasData: renovarMembresias() -> " + ex.getMessage());
+        }
+
+        return resultado;
+    }
+
+    // Método para verificar si un socio existe por su DNI
+    public boolean existeSocio(int dni) {
+        String sql = "SELECT 1 FROM socios WHERE dni = ?";
+        boolean existe = false;
+
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                existe = true;
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("MembresiasData: existeSocio() -> " + ex.getMessage());
+        }
+
+        return existe;
+    }
+
+    // Método para dar de alta un socio que se dio de baja y vuelve
+    public boolean darAltaSocio(int idSocio) {
+        String sql = "UPDATE socios SET estado = 1 WHERE idSocio = ?";
+        boolean resultado = false;
+
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, idSocio);
+            int filasAfectadas = ps.executeUpdate();
+            if (filasAfectadas > 0) {
+                resultado = true;
+            }
+            ps.close();
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("MembresiasData: darAltaSocio() -> " + ex.getMessage());
+        }
+
+        return resultado;
+    }
 }
