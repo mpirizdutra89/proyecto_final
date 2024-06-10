@@ -45,9 +45,19 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Gestion");
 
         jMsocio.setText("Socios");
+        jMsocio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMsocioActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMsocio);
 
         jMentrenador.setText("Entrenadores");
+        jMentrenador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMentrenadorActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMentrenador);
 
         jMenuBar1.add(jMenu1);
@@ -55,6 +65,11 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Administracion");
 
         jMmembresia.setText("Membresias");
+        jMmembresia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMmembresiaActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMmembresia);
 
         jMclases.setText("Clases");
@@ -100,6 +115,18 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
     private void jMasistenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMasistenciaMouseClicked
         // VISTA asistencia
     }//GEN-LAST:event_jMasistenciaMouseClicked
+
+    private void jMmembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMmembresiaActionPerformed
+        // Vista membresia:
+    }//GEN-LAST:event_jMmembresiaActionPerformed
+
+    private void jMsocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMsocioActionPerformed
+        // vistaSocio:
+    }//GEN-LAST:event_jMsocioActionPerformed
+
+    private void jMentrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMentrenadorActionPerformed
+        // vista entrenador:
+    }//GEN-LAST:event_jMentrenadorActionPerformed
 
     /**
      * @param args the command line arguments
