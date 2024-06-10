@@ -13,6 +13,7 @@ import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * @author Nicolas
@@ -23,7 +24,7 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //Martin Pruebas SocioData
+        //Martín, Agustín, Ariel y Carlos Pruebas
         pruebaSocioData();
         //pruebaEntrenadorData();
         //pruebaClaseData();
@@ -49,12 +50,20 @@ public class main {
 
         //socioDat.listarSocio();
 
-        ArrayList<Socio> lista = new ArrayList<Socio>();
+        //ArrayList<Socio> lista = new ArrayList<Socio>();
         //lista = socioDat.listarSocio();
-        lista = socioDat.buscarSocioPorNombre("martin");
-        for (Socio socio : lista) {
-            System.out.println(socio);
-        }
+        socioDat.buscarSocioPorNombre("Martin").forEach((item) -> {
+            System.out.println(item.getIdSocio());
+            System.out.println(item.getDni());
+            System.out.println(item.getNombre());
+            System.out.println(item.getApellido());
+            System.out.println(item.getEdad());
+            System.out.println(item.getCorreo());
+            System.out.println(item.getTelefono());
+            System.out.println(item.getEstado());
+            
+        });
+        
         
         //Socio s = socioDat.buscarSocioPorId(1);
         
