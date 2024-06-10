@@ -114,6 +114,8 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
 
     private void jMasistenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMasistenciaMouseClicked
         // VISTA asistencia
+        vistaAsistencia va=new vistaAsistencia();
+        cargarVistasInternas(va);
     }//GEN-LAST:event_jMasistenciaMouseClicked
 
     private void jMmembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMmembresiaActionPerformed
