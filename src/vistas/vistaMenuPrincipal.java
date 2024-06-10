@@ -28,24 +28,42 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMsocio = new javax.swing.JMenuItem();
+        jMentrenador = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMmembresia = new javax.swing.JMenuItem();
+        jMclases = new javax.swing.JMenuItem();
+        jMasistencia = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("Gestion");
 
-        jMenuItem1.setText("Socios");
-        jMenu1.add(jMenuItem1);
+        jMsocio.setText("Socios");
+        jMenu1.add(jMsocio);
 
-        jMenuItem2.setText("Entrenadores");
-        jMenu1.add(jMenuItem2);
+        jMentrenador.setText("Entrenadores");
+        jMenu1.add(jMentrenador);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Administracion");
+
+        jMmembresia.setText("Membresias");
+        jMenu2.add(jMmembresia);
+
+        jMclases.setText("Clases");
+        jMclases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMclasesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMclases);
+
         jMenuBar1.add(jMenu2);
+
+        jMasistencia.setText("Asistencias");
+        jMenuBar1.add(jMasistencia);
 
         setJMenuBar(jMenuBar1);
 
@@ -53,15 +71,19 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 660, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGap(0, 545, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMclasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMclasesActionPerformed
+        
+    }//GEN-LAST:event_jMclasesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -104,10 +126,13 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMasistencia;
+    private javax.swing.JMenuItem jMclases;
+    private javax.swing.JMenuItem jMentrenador;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMmembresia;
+    private javax.swing.JMenuItem jMsocio;
     // End of variables declaration//GEN-END:variables
 }
