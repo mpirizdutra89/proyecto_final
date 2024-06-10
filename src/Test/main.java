@@ -23,18 +23,18 @@ public class main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        //Martin, Agustin, Ariel y Carlos Pruebas
-        //pruebaSocioData();
-        pruebaEntrenadorData();
-        //pruebaClaseData();
-        //pruebaMembresiasData();
-        //pruebaEntrenadorData();
-        //pruebaClaseData();
-        pruebaMembresiasData();
-        Conexion.mostrarErrores();
-
-    }
+//    public static void main(String[] args) {
+//        //Martin, Agustin, Ariel y Carlos Pruebas
+//        //pruebaSocioData();
+//        pruebaEntrenadorData();
+//        //pruebaClaseData();
+//        //pruebaMembresiasData();
+//        //pruebaEntrenadorData();
+//        //pruebaClaseData();
+//        pruebaMembresiasData();
+//        Conexion.mostrarErrores();
+//
+//    }
 
     private static void pruebaSocioData() {
         //boolean guardarSocio(Socio socio)*
