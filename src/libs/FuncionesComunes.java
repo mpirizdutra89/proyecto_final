@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -171,20 +172,6 @@ public class FuncionesComunes {
         System.exit(0);
     }
     
-//      private void cargarVistasInternas(JInternalFrame view) {
-//        jDpEscritorio.removeAll();
-//        jDpEscritorio.repaint();
-//        view.setVisible(true);
-//        int w = jDpEscritorio.getWidth();
-//        int h = jDpEscritorio.getHeight();
-//        int x = (w - view.getWidth()) / 2;
-//        int y = (h - view.getHeight()) / 2;
-//        view.setLocation(x, y);
-//
-//        jDpEscritorio.add(view);
-//
-//        jDpEscritorio.moveToFront(view);
-//
-//    }
+     
 
 }

@@ -5,6 +5,7 @@
 package vistas;
 import accesoADatos.Conexion;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import libs.Escritorio;
 /**
  *
@@ -91,6 +92,8 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMclasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMclasesActionPerformed
+        vistaClases vc=new vistaClases();
+        cargarVistasInternas(vc);
         
     }//GEN-LAST:event_jMclasesActionPerformed
 
@@ -154,4 +157,22 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMmembresia;
     private javax.swing.JMenuItem jMsocio;
     // End of variables declaration//GEN-END:variables
+    
+     private void cargarVistasInternas(JInternalFrame view) {
+        deskpto.removeAll();
+        deskpto.repaint();
+        view.setVisible(true);
+        int w = deskpto.getWidth();
+        int h = deskpto.getHeight();
+        int x = (w - view.getWidth()) / 2;
+        int y = (h - view.getHeight()) / 2;
+        view.setLocation(x, y);
+
+        deskpto.add(view);
+
+        deskpto.moveToFront(view);
+        
+
+    }
+
 }
