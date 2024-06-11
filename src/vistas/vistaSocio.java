@@ -143,6 +143,11 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         jCbBaja.setForeground(new java.awt.Color(255, 255, 255));
         jCbBaja.setText("Baja");
         jCbBaja.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102)));
+        jCbBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCbBajaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPnlSociosLayout = new javax.swing.GroupLayout(jPnlSocios);
         jPnlSocios.setLayout(jPnlSociosLayout);
@@ -420,6 +425,12 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                     cargarDatos(idSocio);
                 }
     }//GEN-LAST:event_jTblDatosMouseClicked
+
+    private void jCbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbBajaActionPerformed
+        if(TipoRadio==1){
+             listarTodos();
+        }
+    }//GEN-LAST:event_jCbBajaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -735,8 +746,17 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                    
                     jBtnEliminar.setText("Alta");
                     disableButtonEditar();
+                }else{
+                    jBtnEliminar.setText("Baja");
                 }
             }else{
+                libs.FuncionesComunes.vistaDialogo("No se puede cargar el socio intenete mas tarde", 0);
+                disableButtonInicio();
+                libs.FuncionesComunes.resetFormContentPanel(jPnlContnedorGestion);
+                 jtbpContenedor.setSelectedIndex(0);
+                 jTxtBuscar.setText("");
+                  libs.FuncionesComunes.eliminarFilas(jTblDatos);
+                
                 
             }
             
