@@ -24,11 +24,11 @@ public class ClaseData {
     }
 
     /*MÉTODOS*/
-    public void guardarClase(Clase clase) {
+    public boolean guardarClase(Clase clase) {
         //Consulta SQL para insertar una nueva clase
         String query = "INSERT INTO clases(idEntrenador, nombre, horario, capacidad, estado) "
                 + "VALUES(?,?,?,?,?)";
-
+        boolean flag = false;
         try {
             //Prepara la consulta y permite obtener las claves generadas automáticamente
             PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -45,16 +45,19 @@ public class ClaseData {
             //Si hay claves son asignadas a la clase
             if (rs.next()) {
                 clase.setIdClase(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Clase guardada exitosamente!!.");
+                //JOptionPane.showMessageDialog(null, "Clase guardada exitosamente!!.");
+                flag = true;
             }
             //Se cierran el PreparedStatement y el ResultSet.
             ps.close();
             rs.close();
             //Captura de excepciones y se añade el error a una lista de errores 
         } catch (SQLException | NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!.");
+            //JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!.");
             Conexion.msjError.add("Clase: guardarClase -> " + ex.getMessage());
         }
+        
+        return flag;
     }
 
     public ArrayList<Clase> listarClasesDisponibles() {
@@ -194,7 +197,8 @@ public class ClaseData {
         return clase;
     }
 
-    public void bajaClase(int id) {
+    public boolean bajaClase(int id) {
+        boolean flag =false;
         String query = "UPDATE clases SET estado = 0 WHERE idClase = ?";
 
         try {
@@ -203,14 +207,14 @@ public class ClaseData {
             int baja = ps.executeUpdate();
 
             if (baja == 1) {
-                JOptionPane.showMessageDialog(null, "Clase eliminada!.");
-            }else{
-                JOptionPane.showMessageDialog(null, "Clase ya eliminada!.");
+                flag = true;
+                //JOptionPane.showMessageDialog(null, "Clase eliminada!.");
             }
             ps.close();
         } catch (SQLException ex) {
             Conexion.msjError.add("Clase: bajaClase -> " + ex.getMessage());
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
+            //JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
         }
+        return flag;
     }
 }
