@@ -18,6 +18,7 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
        private EntrenadorData eData;
        private Entrenador eNuevo;
        private ArrayList<Entrenador> listaEntrenadores;
+       private ArrayList<Entrenador> listaEntrenadoresInactivos;
        private DefaultTableModel tablaEntrenadores;
     
     public vistaEntrenador() {
@@ -26,6 +27,7 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
         eData = new EntrenadorData();
         eNuevo = new Entrenador();
         listaEntrenadores = new ArrayList<>();
+        listaEntrenadoresInactivos = new ArrayList<>();
          tablaEntrenadores = new DefaultTableModel();
          
          jTEntrenadores.setDefaultEditor(Object.class, null);
@@ -197,6 +199,11 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
         jBListarInactivos.setText("Entrenadores Inactivos");
         jBListarInactivos.setMaximumSize(new java.awt.Dimension(182, 32));
         jBListarInactivos.setMinimumSize(new java.awt.Dimension(182, 32));
+        jBListarInactivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBListarInactivosActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("#Para modificar seleccione en la tabla y luego edite en los campos de texto.");
 
@@ -340,6 +347,12 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
             return;
         }
 
+        if (nombre.isEmpty() && apellido.isEmpty() && especialidad.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar al menos un dato para realizar la búsqueda"
+                    + "\n (nombre, apellido o especialidad).");
+            return;
+        }
+
         if (validarNumericos(nombre) || validarNumericos(apellido) || validarNumericos(especialidad)) {
             JOptionPane.showMessageDialog(null, "Los campos (nombre,apellido,especialidad) no pueden contener numeros");
             return;
@@ -349,8 +362,9 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBListarActionPerformed
-            cargarEntrenadores();
-            limpiarCampos();
+        listaEntrenadores = (ArrayList<Entrenador>) eData.listarEntrenadores();
+        cargarEntrenadores();
+        limpiarCampos();
     }//GEN-LAST:event_jBListarActionPerformed
 
     private void jTEntrenadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTEntrenadoresMouseClicked
@@ -371,18 +385,30 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTEntrenadoresMouseClicked
 
     private void jBBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBajaActionPerformed
-    int filaSeleccionada = jTEntrenadores.getSelectedRow();
-    if (filaSeleccionada != -1) {
+        int filaSeleccionada = jTEntrenadores.getSelectedRow();
+        if (filaSeleccionada != -1) {
 
-        String dni = jTEntrenadores.getValueAt(filaSeleccionada, 0).toString();
-        eData.bajaEntrenador(dni);
-        cargarEntrenadores();
-    }
+            String dni = jTEntrenadores.getValueAt(filaSeleccionada, 0).toString();
+            eData.bajaEntrenador(dni);
+            cargarEntrenadores();
+        }
     }//GEN-LAST:event_jBBajaActionPerformed
 
     private void jBAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAltaActionPerformed
-        
+        int filaSeleccionada = jTEntrenadores.getSelectedRow();
+        if (filaSeleccionada != -1) {
+
+            String dni = jTEntrenadores.getValueAt(filaSeleccionada, 0).toString();
+            eData.altaEntrenador(dni);
+            cargarEntrenadores();
+        }
     }//GEN-LAST:event_jBAltaActionPerformed
+
+    private void jBListarInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBListarInactivosActionPerformed
+        listaEntrenadoresInactivos = (ArrayList<Entrenador>) eData.listarEntrenadoresInactivos();
+        cargarEntrenadoresInactivos();
+        limpiarCampos();
+    }//GEN-LAST:event_jBListarInactivosActionPerformed
     
     
     
@@ -405,6 +431,21 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
             });
         }
     }
+    }
+    
+        private void cargarEntrenadoresInactivos() {
+        if (tablaEntrenadores.getColumnCount() == 0) {
+            armarTabla();
+        }
+        borrarFilas();
+        for (Entrenador entrenador : listaEntrenadoresInactivos) {
+            tablaEntrenadores.addRow(new Object[]{
+                entrenador.getDni(),
+                entrenador.getNombre(),
+                entrenador.getApellido(),
+                entrenador.getEspecialidad()
+            });
+        }
     }
 
     private void cargarEntrenadores() {
