@@ -107,13 +107,13 @@ public class EntrenadorData {
         //El indice se acomoda a la cantidad de parametros que se ingresan para buscar
         int i = 1;
         if (nombre != null && !nombre.isEmpty()) {
-            ps.setString(i++, "%" + nombre + "%");
+            ps.setString(i++, nombre + "%");
         }
         if (apellido != null && !apellido.isEmpty()) {
-            ps.setString(i++, "%" + apellido + "%");
+            ps.setString(i++, apellido + "%");
         }
         if (especialidad != null && !especialidad.isEmpty()) {
-            ps.setString(i++, "%" + especialidad + "%");
+            ps.setString(i++, especialidad + "%");
         }
         
         ResultSet rs = ps.executeQuery();
@@ -162,13 +162,13 @@ public class EntrenadorData {
         //El indice se acomoda a la cantidad de parametros que se ingresan para buscar
         int i = 1;
         if (nombre != null && !nombre.isEmpty()) {
-            ps.setString(i++, "%" + nombre + "%");
+            ps.setString(i++, nombre + "%");
         }
         if (apellido != null && !apellido.isEmpty()) {
-            ps.setString(i++, "%" + apellido + "%");
+            ps.setString(i++, apellido + "%");
         }
         if (especialidad != null && !especialidad.isEmpty()) {
-            ps.setString(i++, "%" + especialidad + "%");
+            ps.setString(i++, especialidad + "%");
         }
         
         ResultSet rs = ps.executeQuery();
@@ -223,9 +223,34 @@ public class EntrenadorData {
 }
     
     
+    public static Entrenador buscarEntrenadorPorDNI(String dni) {
+    String query = "SELECT * FROM entrenadores WHERE dni = ? AND estado = 1";
+    Entrenador entrenador = null;
+    try {
+        PreparedStatement ps = conec.prepareStatement(query);
+        ps.setString(1, dni);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            entrenador = new Entrenador();
+            entrenador.setIdEntrenador(rs.getInt("idEntrenador"));
+            entrenador.setDni(rs.getString("dni"));
+            entrenador.setNombre(rs.getString("nombre"));
+            entrenador.setApellido(rs.getString("apellido"));
+            entrenador.setEspecialidad(rs.getString("especialidad"));
+            entrenador.setEstado(rs.getBoolean("estado"));
+        }
+        ps.close();
+        rs.close();
+    } catch (SQLException | NullPointerException ex) {
+        Conexion.msjError.add("Entrenador: buscarEntrenadorPorDNI() ->" + ex.getMessage());
+    }
+    return entrenador;
+}
+    
+    
     
     //Baja logica por id
-    public void eliminarEntrenador(int id){
+    public void bajaEntrenador(int id){
         String sql = "UPDATE entrenadores SET estado = 0 WHERE idEntrenador = ?";
         
         try {
@@ -240,6 +265,22 @@ public class EntrenadorData {
             Conexion.msjError.add("Entrenador: eliminarEntrenador() ->" + ex.getMessage());
         }
     }
+    
+    public void AltaEntrenador(int id) {
+    String sql = "UPDATE entrenadores SET estado = 1 WHERE idEntrenador = ?";
+    
+    try {
+        PreparedStatement ps = conec.prepareStatement(sql);
+        ps.setInt(1, id);
+        int alta = ps.executeUpdate();
+        if (alta == 1) {
+            JOptionPane.showMessageDialog(null, "Alta de entrenador exitosa!!");
+        }
+        ps.close();
+    } catch (SQLException | NullPointerException ex) {
+        Conexion.msjError.add("Entrenador: darDeAltaEntrenador() ->" + ex.getMessage());
+    }
+}
     
     
     public void modificarEntrenador(Entrenador entrenador){

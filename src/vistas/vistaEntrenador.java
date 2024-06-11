@@ -16,7 +16,7 @@ import static libs.FuncionesComunes.validarNumericos;
 
 public class vistaEntrenador extends javax.swing.JInternalFrame {
        private EntrenadorData eData;
-       private Entrenador e;
+       private Entrenador eNuevo;
        private ArrayList<Entrenador> listaEntrenadores;
        private DefaultTableModel tablaEntrenadores;
     
@@ -24,7 +24,7 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
         initComponents();
         
         eData = new EntrenadorData();
-        e = new Entrenador();
+        eNuevo = new Entrenador();
         listaEntrenadores = new ArrayList<>();
          tablaEntrenadores = new DefaultTableModel();
          
@@ -94,6 +94,11 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTEntrenadores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTEntrenadoresMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTEntrenadores);
 
         jBGuardar.setText("Guardar");
@@ -204,7 +209,7 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
                                 .addContainerGap()
                                 .addComponent(jBAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jBBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jBBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 25, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -271,9 +276,17 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
                 return;
             }
 
-            e = new Entrenador(dni, nombre, apellido, especialidad);
-            eData.guardarEntrenador(e);
+            Entrenador entrenadorExistente = eData.buscarEntrenadorPorDNI(dni);
+            if (entrenadorExistente != null) {
+                entrenadorExistente.setNombre(nombre);
+                entrenadorExistente.setApellido(apellido);
+                entrenadorExistente.setEspecialidad(especialidad);
+                eData.modificarEntrenador(entrenadorExistente);
 
+            } else {
+                eNuevo = new Entrenador(dni, nombre, apellido, especialidad);
+                eData.guardarEntrenador(eNuevo);
+            }
             listaEntrenadores = (ArrayList<Entrenador>) eData.listarEntrenadores();
             limpiarCampos();
 
@@ -283,12 +296,13 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
+        String dni = jTDni.getText();
         String nombre = jTNombre.getText();
         String apellido = jTApellido.getText();
         String especialidad = jTEspecialidad.getText();
 
-        if (nombre.isEmpty() || apellido.isEmpty() || especialidad.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No puede haber campos vacíos");
+        if (!dni.isEmpty() && nombre.isEmpty() && apellido.isEmpty() && especialidad.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No se puede buscar por dni");
             return;
         }
 
@@ -304,6 +318,24 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
             cargarEntrenadores();
             limpiarCampos();
     }//GEN-LAST:event_jBListarActionPerformed
+
+    private void jTEntrenadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTEntrenadoresMouseClicked
+        int filaSeleccionada = jTEntrenadores.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            
+            String dni = jTEntrenadores.getValueAt(filaSeleccionada, 0).toString();
+            String nombre = jTEntrenadores.getValueAt(filaSeleccionada, 1).toString();
+            String apellido = jTEntrenadores.getValueAt(filaSeleccionada, 2).toString();
+            String especialidad = jTEntrenadores.getValueAt(filaSeleccionada, 3).toString();
+
+            
+            jTDni.setText(dni);
+            jTNombre.setText(nombre);
+            jTApellido.setText(apellido);
+            jTEspecialidad.setText(especialidad);
+    }//GEN-LAST:event_jTEntrenadoresMouseClicked
+    }
+    
     
     private void buscarYCargarEntrenadores(String nombre, String apellido, String especialidad) {
         ArrayList<Entrenador> entrenadoresEncontrados = (ArrayList<Entrenador>) eData.buscarEntrenadores(nombre, apellido, especialidad);
