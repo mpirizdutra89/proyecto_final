@@ -45,7 +45,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         txtIdSocio = new javax.swing.JTextField();
         txtCantidadPases = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtCosto = new javax.swing.JTextField();
         chkEstado = new javax.swing.JCheckBox();
         btnGuardar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
@@ -119,17 +119,23 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(117, Short.MAX_VALUE)
                         .addComponent(btnGuardar)
-                        .addGap(98, 98, 98)))
+                        .addGap(47, 47, 47)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chkEstado)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jdcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCantidadPases, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
-                            .addComponent(txtIdSocio)
-                            .addComponent(jTextField2)))
-                    .addComponent(jdcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(51, 51, 51)
+                            .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(51, 51, 51)
+                            .addComponent(chkEstado))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(53, 53, 53)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtCantidadPases, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                                .addComponent(txtIdSocio)
+                                .addComponent(txtCosto)))
+                        .addComponent(jdcFechaInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jdcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(92, 92, 92))
         );
         jPanel1Layout.setVerticalGroup(
@@ -150,7 +156,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                                         .addComponent(txtCantidadPases, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(lblCantidadPases))
                                 .addGap(30, 30, 30)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblCosto))
                         .addGap(40, 40, 40)
                         .addComponent(jdcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,11 +211,9 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtIdSocio2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(75, 75, 75)
-                        .addComponent(btnBuscar2)
-                        .addGap(72, 72, 72))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(16, Short.MAX_VALUE))))
+                        .addComponent(btnBuscar2))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,6 +257,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         try {
         int idSocio = Integer.parseInt(txtIdSocio.getText());
         int cantidadPases = Integer.parseInt(txtCantidadPases.getText());
+        int costo = Integer.parseInt(txtCosto.getText());
         Date fechaInicio = jdcFechaInicio.getDate();
         Date fechaFin = jdcFechaFin.getDate();
 
@@ -269,6 +274,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         
         membre.setSocio(socio);
         membre.setCantidadPases(cantidadPases);
+        membre.setCosto (costo);
         membre.setFechaInicio(fechaInicio);
         membre.setFechaFin(fechaFin);
         membre.setEstado(true); // Suponiendo que una nueva membresía está activa por defecto
@@ -300,7 +306,6 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
     private com.toedter.calendar.JDateChooser jdcFechaFin;
     private com.toedter.calendar.JDateChooser jdcFechaInicio;
     private javax.swing.JTabbedPane jtbpContenedor;
@@ -312,6 +317,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblHistorial;
     private javax.swing.JLabel lblIdSocio;
     private javax.swing.JTextField txtCantidadPases;
+    private javax.swing.JTextField txtCosto;
     private javax.swing.JTextField txtIdSocio;
     private javax.swing.JTextField txtIdSocio2;
     // End of variables declaration//GEN-END:variables
