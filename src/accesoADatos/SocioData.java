@@ -99,6 +99,7 @@ public class SocioData {
                 this.socio.setDni(rs.getString("dni"));
                 this.socio.setApellido(rs.getString("apellido"));
                 this.socio.setNombre(rs.getString("nombre"));
+                this.socio.setEdad(rs.getInt("edad"));
                 this.socio.setCorreo(rs.getString("correo"));
                 this.socio.setTelefono(rs.getString("telefono"));
                
@@ -115,18 +116,49 @@ public class SocioData {
     
     
     
-      public Socio buscarSocioPorId(int id) {
+      public Socio buscarSocioPorId(int id,int estado) {
         this.socio = null;
         PreparedStatement ps = null;
-        String consulta = "SELECT * FROM socios WHERE  idSocio= ? AND estado=1";
+        String consulta = "SELECT * FROM socios WHERE  idSocio= ? AND estado=?";
 
         try {
             ps = conec.prepareStatement(consulta);
             ps.setInt(1, id);
+            ps.setInt(2, estado);
             ResultSet res = ps.executeQuery();
             if (res.next()) {
                 this.socio = new Socio();
-                this.socio.setIdSocio(id);
+                this.socio.setIdSocio(res.getInt("idSocio"));
+                this.socio.setDni(res.getString("dni"));
+                this.socio.setApellido(res.getString("apellido"));
+                this.socio.setNombre(res.getString("nombre"));
+                this.socio.setEdad(res.getInt("edad"));
+                this.socio.setCorreo(res.getString("correo"));
+                this.socio.setTelefono(res.getString("telefono"));
+                this.socio.setEstado(res.getBoolean("estado"));
+            }
+            ps.close();
+            res.close();
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("Socio: BuscarSocioPorId ->" + ex.getMessage());
+        }
+
+        return this.socio;
+    }
+      
+       public Socio buscarSocioPorDni(String dni,int estado) {
+        this.socio = null;
+        PreparedStatement ps = null;
+        String consulta = "SELECT * FROM socios WHERE  dni= ? AND estado=?";
+
+        try {
+            ps = conec.prepareStatement(consulta);
+            ps.setString(1, dni);
+            ps.setInt(2, estado);
+            ResultSet res = ps.executeQuery();
+            if (res.next()) {
+                this.socio = new Socio();
+                this.socio.setIdSocio(res.getInt("idSocio"));
                 this.socio.setDni(res.getString("dni"));
                 this.socio.setApellido(res.getString("apellido"));
                 this.socio.setNombre(res.getString("nombre"));
@@ -144,15 +176,18 @@ public class SocioData {
         return this.socio;
     }
       //buscar por conisidencia, devulve el listado
-      public ArrayList<Socio> buscarSocioPorNombre(String nombre) {
+      public ArrayList<Socio> buscarSocioPorNombre(String nombre,int estado) {
         this.socio = null;
         PreparedStatement ps = null;
         ArrayList<Socio> lista = new ArrayList<>();
-        String consulta = "SELECT * FROM socios WHERE  nombre LIKE '%?'  AND estado=1";
+        String consulta = "SELECT * FROM socios WHERE  (nombre LIKE ? or apellido LIKE ?)  AND estado=?";
 
         try {
             ps = conec.prepareStatement(consulta);
-            ps.setString(1, nombre);
+            ps.setString(1, "%"+nombre+"%");
+             ps.setString(2, "%"+nombre+"%");
+             ps.setInt(3, estado);
+            // System.out.println(ps.toString());
             ResultSet res = ps.executeQuery();
             while (res.next()) {
                 this.socio = new Socio();

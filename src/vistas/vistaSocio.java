@@ -17,24 +17,28 @@ import javax.swing.table.DefaultTableModel;
  * @author Martin
  */
 public class vistaSocio extends javax.swing.JInternalFrame {
-    private int TipoRadio=0;
-    private String buscar="";
-    private  DefaultTableModel modeloTable;
-    private ArrayList<Socio> listaSocio=new ArrayList<Socio>();
+
+    private int TipoRadio = 0;
+    private String buscar = "";
+    private DefaultTableModel modeloTable;
+    private ArrayList<Socio> listaSocio = new ArrayList<Socio>();
     private SocioData socioData;
+    private Socio BuscarSocio;
+
     /**
      * Creates new form vistaSocio
      */
     public vistaSocio() {
         initComponents();
-        socioData=new SocioData();
+        disableButtonInicio();
+        BuscarSocio = null;
+        socioData = new SocioData();
         armarEncabezado();
         textModificado();
-        disableButtonInicio();
+
         enlazarListenerRadio();
-        TipoRadio=Filtro();
-        
-        jTxtBuscar.requestFocus();
+        TipoRadio = Filtro();
+
     }
 
     /**
@@ -54,7 +58,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         jTxtBuscar = new javax.swing.JTextField();
         jRbCodigo = new javax.swing.JRadioButton();
         jRbNombreApellido = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        jBtnBuscar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jRbTodos = new javax.swing.JRadioButton();
         jRbDni = new javax.swing.JRadioButton();
@@ -100,6 +104,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTblDatos);
 
         jTxtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTxtBuscar.setEnabled(false);
 
         btnGrup.add(jRbCodigo);
         jRbCodigo.setForeground(new java.awt.Color(255, 255, 255));
@@ -109,7 +114,13 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         jRbNombreApellido.setForeground(new java.awt.Color(255, 255, 255));
         jRbNombreApellido.setText("Nombre y apellido");
 
-        jButton1.setText("Buscar");
+        jBtnBuscar.setText("Buscar");
+        jBtnBuscar.setEnabled(false);
+        jBtnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnBuscarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,7 +167,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                                 .addComponent(jCbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jTxtBuscar))
                         .addGap(35, 35, 35)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jBtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPnlSociosLayout.setVerticalGroup(
@@ -174,7 +185,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jBtnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -319,31 +330,47 @@ public class vistaSocio extends javax.swing.JInternalFrame {
 
     private void jtbpContenedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbpContenedorMouseClicked
         //jTxtBuscar.requestFocusInWindow();
-       // jPnlSocios.getV
-                int selectedIndex = jtbpContenedor.getSelectedIndex();
-                
-                if(selectedIndex==0){
-                    System.out.println(selectedIndex);
-                    //jTxtDni.requestFocusInWindow();
-                    jTxtBuscar.requestFocus();
-                }else{
-                     jTxtDni.requestFocus();
-                    
-                }
+        // jPnlSocios.getV
+        int selectedIndex = jtbpContenedor.getSelectedIndex();
+
+        if (selectedIndex == 1) {
+            jTxtDni.requestFocus();
+
+        }
     }//GEN-LAST:event_jtbpContenedorMouseClicked
 
     private void jBtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_jBtnSalirActionPerformed
 
+    private void jBtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBuscarActionPerformed
+        if (validarBuscar()) {
+            if (TipoRadio == 3) {
+                BuscarPorCodigo();
+            }
+            if (TipoRadio == 2) {
+                BuscarPorDni();
+            }
+            if(TipoRadio==4){
+                BuscarPorNombre();
+            }
+
+        } else {
+            if (TipoRadio <= 0) {
+                libs.FuncionesComunes.vistaDialogo("Seleccione un filtro", 0);
+            }
+
+        }
+    }//GEN-LAST:event_jBtnBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGrup;
+    private javax.swing.JButton jBtnBuscar;
     private javax.swing.JButton jBtnEliminar;
     private javax.swing.JButton jBtnGuardar;
     private javax.swing.JButton jBtnNuevo;
     private javax.swing.JButton jBtnSalir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCbActivo;
     private javax.swing.JCheckBox jCbBaja;
     private javax.swing.JLabel jLabel1;
@@ -367,40 +394,115 @@ public class vistaSocio extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane jtbpContenedor;
     // End of variables declaration//GEN-END:variables
 
-    private void textModificado(){
-        libs.FuncionesComunes.textPrompt(jTxtDni,"D.N.I (numerico)");
-        libs.FuncionesComunes.textPrompt(jTxtNombre,"Nombre");
-        libs.FuncionesComunes.textPrompt(jTxtApellido,"Apellido");
-        libs.FuncionesComunes.textPrompt(jTxtCorreo,"Correo (name@dominio.com)");
-        libs.FuncionesComunes.textPrompt(jTxtTelefono,"Telefono (numerico)");
-        libs.FuncionesComunes.textPrompt(jTxtEdad,"Edad (numerico)");
-        
-        
+    private void textModificado() {
+        libs.FuncionesComunes.textPrompt(jTxtDni, "D.N.I (numerico)");
+        libs.FuncionesComunes.textPrompt(jTxtNombre, "Nombre");
+        libs.FuncionesComunes.textPrompt(jTxtApellido, "Apellido");
+        libs.FuncionesComunes.textPrompt(jTxtCorreo, "Correo (name@dominio.com)");
+        libs.FuncionesComunes.textPrompt(jTxtTelefono, "Telefono (numerico)");
+        libs.FuncionesComunes.textPrompt(jTxtEdad, "Edad (numerico)");
+
     }
-    
-    private void disableButtonInicio(){
+
+    private void disableButtonInicio() {
+        jBtnBuscar.setEnabled(false);
         jBtnEliminar.setEnabled(false);
         jBtnNuevo.setEnabled(false);
     }
-    
-    private void disableButtonEditar(){
+
+    private void disableButtonEditar() {
         jBtnEliminar.setEnabled(true);
         jBtnNuevo.setEnabled(true);
     }
-    
-    private void listar(){
-        if(validarBuscar()){
-            
-            
+
+    private void BuscarPorCodigo() {
+        try {
+
+            int id = Integer.valueOf(buscar);
+            BuscarSocio = null;
+            BuscarSocio = socioData.buscarSocioPorId(id, CheckBaja());
+             libs.FuncionesComunes.eliminarFilas(jTblDatos);
+            if (BuscarSocio != null) {
+               
+                modeloTable.addRow(new Object[]{
+                    BuscarSocio.getIdSocio(),
+                    BuscarSocio.getDni(),
+                    BuscarSocio.getNombre(),
+                    BuscarSocio.getApellido(),
+                    BuscarSocio.getEdad(),
+                    BuscarSocio.getTelefono()
+                });
+            } else {
+                libs.FuncionesComunes.vistaDialogo("No hay resultados", 1, this);
+            }
+
+        } catch (NullPointerException e) {
+            libs.FuncionesComunes.vistaDialogo("EL codigo es numerico", 1, this);
         }
+
     }
-    
-    private void listarTodos(){
-        if(validarBuscar()){
-            listaSocio=socioData.listarSocio(CheckBaja());
-           
-            if(listaSocio.size()>0){
-                libs.FuncionesComunes.eliminarFilas(jTblDatos);
+
+    private void BuscarPorDni() {
+        try {
+
+            String dni = buscar;
+            BuscarSocio = null;
+            BuscarSocio = socioData.buscarSocioPorDni(dni, CheckBaja());
+            libs.FuncionesComunes.eliminarFilas(jTblDatos);
+            if (BuscarSocio != null) {
+                
+                modeloTable.addRow(new Object[]{
+                    BuscarSocio.getIdSocio(),
+                    BuscarSocio.getDni(),
+                    BuscarSocio.getNombre(),
+                    BuscarSocio.getApellido(),
+                    BuscarSocio.getEdad(),
+                    BuscarSocio.getTelefono()
+                });
+            } else {
+                libs.FuncionesComunes.vistaDialogo("No hay resultados", 1, this);
+            }
+
+        } catch (Exception e) {
+            //libs.FuncionesComunes.vistaDialogo("EL codigo es numerico", 1);
+        }
+
+    }
+
+    private void BuscarPorNombre() {
+        try {
+
+            listaSocio = socioData.buscarSocioPorNombre(buscar, CheckBaja());
+             libs.FuncionesComunes.eliminarFilas(jTblDatos);
+            if (listaSocio.size() > 0) {
+               
+                for (Socio socio : listaSocio) {
+                    modeloTable.addRow(new Object[]{
+                        socio.getIdSocio(),
+                        socio.getDni(),
+                        socio.getNombre(),
+                        socio.getApellido(),
+                        socio.getEdad(),
+                        socio.getTelefono()
+                    });
+                }
+            } else {
+                libs.FuncionesComunes.vistaDialogo("No hay resultados", 1, this);
+            }
+
+        } catch (Exception e) {
+            //libs.FuncionesComunes.vistaDialogo("EL codigo es numerico", 1);
+        }
+
+    }
+
+    private void listarTodos() {
+        if (validarBuscar()) {
+
+            listaSocio = socioData.listarSocio(CheckBaja());
+            libs.FuncionesComunes.eliminarFilas(jTblDatos);
+            if (listaSocio.size() > 0) {
+                
                 for (Socio socio : listaSocio) {
                     modeloTable.addRow(new Object[]{
                         socio.getIdSocio(),
@@ -412,105 +514,104 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                     });
                 }
             }
-            
+
         }
     }
-    
-    private boolean validarBuscar(){
-        boolean res=false;
-        buscar=jTxtBuscar.getText().trim();
-        
-        if(TipoRadio!=0 && !buscar.isEmpty()){
-            
-            if(TipoRadio==2 || TipoRadio==3){
-               if(libs.FuncionesComunes.validarNumericos(buscar)){
-                   res=true;
-               }
-               else{
-                   libs.FuncionesComunes.vistaDialogo("Para codigo o Dni los campos son numericos.", 0);
-               }
-            }
-            else{
-                if(TipoRadio==4 || TipoRadio==1){
-                    res=true;
+
+    private boolean validarBuscar() {
+        boolean res = false;
+        buscar = jTxtBuscar.getText().trim();
+
+        if (TipoRadio != 0 && !buscar.isEmpty()) {
+
+            if (TipoRadio == 2 || TipoRadio == 3) {
+                if (libs.FuncionesComunes.validarNumericos(buscar)) {
+                    res = true;
+                } else {
+                    libs.FuncionesComunes.vistaDialogo("Para codigo o Dni los campos son numericos.", 0);
+                }
+            } else {
+                if (TipoRadio == 4 || TipoRadio == 1) {
+                    res = true;
                 }
             }
-        }else{
-            if(TipoRadio==1){
-                res=true;
+        } else {
+            res = false;
+
+            if (TipoRadio == 1) {
+                res = true;
             }
         }
-        
+
         return res;
     }
-    
-    
-    private  int Filtro(){
-        int radio=1;
+
+    private int Filtro() {
+        int radio = 0;
         ButtonModel selectedModel = btnGrup.getSelection();
-        
+        jTxtBuscar.setEnabled(true);
+        jBtnBuscar.setEnabled(true);
         if (selectedModel != null) {
             libs.FuncionesComunes.eliminarFilas(jTblDatos);
             jTxtBuscar.requestFocus();
             libs.FuncionesComunes.textPrompt(jTxtBuscar, " ");
-                     if (selectedModel == jRbDni.getModel()) {
-                         libs.FuncionesComunes.textPrompt(jTxtBuscar, "D.N.I - 34877112");
-                        radio=2;
-                    } else if (selectedModel == jRbCodigo.getModel()) {
-                         libs.FuncionesComunes.textPrompt(jTxtBuscar, "Codigo - 100");
-                         radio=3;
-                    }
-                     else if (selectedModel == jRbNombreApellido.getModel()) {
-                       libs.FuncionesComunes.textPrompt(jTxtBuscar, "Nombre o Apellido");  
-                       radio=4;
-                    }
-                     
-        } else{
-            radio=1;
-        }   
-    
-        return  radio;
-    }
-         //
-        
-         private void enlazarListenerRadio(){
-             jRbTodos.addActionListener(radioButtonListener);
-             jRbDni.addActionListener(radioButtonListener);
-             jRbCodigo.addActionListener(radioButtonListener);
-             jRbNombreApellido.addActionListener(radioButtonListener);
-         }
-    
-        ActionListener radioButtonListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               TipoRadio=Filtro();
-               
-               if(TipoRadio==1){
-                   listarTodos();
-               }
+            if (selectedModel == jRbDni.getModel()) {
+                libs.FuncionesComunes.textPrompt(jTxtBuscar, "D.N.I - 34877112");
+                radio = 2;
+            } else if (selectedModel == jRbCodigo.getModel()) {
+                libs.FuncionesComunes.textPrompt(jTxtBuscar, "Codigo - 100");
+                radio = 3;
+            } else if (selectedModel == jRbNombreApellido.getModel()) {
+                libs.FuncionesComunes.textPrompt(jTxtBuscar, "Nombre o Apellido");
+                radio = 4;
+            } else if (selectedModel == jRbTodos.getModel()) {
+                radio = 1;
+                jTxtBuscar.setEnabled(false);
+                jBtnBuscar.setEnabled(false);
             }
-        };
-        
-        
-        
+
+        } else {
+            radio = 0;
+        }
+
+        return radio;
+    }
+    //
+
+    private void enlazarListenerRadio() {
+        jRbTodos.addActionListener(radioButtonListener);
+        jRbDni.addActionListener(radioButtonListener);
+        jRbCodigo.addActionListener(radioButtonListener);
+        jRbNombreApellido.addActionListener(radioButtonListener);
+    }
+
+    ActionListener radioButtonListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            TipoRadio = Filtro();
+
+            if (TipoRadio == 1) {
+                listarTodos();
+            }
+        }
+    };
+
     private void armarEncabezado() {
         modeloTable = libs.FuncionesComunes.ArmadoEncabezados(entidades.Socio.CabeceraSocio.Codigo);
         jTblDatos.setModel(modeloTable);
         //libs.FuncionesComunes.alinearCabeceras(1, "right", jTblDatos);
 
     }
-        
-    private int CheckBaja(){
+
+    private int CheckBaja() {
         int res;
-        if(jCbBaja.isSelected()){
-            res=0;
-        }else{
-            res=1;
+        if (jCbBaja.isSelected()) {
+            res = 0;
+        } else {
+            res = 1;
         }
-      
-         return res;
+
+        return res;
     }
-    
-    
-   
+
 }
