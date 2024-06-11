@@ -60,11 +60,11 @@ public class FuncionesComunes {
     public static void eliminarFilas(JTable table) {
         int rowCount = table.getRowCount()-1;
        // System.out.println(rowCount);
-       
+        
             for (int i = rowCount; i >= 0; i--) {
                 modeloTable.removeRow(i);
             }
-        
+       
         
     }
     
@@ -101,13 +101,19 @@ public class FuncionesComunes {
     
     
     public static void textPrompt(JTextField textField, String titulo) {
-        librerias.TextPrompt placeholder = new librerias.TextPrompt(titulo, textField);
-
+         TextPrompt oldPrompt = (TextPrompt)textField.getClientProperty(TextPrompt.class);
+        if (oldPrompt != null) {
+            textField.remove(oldPrompt);
+        }
+        libs.TextPrompt placeholder = new libs.TextPrompt(titulo, textField);
+       
         placeholder.changeAlpha(0.50f);
         placeholder.changeStyle(Font.ITALIC);
+        textField.putClientProperty(TextPrompt.class, placeholder);
 
     }
-
+    
+    
     //reseteal loscomponentes dentro del panel
     public static void resetFormContentPanel(JPanel jpnl) {
         Component[] components = jpnl.getComponents();
@@ -122,11 +128,32 @@ public class FuncionesComunes {
             }
         }
     }
+    
+    public static boolean ValidarVacio(JPanel jpnl) {
+        
+        Component[] components = jpnl.getComponents();
+        for (Component component : components) {
+            if (component instanceof JTextField) {
+                JTextField textField = (JTextField) component;
+                if(textField.getText().trim().isEmpty()){
+                    return false;
+                }
+                
+            }
+            
+        }
+        return true;
+    }
 
     public static boolean validarNumericos(String cadena) {
         return cadena.matches("^[0-9]+$");
     }
-
+    
+    public static boolean validarCorreo(String correo) {
+    
+        String regex = "^[\\w-\\.]+@[\\w-\\.]+\\.[a-z]{2,}$";
+        return correo.matches(regex);
+    }
     public static boolean validarDoubles(String cadena) {
         return cadena.matches("^[0-9]+\\.[0-9]{2}$");
     }

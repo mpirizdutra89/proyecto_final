@@ -135,9 +135,6 @@ public class EntrenadorData {
         ps.close();
         rs.close();
         
-        if (entrenadores.isEmpty()) {
-            System.out.println("No se encontraron entrenadores activos con los datos proporcionados.");
-        }
         } catch (SQLException | NullPointerException ex) {
             Conexion.msjError.add("Entrenador: buscarEntrenadores() ->" + ex.getMessage());
         }
