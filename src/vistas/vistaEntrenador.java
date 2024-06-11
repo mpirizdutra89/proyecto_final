@@ -101,6 +101,7 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
+        jBListar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jBListar.setText("Entrenadores Activos");
         jBListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
