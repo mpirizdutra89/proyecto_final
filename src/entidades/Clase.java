@@ -16,6 +16,10 @@ public class Clase {
     private boolean estado;
     
     private int idEntrenador;
+    
+    public enum CabeceraClase{
+        IDClase, IDEntrenador, Nombre, Horario, Capacidad
+    }
 
     /*CONSTRUCTORES*/
     public Clase() {
