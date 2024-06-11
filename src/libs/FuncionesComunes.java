@@ -60,11 +60,11 @@ public class FuncionesComunes {
     public static void eliminarFilas(JTable table) {
         int rowCount = table.getRowCount()-1;
        // System.out.println(rowCount);
-       
+        
             for (int i = rowCount; i >= 0; i--) {
                 modeloTable.removeRow(i);
             }
-        
+       
         
     }
     
@@ -101,13 +101,19 @@ public class FuncionesComunes {
     
     
     public static void textPrompt(JTextField textField, String titulo) {
-        librerias.TextPrompt placeholder = new librerias.TextPrompt(titulo, textField);
-
+         TextPrompt oldPrompt = (TextPrompt)textField.getClientProperty(TextPrompt.class);
+        if (oldPrompt != null) {
+            textField.remove(oldPrompt);
+        }
+        libs.TextPrompt placeholder = new libs.TextPrompt(titulo, textField);
+       
         placeholder.changeAlpha(0.50f);
         placeholder.changeStyle(Font.ITALIC);
+        textField.putClientProperty(TextPrompt.class, placeholder);
 
     }
-
+    
+    
     //reseteal loscomponentes dentro del panel
     public static void resetFormContentPanel(JPanel jpnl) {
         Component[] components = jpnl.getComponents();
