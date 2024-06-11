@@ -57,7 +57,6 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jbtnBuscar = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jbtnListar = new javax.swing.JLabel();
         jbtnLimpiar = new javax.swing.JLabel();
         jbtnGuardar = new javax.swing.JLabel();
         jPnlLista = new javax.swing.JPanel();
@@ -173,16 +172,6 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jbtnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/tareas.png"))); // NOI18N
-        jbtnListar.setToolTipText("Listar socios por clase");
-        jbtnListar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jbtnListar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jbtnListar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbtnListarMouseClicked(evt);
-            }
-        });
-
         jbtnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/reiniciar.png"))); // NOI18N
         jbtnLimpiar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jbtnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -207,9 +196,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
             jPnlContendorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPnlContendorLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jbtnListar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(16, 412, Short.MAX_VALUE)
                 .addComponent(jbtnGuardar)
                 .addGap(29, 29, 29)
                 .addComponent(jbtnLimpiar)
@@ -242,8 +229,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPnlContendorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jbtnGuardar)
-                    .addComponent(jbtnLimpiar)
-                    .addComponent(jbtnListar))
+                    .addComponent(jbtnLimpiar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -373,10 +359,6 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTDniActionPerformed
 
-    private void jbtnListarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnListarMouseClicked
-        
-    }//GEN-LAST:event_jbtnListarMouseClicked
-
     private void jbtnLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnLimpiarMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnLimpiarMouseClicked
@@ -418,7 +400,6 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jbtnEliminar;
     private javax.swing.JLabel jbtnGuardar;
     private javax.swing.JLabel jbtnLimpiar;
-    private javax.swing.JLabel jbtnListar;
     // End of variables declaration//GEN-END:variables
 
     private void fecha(){
