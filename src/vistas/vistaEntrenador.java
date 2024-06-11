@@ -5,6 +5,7 @@ import entidades.Entrenador;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static libs.FuncionesComunes.validarNumericos;
 
 /**
  *
@@ -218,43 +219,58 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-         try {
+        try {
             String dni = jTDni.getText();
             String nombre = jTNombre.getText();
             String apellido = jTApellido.getText();
             String especialidad = jTEspecialidad.getText();
+            
+
+        if (!validarNumericos(dni)) {
+            JOptionPane.showMessageDialog(null, "El DNI debe ser un valor numerico");
+            return;
+        }
+        if (validarNumericos(nombre) || validarNumericos(apellido)) {
+            JOptionPane.showMessageDialog(null, "El nombre y el apellido no pueden contener numeros");
+            return;
+        }
+        if (validarNumericos(especialidad)) {
+            JOptionPane.showMessageDialog(null, "La especialidad no puede contener numeros");
+            return;
+        }
 
             if (dni.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || especialidad.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "No puede haber campos vacíos");
                 return;
             }
-
-            if (e == null) {
-                e = new Entrenador(dni,nombre,apellido,especialidad);
+            
+                e = new Entrenador(dni, nombre, apellido, especialidad);
                 eData.guardarEntrenador(e);
-            } else {
-                e.setDni(dni);
-                e.setNombre(nombre);
-                e.setApellido(apellido);
-                e.setEspecialidad(especialidad);
-                eData.modificarEntrenador(e);
-            }
+                
+                listaEntrenadores = (ArrayList<Entrenador>) eData.listarEntrenadores();
+                limpiarCampos();
+            
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error, revise los datos ingresados e intente nuevamente");
         }
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-    String nombre = jTNombre.getText();
-    String apellido = jTApellido.getText();
-    String especialidad = jTEspecialidad.getText();
+        String nombre = jTNombre.getText();
+        String apellido = jTApellido.getText();
+        String especialidad = jTEspecialidad.getText();
 
-    buscarYCargarEntrenadores(nombre, apellido, especialidad);
+        if (validarNumericos(nombre) || validarNumericos(apellido) || validarNumericos(especialidad)) {
+            JOptionPane.showMessageDialog(null, "Los campos (nombre,apellido,especialidad) no pueden contener numeros");
+            return;
+        }
+
+        buscarYCargarEntrenadores(nombre, apellido, especialidad);
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBListarActionPerformed
-
-        cargarEntrenadores();
+            cargarEntrenadores();
+            limpiarCampos();
     }//GEN-LAST:event_jBListarActionPerformed
     
     private void buscarYCargarEntrenadores(String nombre, String apellido, String especialidad) {
@@ -310,6 +326,14 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
                 tablaEntrenadores.removeRow(i);
             }
         }
+    }
+    
+    private void limpiarCampos() {
+        jTDni.setText("");
+        jTNombre.setText("");
+        jTApellido.setText("");
+        jTEspecialidad.setText("");
+
     }
 
 
