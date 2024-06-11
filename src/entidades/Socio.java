@@ -16,7 +16,7 @@ public class Socio {
     private boolean estado;
     
     public enum CabeceraSocio{
-        Dni,Nombre,Apellido,Edad
+        Codigo,Dni,Nombre,Apellido,Edad,Telefono
     }
     
     

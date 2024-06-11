@@ -4,19 +4,36 @@
  */
 package vistas;
 
+import accesoADatos.SocioData;
+import entidades.Socio;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.ButtonModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Martin
  */
 public class vistaSocio extends javax.swing.JInternalFrame {
-
+    private int TipoRadio=0;
+    private String buscar="";
+    private  DefaultTableModel modeloTable;
+    private ArrayList<Socio> listaSocio=new ArrayList<Socio>();
+    private SocioData socioData;
     /**
      * Creates new form vistaSocio
      */
     public vistaSocio() {
         initComponents();
+        socioData=new SocioData();
+        armarEncabezado();
         textModificado();
         disableButtonInicio();
+        enlazarListenerRadio();
+        TipoRadio=Filtro();
+        
         jTxtBuscar.requestFocus();
     }
 
@@ -33,14 +50,15 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         jtbpContenedor = new javax.swing.JTabbedPane();
         jPnlSocios = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTblDatos = new javax.swing.JTable();
         jTxtBuscar = new javax.swing.JTextField();
-        jRbTodos = new javax.swing.JRadioButton();
         jRbCodigo = new javax.swing.JRadioButton();
         jRbNombreApellido = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jRbTodos1 = new javax.swing.JRadioButton();
+        jRbTodos = new javax.swing.JRadioButton();
+        jRbDni = new javax.swing.JRadioButton();
+        jCbBaja = new javax.swing.JCheckBox();
         jPnlEdicion = new javax.swing.JPanel();
         jTxtDni = new javax.swing.JTextField();
         jTxtEdad = new javax.swing.JTextField();
@@ -68,7 +86,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
 
         jPnlSocios.setBackground(new java.awt.Color(51, 153, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTblDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -79,13 +97,9 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTblDatos);
 
         jTxtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        btnGrup.add(jRbTodos);
-        jRbTodos.setForeground(new java.awt.Color(255, 255, 255));
-        jRbTodos.setText("Baja");
 
         btnGrup.add(jRbCodigo);
         jRbCodigo.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,10 +115,18 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("# Seleccione  la fila para gestionar al socio");
 
-        btnGrup.add(jRbTodos1);
-        jRbTodos1.setForeground(new java.awt.Color(255, 255, 255));
-        jRbTodos1.setSelected(true);
-        jRbTodos1.setText("Todos");
+        btnGrup.add(jRbTodos);
+        jRbTodos.setForeground(new java.awt.Color(255, 255, 255));
+        jRbTodos.setText("Todos");
+
+        btnGrup.add(jRbDni);
+        jRbDni.setForeground(new java.awt.Color(255, 255, 255));
+        jRbDni.setText("Dni");
+
+        jCbBaja.setBackground(new java.awt.Color(255, 102, 102));
+        jCbBaja.setForeground(new java.awt.Color(255, 255, 255));
+        jCbBaja.setText("Baja");
+        jCbBaja.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102)));
 
         javax.swing.GroupLayout jPnlSociosLayout = new javax.swing.GroupLayout(jPnlSocios);
         jPnlSocios.setLayout(jPnlSociosLayout);
@@ -120,18 +142,20 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPnlSociosLayout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addGroup(jPnlSociosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(27, 27, 27)
+                        .addGroup(jPnlSociosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPnlSociosLayout.createSequentialGroup()
-                                .addComponent(jRbTodos1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jRbTodos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRbDni)
+                                .addGap(18, 18, 18)
                                 .addComponent(jRbCodigo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRbNombreApellido))
+                                .addGap(18, 18, 18)
+                                .addComponent(jRbNombreApellido)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                .addComponent(jCbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jTxtBuscar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                        .addGap(35, 35, 35)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -142,10 +166,11 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                 .addGroup(jPnlSociosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPnlSociosLayout.createSequentialGroup()
                         .addGroup(jPnlSociosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRbTodos)
                             .addComponent(jRbCodigo)
                             .addComponent(jRbNombreApellido)
-                            .addComponent(jRbTodos1))
+                            .addComponent(jRbTodos)
+                            .addComponent(jRbDni)
+                            .addComponent(jCbBaja))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -199,6 +224,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
 
         jCbActivo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCbActivo.setForeground(new java.awt.Color(255, 255, 255));
+        jCbActivo.setSelected(true);
         jCbActivo.setText("Activo");
 
         jlbliDsocio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -319,16 +345,17 @@ public class vistaSocio extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBtnSalir;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCbActivo;
+    private javax.swing.JCheckBox jCbBaja;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPnlEdicion;
     private javax.swing.JPanel jPnlSocios;
     private javax.swing.JRadioButton jRbCodigo;
+    private javax.swing.JRadioButton jRbDni;
     private javax.swing.JRadioButton jRbNombreApellido;
     private javax.swing.JRadioButton jRbTodos;
-    private javax.swing.JRadioButton jRbTodos1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTblDatos;
     private javax.swing.JTextField jTxtApellido;
     private javax.swing.JTextField jTxtBuscar;
     private javax.swing.JTextField jTxtCorreo;
@@ -341,12 +368,12 @@ public class vistaSocio extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void textModificado(){
-        libs.FuncionesComunes.textPrompt(jTxtDni,"D.N.I");
+        libs.FuncionesComunes.textPrompt(jTxtDni,"D.N.I (numerico)");
         libs.FuncionesComunes.textPrompt(jTxtNombre,"Nombre");
         libs.FuncionesComunes.textPrompt(jTxtApellido,"Apellido");
-        libs.FuncionesComunes.textPrompt(jTxtCorreo,"Correo");
-        libs.FuncionesComunes.textPrompt(jTxtTelefono,"Telefono");
-        libs.FuncionesComunes.textPrompt(jTxtEdad,"Edad");
+        libs.FuncionesComunes.textPrompt(jTxtCorreo,"Correo (name@dominio.com)");
+        libs.FuncionesComunes.textPrompt(jTxtTelefono,"Telefono (numerico)");
+        libs.FuncionesComunes.textPrompt(jTxtEdad,"Edad (numerico)");
         
         
     }
@@ -360,6 +387,130 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         jBtnEliminar.setEnabled(true);
         jBtnNuevo.setEnabled(true);
     }
+    
+    private void listar(){
+        if(validarBuscar()){
+            
+            
+        }
+    }
+    
+    private void listarTodos(){
+        if(validarBuscar()){
+            listaSocio=socioData.listarSocio(CheckBaja());
+           
+            if(listaSocio.size()>0){
+                libs.FuncionesComunes.eliminarFilas(jTblDatos);
+                for (Socio socio : listaSocio) {
+                    modeloTable.addRow(new Object[]{
+                        socio.getIdSocio(),
+                        socio.getDni(),
+                        socio.getNombre(),
+                        socio.getApellido(),
+                        socio.getEdad(),
+                        socio.getTelefono()
+                    });
+                }
+            }
+            
+        }
+    }
+    
+    private boolean validarBuscar(){
+        boolean res=false;
+        buscar=jTxtBuscar.getText().trim();
+        
+        if(TipoRadio!=0 && !buscar.isEmpty()){
+            
+            if(TipoRadio==2 || TipoRadio==3){
+               if(libs.FuncionesComunes.validarNumericos(buscar)){
+                   res=true;
+               }
+               else{
+                   libs.FuncionesComunes.vistaDialogo("Para codigo o Dni los campos son numericos.", 0);
+               }
+            }
+            else{
+                if(TipoRadio==4 || TipoRadio==1){
+                    res=true;
+                }
+            }
+        }else{
+            if(TipoRadio==1){
+                res=true;
+            }
+        }
+        
+        return res;
+    }
+    
+    
+    private  int Filtro(){
+        int radio=1;
+        ButtonModel selectedModel = btnGrup.getSelection();
+        
+        if (selectedModel != null) {
+            libs.FuncionesComunes.eliminarFilas(jTblDatos);
+            jTxtBuscar.requestFocus();
+            libs.FuncionesComunes.textPrompt(jTxtBuscar, " ");
+                     if (selectedModel == jRbDni.getModel()) {
+                         libs.FuncionesComunes.textPrompt(jTxtBuscar, "D.N.I - 34877112");
+                        radio=2;
+                    } else if (selectedModel == jRbCodigo.getModel()) {
+                         libs.FuncionesComunes.textPrompt(jTxtBuscar, "Codigo - 100");
+                         radio=3;
+                    }
+                     else if (selectedModel == jRbNombreApellido.getModel()) {
+                       libs.FuncionesComunes.textPrompt(jTxtBuscar, "Nombre o Apellido");  
+                       radio=4;
+                    }
+                     
+        } else{
+            radio=1;
+        }   
+    
+        return  radio;
+    }
+         //
+        
+         private void enlazarListenerRadio(){
+             jRbTodos.addActionListener(radioButtonListener);
+             jRbDni.addActionListener(radioButtonListener);
+             jRbCodigo.addActionListener(radioButtonListener);
+             jRbNombreApellido.addActionListener(radioButtonListener);
+         }
+    
+        ActionListener radioButtonListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               TipoRadio=Filtro();
+               
+               if(TipoRadio==1){
+                   listarTodos();
+               }
+            }
+        };
+        
+        
+        
+    private void armarEncabezado() {
+        modeloTable = libs.FuncionesComunes.ArmadoEncabezados(entidades.Socio.CabeceraSocio.Codigo);
+        jTblDatos.setModel(modeloTable);
+        //libs.FuncionesComunes.alinearCabeceras(1, "right", jTblDatos);
+
+    }
+        
+    private int CheckBaja(){
+        int res;
+        if(jCbBaja.isSelected()){
+            res=0;
+        }else{
+            res=1;
+        }
+      
+         return res;
+    }
+    
     
    
 }

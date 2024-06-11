@@ -81,15 +81,15 @@ public class SocioData {
     }
     
     
-    public ArrayList<Socio> listarSocio() {
+    public ArrayList<Socio> listarSocio(int estado) {
         this.socio=null;
-        String sql = "SELECT * FROM socios WHERE estado = 1";
+        String sql = "SELECT * FROM socios WHERE estado = ?";
 
         ArrayList<Socio> lista = new ArrayList<>();
 
         try {
             PreparedStatement ps = conec.prepareStatement(sql);
-
+            ps.setInt(1, estado);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
 

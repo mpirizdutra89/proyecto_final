@@ -1,4 +1,4 @@
-package librerias;
+package libs;
 
 /**
  *
