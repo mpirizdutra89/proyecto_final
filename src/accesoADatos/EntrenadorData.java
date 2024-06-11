@@ -107,13 +107,13 @@ public class EntrenadorData {
         //El indice se acomoda a la cantidad de parametros que se ingresan para buscar
         int i = 1;
         if (nombre != null && !nombre.isEmpty()) {
-            ps.setString(i++, "%" + nombre + "%");
+            ps.setString(i++, nombre + "%");
         }
         if (apellido != null && !apellido.isEmpty()) {
-            ps.setString(i++, "%" + apellido + "%");
+            ps.setString(i++, apellido + "%");
         }
         if (especialidad != null && !especialidad.isEmpty()) {
-            ps.setString(i++, "%" + especialidad + "%");
+            ps.setString(i++, especialidad + "%");
         }
         
         ResultSet rs = ps.executeQuery();
@@ -162,13 +162,13 @@ public class EntrenadorData {
         //El indice se acomoda a la cantidad de parametros que se ingresan para buscar
         int i = 1;
         if (nombre != null && !nombre.isEmpty()) {
-            ps.setString(i++, "%" + nombre + "%");
+            ps.setString(i++, nombre + "%");
         }
         if (apellido != null && !apellido.isEmpty()) {
-            ps.setString(i++, "%" + apellido + "%");
+            ps.setString(i++, apellido + "%");
         }
         if (especialidad != null && !especialidad.isEmpty()) {
-            ps.setString(i++, "%" + especialidad + "%");
+            ps.setString(i++, especialidad + "%");
         }
         
         ResultSet rs = ps.executeQuery();
@@ -223,21 +223,66 @@ public class EntrenadorData {
 }
     
     
+    public static Entrenador buscarEntrenadorPorDNI(String dni) {
+    String query = "SELECT * FROM entrenadores WHERE dni = ? AND estado = 1";
+    Entrenador entrenador = null;
+    try {
+        PreparedStatement ps = conec.prepareStatement(query);
+        ps.setString(1, dni);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            entrenador = new Entrenador();
+            entrenador.setIdEntrenador(rs.getInt("idEntrenador"));
+            entrenador.setDni(rs.getString("dni"));
+            entrenador.setNombre(rs.getString("nombre"));
+            entrenador.setApellido(rs.getString("apellido"));
+            entrenador.setEspecialidad(rs.getString("especialidad"));
+            entrenador.setEstado(rs.getBoolean("estado"));
+        }
+        ps.close();
+        rs.close();
+    } catch (SQLException | NullPointerException ex) {
+        Conexion.msjError.add("Entrenador: buscarEntrenadorPorDNI() ->" + ex.getMessage());
+    }
+    return entrenador;
+}
+    
+    
     
     //Baja logica por id
-    public void eliminarEntrenador(int id){
-        String sql = "UPDATE entrenadores SET estado = 0 WHERE idEntrenador = ?";
-        
+    public void bajaEntrenador(String dni) {
+        String sql = "UPDATE entrenadores SET estado = 0 WHERE dni = ?";
+
         try {
             PreparedStatement ps = conec.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setString(1, dni);
             int eliminado = ps.executeUpdate();
-            if (eliminado == 1){
+            if (eliminado == 1) {
                 JOptionPane.showMessageDialog(null, "Baja de entrenador exitosa!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "El entrenador ya está dado de baja.");
             }
             ps.close();
         } catch (SQLException | NullPointerException ex) {
             Conexion.msjError.add("Entrenador: eliminarEntrenador() ->" + ex.getMessage());
+        }
+    }
+    
+    public void AltaEntrenador(String dni) {
+        String sql = "UPDATE entrenadores SET estado = 1 WHERE dni = ?";
+
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setString(1, dni);
+            int alta = ps.executeUpdate();
+            if (alta == 1) {
+                JOptionPane.showMessageDialog(null, "Alta de entrenador exitosa!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "El entrenador ya está dado de alta.");
+            }
+            ps.close();
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("Entrenador: darDeAltaEntrenador() ->" + ex.getMessage());
         }
     }
     

@@ -25,7 +25,6 @@
     <Property name="frameIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
       <Image iconType="3" name="/resources/iconos/entrenador.png"/>
     </Property>
-    <Property name="icon" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -63,10 +62,6 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
@@ -86,44 +81,65 @@
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
-                                  <Component id="jBListar" min="-2" pref="309" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jBAlta" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jBBaja" min="-2" pref="51" max="-2" attributes="0"/>
+                                  <Component id="jBBaja" min="-2" pref="64" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                  <Component id="jBListar" min="-2" pref="229" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jBListarInactivos" min="-2" pref="229" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel6" min="-2" pref="441" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jPanel3" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jBBuscar" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                                  <Component id="jBGuardar" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="204" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jBBuscar" min="-2" pref="50" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                          <Component id="jBGuardar" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jBListarInactivos" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="jBListar" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jScrollPane1" min="-2" pref="204" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jBListar" min="-2" pref="50" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jBAlta" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBBaja" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -160,6 +176,9 @@
                   </Table>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTEntrenadoresMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -282,10 +301,35 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Alta"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAltaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBBaja">
           <Properties>
             <Property name="text" type="java.lang.String" value="Baja"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBBajaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBListarInactivos">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Entrenadores Inactivos"/>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[182, 32]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[182, 32]"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="#Para modificar seleccione en la tabla y luego edite en los campos de texto."/>
           </Properties>
         </Component>
       </SubComponents>
