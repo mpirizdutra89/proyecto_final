@@ -22,7 +22,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
     private ClaseData cData;
     private EntrenadorData eData;
     private Clase claseB;
-    private ArrayList<Clase> ltaClases = new ArrayList<Clase>();
+    private List<Clase> ltaClases = new ArrayList<Clase>();
     private List<Entrenador> ltaEntrenadores = new ArrayList<>();
     private DefaultTableModel modeloTabla;
 
@@ -41,6 +41,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
         cargarEntrenador();
         armarEncabezado();
         btnRadioEnlace();
+        btnRadio = fitrado();
     }
 
     /**
@@ -113,6 +114,11 @@ public class vistaClase extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTData);
 
         jBbuscar.setText("Buscar");
+        jBbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBbuscarActionPerformed(evt);
+            }
+        });
 
         btnGseleccion.add(jRtodos);
         jRtodos.setText("Todos");
@@ -375,6 +381,27 @@ public class vistaClase extends javax.swing.JInternalFrame {
         guardarClase();
     }//GEN-LAST:event_jBguardarActionPerformed
 
+    private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
+       if(validarBuscar()){
+           
+           switch(btnRadio){
+               case 2: 
+                    buscarNombre();    
+                    break;
+               case 3:
+                    buscarHorario();
+                    break;
+               case 4: 
+                    buscarEntrenador();
+                    break;
+               default:
+                   libs.FuncionesComunes.vistaDialogo("Selecione un filtro",0);
+           } 
+           
+                      
+       }
+    }//GEN-LAST:event_jBbuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGseleccion;
@@ -475,9 +502,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
                     libs.FuncionesComunes.vistaDialogo("Ingresar un número valido", 1, this);
                 }
 
-                boolean estadoCheck = jCkBestado.isSelected();
-
-                cls.setEstado(estadoCheck);
+                cls.setEstado(jCkBestado.isSelected());
 
                 if (cData.guardarClase(cls)) {
                     claseB = null;
@@ -486,26 +511,62 @@ public class vistaClase extends javax.swing.JInternalFrame {
                     btnEditarDisable();
                 }
             }
-        } else {
-            int hora = Integer.valueOf(jTFhorario.getText().trim());
-            Clase cls = new Clase( 
-                    claseB.getIdClase(), 
-                    e, 
-                    jTFnombre.getText().trim(), 
-                    LocalTime.of(hora,0), 
-                    Integer.valueOf(jTFcapacidad.getText().trim()), 
-                    jCkBestado.isSelected());
-        }
+        } 
     }
 
     private boolean validarCampos() {
-        return false;
+        if(libs.FuncionesComunes.ValidarVacio(jPAdmin)){
+            if(!libs.FuncionesComunes.validarNombre(jTFnombre.getText().trim()) 
+               || !libs.FuncionesComunes.validarNumericos(jTFhorario.getText().trim()) 
+               || !libs.FuncionesComunes.validarNumericos(jTFcapacidad.getText().trim())){
+               libs.FuncionesComunes.vistaDialogo("Verificar los campos", 0);
+               return false;
+            }else{
+                libs.FuncionesComunes.vistaDialogo("Los campos son obligatorios", 1);
+                return false;
+            }
+        }
+        return true;
     }
 
     private void cargarEntrenador() {
         for (Entrenador item : ltaEntrenadores) {
             jCBentrenadorA.addItem(item.getIdEntrenador() + "-" + item.getApellido());
             jCBentrenadorB.addItem(item.getIdEntrenador() + "-" + item.getApellido());
+        }
+    }
+
+    private int fitrado() {
+        return 0;
+    }
+
+    private boolean validarBuscar() {
+        return false;
+    }
+
+    private void buscarEntrenador() {
+        
+    }
+
+    private void buscarHorario() {
+    
+    }
+
+    private void buscarNombre() {
+        
+        ltaClases = (List<Clase>) cData.buscarClasePorNombre(buscar);
+        libs.FuncionesComunes.eliminarFilas(jTData);
+        if(!ltaClases.isEmpty()){
+            for(Clase item : ltaClases){
+                modeloTabla.addRow(new Object[]{
+                    item.getIdClase(),
+                    item.getIdEntrenador(),
+                    item.getNombre(),
+                    item.getHorario(),
+                    item.getCapacidad(),
+                    item.isEstado()
+                });
+            }
         }
     }
 }

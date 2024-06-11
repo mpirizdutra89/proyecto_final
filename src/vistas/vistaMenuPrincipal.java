@@ -4,6 +4,8 @@
  */
 package vistas;
 import accesoADatos.Conexion;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import libs.Escritorio;
@@ -21,7 +23,10 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
     public vistaMenuPrincipal() {
         initComponents();
     }
-
+    @Override
+    public Image getIconImage(){
+        return Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("resources/fondo/logoGym14.png"));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,7 +47,10 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FOURTEEN GYM");
+        setAlwaysOnTop(true);
         setFont(new java.awt.Font("Gill Sans MT", 0, 12)); // NOI18N
+        setIconImage(getIconImage());
+        setIconImages(null);
 
         jMenuBar1.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
 
