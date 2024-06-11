@@ -83,13 +83,14 @@ public class vistaClase extends javax.swing.JInternalFrame {
         jBeliminar = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
 
+        setClosable(true);
         setIconifiable(true);
-        setTitle("Gestión Clases");
+        setTitle("Clases");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/clases.png"))); // NOI18N
         setMaximumSize(new java.awt.Dimension(600, 600));
         setMinimumSize(new java.awt.Dimension(600, 600));
         setName(""); // NOI18N
         setNormalBounds(new java.awt.Rectangle(0, 0, 600, 600));
-        setOpaque(false);
 
         jTabPcontenedor.setBackground(new java.awt.Color(204, 204, 204));
         jTabPcontenedor.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -125,7 +126,6 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
         btnGseleccion.add(jRnombre);
         jRnombre.setText("Nombre");
-        jRnombre.setActionCommand("Nombre");
 
         btnGseleccion.add(jRentrenador);
         jRentrenador.setText("Entrenador");
@@ -134,7 +134,6 @@ public class vistaClase extends javax.swing.JInternalFrame {
         jRHorario.setText("Horario");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Sistema de Busqueda");
 
         javax.swing.GroupLayout jPBuscarLayout = new javax.swing.GroupLayout(jPBuscar);
@@ -174,7 +173,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
                 .addGroup(jPBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRtodos)
                     .addComponent(jRnombre)
@@ -193,45 +192,38 @@ public class vistaClase extends javax.swing.JInternalFrame {
         jPAdmin.setBackground(new java.awt.Color(204, 204, 204));
 
         jLtitulo.setFont(new java.awt.Font("Gill Sans MT", 0, 24)); // NOI18N
-        jLtitulo.setForeground(new java.awt.Color(0, 0, 0));
         jLtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLtitulo.setText("Administración de Clases");
 
         jLidClase.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
-        jLidClase.setForeground(new java.awt.Color(0, 0, 0));
         jLidClase.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLidClase.setText("ID Clase ");
 
         jTFidClase.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
 
         jLidEntrenadores.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
-        jLidEntrenadores.setForeground(new java.awt.Color(0, 0, 0));
         jLidEntrenadores.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLidEntrenadores.setText("Entrenador");
 
         jLnombre.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
-        jLnombre.setForeground(new java.awt.Color(0, 0, 0));
         jLnombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLnombre.setText("Nombre");
 
         jTFnombre.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
 
         jLhorario.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
-        jLhorario.setForeground(new java.awt.Color(0, 0, 0));
         jLhorario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLhorario.setText("Horario");
 
         jTFhorario.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
 
         jLcapacidad.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
-        jLcapacidad.setForeground(new java.awt.Color(0, 0, 0));
         jLcapacidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLcapacidad.setText("Capacidad");
 
         jTFcapacidad.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
 
         jLestado.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
-        jLestado.setForeground(new java.awt.Color(0, 0, 0));
         jLestado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLestado.setText("Estado");
 
@@ -307,7 +299,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
             .addGroup(jPAdminLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFidClase, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLidClase))
@@ -327,7 +319,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
                 .addGroup(jPAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFcapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLcapacidad))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCkBestado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLestado))
@@ -337,7 +329,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
                     .addComponent(jBguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBeliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         jTabPcontenedor.addTab("Administracion", jPAdmin);

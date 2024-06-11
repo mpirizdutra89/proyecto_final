@@ -43,7 +43,7 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMmembresia = new javax.swing.JMenuItem();
         jMclases = new javax.swing.JMenuItem();
-        jMasistencia = new javax.swing.JMenu();
+        jMasistencias = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FOURTEEN GYM");
@@ -56,6 +56,7 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Gestion");
 
+        jMsocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/socios.png"))); // NOI18N
         jMsocio.setText("Socios");
         jMsocio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,6 +65,7 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMsocio);
 
+        jMentrenador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/entrenador.png"))); // NOI18N
         jMentrenador.setText("Entrenadores");
         jMentrenador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +78,7 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Administracion");
 
+        jMmembresia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/membresias.png"))); // NOI18N
         jMmembresia.setText("Membresias");
         jMmembresia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +87,7 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMmembresia);
 
+        jMclases.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/clases.png"))); // NOI18N
         jMclases.setText("Clases");
         jMclases.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,15 +96,16 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMclases);
 
-        jMenuBar1.add(jMenu2);
-
-        jMasistencia.setText("Asistencias");
-        jMasistencia.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMasistenciaMouseClicked(evt);
+        jMasistencias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/asistencias.png"))); // NOI18N
+        jMasistencias.setText("Asistencias");
+        jMasistencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMasistenciasActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMasistencia);
+        jMenu2.add(jMasistencias);
+
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -124,12 +129,6 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMclasesActionPerformed
 
-    private void jMasistenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMasistenciaMouseClicked
-        // VISTA asistencia
-        vistaAsistencia va=new vistaAsistencia();
-        cargarVistasInternas(va);
-    }//GEN-LAST:event_jMasistenciaMouseClicked
-
     private void jMmembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMmembresiaActionPerformed
         // Vista membresia:
     }//GEN-LAST:event_jMmembresiaActionPerformed
@@ -144,6 +143,11 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
             vistaEntrenador ve = new vistaEntrenador();
             cargarVistasInternas(ve);
     }//GEN-LAST:event_jMentrenadorActionPerformed
+
+    private void jMasistenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMasistenciasActionPerformed
+       vistaAsistencia va=new vistaAsistencia();
+        cargarVistasInternas(va);
+    }//GEN-LAST:event_jMasistenciasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,7 +196,7 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMasistencia;
+    private javax.swing.JMenuItem jMasistencias;
     private javax.swing.JMenuItem jMclases;
     private javax.swing.JMenuItem jMentrenador;
     private javax.swing.JMenu jMenu1;

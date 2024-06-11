@@ -81,6 +81,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Gestion de socios");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/socios.png"))); // NOI18N
 
         jtbpContenedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

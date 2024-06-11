@@ -12,6 +12,7 @@ public class Asistencia {
    private Clase clase;
    private LocalDate fecha_asitencia;// la ide seria que la fecha se actulice automaticamente con los regitros de la base dedatos no sede la iterfaz
    //entodo caso solo mostrarlo.
+   
 
     public Asistencia() {
     }
@@ -66,6 +67,9 @@ public class Asistencia {
         this.fecha_asitencia = fecha_asitencia;
     }
    
+     public enum  CabeceraAsistencia{
+       Clase,Profesor,Horario,Cupo
+     }
    
    
    

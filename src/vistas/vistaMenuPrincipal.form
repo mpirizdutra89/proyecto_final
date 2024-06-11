@@ -16,6 +16,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMsocio">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/resources/iconos/socios.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Socios"/>
               </Properties>
               <Events>
@@ -24,6 +27,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMentrenador">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/resources/iconos/entrenador.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Entrenadores"/>
               </Properties>
               <Events>
@@ -39,6 +45,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMmembresia">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/resources/iconos/membresias.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Membresias"/>
               </Properties>
               <Events>
@@ -47,21 +56,27 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMclases">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/resources/iconos/clases.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Clases"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMclasesActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMasistencias">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/resources/iconos/asistencias.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Asistencias"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMasistenciasActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMasistencia">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Asistencias"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMasistenciaMouseClicked"/>
-          </Events>
         </Menu>
       </SubComponents>
     </Menu>

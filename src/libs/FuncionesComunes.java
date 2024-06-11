@@ -2,6 +2,9 @@ package libs;
 
 import java.awt.Component;
 import java.awt.Font;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,7 +31,17 @@ public class FuncionesComunes {
     private static DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
     
     
-
+    public static String fechaActual(){
+           LocalDate fechaActual = LocalDate.now();
+        
+        
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd 'de' MMMM 'de' yyyy", new Locale("es", "ES"));
+        
+        
+        String fechaFormateada = fechaActual.format(formateador);
+         
+         return fechaFormateada.toString();
+    }
     //armado generico, para cualquier enum, deve psar por paramento nombre del enu y un valor ejemplo EncabezadoMateria.año
     public static <E extends Enum<E>> DefaultTableModel ArmadoEncabezados(E enumValue) {
        
