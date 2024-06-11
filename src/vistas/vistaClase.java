@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.ButtonModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -374,24 +375,23 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBguardarActionPerformed
 
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
-       if(validarBuscar()){
-           
-           switch(btnRadio){
-               case 2: 
-                    buscarNombre();    
+        if (validarBuscar()) {
+
+            switch (btnRadio) {
+                case 2:
+                    buscarNombre();
                     break;
-               case 3:
+                case 3:
                     buscarHorario();
                     break;
-               case 4: 
+                case 4:
                     buscarEntrenador();
                     break;
-               default:
-                   libs.FuncionesComunes.vistaDialogo("Selecione un filtro",0);
-           } 
-           
-                      
-       }
+                default:
+                    libs.FuncionesComunes.vistaDialogo("Selecione un filtro", 0);
+            }
+
+        }
     }//GEN-LAST:event_jBbuscarActionPerformed
 
 
@@ -460,15 +460,11 @@ public class vistaClase extends javax.swing.JInternalFrame {
     ActionListener rBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            btnRadio = 1;
+            btnRadio = fitrado();
 
             if (btnRadio == 1) {
                 listarTodos();
             }
-        }
-
-        private void listarTodos() {
-
         }
     };
 
@@ -503,17 +499,17 @@ public class vistaClase extends javax.swing.JInternalFrame {
                     btnEditarDisable();
                 }
             }
-        } 
+        }
     }
 
     private boolean validarCampos() {
-        if(libs.FuncionesComunes.ValidarVacio(jPAdmin)){
-            if(!libs.FuncionesComunes.validarNombre(jTFnombre.getText().trim()) 
-               || !libs.FuncionesComunes.validarNumericos(jTFhorario.getText().trim()) 
-               || !libs.FuncionesComunes.validarNumericos(jTFcapacidad.getText().trim())){
-               libs.FuncionesComunes.vistaDialogo("Verificar los campos", 0);
-               return false;
-            }else{
+        if (libs.FuncionesComunes.ValidarVacio(jPAdmin)) {
+            if (!libs.FuncionesComunes.validarNombre(jTFnombre.getText().trim())
+                    || !libs.FuncionesComunes.validarNumericos(jTFhorario.getText().trim())
+                    || !libs.FuncionesComunes.validarNumericos(jTFcapacidad.getText().trim())) {
+                libs.FuncionesComunes.vistaDialogo("Verificar los campos", 0);
+                return false;
+            } else {
                 libs.FuncionesComunes.vistaDialogo("Los campos son obligatorios", 1);
                 return false;
             }
@@ -529,27 +525,69 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private int fitrado() {
-        return 0;
+        int radio = 0;
+        ButtonModel selectedModel = btnGseleccion.getSelection();
+        jTbuscar.setEnabled(true);
+        jBbuscar.setEnabled(true);
+
+        if (selectedModel != null) {
+            libs.FuncionesComunes.eliminarFilas(jTData);
+            jTbuscar.requestFocus();
+            libs.FuncionesComunes.textPrompt(jTbuscar, " ");
+            if (selectedModel == jRnombre.getModel()) {
+                libs.FuncionesComunes.textPrompt(jTbuscar, "Nombre de la clase - Zumba -");
+                radio = 2;
+            } else if (selectedModel == jRHorario.getModel()) {
+                libs.FuncionesComunes.textPrompt(jTbuscar, "Ingrese de a una hora - 10 hs -");
+                radio = 3;
+            } else if (selectedModel == jRentrenador) {
+                libs.FuncionesComunes.textPrompt(jTbuscar, "Seleccione un entrenador en el desplegable");
+                radio = 4;
+            } else if (selectedModel == jRtodos) {
+                libs.FuncionesComunes.textPrompt(jTbuscar, "Se muestran todas las clases activas");
+                radio = 1;
+                jTbuscar.setEnabled(false);
+                jBbuscar.setEnabled(false);
+            }
+        }
+        return radio;
     }
 
     private boolean validarBuscar() {
-        return false;
+        boolean flag = false;
+        buscar = jTbuscar.getText().trim();
+        if (btnRadio != 0 && !buscar.isEmpty()) {
+            if (btnRadio == 2) {
+                if (libs.FuncionesComunes.validarNombre(buscar)) {
+                    flag = true;
+                } else {
+                    libs.FuncionesComunes.vistaDialogo("Unicamente letras", 0);
+                }
+            } else {
+                if (btnRadio == 3) {
+                    if (libs.FuncionesComunes.validarNumericos(buscar)) {
+                        flag = true;
+                    } else {
+                        libs.FuncionesComunes.vistaDialogo("Unicamente números", 0);
+                    }
+                }
+            }
+        } else {
+            if (btnRadio == 1) {
+                flag = true;
+            }
+        }
+        return flag;
     }
 
     private void buscarEntrenador() {
-        
-    }
-
-    private void buscarHorario() {
-    
-    }
-
-    private void buscarNombre() {
-        
-        ltaClases = (List<Clase>) cData.buscarClasePorNombre(buscar);
+        String comboDato = jCBentrenadorB.getSelectedItem().toString();
+        int idEnt;
+        idEnt = Integer.parseInt(comboDato.substring(0,2).trim());
+        ltaClases = (List<Clase>) cData.buscarEntrenador(idEnt);
         libs.FuncionesComunes.eliminarFilas(jTData);
-        if(!ltaClases.isEmpty()){
-            for(Clase item : ltaClases){
+        if (!ltaClases.isEmpty()) {
+            for (Clase item : ltaClases) {
                 modeloTabla.addRow(new Object[]{
                     item.getIdClase(),
                     item.getIdEntrenador(),
@@ -558,6 +596,63 @@ public class vistaClase extends javax.swing.JInternalFrame {
                     item.getCapacidad(),
                     item.isEstado()
                 });
+            }
+        }
+    }
+
+    private void buscarHorario() {
+
+        int hora = Integer.parseInt(jTbuscar.getText().trim());
+
+        ltaClases = (List<Clase>) cData.buscarHorario(LocalTime.of(hora, 0));
+        libs.FuncionesComunes.eliminarFilas(jTData);
+        if (!ltaClases.isEmpty()) {
+            for (Clase item : ltaClases) {
+                modeloTabla.addRow(new Object[]{
+                    item.getIdClase(),
+                    item.getIdEntrenador(),
+                    item.getNombre(),
+                    item.getHorario(),
+                    item.getCapacidad(),
+                    item.isEstado()
+                });
+            }
+        }
+    }
+
+    private void buscarNombre() {
+
+        ltaClases = (List<Clase>) cData.buscarClasePorNombre(buscar);
+        libs.FuncionesComunes.eliminarFilas(jTData);
+        if (!ltaClases.isEmpty()) {
+            for (Clase item : ltaClases) {
+                modeloTabla.addRow(new Object[]{
+                    item.getIdClase(),
+                    item.getIdEntrenador(),
+                    item.getNombre(),
+                    item.getHorario(),
+                    item.getCapacidad(),
+                    item.isEstado()
+                });
+            }
+        }
+    }
+
+    private void listarTodos() {
+        if (validarBuscar()) {
+            ltaClases = (List<Clase>) cData.listarClasesDisponibles();
+            libs.FuncionesComunes.eliminarFilas(jTData);
+            if (!ltaClases.isEmpty()) {
+                for (Clase item : ltaClases) {
+                    modeloTabla.addRow(new Object[]{
+                        item.getIdClase(),
+                        item.getIdEntrenador(),
+                        item.getNombre(),
+                        item.getHorario(),
+                        item.getCapacidad(),
+                        item.isEstado()
+                    });
+                }
             }
         }
     }
