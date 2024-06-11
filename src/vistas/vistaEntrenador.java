@@ -11,6 +11,9 @@ import static libs.FuncionesComunes.validarNumericos;
  *
  * @author agus1
  */
+
+//AGREGAR PARA MODIFICAR ENTRENADORES!!
+
 public class vistaEntrenador extends javax.swing.JInternalFrame {
        private EntrenadorData eData;
        private Entrenador e;
@@ -96,7 +99,7 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
-        jBListar.setText("Activos");
+        jBListar.setText("Entrenadores Activos");
         jBListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBListarActionPerformed(evt);
@@ -168,40 +171,47 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addComponent(jLabel1)))
+                        .addGap(0, 25, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
-                .addComponent(jBBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(jBListar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jLabel1)))
+                .addGap(167, 167, 167)
+                .addComponent(jBListar, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jBBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBListar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39))
+                .addGap(44, 44, 44)
+                .addComponent(jBListar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -224,32 +234,31 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
             String nombre = jTNombre.getText();
             String apellido = jTApellido.getText();
             String especialidad = jTEspecialidad.getText();
-            
-
-        if (!validarNumericos(dni)) {
-            JOptionPane.showMessageDialog(null, "El DNI debe ser un valor numerico");
-            return;
-        }
-        if (validarNumericos(nombre) || validarNumericos(apellido)) {
-            JOptionPane.showMessageDialog(null, "El nombre y el apellido no pueden contener numeros");
-            return;
-        }
-        if (validarNumericos(especialidad)) {
-            JOptionPane.showMessageDialog(null, "La especialidad no puede contener numeros");
-            return;
-        }
 
             if (dni.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || especialidad.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "No puede haber campos vacíos");
                 return;
             }
-            
-                e = new Entrenador(dni, nombre, apellido, especialidad);
-                eData.guardarEntrenador(e);
-                
-                listaEntrenadores = (ArrayList<Entrenador>) eData.listarEntrenadores();
-                limpiarCampos();
-            
+
+            if (!validarNumericos(dni)) {
+                JOptionPane.showMessageDialog(null, "El DNI debe ser un valor numerico");
+                return;
+            }
+            if (validarNumericos(nombre) || validarNumericos(apellido)) {
+                JOptionPane.showMessageDialog(null, "El nombre y el apellido no pueden contener numeros");
+                return;
+            }
+            if (validarNumericos(especialidad)) {
+                JOptionPane.showMessageDialog(null, "La especialidad no puede contener numeros");
+                return;
+            }
+
+            e = new Entrenador(dni, nombre, apellido, especialidad);
+            eData.guardarEntrenador(e);
+
+            listaEntrenadores = (ArrayList<Entrenador>) eData.listarEntrenadores();
+            limpiarCampos();
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error, revise los datos ingresados e intente nuevamente");
         }
@@ -259,6 +268,11 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
         String nombre = jTNombre.getText();
         String apellido = jTApellido.getText();
         String especialidad = jTEspecialidad.getText();
+
+        if (nombre.isEmpty() || apellido.isEmpty() || especialidad.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No puede haber campos vacíos");
+            return;
+        }
 
         if (validarNumericos(nombre) || validarNumericos(apellido) || validarNumericos(especialidad)) {
             JOptionPane.showMessageDialog(null, "Los campos (nombre,apellido,especialidad) no pueden contener numeros");
