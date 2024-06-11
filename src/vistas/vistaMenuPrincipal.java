@@ -41,6 +41,10 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
         jMasistencia = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("FOURTEEN GYM");
+        setFont(new java.awt.Font("Gill Sans MT", 0, 12)); // NOI18N
+
+        jMenuBar1.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
 
         jMenu1.setText("Gestion");
 
@@ -107,7 +111,7 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMclasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMclasesActionPerformed
-        vistaClases vc=new vistaClases();
+        vistaClase vc=new vistaClase();
         cargarVistasInternas(vc);
         
     }//GEN-LAST:event_jMclasesActionPerformed
