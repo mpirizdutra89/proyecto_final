@@ -135,7 +135,16 @@ public class FuncionesComunes {
        
          return !text.isEmpty();
     }
-    
+    private static final String NOMBRE_REGEX = "^[a-zA-Z\\s'-]+$"; 
+    private static final Pattern PATRON = Pattern.compile(NOMBRE_REGEX);
+    public static boolean validarNombre(String nombre){
+        if(validarVacio(nombre)){
+            JOptionPane.showMessageDialog(null,"El campo no puede quedar vacío");
+            return false;
+        }
+        Matcher matcher = PATRON.matcher(nombre);
+        return matcher.matches();
+    }
     
     //tipo es el logito para error o informacion 0 o 1 creo 
      public static void vistaDialogo(String msj, String titulo, int tipo) {
