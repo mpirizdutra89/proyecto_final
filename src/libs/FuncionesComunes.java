@@ -128,11 +128,32 @@ public class FuncionesComunes {
             }
         }
     }
+    
+    public static boolean ValidarVacio(JPanel jpnl) {
+        
+        Component[] components = jpnl.getComponents();
+        for (Component component : components) {
+            if (component instanceof JTextField) {
+                JTextField textField = (JTextField) component;
+                if(textField.getText().trim().isEmpty()){
+                    return false;
+                }
+                
+            }
+            
+        }
+        return true;
+    }
 
     public static boolean validarNumericos(String cadena) {
         return cadena.matches("^[0-9]+$");
     }
-
+    
+    public static boolean validarCorreo(String correo) {
+    
+        String regex = "^[\\w-\\.]+@[\\w-\\.]+\\.[a-z]{2,}$";
+        return correo.matches(regex);
+    }
     public static boolean validarDoubles(String cadena) {
         return cadena.matches("^[0-9]+\\.[0-9]{2}$");
     }

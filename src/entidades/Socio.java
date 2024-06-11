@@ -33,6 +33,16 @@ public class Socio {
         this.telefono = telefono;
         this.estado=estado;
     }
+      public Socio(int idSocio, String dni, String nombre, String apellido, int edad, String correo, String telefono) {
+        this.idSocio = idSocio;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.estado=estado;
+    }
 
     //estado se guardar solo por default en la base de datos
     public Socio(String dni, String nombre, String apellido, int edad, String correo, String telefono) {

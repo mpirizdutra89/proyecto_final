@@ -54,7 +54,7 @@ public class SocioData {
     
         public boolean modificarSocios(Socio socio) {
             boolean res=false;
-            String sql = "UPDATE socios SET dni=?,nombre=?,apellido=?,edad=?,correo=?,telefono=?,estado=? WHERE idSocio=?";
+            String sql = "UPDATE socios SET dni=?,nombre=?,apellido=?,edad=?,correo=?,telefono=? WHERE idSocio=?";
             
 
 
@@ -66,8 +66,9 @@ public class SocioData {
                 ps.setInt(4, socio.getEdad());
                 ps.setString(5, socio.getCorreo());
                 ps.setString(6, socio.getTelefono());
-                ps.setBoolean(7, socio.getEstado());
-                ps.setInt(8, socio.getIdSocio());
+               
+                ps.setInt(7, socio.getIdSocio());
+                System.out.println(""+ps.toString());
                 int resultado = ps.executeUpdate();
                 if (resultado == 1) {
                    res=true;
@@ -125,6 +126,35 @@ public class SocioData {
             ps = conec.prepareStatement(consulta);
             ps.setInt(1, id);
             ps.setInt(2, estado);
+            ResultSet res = ps.executeQuery();
+            if (res.next()) {
+                this.socio = new Socio();
+                this.socio.setIdSocio(res.getInt("idSocio"));
+                this.socio.setDni(res.getString("dni"));
+                this.socio.setApellido(res.getString("apellido"));
+                this.socio.setNombre(res.getString("nombre"));
+                this.socio.setEdad(res.getInt("edad"));
+                this.socio.setCorreo(res.getString("correo"));
+                this.socio.setTelefono(res.getString("telefono"));
+                this.socio.setEstado(res.getBoolean("estado"));
+            }
+            ps.close();
+            res.close();
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("Socio: BuscarSocioPorId ->" + ex.getMessage());
+        }
+
+        return this.socio;
+    }
+      public Socio buscarSocioPorId(int id) {
+        this.socio = null;
+        PreparedStatement ps = null;
+        String consulta = "SELECT * FROM socios WHERE  idSocio= ?";
+
+        try {
+            ps = conec.prepareStatement(consulta);
+            ps.setInt(1, id);
+           
             ResultSet res = ps.executeQuery();
             if (res.next()) {
                 this.socio = new Socio();
@@ -211,14 +241,15 @@ public class SocioData {
     }
     
       //si es true se borra;
-    public boolean bajaSocio(int id) {
+    public boolean bajaSocio(int id,int estado) {
         boolean res=false;
         PreparedStatement ps;
-        String consulta = "UPDATE socios SET estado = 0 WHERE idSocio = ?";
+        String consulta = "UPDATE socios SET estado = ? WHERE idSocio = ?";
 
         try {
             ps = conec.prepareStatement(consulta);
-            ps.setInt(1, id);
+             ps.setInt(1, estado);
+            ps.setInt(2, id);
             int borrado = ps.executeUpdate();
             if (borrado == 1) {
                 res=true;

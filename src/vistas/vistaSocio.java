@@ -64,19 +64,19 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         jRbDni = new javax.swing.JRadioButton();
         jCbBaja = new javax.swing.JCheckBox();
         jPnlEdicion = new javax.swing.JPanel();
-        jTxtDni = new javax.swing.JTextField();
-        jTxtEdad = new javax.swing.JTextField();
-        jTxtNombre = new javax.swing.JTextField();
-        jTxtCorreo = new javax.swing.JTextField();
-        jTxtTelefono = new javax.swing.JTextField();
-        jTxtApellido = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jBtnNuevo = new javax.swing.JButton();
         jBtnGuardar = new javax.swing.JButton();
         jBtnSalir = new javax.swing.JButton();
         jBtnEliminar = new javax.swing.JButton();
-        jCbActivo = new javax.swing.JCheckBox();
         jlbliDsocio = new javax.swing.JLabel();
+        jPnlContnedorGestion = new javax.swing.JPanel();
+        jTxtDni = new javax.swing.JTextField();
+        jTxtEdad = new javax.swing.JTextField();
+        jTxtCorreo = new javax.swing.JTextField();
+        jTxtNombre = new javax.swing.JTextField();
+        jTxtApellido = new javax.swing.JTextField();
+        jTxtTelefono = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -101,6 +101,11 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTblDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTblDatosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTblDatos);
 
         jTxtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -163,7 +168,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                                 .addComponent(jRbCodigo)
                                 .addGap(18, 18, 18)
                                 .addComponent(jRbNombreApellido)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                                 .addComponent(jCbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jTxtBuscar))
                         .addGap(35, 35, 35)
@@ -197,31 +202,23 @@ public class vistaSocio extends javax.swing.JInternalFrame {
 
         jPnlEdicion.setBackground(new java.awt.Color(51, 153, 255));
 
-        jTxtDni.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTxtDni.setNextFocusableComponent(jTxtNombre);
-
-        jTxtEdad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTxtEdad.setNextFocusableComponent(jTxtCorreo);
-
-        jTxtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTxtNombre.setNextFocusableComponent(jTxtApellido);
-
-        jTxtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTxtCorreo.setNextFocusableComponent(jTxtTelefono);
-
-        jTxtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTxtTelefono.setNextFocusableComponent(jCbActivo);
-
-        jTxtApellido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTxtApellido.setNextFocusableComponent(jTxtEdad);
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Gestion de socios");
 
         jBtnNuevo.setText("Nuevo");
+        jBtnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnNuevoActionPerformed(evt);
+            }
+        });
 
         jBtnGuardar.setText("Guardar");
+        jBtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnGuardarActionPerformed(evt);
+            }
+        });
 
         jBtnSalir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBtnSalir.setText("Salir");
@@ -231,16 +228,70 @@ public class vistaSocio extends javax.swing.JInternalFrame {
             }
         });
 
-        jBtnEliminar.setText("Eliminar");
-
-        jCbActivo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jCbActivo.setForeground(new java.awt.Color(255, 255, 255));
-        jCbActivo.setSelected(true);
-        jCbActivo.setText("Activo");
+        jBtnEliminar.setText("Baja");
+        jBtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEliminarActionPerformed(evt);
+            }
+        });
 
         jlbliDsocio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jlbliDsocio.setForeground(new java.awt.Color(255, 255, 255));
         jlbliDsocio.setText(" # ");
+
+        jPnlContnedorGestion.setBackground(new java.awt.Color(51, 153, 255));
+
+        jTxtDni.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTxtDni.setNextFocusableComponent(jTxtNombre);
+
+        jTxtEdad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTxtEdad.setNextFocusableComponent(jTxtCorreo);
+
+        jTxtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTxtCorreo.setNextFocusableComponent(jTxtTelefono);
+
+        jTxtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTxtNombre.setNextFocusableComponent(jTxtApellido);
+
+        jTxtApellido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTxtApellido.setNextFocusableComponent(jTxtEdad);
+
+        jTxtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        javax.swing.GroupLayout jPnlContnedorGestionLayout = new javax.swing.GroupLayout(jPnlContnedorGestion);
+        jPnlContnedorGestion.setLayout(jPnlContnedorGestionLayout);
+        jPnlContnedorGestionLayout.setHorizontalGroup(
+            jPnlContnedorGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlContnedorGestionLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(jPnlContnedorGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTxtApellido)
+                    .addComponent(jTxtNombre)
+                    .addComponent(jTxtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                .addGroup(jPnlContnedorGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jTxtEdad)
+                    .addComponent(jTxtCorreo)
+                    .addComponent(jTxtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38))
+        );
+        jPnlContnedorGestionLayout.setVerticalGroup(
+            jPnlContnedorGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlContnedorGestionLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPnlContnedorGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPnlContnedorGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPnlContnedorGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPnlEdicionLayout = new javax.swing.GroupLayout(jPnlEdicion);
         jPnlEdicion.setLayout(jPnlEdicionLayout);
@@ -249,32 +300,25 @@ public class vistaSocio extends javax.swing.JInternalFrame {
             .addGroup(jPnlEdicionLayout.createSequentialGroup()
                 .addGroup(jPnlEdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPnlEdicionLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jlbliDsocio))
+                    .addGroup(jPnlEdicionLayout.createSequentialGroup()
                         .addGap(226, 226, 226)
                         .addComponent(jLabel2))
                     .addGroup(jPnlEdicionLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(jPnlEdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCbActivo)
-                            .addGroup(jPnlEdicionLayout.createSequentialGroup()
-                                .addGroup(jPnlEdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPnlEdicionLayout.createSequentialGroup()
-                                        .addComponent(jBtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                                        .addComponent(jBtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jTxtApellido)
-                                    .addComponent(jTxtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTxtDni, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(73, 73, 73)
-                                .addGroup(jPnlEdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPnlEdicionLayout.createSequentialGroup()
-                                        .addComponent(jBtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jBtnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jTxtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTxtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTxtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jlbliDsocio))))
-                .addContainerGap(100, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jPnlContnedorGestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(53, Short.MAX_VALUE))
+            .addGroup(jPnlEdicionLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(jBtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jBtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addComponent(jBtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jBtnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPnlEdicionLayout.setVerticalGroup(
             jPnlEdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,27 +327,15 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                 .addComponent(jLabel2)
                 .addGap(13, 13, 13)
                 .addComponent(jlbliDsocio)
-                .addGap(31, 31, 31)
-                .addGroup(jPnlEdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTxtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPnlEdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPnlEdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTxtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(jCbActivo)
-                .addGap(79, 79, 79)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPnlContnedorGestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
                 .addGroup(jPnlEdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                     .addComponent(jBtnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                     .addComponent(jBtnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                     .addComponent(jBtnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
-                .addGap(143, 143, 143))
+                .addGap(228, 228, 228))
         );
 
         jtbpContenedor.addTab("Gestion", jPnlEdicion);
@@ -363,6 +395,32 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBtnBuscarActionPerformed
 
+    private void jBtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNuevoActionPerformed
+       libs.FuncionesComunes.resetFormContentPanel(jPnlContnedorGestion);
+       BuscarSocio=null;
+       jlbliDsocio.setText("#");
+       disableButtonInicio();
+    }//GEN-LAST:event_jBtnNuevoActionPerformed
+
+    private void jBtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarActionPerformed
+       guardar();
+    }//GEN-LAST:event_jBtnGuardarActionPerformed
+
+    private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
+        baja();
+    }//GEN-LAST:event_jBtnEliminarActionPerformed
+
+    private void jTblDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblDatosMouseClicked
+         int selectedRow = jTblDatos.getSelectedRow();
+                if (selectedRow != -1) {
+                    // Obtener el valor de la columna "Nombre" (columna 1)
+                    int idSocio =Integer.valueOf(jTblDatos.getValueAt(selectedRow, 0).toString());
+                    disableButtonEditar();
+                    jtbpContenedor.setSelectedIndex(1);
+                    cargarDatos(idSocio);
+                }
+    }//GEN-LAST:event_jTblDatosMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGrup;
@@ -371,10 +429,10 @@ public class vistaSocio extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBtnGuardar;
     private javax.swing.JButton jBtnNuevo;
     private javax.swing.JButton jBtnSalir;
-    private javax.swing.JCheckBox jCbActivo;
     private javax.swing.JCheckBox jCbBaja;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPnlContnedorGestion;
     private javax.swing.JPanel jPnlEdicion;
     private javax.swing.JPanel jPnlSocios;
     private javax.swing.JRadioButton jRbCodigo;
@@ -408,11 +466,14 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         jBtnBuscar.setEnabled(false);
         jBtnEliminar.setEnabled(false);
         jBtnNuevo.setEnabled(false);
+        
     }
 
     private void disableButtonEditar() {
         jBtnEliminar.setEnabled(true);
         jBtnNuevo.setEnabled(true);
+        
+         
     }
 
     private void BuscarPorCodigo() {
@@ -614,4 +675,117 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         return res;
     }
 
+    
+    private void guardar() {
+        if (validarCampos()) {
+            if (BuscarSocio == null) {
+
+                Socio socio = new Socio(
+                        jTxtDni.getText().trim(),
+                        jTxtNombre.getText().trim(),
+                        jTxtApellido.getText().trim(),
+                        Integer.valueOf(jTxtEdad.getText().trim()),
+                        jTxtCorreo.getText().trim(),
+                        jTxtTelefono.getText().trim()
+                );
+                if (socioData.guardarSocio(socio)) {
+                    BuscarSocio=null;
+                    BuscarSocio=socio;
+                    libs.FuncionesComunes.vistaDialogo("Socio guardado Correctamente", 1, this);
+                    jlbliDsocio.setText("# " + BuscarSocio.getIdSocio());
+                    disableButtonEditar();
+                }
+            }else{
+                
+                 Socio socio = new Socio(
+                         BuscarSocio.getIdSocio(),
+                        jTxtDni.getText().trim(),
+                        jTxtNombre.getText().trim(),
+                        jTxtApellido.getText().trim(),
+                        Integer.valueOf(jTxtEdad.getText().trim()),
+                        jTxtCorreo.getText().trim(),
+                        jTxtTelefono.getText().trim()
+                );
+                BuscarSocio=null;
+                BuscarSocio=socio;
+                if(socioData.modificarSocios(BuscarSocio)){
+                   
+                     libs.FuncionesComunes.vistaDialogo("Socio editado Correctamente", 1, this);
+                     disableButtonEditar();
+                }
+            }
+        }
+
+    }
+    
+   private void cargarDatos(int id){
+      
+            BuscarSocio = null;
+            BuscarSocio = socioData.buscarSocioPorId(id);
+            if(BuscarSocio!=null){
+                jlbliDsocio.setText("# "+String.valueOf(BuscarSocio.getIdSocio()));
+                jTxtDni.setText(BuscarSocio.getDni());
+                jTxtNombre.setText(BuscarSocio.getNombre());
+                jTxtApellido.setText(BuscarSocio.getApellido());
+                
+                jTxtEdad.setText(String.valueOf(BuscarSocio.getEdad()));
+                jTxtCorreo.setText(BuscarSocio.getCorreo());
+                jTxtTelefono.setText(BuscarSocio.getTelefono());
+                if(!BuscarSocio.getEstado()){
+                   
+                    jBtnEliminar.setText("Alta");
+                    disableButtonEditar();
+                }
+            }else{
+                
+            }
+            
+   }
+    
+    private boolean validarCampos(){
+        if(libs.FuncionesComunes.ValidarVacio(jPnlContnedorGestion)){
+            if(!libs.FuncionesComunes.validarNumericos(jTxtDni.getText().trim()) || 
+                    !libs.FuncionesComunes.validarNumericos(jTxtEdad.getText().trim()) ||
+                    !libs.FuncionesComunes.validarNumericos(jTxtTelefono.getText().trim()) || 
+                    !libs.FuncionesComunes.validarCorreo(jTxtCorreo.getText().trim())){
+                
+                libs.FuncionesComunes.vistaDialogo("Porfavor verifique los campos, tiene que tener el formato valido.", 0);
+                return false;
+            }
+            
+        }else{
+            libs.FuncionesComunes.vistaDialogo("Todo los campos son obligatorios", 1);
+            return false;
+        }
+        return true;
+    }
+    
+    private void baja(){
+        if(BuscarSocio!=null){
+           if(BuscarSocio.getEstado()){
+             if(socioData.bajaSocio(BuscarSocio.getIdSocio(),0)){
+                 libs.FuncionesComunes.vistaDialogo("Se dio de baja al socio", 1);
+                 disableButtonInicio();
+                 libs.FuncionesComunes.resetFormContentPanel(jPnlContnedorGestion);
+                 jlbliDsocio.setText("#");
+                 
+            }
+             }
+               else {
+                   //alta
+                   if (socioData.bajaSocio(BuscarSocio.getIdSocio(), 1)) {
+                       libs.FuncionesComunes.vistaDialogo("Se dio de Alta al socio", 1);
+                       disableButtonInicio();
+                       libs.FuncionesComunes.resetFormContentPanel(jPnlContnedorGestion);
+                       jlbliDsocio.setText("#");
+                       jBtnEliminar.setName("Baja");
+
+                   }
+
+               }
+        
+           
+        }
+    }
+    
 }
