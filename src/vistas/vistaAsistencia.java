@@ -39,6 +39,8 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPnlGestion = new javax.swing.JPanel();
         jPnlContendor = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jCbClase = new javax.swing.JComboBox<>();
@@ -55,14 +57,27 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jbtnBuscar = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jbtnBuscar1 = new javax.swing.JLabel();
-        jbtnBuscar2 = new javax.swing.JLabel();
-        jbtnBuscar3 = new javax.swing.JLabel();
+        jbtnListar = new javax.swing.JLabel();
+        jbtnLimpiar = new javax.swing.JLabel();
+        jbtnGuardar = new javax.swing.JLabel();
+        jPnlLista = new javax.swing.JPanel();
+        jPnlSubcontenedorListar = new javax.swing.JPanel();
+        jCbClaseListar = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jbtnEliminar = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
         setTitle("Asistencia");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/asistencias.png"))); // NOI18N
+
+        jTabbedPane1.setBackground(new java.awt.Color(51, 51, 51));
+        jTabbedPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
+
+        jPnlGestion.setBackground(new java.awt.Color(51, 51, 51));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/clases.png"))); // NOI18N
         jLabel3.setText("Selecione una clase:");
@@ -100,7 +115,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
 
         jbtnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/buscar.png"))); // NOI18N
         jbtnBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jbtnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel6.setText("Lista de Socios:");
 
@@ -125,7 +140,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -158,31 +173,31 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jbtnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/tareas.png"))); // NOI18N
-        jbtnBuscar1.setToolTipText("Listar socios por clase");
-        jbtnBuscar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jbtnBuscar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbtnBuscar1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbtnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/tareas.png"))); // NOI18N
+        jbtnListar.setToolTipText("Listar socios por clase");
+        jbtnListar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jbtnListar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jbtnListar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbtnBuscar1MouseClicked(evt);
+                jbtnListarMouseClicked(evt);
             }
         });
 
-        jbtnBuscar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/reiniciar.png"))); // NOI18N
-        jbtnBuscar2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jbtnBuscar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbtnBuscar2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbtnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/reiniciar.png"))); // NOI18N
+        jbtnLimpiar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jbtnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jbtnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbtnBuscar2MouseClicked(evt);
+                jbtnLimpiarMouseClicked(evt);
             }
         });
 
-        jbtnBuscar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/guardar.png"))); // NOI18N
-        jbtnBuscar3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jbtnBuscar3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbtnBuscar3.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbtnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/guardar.png"))); // NOI18N
+        jbtnGuardar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jbtnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jbtnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbtnBuscar3MouseClicked(evt);
+                jbtnGuardarMouseClicked(evt);
             }
         });
 
@@ -193,11 +208,11 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPnlContendorLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jbtnBuscar1)
+                .addComponent(jbtnListar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbtnBuscar3)
+                .addComponent(jbtnGuardar)
                 .addGap(29, 29, 29)
-                .addComponent(jbtnBuscar2)
+                .addComponent(jbtnLimpiar)
                 .addGap(16, 16, 16))
             .addGroup(jPnlContendorLayout.createSequentialGroup()
                 .addContainerGap()
@@ -226,25 +241,128 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPnlContendorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbtnBuscar3)
-                    .addComponent(jbtnBuscar2)
-                    .addComponent(jbtnBuscar1))
+                    .addComponent(jbtnGuardar)
+                    .addComponent(jbtnLimpiar)
+                    .addComponent(jbtnListar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        javax.swing.GroupLayout jPnlGestionLayout = new javax.swing.GroupLayout(jPnlGestion);
+        jPnlGestion.setLayout(jPnlGestionLayout);
+        jPnlGestionLayout.setHorizontalGroup(
+            jPnlGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 605, Short.MAX_VALUE)
+            .addGroup(jPnlGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPnlGestionLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPnlContendor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jPnlGestionLayout.setVerticalGroup(
+            jPnlGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 601, Short.MAX_VALUE)
+            .addGroup(jPnlGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPnlGestionLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPnlContendor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        jTabbedPane1.addTab("Gestion", jPnlGestion);
+
+        jPnlLista.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/clases.png"))); // NOI18N
+        jLabel7.setText("Lista de socios por clase:");
+
+        jbtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/quitarlista.png"))); // NOI18N
+        jbtnEliminar.setToolTipText("Listar socios por clase");
+        jbtnEliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jbtnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jbtnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtnEliminarMouseClicked(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPnlSubcontenedorListarLayout = new javax.swing.GroupLayout(jPnlSubcontenedorListar);
+        jPnlSubcontenedorListar.setLayout(jPnlSubcontenedorListarLayout);
+        jPnlSubcontenedorListarLayout.setHorizontalGroup(
+            jPnlSubcontenedorListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlSubcontenedorListarLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPnlSubcontenedorListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCbClaseListar, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbtnEliminar)
+                .addGap(37, 37, 37))
+            .addGroup(jPnlSubcontenedorListarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPnlSubcontenedorListarLayout.setVerticalGroup(
+            jPnlSubcontenedorListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlSubcontenedorListarLayout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(jPnlSubcontenedorListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPnlSubcontenedorListarLayout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCbClaseListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbtnEliminar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPnlListaLayout = new javax.swing.GroupLayout(jPnlLista);
+        jPnlLista.setLayout(jPnlListaLayout);
+        jPnlListaLayout.setHorizontalGroup(
+            jPnlListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlListaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPnlSubcontenedorListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPnlListaLayout.setVerticalGroup(
+            jPnlListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlListaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPnlSubcontenedorListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Lista", jPnlLista);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPnlContendor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPnlContendor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
@@ -255,21 +373,26 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTDniActionPerformed
 
-    private void jbtnBuscar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnBuscar1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnBuscar1MouseClicked
+    private void jbtnListarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnListarMouseClicked
+        
+    }//GEN-LAST:event_jbtnListarMouseClicked
 
-    private void jbtnBuscar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnBuscar2MouseClicked
+    private void jbtnLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnLimpiarMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnBuscar2MouseClicked
+    }//GEN-LAST:event_jbtnLimpiarMouseClicked
 
-    private void jbtnBuscar3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnBuscar3MouseClicked
+    private void jbtnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnGuardarMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnBuscar3MouseClicked
+    }//GEN-LAST:event_jbtnGuardarMouseClicked
+
+    private void jbtnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnEliminarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Clase> jCbClase;
+    private javax.swing.JComboBox<Clase> jCbClaseListar;
     private javax.swing.JLabel jLFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -277,17 +400,25 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JList<Socio> jListSocios;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPnlContendor;
+    private javax.swing.JPanel jPnlGestion;
+    private javax.swing.JPanel jPnlLista;
+    private javax.swing.JPanel jPnlSubcontenedorListar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTDni;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTblDatos;
     private javax.swing.JLabel jbtnBuscar;
-    private javax.swing.JLabel jbtnBuscar1;
-    private javax.swing.JLabel jbtnBuscar2;
-    private javax.swing.JLabel jbtnBuscar3;
+    private javax.swing.JLabel jbtnEliminar;
+    private javax.swing.JLabel jbtnGuardar;
+    private javax.swing.JLabel jbtnLimpiar;
+    private javax.swing.JLabel jbtnListar;
     // End of variables declaration//GEN-END:variables
 
     private void fecha(){
