@@ -4,15 +4,18 @@
  */
 package vistas;
 
+import accesoADatos.EntrenadorData;
+import entidades.Entrenador;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author agus1
  */
 public class vistaEntrenador extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form vistaEntrenador
-     */
+        EntrenadorData eData = new EntrenadorData();
+        Entrenador e = new Entrenador();
+    
     public vistaEntrenador() {
         initComponents();
     }
@@ -71,6 +74,11 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTEntrenadores);
 
         jBGuardar.setText("Guardar");
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
 
         jBSalir.setText("Salir");
 
@@ -189,6 +197,33 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+         try {
+            String dni = jTDni.getText();
+            String nombre = jTNombre.getText();
+            String apellido = jTApellido.getText();
+            String especialidad = jTEspecialidad.getText();
+
+            if (dni.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || especialidad.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No pueden haber campos vacíos");
+                return;
+            }
+
+            if (e == null) {
+                e = new Entrenador(dni,nombre,apellido,especialidad);
+                eData.guardarEntrenador(e);
+            } else {
+                e.setDni(dni);
+                e.setNombre(nombre);
+                e.setApellido(apellido);
+                e.setEspecialidad(especialidad);
+                eData.modificarEntrenador(e);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error, revise los datos ingresados e intente nuevamente");
+        }
+    }//GEN-LAST:event_jBGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
