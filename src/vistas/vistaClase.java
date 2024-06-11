@@ -1,4 +1,3 @@
-
 package vistas;
 
 import accesoADatos.ClaseData;
@@ -26,10 +25,10 @@ public class vistaClase extends javax.swing.JInternalFrame {
     private ArrayList<Clase> ltaClases = new ArrayList<Clase>();
     private List<Entrenador> ltaEntrenadores = new ArrayList<>();
     private DefaultTableModel modeloTabla;
-    
+
     private int btnRadio = 0;
     private String buscar = "";
-    
+
     public vistaClase() {
         initComponents();
         placeholders();
@@ -38,7 +37,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
         cData = new ClaseData();
         eData = new EntrenadorData();
         ltaEntrenadores = eData.listarEntrenadores();
-        
+
         cargarEntrenador();
         armarEncabezado();
         btnRadioEnlace();
@@ -357,27 +356,26 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
     private void jTabPcontenedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabPcontenedorMouseClicked
         int indiceTab = jTabPcontenedor.getSelectedIndex();
-        if(indiceTab == 1 ){
+        if (indiceTab == 1) {
             jTFnombre.requestFocus();
         }
     }//GEN-LAST:event_jTabPcontenedorMouseClicked
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
-       libs.FuncionesComunes.resetFormContentPanel(jPAdmin);
-       claseB = null;
-       btnInicioDisable();
+        libs.FuncionesComunes.resetFormContentPanel(jPAdmin);
+        claseB = null;
+        btnInicioDisable();
     }//GEN-LAST:event_jBnuevoActionPerformed
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
         guardarClase();
     }//GEN-LAST:event_jBguardarActionPerformed
-    
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGseleccion;
     private javax.swing.JButton jBbuscar;
@@ -417,19 +415,19 @@ public class vistaClase extends javax.swing.JInternalFrame {
         libs.FuncionesComunes.textPrompt(jTFhorario, "Horario Ej(10:00)");
         libs.FuncionesComunes.textPrompt(jTFcapacidad, "Capacidad (numérico)");
     }
-    
-    private void btnInicioDisable(){
+
+    private void btnInicioDisable() {
         jBeliminar.setEnabled(false);
         jBbuscar.setEnabled(false);
         jBnuevo.setEnabled(false);
     }
-    
-    private void btnEditarDisable(){
+
+    private void btnEditarDisable() {
         jBeliminar.setEnabled(true);
         jBnuevo.setEnabled(true);
     }
-    
-    private void armarEncabezado(){
+
+    private void armarEncabezado() {
         modeloTabla = libs.FuncionesComunes.ArmadoEncabezados(entidades.Clase.CabeceraClase.IDClase);
         jTData.setModel(modeloTabla);
     }
@@ -444,48 +442,59 @@ public class vistaClase extends javax.swing.JInternalFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             btnRadio = 1;
-            
+
             if (btnRadio == 1) {
                 listarTodos();
             }
         }
 
         private void listarTodos() {
-            
+
         }
     };
 
     private void guardarClase() {
-        Entrenador e =null;
+        Entrenador e = null;
         if (validarCampos()) {
-            if(claseB == null){
-                
+            if (claseB == null) {
                 Clase cls = new Clase();
                 cls.setNombre(jTFnombre.getText().trim());
                 String comboDato = jCBentrenadorA.getSelectedItem().toString();
-                int idEnt = Integer.parseInt(comboDato.substring(0));
+                int idEnt = Integer.parseInt(comboDato.substring(0, 2).trim());
                 cls.setIdEntrenador(idEnt);
                 e = accesoADatos.EntrenadorData.buscarEntrenadorPorId(idEnt);
                 cls.setEntrenador(e);
                 cls.setCapacidad(Integer.valueOf(jTFcapacidad.getText().trim()));
                 int hora = Integer.valueOf(jTFhorario.getText().trim());
-                
-                if(hora >= 7 && hora <= 22){
-                    cls.setHorario(LocalTime.of(hora,0));
-                }else if((hora > 1 && hora < 7)||(hora>22 && hora<24)){
+
+                if (hora >= 7 && hora <= 22) {
+                    cls.setHorario(LocalTime.of(hora, 0));
+                } else if ((hora > 1 && hora < 7) || (hora > 22 && hora < 24)) {
                     libs.FuncionesComunes.vistaDialogo("Gimnasio cerrado en ese horario", 1, this);
-                }else{
+                } else {
                     libs.FuncionesComunes.vistaDialogo("Ingresar un número valido", 1, this);
                 }
-                
+
                 boolean estadoCheck = jCkBestado.isSelected();
-                
+
                 cls.setEstado(estadoCheck);
-            }
-            if(cData.guardarClase(claseB)){
-                claseB =null;
+
+                if (cData.guardarClase(cls)) {
+                    claseB = null;
+                    claseB = cls;
+                    libs.FuncionesComunes.vistaDialogo("Clase guardada Correctamente", 1, this);
+                    btnEditarDisable();
+                }
             }
         } else {
+            int hora = Integer.valueOf(jTFhorario.getText().trim());
+            Clase cls = new Clase( 
+                    claseB.getIdClase(), 
+                    e, 
+                    jTFnombre.getText().trim(), 
+                    LocalTime.of(hora,0), 
+                    Integer.valueOf(jTFcapacidad.getText().trim()), 
+                    jCkBestado.isSelected());
         }
     }
 
@@ -494,10 +503,9 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private void cargarEntrenador() {
-       for(Entrenador item: ltaEntrenadores){
-           jCBentrenadorA.addItem(item.getIdEntrenador()+"-"+ item.getApellido());
-           jCBentrenadorB.addItem(item.getIdEntrenador()+"-"+ item.getApellido());
-       }
+        for (Entrenador item : ltaEntrenadores) {
+            jCBentrenadorA.addItem(item.getIdEntrenador() + "-" + item.getApellido());
+            jCBentrenadorB.addItem(item.getIdEntrenador() + "-" + item.getApellido());
+        }
     }
 }
-
