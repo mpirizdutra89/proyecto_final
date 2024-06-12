@@ -541,7 +541,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     private void jCbSociosHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbSociosHistorialActionPerformed
        SeleccionarSocioActual();
        //Solo va entrar si es un objeto distinto de null 
-       if (socioActual != null && socioActual.getNombre()!= null) {
+       if (socioActual != null && socioActual.getNombre()!= "Seleccione") {
             //Aca llamr un metod que filre por socio y se coloce en la tabla
             //para que depues al selecionar una fila podes dar de baja o alta etc
             //
@@ -646,7 +646,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
            
         }
         //El socio vacio es para que puedas hacer la accione de eleguir y llamar algun metodo que liste en la tabla
-        jCbSociosHistorial.addItem(new Socio());
+        jCbSociosHistorial.addItem(new Socio("-","Seleccione","-"));
         for (Socio socio : listaSocioMembresia) {
             jCbSociosHistorial.addItem(socio);
            
