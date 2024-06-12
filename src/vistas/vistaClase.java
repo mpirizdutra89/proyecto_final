@@ -579,12 +579,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private boolean validarBuscar() {
-        buscar = jTbuscar.getText().trim();
-        System.out.println(buscar);
-        if (buscar.isEmpty()) {
-            libs.FuncionesComunes.vistaDialogo("El campo de búsqueda está vació", 0, this);
-            return false;
-        }
+        
         if (btnRadio == 0) {
             libs.FuncionesComunes.vistaDialogo("Debe seleccionar un filtro", 0, this);
             return false;
@@ -592,14 +587,25 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
         switch (btnRadio) {
             case 1:
+                buscar = "c";
                 return true;
             case 2:
+                buscar = jTbuscar.getText().trim();
+                if (buscar.isEmpty()) {
+                    libs.FuncionesComunes.vistaDialogo("El campo de búsqueda está vació", 0, this);
+                    return false;
+                }
                 if (!libs.FuncionesComunes.validarNombre(buscar)) {
                     libs.FuncionesComunes.vistaDialogo("Únicamente letras", 0, this);
                     return false;
                 }
                 break;
             case 3:
+                buscar = jTbuscar.getText().trim();
+                if (buscar.isEmpty()) {
+                    libs.FuncionesComunes.vistaDialogo("El campo de búsqueda está vació", 0, this);
+                    return false;
+                }
                 if (!libs.FuncionesComunes.validarNumericos(buscar)) {
                     libs.FuncionesComunes.vistaDialogo("Únicamente números", 0, this);
                     return false;
@@ -630,7 +636,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
                 ltaClases.add(claseB);
                 actualizarTablaConClases(ltaClases);
             }
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             libs.FuncionesComunes.vistaDialogo("No se encuentra el horario " + e.getMessage(), 0, this);
         }
     }
@@ -646,7 +652,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private void listarTodos() {
-        
+
         ltaClases = cData.listarClasesDisponibles();
         actualizarTablaConClases(ltaClases);
     }
