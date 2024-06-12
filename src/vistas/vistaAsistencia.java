@@ -1,16 +1,14 @@
 package vistas;
 
+import accesoADatos.ClaseData;
+import accesoADatos.SocioData;
+import entidades.Asistencia;
 import entidades.Clase;
 import entidades.Socio;
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.BorderFactory;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
+
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,14 +17,26 @@ import javax.swing.table.DefaultTableModel;
  */
 public class vistaAsistencia extends javax.swing.JInternalFrame {
     private DefaultTableModel modeloTable;
+    private SocioData socioData;
+    private ClaseData claseData;
+     DefaultListModel<Socio> modelListaItem = new DefaultListModel<>();
+    
     /**
      * Creates new form vistaAsistencia
      */
     public vistaAsistencia() {
         initComponents();
+       //conexion
+        
+       
+        
+         
         fecha();
         modificarDni();
         armarEncabezado();
+        armarEncabezadoListaSocio();
+        jListSocios.setModel(modelListaItem);
+       
        
     }
 
@@ -48,7 +58,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         jTblDatos = new javax.swing.JTable();
         jLFecha = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jTDni = new javax.swing.JTextField();
+        jTxtDni = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jListSocios = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
@@ -65,7 +75,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jbtnEliminar = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTblListado = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
@@ -96,12 +106,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
 
         jLFecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/date.png"))); // NOI18N
 
-        jTDni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTDniActionPerformed(evt);
-            }
-        });
-
+        jListSocios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(jListSocios);
 
         jLabel1.setText("# Ingrese los socios a la lista.");
@@ -115,6 +120,11 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         jbtnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/buscar.png"))); // NOI18N
         jbtnBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jbtnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jbtnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtnBuscarMouseClicked(evt);
+            }
+        });
 
         jLabel6.setText("Lista de Socios:");
 
@@ -124,16 +134,16 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTDni, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jTxtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtnBuscar)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -144,32 +154,32 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jTxtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(jTDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(jbtnBuscar)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 15, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
+                        .addGap(15, 15, 15)
+                        .addComponent(jbtnBuscar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel5))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                                .addComponent(jLabel5)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
 
         jbtnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/reiniciar.png"))); // NOI18N
@@ -220,17 +230,18 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                 .addComponent(jLFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCbClase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPnlContendorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbtnGuardar)
-                    .addComponent(jbtnLimpiar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPnlContendorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlContendorLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(jbtnLimpiar))
+                    .addComponent(jbtnGuardar, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout jPnlGestionLayout = new javax.swing.GroupLayout(jPnlGestion);
@@ -246,7 +257,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         );
         jPnlGestionLayout.setVerticalGroup(
             jPnlGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 601, Short.MAX_VALUE)
+            .addGap(0, 676, Short.MAX_VALUE)
             .addGroup(jPnlGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPnlGestionLayout.createSequentialGroup()
                     .addContainerGap()
@@ -271,7 +282,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTblListado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -282,7 +293,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(jTblListado);
 
         javax.swing.GroupLayout jPnlSubcontenedorListarLayout = new javax.swing.GroupLayout(jPnlSubcontenedorListar);
         jPnlSubcontenedorListar.setLayout(jPnlSubcontenedorListarLayout);
@@ -290,9 +301,9 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
             jPnlSubcontenedorListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlSubcontenedorListarLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(jPnlSubcontenedorListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCbClaseListar, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPnlSubcontenedorListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jCbClaseListar, 0, 237, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbtnEliminar)
                 .addGap(37, 37, 37))
@@ -312,8 +323,8 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                         .addComponent(jCbClaseListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jbtnEliminar))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPnlListaLayout = new javax.swing.GroupLayout(jPnlLista);
@@ -355,10 +366,6 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTDniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTDniActionPerformed
-
     private void jbtnLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnLimpiarMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnLimpiarMouseClicked
@@ -370,6 +377,11 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
     private void jbtnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnEliminarMouseClicked
+
+    private void jbtnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnBuscarMouseClicked
+        BuscarSocio();
+    
+    }//GEN-LAST:event_jbtnBuscarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -392,10 +404,10 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTDni;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTblDatos;
+    private javax.swing.JTable jTblListado;
+    private javax.swing.JTextField jTxtDni;
     private javax.swing.JLabel jbtnBuscar;
     private javax.swing.JLabel jbtnEliminar;
     private javax.swing.JLabel jbtnGuardar;
@@ -407,7 +419,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
     }
     
     private void modificarDni(){
-        libs.FuncionesComunes.textPrompt(jTDni, "Buscar por dni");
+        libs.FuncionesComunes.textPrompt(jTxtDni, "Buscar por dni");
     }
     
       private void armarEncabezado() {
@@ -416,7 +428,55 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         //libs.FuncionesComunes.alinearCabeceras(1, "right", jTblDatos);
 
     }
+    private void armarEncabezadoListaSocio() {
+        modeloTable = libs.FuncionesComunes.ArmadoEncabezados(entidades.Socio.CabeceraSocio2.Nombre);
+        jTblListado.setModel(modeloTable);
+        //libs.FuncionesComunes.alinearCabeceras(1, "right", jTblDatos);
+
+    }
  
+    
       
-      
+     private void agregarElemento(Socio socio) {
+       
+         if(!modelListaItem.contains(socio)){
+              modelListaItem.addElement(socio);
+         }else{
+              libs.FuncionesComunes.vistaDialogo("El socio ya esta en la lista", 1,this);
+              resetDni();
+         }
+       
+        
+    } 
+     
+     //buscar Socio y agregar a la lista
+     
+    
+     
+     private void BuscarSocio(){
+         String buscar =jTxtDni.getText().trim();
+         Socio socio=null;
+         
+         if(libs.FuncionesComunes.validarNumericos(buscar) && libs.FuncionesComunes.validarVacio(buscar)){
+             socioData=new SocioData();
+             socio=socioData.buscarSocioPorDni(buscar,1);
+             if(socio!=null){
+                 agregarElemento(socio);
+             }else{
+                 libs.FuncionesComunes.vistaDialogo("No hay un socio con el dni ingresado.", 1,this);
+                 resetDni();
+             }
+             
+             
+         }else{
+             libs.FuncionesComunes.vistaDialogo("EL campo dni deve ser numerico y no puede estar vacio", 1,this);
+         }
+     }
+     
+     private void resetDni(){
+         jTxtDni.setText("");
+                 jTxtDni.requestFocus();
+     }
+     
+     
 }

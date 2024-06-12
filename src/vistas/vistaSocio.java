@@ -395,7 +395,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
 
         } else {
             if (TipoRadio <= 0) {
-                libs.FuncionesComunes.vistaDialogo("Seleccione un filtro", 0);
+                libs.FuncionesComunes.vistaDialogo("Seleccione un filtro", 0,this);
             }
 
         }
@@ -601,7 +601,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                 if (libs.FuncionesComunes.validarNumericos(buscar)) {
                     res = true;
                 } else {
-                    libs.FuncionesComunes.vistaDialogo("Para codigo o Dni los campos son numericos.", 0);
+                    libs.FuncionesComunes.vistaDialogo("Para codigo o Dni los campos son numericos.", 0,this);
                 }
             } else {
                 if (TipoRadio == 4 || TipoRadio == 1) {
@@ -751,7 +751,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                     jBtnEliminar.setText("Baja");
                 }
             }else{
-                libs.FuncionesComunes.vistaDialogo("No se puede cargar el socio intenete mas tarde", 0);
+                libs.FuncionesComunes.vistaDialogo("No se puede cargar el socio intenete mas tarde", 0,this);
                 disableButtonInicio();
                 libs.FuncionesComunes.resetFormContentPanel(jPnlContnedorGestion);
                  jtbpContenedor.setSelectedIndex(0);
@@ -770,12 +770,12 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                     !libs.FuncionesComunes.validarNumericos(jTxtTelefono.getText().trim()) || 
                     !libs.FuncionesComunes.validarCorreo(jTxtCorreo.getText().trim())){
                 
-                libs.FuncionesComunes.vistaDialogo("Porfavor verifique los campos, tiene que tener el formato valido.", 0);
+                libs.FuncionesComunes.vistaDialogo("Porfavor verifique los campos, tiene que tener el formato valido.", 0,this);
                 return false;
             }
             
         }else{
-            libs.FuncionesComunes.vistaDialogo("Todo los campos son obligatorios", 1);
+            libs.FuncionesComunes.vistaDialogo("Todo los campos son obligatorios", 1,this);
             return false;
         }
         return true;
@@ -785,7 +785,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         if(BuscarSocio!=null){
            if(BuscarSocio.getEstado()){
              if(socioData.bajaSocio(BuscarSocio.getIdSocio(),0)){
-                 libs.FuncionesComunes.vistaDialogo("Se dio de baja al socio", 1);
+                 libs.FuncionesComunes.vistaDialogo("Se dio de baja al socio", 1,this);
                  disableButtonInicio();
                  libs.FuncionesComunes.resetFormContentPanel(jPnlContnedorGestion);
                  jlbliDsocio.setText("#");
@@ -795,7 +795,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                else {
                    //alta
                    if (socioData.bajaSocio(BuscarSocio.getIdSocio(), 1)) {
-                       libs.FuncionesComunes.vistaDialogo("Se dio de Alta al socio", 1);
+                       libs.FuncionesComunes.vistaDialogo("Se dio de Alta al socio", 1,this);
                        disableButtonInicio();
                        libs.FuncionesComunes.resetFormContentPanel(jPnlContnedorGestion);
                        jlbliDsocio.setText("#");

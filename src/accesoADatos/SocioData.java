@@ -68,7 +68,7 @@ public class SocioData {
                 ps.setString(6, socio.getTelefono());
                
                 ps.setInt(7, socio.getIdSocio());
-                System.out.println(""+ps.toString());
+               // System.out.println(""+ps.toString());
                 int resultado = ps.executeUpdate();
                 if (resultado == 1) {
                    res=true;

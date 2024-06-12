@@ -70,6 +70,10 @@ public class Asistencia {
      public enum  CabeceraAsistencia{
        Clase,Profesor,Horario,Cupo
      }
+     
+      public enum  CabeceraAsistencia2{
+       Codigo,Clase,Socio,Fecha
+     }
    
    
    

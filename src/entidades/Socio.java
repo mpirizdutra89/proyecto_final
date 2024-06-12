@@ -1,5 +1,7 @@
 package entidades;
 
+import java.util.Objects;
+
 /**
  *
  * @author martin
@@ -17,6 +19,10 @@ public class Socio {
     
     public enum CabeceraSocio{
         Codigo,Dni,Nombre,Apellido,Edad,Telefono
+    }
+    
+    public enum CabeceraSocio2{
+        Codigo,Dni,Nombre,Apellido
     }
     
     
@@ -125,6 +131,17 @@ public class Socio {
     }
     
     
-    
+        @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Socio socio = (Socio) o;
+        return idSocio == socio.idSocio && Objects.equals(dni, socio.dni);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dni, idSocio);
+    }
     
 }
