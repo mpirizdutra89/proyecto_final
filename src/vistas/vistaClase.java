@@ -246,6 +246,11 @@ public class vistaClase extends javax.swing.JInternalFrame {
         });
 
         jBeliminar.setText("Eliminar");
+        jBeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBeliminarActionPerformed(evt);
+            }
+        });
 
         jBsalir.setText("Salir");
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -393,6 +398,10 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
         }
     }//GEN-LAST:event_jBbuscarActionPerformed
+
+    private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
+        bajaLogica();
+    }//GEN-LAST:event_jBeliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -652,6 +661,18 @@ public class vistaClase extends javax.swing.JInternalFrame {
                         item.getCapacidad(),
                         item.isEstado()
                     });
+                }
+            }
+        }
+    }
+
+    private void bajaLogica() {
+        if(claseB != null){
+            if (claseB.isEstado()) {
+                if (cData.bajaClase(claseB.getIdClase())) {
+                    libs.FuncionesComunes.vistaDialogo("Se dio de baja a la clase", 1);
+                    btnInicioDisable();
+                    libs.FuncionesComunes.resetFormContentPanel(jPAdmin);
                 }
             }
         }
