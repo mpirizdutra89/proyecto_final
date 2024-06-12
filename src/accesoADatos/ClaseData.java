@@ -57,7 +57,7 @@ public class ClaseData {
             //JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!.");
             Conexion.msjError.add("Clase: guardarClase -> " + ex.getMessage());
         }
-        
+
         return flag;
     }
 
@@ -99,7 +99,7 @@ public class ClaseData {
     }
 
     public Clase buscarClasePorNombre(String nombre) {
-        
+
         //Consulta SQL
         String query = "SELECT idClase,idEntrenador,nombre,horario,capacidad,estado "
                 + "FROM clases "
@@ -120,21 +120,18 @@ public class ClaseData {
                 this.clase.setHorario(rs.getTime("horario").toLocalTime());
                 this.clase.setCapacidad(rs.getInt("capacidad"));
                 this.clase.setEstado(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "La clase no existe!.");
             }
             ps.close();
             rs.close();
         } catch (SQLException | NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
             Conexion.msjError.add("Clase: buscarClasePorNommbre -> " + ex.getMessage());
         }
-        
+
         return clase;
     }
 
     public Clase buscarEntrenador(int id) {
-        
+
         String query = "SELECT idClase,idEntrenador,nombre,horario,capacidad,estado "
                 + "FROM clases "
                 + "WHERE idEntrenador = ? and estado = 1 ";
@@ -154,13 +151,10 @@ public class ClaseData {
                 this.clase.setHorario(rs.getTime("horario").toLocalTime());
                 this.clase.setCapacidad(rs.getInt("capacidad"));
                 this.clase.setEstado(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "El entrenador id: " + id + " no existe!!.");
             }
             ps.close();
             rs.close();
         } catch (SQLException | NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
             Conexion.msjError.add("Clase: buscarEntrenador -> " + ex.getMessage());
         }
         return clase;
@@ -186,20 +180,17 @@ public class ClaseData {
                 this.clase.setHorario(rs.getTime("horario").toLocalTime());
                 this.clase.setCapacidad(rs.getInt("capacidad"));
                 this.clase.setEstado(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "El horario: " + horario + " no existe!!.");
             }
             ps.close();
             rs.close();
         } catch (SQLException | NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
             Conexion.msjError.add("Clase: buscarHorario -> " + ex.getMessage());
         }
         return clase;
     }
 
     public boolean bajaClase(int id) {
-        boolean flag =false;
+        boolean flag = false;
         String query = "UPDATE clases SET estado = 0 WHERE idClase = ?";
 
         try {
@@ -209,19 +200,16 @@ public class ClaseData {
 
             if (baja == 1) {
                 flag = true;
-                //JOptionPane.showMessageDialog(null, "Clase eliminada!.");
             }
             ps.close();
         } catch (SQLException ex) {
             Conexion.msjError.add("Clase: bajaClase -> " + ex.getMessage());
-            //JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
         }
         return flag;
     }
-    
+
     public ArrayList<Clase> CuposClases(String nombreClase) {
         ArrayList<Clase> listaCupo = new ArrayList<Clase>();
-       
 
         String query = "SELECT c.idClase, "
                 + "       c.nombre AS clase_nombre, "
@@ -242,35 +230,30 @@ public class ClaseData {
         try {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, nombreClase);
-           
+
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
 
-                
-                
-                int id=rs.getInt("idClase");
-                String name=rs.getString("clase_nombre");
-                LocalTime time=rs.getTime("horario").toLocalTime();
-                int capasidad=rs.getInt("cupos_disponibles");
-                boolean estado=true;
-               
-                
-                Clase claseCupo = new Clase(id,name,time,capasidad,estado);
-              //  System.out.println(claseCupo.getNombre()+" - "+claseCupo.getIdClase()+" - "+claseCupo.getCapacidad());
+                int id = rs.getInt("idClase");
+                String name = rs.getString("clase_nombre");
+                LocalTime time = rs.getTime("horario").toLocalTime();
+                int capasidad = rs.getInt("cupos_disponibles");
+                boolean estado = true;
+
+                Clase claseCupo = new Clase(id, name, time, capasidad, estado);
+                //  System.out.println(claseCupo.getNombre()+" - "+claseCupo.getIdClase()+" - "+claseCupo.getCapacidad());
                 listaCupo.add(claseCupo);
             }
             ps.close();
             rs.close();
         } catch (SQLException | NullPointerException ex) {
-           
+
             Conexion.msjError.add("Clase: CuposClases -> " + ex.getMessage());
         }
 
         return listaCupo;
     }
-    
-    
-    
+
     public ArrayList<Clase> listarClaseAsistencia() {
         //Lista para almacenar las clases disponibles
         ArrayList<Clase> listaClases = new ArrayList<>();
@@ -282,15 +265,15 @@ public class ClaseData {
             ResultSet rs = ps.executeQuery();
             //Se itera sobre los resultados de la consulta
             while (rs.next()) {
-                
-                int id=rs.getInt("idClase");
-                String name=rs.getString("nombre");
-                LocalTime time=rs.getTime("horario").toLocalTime();
-                int capasidad=rs.getInt("capacidad");
-                boolean estado=true;
-                
-                Clase clase2 = new Clase(id,name,time,capasidad,estado);
-               
+
+                int id = rs.getInt("idClase");
+                String name = rs.getString("nombre");
+                LocalTime time = rs.getTime("horario").toLocalTime();
+                int capasidad = rs.getInt("capacidad");
+                boolean estado = true;
+
+                Clase clase2 = new Clase(id, name, time, capasidad, estado);
+
                 listaClases.add(clase2);
             }
             //Se cierran el PreparedStatement y el ResultSet.
@@ -301,40 +284,38 @@ public class ClaseData {
             //JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
             Conexion.msjError.add("Clase: ClasesDisponibles -> " + ex.getMessage());
         }
-      
+
         return listaClases;
     }
-    
-    
-       public boolean guardarAsistencias(ArrayList<Asistencia> lista) {
+
+    public boolean guardarAsistencias(ArrayList<Asistencia> lista) {
         //Consulta SQL para insertar una nueva clase
         String query = "INSERT INTO clases(idSocio, idClase) "
                 + "VALUES(?,?)";
         boolean flag = false;
         try {
-            
+
             PreparedStatement ps = con.prepareStatement(query);
-            
+
             ps.setInt(1, clase.getEntrenador().getIdEntrenador());
             ps.setString(2, clase.getNombre());
-            
+
             for (Asistencia asistencia : lista) {
-                 ps.setInt(1, asistencia.getIntSocio());
-                 ps.setInt(2, asistencia.getIdClase());
-                 ps.setDate(3, Date.valueOf(asistencia.getFecha_asitencia()));
+                ps.setInt(1, asistencia.getIntSocio());
+                ps.setInt(2, asistencia.getIdClase());
+                ps.setDate(3, Date.valueOf(asistencia.getFecha_asitencia()));
             }
-            
+
             ps.executeBatch();
-           
+
             ps.close();
-            
-           
+
         } catch (SQLException | NullPointerException ex) {
-           
+
             Conexion.msjError.add("Clase: guardarClase -> " + ex.getMessage());
         }
-        
+
         return flag;
     }
-    
+
 }
