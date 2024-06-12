@@ -274,7 +274,7 @@ public class ClaseData {
                 LocalTime time = rs.getTime("horario").toLocalTime();
                 int capasidad = rs.getInt("capacidad");
                 boolean estado = true;
-
+                 //holas
                 Clase clase2 = new Clase(id, name, time, capasidad, estado);
 
                 listaClases.add(clase2);
