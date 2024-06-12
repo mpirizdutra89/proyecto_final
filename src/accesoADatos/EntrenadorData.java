@@ -281,39 +281,32 @@ public class EntrenadorData {
     
     
     //Baja logica por id
-    public void bajaEntrenador(String dni) {
+    public boolean bajaEntrenador(String dni) {
         String sql = "UPDATE entrenadores SET estado = 0 WHERE dni = ?";
 
         try {
             PreparedStatement ps = conec.prepareStatement(sql);
             ps.setString(1, dni);
-            int eliminado = ps.executeUpdate();
-            if (eliminado == 1) {
-                JOptionPane.showMessageDialog(null, "Baja de entrenador exitosa!!");
-            } else {
-                JOptionPane.showMessageDialog(null, "El entrenador ya está dado de baja.");
-            }
+            ps.executeUpdate();
             ps.close();
+            return true;
         } catch (SQLException | NullPointerException ex) {
             Conexion.msjError.add("Entrenador: eliminarEntrenador() ->" + ex.getMessage());
+            return false;
         }
     }
     
-    public void altaEntrenador(String dni) {
+    public boolean altaEntrenador(String dni) {
         String sql = "UPDATE entrenadores SET estado = 1 WHERE dni = ?";
-
         try {
             PreparedStatement ps = conec.prepareStatement(sql);
             ps.setString(1, dni);
-            int alta = ps.executeUpdate();
-            if (alta == 1) {
-                JOptionPane.showMessageDialog(null, "Alta de entrenador exitosa!!");
-            } else {
-                JOptionPane.showMessageDialog(null, "El entrenador ya está dado de alta.");
-            }
+            ps.executeUpdate();
             ps.close();
+            return true;
         } catch (SQLException | NullPointerException ex) {
             Conexion.msjError.add("Entrenador: darDeAltaEntrenador() ->" + ex.getMessage());
+            return false;
         }
     }
     
