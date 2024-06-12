@@ -32,6 +32,13 @@ public class Clase {
         this.capacidad = capacidad;
         this.estado = estado;
     }
+     public Clase(int idClase,String nombre, LocalTime horario, int capacidad, boolean estado) {
+        this.idClase=idClase;
+         this.nombre = nombre;
+        this.horario = horario;
+        this.capacidad = capacidad;
+        this.estado = estado;
+    }
 
     public Clase(Entrenador entrenador, String nombre, LocalTime horario, int capacidad, boolean estado) {
         this.entrenador = entrenador;

@@ -80,6 +80,11 @@ public class FuncionesComunes {
        
         
     }
+  
+      
+      public static void eliminarFilas(DefaultTableModel modeloTable) {
+            if(modeloTable.getRowCount()>0){  modeloTable.setRowCount(0); }
+        }
     
     
     public static void alinearCabeceras(int indiceColumna, String dir, JTable tablet) {

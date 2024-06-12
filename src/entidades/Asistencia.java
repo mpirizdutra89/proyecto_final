@@ -8,31 +8,25 @@ import java.time.LocalDate;
  */
 public class Asistencia {
    private int idAsistencia;
-   private Socio socio;
-   private Clase clase;
-   private LocalDate fecha_asitencia;// la ide seria que la fecha se actulice automaticamente con los regitros de la base dedatos no sede la iterfaz
-   //entodo caso solo mostrarlo.
+   private int intSocio;
+   private int idClase;
+   private LocalDate fecha_asitencia;
    
-
     public Asistencia() {
     }
 
-    public Asistencia(int idAsistencia, Socio socio, Clase clase, LocalDate fecha_asitencia) {
+    public Asistencia(int idAsistencia, int intSocio, int idClase, LocalDate fecha_asitencia) {
         this.idAsistencia = idAsistencia;
-        this.socio = socio;
-        this.clase = clase;
+        this.intSocio = intSocio;
+        this.idClase = idClase;
         this.fecha_asitencia = fecha_asitencia;
     }
-
-    public Asistencia(Socio socio, Clase clase, LocalDate fecha_asitencia) {
-        this.socio = socio;
-        this.clase = clase;
+    
+     public Asistencia(int intSocio, int idClase, LocalDate fecha_asitencia) {
+     
+        this.intSocio = intSocio;
+        this.idClase = idClase;
         this.fecha_asitencia = fecha_asitencia;
-    }
-
-    @Override
-    public String toString() {
-        return "Asistencia{" + "idAsistencia=" + idAsistencia + ", socio=" + socio + ", clase=" + clase + ", fecha_asitencia=" + fecha_asitencia + '}';
     }
 
     public int getIdAsistencia() {
@@ -43,20 +37,20 @@ public class Asistencia {
         this.idAsistencia = idAsistencia;
     }
 
-    public Socio getSocio() {
-        return socio;
+    public int getIntSocio() {
+        return intSocio;
     }
 
-    public void setSocio(Socio socio) {
-        this.socio = socio;
+    public void setIntSocio(int intSocio) {
+        this.intSocio = intSocio;
     }
 
-    public Clase getClase() {
-        return clase;
+    public int getIdClase() {
+        return idClase;
     }
 
-    public void setClase(Clase clase) {
-        this.clase = clase;
+    public void setIdClase(int idClase) {
+        this.idClase = idClase;
     }
 
     public LocalDate getFecha_asitencia() {
@@ -66,9 +60,13 @@ public class Asistencia {
     public void setFecha_asitencia(LocalDate fecha_asitencia) {
         this.fecha_asitencia = fecha_asitencia;
     }
+
+   
+   
+
    
      public enum  CabeceraAsistencia{
-       Clase,Entrenador,Horario,Cupo
+       Clase,Horario,Cupo
      }
      
       public enum  CabeceraAsistencia2{

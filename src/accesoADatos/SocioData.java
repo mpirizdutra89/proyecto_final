@@ -261,4 +261,36 @@ public class SocioData {
         return res;
     }
     
+    
+     public int[] verificarSocioHabilitadoAsistencia(int idSocio) {
+        int[] verificar = new int[2];
+        String query = "SELECT "
+                + "    IF(m.fecha_inicio <= CURDATE() AND CURDATE() <= m.fecha_fin, 1, 0) AS membresia_vigente,"
+                + "    IF(m.cantidadPases > 0, 1, 0) AS pases_disponibles "
+                + " FROM "
+                + "    membresias m "
+                + " WHERE "
+                + "    m.idSocio = ?;";
+        try {
+             PreparedStatement ps = conec.prepareStatement(query);
+             ps.setInt(1, idSocio);
+             ResultSet rs = ps.executeQuery();
+            //Se itera sobre los resultados de la consulta
+            if (rs.next()) {
+                verificar[0]=rs.getInt("membresia_vigente");
+                verificar[1]=rs.getInt("pases_disponibles");
+              
+            }
+            //Se cierran el PreparedStatement y el ResultSet.
+            ps.close();
+            rs.close();
+            //Captura de excepciones y se añade el error a una lista de errores 
+        } catch (SQLException | NullPointerException ex) {
+            //JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
+            Conexion.msjError.add("Clase: ClasesDisponibles -> " + ex.getMessage());
+        }
+
+        return verificar;
+    }
+    
 }

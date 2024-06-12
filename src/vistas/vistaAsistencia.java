@@ -6,6 +6,8 @@ import entidades.Asistencia;
 import entidades.Clase;
 import entidades.Socio;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
@@ -18,9 +20,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class vistaAsistencia extends javax.swing.JInternalFrame {
     private DefaultTableModel modeloTable;
+    private DefaultTableModel modeloTable2;
     private SocioData socioData;
     private ClaseData claseData;
     private  ArrayList<Clase> listaClase;
+    private  ArrayList<Clase> ListaCupos;
     private Clase claseActual;
      DefaultListModel<Socio> modelListaItem = new DefaultListModel<>();
     
@@ -33,14 +37,17 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         
         claseData = new ClaseData();
         listaClase = new ArrayList<>();
-        claseActual=null;
-        listaClase=claseData.listarClasesDisponibles();
+        ListaCupos=new ArrayList<>();
+        
+       
+        listaClase=claseData.listarClaseAsistencia();
         if (listaClase.size() > 0) {
             cargarClases();
             fecha();
             modificarDni();
             armarEncabezado();
             armarEncabezadoListaSocio();
+             CargarClaseCuposDisponibles();
             jListSocios.setModel(modelListaItem);
            
         }else{
@@ -391,7 +398,17 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbtnLimpiarMouseClicked
 
     private void jbtnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnGuardarMouseClicked
-        // TODO add your handling code here:
+       /*
+         Falta el guardar:
+        verificar que alla socios
+        verificar que selecione una clase
+        verificar hasta cuantos se puede guardar (si tengo 3 socios pero el cupo es de dos , va a guardar los 2 primero socios, y lso saca de la lista)
+        Guardar asitencia se genera un array list clase y socio (varios)
+        y depues se decunta un pasde de membresia
+        
+        Falta el listar
+         que lista los socio por clase
+        */
     }//GEN-LAST:event_jbtnGuardarMouseClicked
 
     private void jbtnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseClicked
@@ -406,6 +423,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
     private void jCbClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbClaseActionPerformed
             claseActual=null;
             SeleccionarClaseActual();
+            CargarClaseCuposDisponibles();
            
     }//GEN-LAST:event_jCbClaseActionPerformed
 
@@ -455,8 +473,8 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
 
     }
     private void armarEncabezadoListaSocio() {
-        modeloTable = libs.FuncionesComunes.ArmadoEncabezados(entidades.Socio.CabeceraSocio2.Nombre);
-        jTblListado.setModel(modeloTable);
+        modeloTable2 = libs.FuncionesComunes.ArmadoEncabezados(entidades.Socio.CabeceraSocio2.Nombre);
+        jTblListado.setModel(modeloTable2);
         //libs.FuncionesComunes.alinearCabeceras(1, "right", jTblDatos);
 
     }
@@ -476,12 +494,43 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
     } 
      
      
-    private void cargarClases(){
-       jCbClase.addItem(new Clase());
-        for (Clase clase : listaClase) {
-            jCbClase.addItem(clase);
+//    private void cargarClases(){
+//       jCbClase.addItem(new Clase());
+//        for (Clase clase : listaClase) {
+//            
+//            
+//             if (!jCbClase.contains(clase)) {
+//                jCbClase.addItem(clase);
+//               
+//            }
+//        }
+//    }
+    private void cargarClases() {
+        jCbClase.addItem(new Clase()); // Agregar un elemento vacío si es necesario
+        Set<Clase> clasesUnicas = new HashSet<>(listaClase);
+        for (Clase clase : clasesUnicas) {
+            if(buscarRepetidos(clase)){
+                 jCbClase.addItem(clase);
+            }
+           
         }
-    } 
+    }
+    
+    private boolean buscarRepetidos(Clase clase1) {
+        if (clase1 == null) {
+            return false; // Si el nombre de clase1 es null, no podemos compararlo con otros nombres
+        }
+        for (int i = 0; i < jCbClase.getItemCount(); i++) {
+            Clase clase = (Clase) jCbClase.getItemAt(i);
+            String nombre = clase.getNombre();
+            if (nombre != null && nombre.equals(clase1.getNombre())) {
+                return false;
+            }
+        }
+         return true;
+    }
+   
+    
     
     
 //     private void armadoComboBox() {
@@ -503,16 +552,30 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
              socioData=new SocioData();
              socio=socioData.buscarSocioPorDni(buscar,1);
              if(socio!=null){
-                 agregarElemento(socio);
+               int[] verificar= socioData.verificarSocioHabilitadoAsistencia(socio.getIdSocio());
+                 if(verificar.length>0){
+                     if(verificar[0]==1 && verificar[1]==1){
+                         agregarElemento(socio);
+                     }else{
+                          libs.FuncionesComunes.vistaDialogo("La membresia esta vencida o agoto sus pases.", 1,this);
+                         
+                     }
+                      
+                 }else{
+                      libs.FuncionesComunes.vistaDialogo("El socio no tiene ninguna membresia..", 1,this);
+                     
+                 }
+                   
              }else{
-                 libs.FuncionesComunes.vistaDialogo("No hay un socio con el dni ingresado.", 1,this);
-                 resetDni();
+                 libs.FuncionesComunes.vistaDialogo("El socio no exite.", 1,this);
+                
              }
              
              
          }else{
              libs.FuncionesComunes.vistaDialogo("EL campo dni deve ser numerico y no puede estar vacio", 1,this);
          }
+          resetDni();
      }
      
      private void resetDni(){
@@ -524,10 +587,41 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
           claseActual = (Clase) jCbClase.getSelectedItem();
      }
      
-     private void CargarClaseCuposDisponibles(){
-         if(claseActual!=null){
-             claseData=new ClaseData();
-             
-         }
-     }
+    private void CargarClaseCuposDisponibles() {
+        ListaCupos=null;
+        try {
+
+            if (claseActual != null && claseActual.getNombre() != null) {
+                ListaCupos=new ArrayList<Clase>();
+                
+                ListaCupos = claseData.CuposClases(claseActual.getNombre());
+               
+                if (ListaCupos.size() > 0) {
+                  libs.FuncionesComunes.eliminarFilas(modeloTable);
+                    for (Clase clase1 : ListaCupos) {
+                       
+                        modeloTable.addRow(new Object[]{
+                            clase1.getNombre(),
+                            clase1.getHorario(),
+                            clase1.getCapacidad()
+                        });
+
+                    }
+
+                } else {
+                    libs.FuncionesComunes.vistaDialogo("No hay datos que mostrar, para la clase", 0, this);
+                }
+
+            }
+        } catch ( NullPointerException e) {
+            libs.FuncionesComunes.vistaDialogo("Ocurrio un fallo inesperado"+e.toString(), 0, this);
+            System.out.println(e.toString());
+        }
+        catch(Exception e){
+            libs.FuncionesComunes.vistaDialogo("Ocurrio un fallo inesperado"+e.toString(), 0, this);
+            System.out.println(e.toString());
+        }
+    }
+     
+     
 }

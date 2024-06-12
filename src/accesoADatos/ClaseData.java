@@ -1,5 +1,6 @@
 package accesoADatos;
 
+import entidades.Asistencia;
 import entidades.Entrenador;
 import entidades.Clase;
 import java.sql.*;
@@ -218,11 +219,122 @@ public class ClaseData {
         return flag;
     }
     
-    public int CuposClases(){
-        int cupo =0;
-        
-        
-        
-        return cupo; 
+    public ArrayList<Clase> CuposClases(String nombreClase) {
+        ArrayList<Clase> listaCupo = new ArrayList<Clase>();
+       
+
+        String query = "SELECT c.idClase, "
+                + "       c.nombre AS clase_nombre, "
+                + "       c.horario, "
+                + "       c.capacidad - IFNULL(a.asistentes, 0) AS cupos_disponibles, "
+                + "       e.nombre AS entrenador_nombre, "
+                + "       e.apellido AS entrenador_apellido "
+                + " FROM clases c "
+                + " LEFT JOIN ( "
+                + "    SELECT idClase, "
+                + "           COUNT(*) AS asistentes "
+                + "    FROM asistencias "
+                + "    GROUP BY idClase "
+                + " ) a ON c.idClase = a.idClase "
+                + " INNER JOIN entrenadores e ON c.idEntrenador = e.idEntrenador "
+                + " WHERE c.nombre = ?; ";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, nombreClase);
+           
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                
+                
+                int id=rs.getInt("idClase");
+                String name=rs.getString("clase_nombre");
+                LocalTime time=rs.getTime("horario").toLocalTime();
+                int capasidad=rs.getInt("cupos_disponibles");
+                boolean estado=true;
+               
+                
+                Clase claseCupo = new Clase(id,name,time,capasidad,estado);
+              //  System.out.println(claseCupo.getNombre()+" - "+claseCupo.getIdClase()+" - "+claseCupo.getCapacidad());
+                listaCupo.add(claseCupo);
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException | NullPointerException ex) {
+           
+            Conexion.msjError.add("Clase: CuposClases -> " + ex.getMessage());
+        }
+
+        return listaCupo;
     }
+    
+    
+    
+    public ArrayList<Clase> listarClaseAsistencia() {
+        //Lista para almacenar las clases disponibles
+        ArrayList<Clase> listaClases = new ArrayList<>();
+        //Consulta SQL
+        String query = "SELECT DISTINCT nombre,horario,capacidad,idClase FROM clases WHERE estado = 1";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            //Se itera sobre los resultados de la consulta
+            while (rs.next()) {
+                
+                int id=rs.getInt("idClase");
+                String name=rs.getString("nombre");
+                LocalTime time=rs.getTime("horario").toLocalTime();
+                int capasidad=rs.getInt("capacidad");
+                boolean estado=true;
+                
+                Clase clase2 = new Clase(id,name,time,capasidad,estado);
+               
+                listaClases.add(clase2);
+            }
+            //Se cierran el PreparedStatement y el ResultSet.
+            ps.close();
+            rs.close();
+            //Captura de excepciones y se añade el error a una lista de errores 
+        } catch (SQLException | NullPointerException ex) {
+            //JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
+            Conexion.msjError.add("Clase: ClasesDisponibles -> " + ex.getMessage());
+        }
+      
+        return listaClases;
+    }
+    
+    
+       public boolean guardarAsistencias(ArrayList<Asistencia> lista) {
+        //Consulta SQL para insertar una nueva clase
+        String query = "INSERT INTO clases(idSocio, idClase) "
+                + "VALUES(?,?)";
+        boolean flag = false;
+        try {
+            
+            PreparedStatement ps = con.prepareStatement(query);
+            
+            ps.setInt(1, clase.getEntrenador().getIdEntrenador());
+            ps.setString(2, clase.getNombre());
+            
+            for (Asistencia asistencia : lista) {
+                 ps.setInt(1, asistencia.getIntSocio());
+                 ps.setInt(2, asistencia.getIdClase());
+                 ps.setDate(3, Date.valueOf(asistencia.getFecha_asitencia()));
+            }
+            
+            ps.executeBatch();
+           
+            ps.close();
+            
+           
+        } catch (SQLException | NullPointerException ex) {
+           
+            Conexion.msjError.add("Clase: guardarClase -> " + ex.getMessage());
+        }
+        
+        return flag;
+    }
+    
 }
