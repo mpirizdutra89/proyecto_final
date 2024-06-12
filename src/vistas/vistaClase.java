@@ -597,8 +597,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private void buscarHorario() {
-
-        int hora = Integer.parseInt(jTbuscar.getText().trim());
+        int hora = Integer.parseInt(buscar);
         if (setHorario(hora)) {
             claseB = cData.buscarHorario(LocalTime.of(hora, 0));
             ltaClases.add(claseB);
@@ -607,7 +606,6 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private void buscarNombre() {
-
         claseB = cData.buscarClasePorNombre(buscar);
         ltaClases.add(claseB);
         actualizarTablaConClases(ltaClases);
