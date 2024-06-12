@@ -665,5 +665,9 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
       private void SeleccionarSocioActualHistorial(){
           socioActualHistorial = (Socio) jCbSociosHistorial.getSelectedItem();
      }
+      
+       private void SeleccionarSocioActual(){
+          socioActual = (Socio) jCbSociosLista.getSelectedItem();
+     }
     
 }
