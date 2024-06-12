@@ -184,10 +184,6 @@ public class FuncionesComunes {
     private static final String NOMBRE_REGEX = "^[a-zA-Z\\s'-]+$"; 
     private static final Pattern PATRON = Pattern.compile(NOMBRE_REGEX);
     public static boolean validarNombre(String nombre){
-        if(validarVacio(nombre)){
-            //JOptionPane.showMessageDialog(null,"El campo no puede quedar vacío"); usar en la vista no aca
-            return false;
-        }
         Matcher matcher = PATRON.matcher(nombre);
         return matcher.matches();
     }

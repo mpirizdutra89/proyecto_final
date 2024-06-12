@@ -23,18 +23,9 @@ public class main {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String[] args) {
-//        //Martin, Agustin, Ariel y Carlos Pruebas
-//        //pruebaSocioData();
-//        pruebaEntrenadorData();
-//        //pruebaClaseData();
-//        //pruebaMembresiasData();
-//        //pruebaEntrenadorData();
-//        //pruebaClaseData();
-//        pruebaMembresiasData();
-//        Conexion.mostrarErrores();
-//
-//    }
+    public static void main(String[] args) {
+        System.out.println(libs.FuncionesComunes.validarNombre(""));
+    }
 
     private static void pruebaSocioData() {
         //boolean guardarSocio(Socio socio)*
@@ -63,7 +54,6 @@ public class main {
             System.out.println(s1.getCorreo());
             System.out.println(s1.getTelefono());
             System.out.println(s1.getEstado());*/
-
         //Socio s = socioDat.buscarSocioPorId(1);
         //if(s != null){
         //    System.out.println("ID: " + s.getIdSocio());
@@ -108,28 +98,25 @@ public class main {
             System.out.println("Horario: " + item.getHorario());
             System.out.println("Capacidad: " + item.getCapacidad());
         });*/
-        /*Clase c1 = claseData.buscarClasePorNombre("Pilates");
+ /*Clase c1 = claseData.buscarClasePorNombre("Pilates");
         System.out.println("ID clase: " + c1.getIdClase());
         System.out.println("ID Entrenador: " + c1.getIdEntrenador());
         System.out.println("Nombre: " + c1.getNombre());
         System.out.println("Horario: " + c1.getHorario());
         System.out.println("Capacidad: " + c1.getCapacidad());*/
-        
-        /*Clase c1 = claseData.buscarEntrenador(3);
+ /*Clase c1 = claseData.buscarEntrenador(3);
         System.out.println("ID clase: " + c1.getIdClase());
         System.out.println("ID Entrenador: " + c1.getIdEntrenador());
         System.out.println("Nombre: " + c1.getNombre());
         System.out.println("Horario: " + c1.getHorario());
         System.out.println("Capacidad: " + c1.getCapacidad());*/
-        
-        /*Clase c1 = claseData.buscarHorario(LocalTime.of(10, 0));
+ /*Clase c1 = claseData.buscarHorario(LocalTime.of(10, 0));
         System.out.println("ID clase: " + c1.getIdClase());
         System.out.println("ID Entrenador: " + c1.getIdEntrenador());
         System.out.println("Nombre: " + c1.getNombre());
         System.out.println("Horario: " + c1.getHorario());
         System.out.println("Capacidad: " + c1.getCapacidad());*/
-        
-        /*claseData.bajaClase(15);
+ /*claseData.bajaClase(15);
         claseData.listarClasesDisponibles().forEach(item ->{
             System.out.println("ID clase: " + item.getIdClase());
             System.out.println("ID Entrenador: " + item.getIdEntrenador());
@@ -137,7 +124,6 @@ public class main {
             System.out.println("Horario: " + item.getHorario());
             System.out.println("Capacidad: " + item.getCapacidad());
         });*/
-        
         //claseData.listarClasesDisponibles().forEach(item ->{
         //    System.out.println("ID clase: " + item.getIdClase());
         //    System.out.println("ID Entrenador: " + item.getIdEntrenador());
@@ -217,10 +203,10 @@ public class main {
 //                System.out.println("-----------------------");
 //            }
 //        }
-    int idMembresia = 3;
-    //membresiasData.removerMembresias(idMembresia);
-    //membresiasData.renovarMembresias(idMembresia);
-    //membresiasData.darAltaMembresia(idMembresia);
+        int idMembresia = 3;
+        //membresiasData.removerMembresias(idMembresia);
+        //membresiasData.renovarMembresias(idMembresia);
+        //membresiasData.darAltaMembresia(idMembresia);
 
     }
 

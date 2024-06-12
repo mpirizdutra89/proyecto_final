@@ -29,7 +29,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
     private DefaultTableModel modeloTabla;
 
     private int btnRadio = 0;
-    private String buscar = "";
+    private String buscar ="";
 
     private static final int MIN_HORA = 7;
     private static final int MAX_HORA = 22;
@@ -553,6 +553,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
     private int fitrado() {
         jTbuscar.setEnabled(true);
         jBbuscar.setEnabled(true);
+        libs.FuncionesComunes.eliminarFilas(modeloTabla);
         libs.FuncionesComunes.textPrompt(jTbuscar,"");
         if(jRtodos.isSelected()){
             libs.FuncionesComunes.textPrompt(jTbuscar, "Todas las clases activas");
@@ -569,12 +570,13 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
     private boolean validarBuscar() {
         buscar = jTbuscar.getText().trim();
+        System.out.println(buscar);
         if (buscar.isEmpty()) {
-            libs.FuncionesComunes.vistaDialogo("El campo de búsqueda está vació", 0);
+            libs.FuncionesComunes.vistaDialogo("El campo de búsqueda está vació", 0,this);
             return false;
         }
         if (btnRadio == 0) {
-            libs.FuncionesComunes.vistaDialogo("Debe seleccionar un filtro", 0);
+            libs.FuncionesComunes.vistaDialogo("Debe seleccionar un filtro", 0,this);
             return false;
         }
         
@@ -583,19 +585,19 @@ public class vistaClase extends javax.swing.JInternalFrame {
                 return true;
             case 2: 
                 if(!libs.FuncionesComunes.validarNombre(buscar)){
-                    libs.FuncionesComunes.vistaDialogo("Únicamente letras",0);
+                    libs.FuncionesComunes.vistaDialogo("Únicamente letras",0,this);
                     return false;
                 }
                 break;
             case 3:
                 if(!libs.FuncionesComunes.validarNumericos(buscar)){
-                    libs.FuncionesComunes.vistaDialogo("Únicamente números",0);
+                    libs.FuncionesComunes.vistaDialogo("Únicamente números",0,this);
                     return false;
                 }
                 break;
             
             default:
-                libs.FuncionesComunes.vistaDialogo("Filtro desconocido",0);
+                libs.FuncionesComunes.vistaDialogo("Filtro desconocido",0,this);
                 return false;
         }
         return true;
@@ -620,6 +622,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private void buscarNombre() {
+        
         claseB = cData.buscarClasePorNombre(buscar);
         ltaClases.add(claseB);
         actualizarTablaConClases(ltaClases);
