@@ -388,9 +388,17 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
     private void jBBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBajaActionPerformed
         int filaSeleccionada = jTEntrenadores.getSelectedRow();
         if (filaSeleccionada != -1) {
-
             String dni = jTEntrenadores.getValueAt(filaSeleccionada, 0).toString();
-            eData.bajaEntrenador(dni);
+            try {
+                boolean bajaExitosa = eData.bajaEntrenador(dni);
+                if (bajaExitosa) {
+                    JOptionPane.showMessageDialog(this, "Baja de entrenador exitosa");
+                } else {
+                    JOptionPane.showMessageDialog(this, "El entrenador ya está dado de baja.");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Hubo un problema al dar de alta al entrenador.");
+            }
             cargarEntrenadores();
         }
     }//GEN-LAST:event_jBBajaActionPerformed
@@ -398,9 +406,18 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
     private void jBAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAltaActionPerformed
         int filaSeleccionada = jTEntrenadores.getSelectedRow();
         if (filaSeleccionada != -1) {
-
             String dni = jTEntrenadores.getValueAt(filaSeleccionada, 0).toString();
-            eData.altaEntrenador(dni);
+
+            try {
+                boolean altaExitosa = eData.altaEntrenador(dni);
+                if (altaExitosa) {
+                    JOptionPane.showMessageDialog(this, "Alta de entrenador exitosa");
+                } else {
+                    JOptionPane.showMessageDialog(this, "El entrenador ya está dado de baja.");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Hubo un problema al dar de alta al entrenador.");
+            }
             cargarEntrenadores();
         }
     }//GEN-LAST:event_jBAltaActionPerformed
