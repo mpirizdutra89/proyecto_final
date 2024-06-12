@@ -51,6 +51,7 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
         setFont(new java.awt.Font("Gill Sans MT", 0, 12)); // NOI18N
         setIconImage(getIconImage());
         setIconImages(null);
+        setResizable(false);
 
         jMenuBar1.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
 
