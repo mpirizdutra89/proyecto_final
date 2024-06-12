@@ -551,6 +551,8 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private int fitrado() {
+        jTbuscar.setEnabled(true);
+        jBbuscar.setEnabled(true);
         libs.FuncionesComunes.textPrompt(jTbuscar,"");
         if(jRtodos.isSelected()){
             libs.FuncionesComunes.textPrompt(jTbuscar, "Todas las clases activas");
