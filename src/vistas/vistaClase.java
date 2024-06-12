@@ -392,15 +392,19 @@ public class vistaClase extends javax.swing.JInternalFrame {
             System.out.println(btnRadio);
             switch (btnRadio) {
                 case 1:
+                    libs.FuncionesComunes.eliminarFilas(modeloTabla);
                     listarTodos();
                     break;
                 case 2:
+                    libs.FuncionesComunes.eliminarFilas(modeloTabla);
                     buscarNombre();
                     break;
                 case 3:
+                    libs.FuncionesComunes.eliminarFilas(modeloTabla);
                     buscarHorario();
                     break;
                 case 4:
+                    libs.FuncionesComunes.eliminarFilas(modeloTabla);
                     buscarEntrenador();
                     break;
                 default:
@@ -629,7 +633,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
         claseB = cData.buscarEntrenador(idEntrenador);
         ltaClases.add(claseB);
         actualizarTablaConClases(ltaClases);
-
+        
     }
 
     private void buscarHorario() {
@@ -640,9 +644,10 @@ public class vistaClase extends javax.swing.JInternalFrame {
                 ltaClases.add(claseB);
                 actualizarTablaConClases(ltaClases);
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             libs.FuncionesComunes.vistaDialogo("No se encuentra el horario " + e.getMessage(), 0, this);
         }
+        
     }
 
     private void buscarNombre() {
@@ -653,12 +658,14 @@ public class vistaClase extends javax.swing.JInternalFrame {
         } catch (NullPointerException e) {
             libs.FuncionesComunes.vistaDialogo("No se encuentra la clase " + e.getMessage(), 0, this);
         }
+        
     }
 
     private void listarTodos() {
 
         ltaClases = cData.listarClasesDisponibles();
         actualizarTablaConClases(ltaClases);
+        
     }
 
     private void bajaLogica() {
@@ -683,7 +690,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private void actualizarTablaConClases(List<Clase> clases) {
-        libs.FuncionesComunes.eliminarFilas(jTData);
+        libs.FuncionesComunes.eliminarFilas(modeloTabla);
         if (!clases.isEmpty()) {
             clases.forEach(item -> {
                 modeloTabla.addRow(new Object[]{
@@ -696,6 +703,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
                 });
             });
         }
+        
     }
 
 }
