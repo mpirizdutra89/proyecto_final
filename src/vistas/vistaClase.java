@@ -20,15 +20,19 @@ import javax.swing.table.DefaultTableModel;
  */
 public class vistaClase extends javax.swing.JInternalFrame {
 
+    //
     private ClaseData cData;
     private EntrenadorData eData;
     private Clase claseB;
-    private ArrayList<Clase> ltaClases = new ArrayList<Clase>();
-    private ArrayList<Entrenador> ltaEntrenadores = new ArrayList<>();
+    private ArrayList<Clase> ltaClases;
+    private ArrayList<Entrenador> ltaEntrenadores;
     private DefaultTableModel modeloTabla;
 
     private int btnRadio = 0;
     private String buscar = "";
+
+    private static final int MIN_HORA = 7;
+    private static final int MAX_HORA = 22;
 
     public vistaClase() {
         initComponents();
@@ -37,6 +41,9 @@ public class vistaClase extends javax.swing.JInternalFrame {
         claseB = null;
         cData = new ClaseData();
         eData = new EntrenadorData();
+        ltaClases = new ArrayList<Clase>();
+        ltaEntrenadores = new ArrayList<>();
+
         ltaEntrenadores = (ArrayList<Entrenador>) eData.listarEntrenadores();
 
         cargarEntrenador();
@@ -381,8 +388,10 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
         if (validarBuscar()) {
-
             switch (btnRadio) {
+                case 1:
+                    listarTodos();
+                    break;
                 case 2:
                     buscarNombre();
                     break;
@@ -395,7 +404,6 @@ public class vistaClase extends javax.swing.JInternalFrame {
                 default:
                     libs.FuncionesComunes.vistaDialogo("Selecione un filtro", 0);
             }
-
         }
     }//GEN-LAST:event_jBbuscarActionPerformed
 
@@ -470,45 +478,45 @@ public class vistaClase extends javax.swing.JInternalFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             btnRadio = fitrado();
-
-            if (btnRadio == 1) {
-                listarTodos();
-            }
         }
     };
 
     private void guardarClase() {
-        Entrenador e = null;
-        if (validarCampos()) {
-            if (claseB == null) {
-                Clase cls = new Clase();
-                cls.setNombre(jTFnombre.getText().trim());
-                String comboDato = jCBentrenadorA.getSelectedItem().toString();
-                int idEnt = Integer.parseInt(comboDato.substring(0, 1).trim());
-                cls.setIdEntrenador(idEnt);
-                e = accesoADatos.EntrenadorData.buscarEntrenadorPorId(idEnt);
-                cls.setEntrenador(e);
-                cls.setCapacidad(Integer.valueOf(jTFcapacidad.getText().trim()));
-                int hora = Integer.valueOf(jTFhorario.getText().trim());
+        if (!validarCampos()) {
+            return;
+        }
 
-                if (hora >= 7 && hora <= 22) {
-                    cls.setHorario(LocalTime.of(hora, 0));
-                } else if ((hora > 1 && hora < 7) || (hora > 22 && hora < 24)) {
-                    libs.FuncionesComunes.vistaDialogo("Gimnasio cerrado en ese horario", 1, this);
-                } else {
-                    libs.FuncionesComunes.vistaDialogo("Ingresar un número valido", 1, this);
-                }
+        if (claseB == null) {
+            Clase cls = new Clase();
+
+            cls.setNombre(jTFnombre.getText().trim());
+
+            int idEntrenador = parseIdFromCombo(jCBentrenadorA.getSelectedItem().toString());
+            cls.setIdEntrenador(idEntrenador);
+
+            Entrenador entrenador = accesoADatos.EntrenadorData.buscarEntrenadorPorId(idEntrenador);
+            cls.setEntrenador(entrenador);
+
+            cls.setCapacidad(Integer.parseInt(jTFcapacidad.getText().trim()));
+
+            int hora = Integer.parseInt(jTFhorario.getText().trim());
+
+            if (libs.FuncionesComunes.validarNumericos(jTFhorario.getText().trim()) && setHorario(hora)) {
+                cls.setHorario(LocalTime.of(hora, 0));
 
                 cls.setEstado(jCkBestado.isSelected());
 
                 if (cData.guardarClase(cls)) {
-                    claseB = null;
                     claseB = cls;
-                    libs.FuncionesComunes.vistaDialogo("Clase guardada Correctamente", 1, this);
+                    libs.FuncionesComunes.vistaDialogo("Clase guardada correctamente", 1, this);
                     btnEditarDisable();
                 }
             }
         }
+    }
+
+    private int parseIdFromCombo(String comboDato) {
+        return Integer.parseInt(comboDato.split("-")[0].trim());
     }
 
     private boolean validarCampos() {
@@ -527,10 +535,11 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private void cargarEntrenador() {
-        for (Entrenador item : ltaEntrenadores) {
-            jCBentrenadorA.addItem(item.getIdEntrenador() + "-" + item.getApellido());
-            jCBentrenadorB.addItem(item.getIdEntrenador() + "-" + item.getApellido());
-        }
+        ltaEntrenadores.forEach(item -> {
+            String entrenadorInfo = item.getIdEntrenador() + "-" + item.getApellido();
+            jCBentrenadorA.addItem(entrenadorInfo);
+            jCBentrenadorB.addItem(entrenadorInfo);
+        });
     }
 
     private int fitrado() {
@@ -563,70 +572,37 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private boolean validarBuscar() {
-        boolean flag = false;
         buscar = jTbuscar.getText().trim();
         if (btnRadio != 0 && !buscar.isEmpty()) {
-            if (btnRadio == 2) {
-                if (libs.FuncionesComunes.validarNombre(buscar)) {
-                    flag = true;
-                } else {
-                    libs.FuncionesComunes.vistaDialogo("Unicamente letras", 0);
-                }
-            } else {
-                if (btnRadio == 3) {
-                    if (libs.FuncionesComunes.validarNumericos(buscar)) {
-                        flag = true;
-                    } else {
-                        libs.FuncionesComunes.vistaDialogo("Unicamente números", 0);
-                    }
-                }
+            if (btnRadio == 2 && !libs.FuncionesComunes.validarNombre(buscar)) {
+                libs.FuncionesComunes.vistaDialogo("Únicamente letras", 0);
+                return false;
             }
-        } else {
-            if (btnRadio == 1) {
-                flag = true;
+            if (btnRadio == 3 && !libs.FuncionesComunes.validarNumericos(buscar)) {
+                libs.FuncionesComunes.vistaDialogo("Únicamente números", 0);
+                return false;
             }
+            return true;
         }
-        return flag;
+        return btnRadio == 1;
     }
 
     private void buscarEntrenador() {
-        String comboDato = jCBentrenadorB.getSelectedItem().toString();
-        int idEnt;
-        idEnt = Integer.parseInt(comboDato.substring(0,1).trim());
-        claseB = cData.buscarEntrenador(idEnt);
+        int idEntrenador = parseIdFromCombo(jCBentrenadorB.getSelectedItem().toString());
+
+        claseB = cData.buscarEntrenador(idEntrenador);
         ltaClases.add(claseB);
-        libs.FuncionesComunes.eliminarFilas(jTData);
-        if (!ltaClases.isEmpty()) {
-            for (Clase item : ltaClases) {
-                modeloTabla.addRow(new Object[]{
-                    item.getIdClase(),
-                    item.getIdEntrenador(),
-                    item.getNombre(),
-                    item.getHorario(),
-                    item.getCapacidad(),
-                    item.isEstado()
-                });
-            }
-        }
+        actualizarTablaConClases(ltaClases);
+
     }
 
     private void buscarHorario() {
 
         int hora = Integer.parseInt(jTbuscar.getText().trim());
-        claseB = cData.buscarHorario(LocalTime.of(hora, 0));
-        ltaClases.add(claseB);
-        libs.FuncionesComunes.eliminarFilas(jTData);
-        if (!ltaClases.isEmpty()) {
-            for (Clase item : ltaClases) {
-                modeloTabla.addRow(new Object[]{
-                    item.getIdClase(),
-                    item.getIdEntrenador(),
-                    item.getNombre(),
-                    item.getHorario(),
-                    item.getCapacidad(),
-                    item.isEstado()
-                });
-            }
+        if (setHorario(hora)) {
+            claseB = cData.buscarHorario(LocalTime.of(hora, 0));
+            ltaClases.add(claseB);
+            actualizarTablaConClases(ltaClases);
         }
     }
 
@@ -634,9 +610,39 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
         claseB = cData.buscarClasePorNombre(buscar);
         ltaClases.add(claseB);
+        actualizarTablaConClases(ltaClases);
+    }
+
+    private void listarTodos() {
+        ltaClases = cData.listarClasesDisponibles();
+        actualizarTablaConClases(ltaClases);
+    }
+
+    private void bajaLogica() {
+        if (claseB != null && claseB.isEstado()) {
+            if (cData.bajaClase(claseB.getIdClase())) {
+                libs.FuncionesComunes.vistaDialogo("Se dio de baja a la clase", 1);
+                btnInicioDisable();
+                libs.FuncionesComunes.resetFormContentPanel(jPAdmin);
+            }
+        }
+    }
+
+    private boolean setHorario(int hora) {
+        if (hora >= MIN_HORA && hora <= MAX_HORA) {
+            return true;
+        } else if ((hora > 1 && hora < MIN_HORA) || (hora > MAX_HORA && hora < 24)) {
+            libs.FuncionesComunes.vistaDialogo("Gimnasio cerrado en ese horario", 1, this);
+        } else {
+            libs.FuncionesComunes.vistaDialogo("Ingresar un número válido", 1, this);
+        }
+        return false;
+    }
+
+    private void actualizarTablaConClases(List<Clase> clases) {
         libs.FuncionesComunes.eliminarFilas(jTData);
-        if (!ltaClases.isEmpty()) {
-            for (Clase item : ltaClases) {
+        if (!clases.isEmpty()) {
+            clases.forEach(item -> {
                 modeloTabla.addRow(new Object[]{
                     item.getIdClase(),
                     item.getIdEntrenador(),
@@ -645,38 +651,8 @@ public class vistaClase extends javax.swing.JInternalFrame {
                     item.getCapacidad(),
                     item.isEstado()
                 });
-            }
+            });
         }
     }
 
-    private void listarTodos() {
-        if (validarBuscar()) {
-            ltaClases =cData.listarClasesDisponibles();
-            libs.FuncionesComunes.eliminarFilas(jTData);
-            if (!ltaClases.isEmpty()) {
-                for (Clase item : ltaClases) {
-                    modeloTabla.addRow(new Object[]{
-                        item.getIdClase(),
-                        item.getIdEntrenador(),
-                        item.getNombre(),
-                        item.getHorario(),
-                        item.getCapacidad(),
-                        item.isEstado()
-                    });
-                }
-            }
-        }
-    }
-
-    private void bajaLogica() {
-        if(claseB != null){
-            if (claseB.isEstado()) {
-                if (cData.bajaClase(claseB.getIdClase())) {
-                    libs.FuncionesComunes.vistaDialogo("Se dio de baja a la clase", 1);
-                    btnInicioDisable();
-                    libs.FuncionesComunes.resetFormContentPanel(jPAdmin);
-                }
-            }
-        }
-    }
 }
