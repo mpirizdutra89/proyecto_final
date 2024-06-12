@@ -330,6 +330,7 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Entrenador guardado con éxito");
             }
             listaEntrenadores = (ArrayList<Entrenador>) eData.listarEntrenadores();
+            cargarEntrenadores();
             limpiarCampos();
 
         } catch (NumberFormatException e) {
