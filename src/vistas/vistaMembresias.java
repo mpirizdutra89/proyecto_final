@@ -30,6 +30,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
    private Membresias membre;
    private Socio socio;
    private Socio socioActual;
+    private Socio socioActualHistorial;
    private ArrayList<Membresias> listaM;
    private DefaultTableModel tablaM;
    private  ArrayList<Socio> listaSocio;
@@ -531,7 +532,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     private void jtbpContenedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbpContenedorMouseClicked
        int selectedIndex = jtbpContenedor.getSelectedIndex();
 
-        if (selectedIndex == 2) {//historial
+        if (selectedIndex == 2) {//historial El tab
            if(listaSocioMembresia.size()==0){
                libs.FuncionesComunes.vistaDialogo("No hay socios con membresias", 0, this);
            }
@@ -539,9 +540,9 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtbpContenedorMouseClicked
 
     private void jCbSociosHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbSociosHistorialActionPerformed
-       SeleccionarSocioActual();
+       SeleccionarSocioActualHistorial();
        //Solo va entrar si es un objeto distinto de null 
-       if (socioActual != null && socioActual.getNombre()!= "Seleccione") {
+       if (socioActualHistorial != null && socioActualHistorial.getNombre()!= "Seleccione") {
             //Aca llamr un metod que filre por socio y se coloce en la tabla
             //para que depues al selecionar una fila podes dar de baja o alta etc
             //
@@ -661,8 +662,8 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     }
     
     
-      private void SeleccionarSocioActual(){
-          socioActual = (Socio) jCbSociosHistorial.getSelectedItem();
+      private void SeleccionarSocioActualHistorial(){
+          socioActualHistorial = (Socio) jCbSociosHistorial.getSelectedItem();
      }
     
 }
