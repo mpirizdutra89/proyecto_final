@@ -51,6 +51,7 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
         setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         setIconImage(getIconImage());
         setIconImages(null);
+        setLocation(new java.awt.Point(0, 0));
         setMaximizedBounds(new java.awt.Rectangle(0, 0, 1440, 810));
         setMaximumSize(new java.awt.Dimension(1440, 810));
         setMinimumSize(new java.awt.Dimension(1440, 810));
@@ -119,11 +120,11 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 780, Short.MAX_VALUE)
+            .addGap(0, 960, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 545, Short.MAX_VALUE)
+            .addGap(0, 511, Short.MAX_VALUE)
         );
 
         pack();
