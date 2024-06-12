@@ -217,4 +217,12 @@ public class ClaseData {
         }
         return flag;
     }
+    
+    public int CuposClases(){
+        int cupo =0;
+        
+        
+        
+        return cupo; 
+    }
 }

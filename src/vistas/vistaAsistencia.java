@@ -5,6 +5,7 @@ import accesoADatos.SocioData;
 import entidades.Asistencia;
 import entidades.Clase;
 import entidades.Socio;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
@@ -19,6 +20,8 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
     private DefaultTableModel modeloTable;
     private SocioData socioData;
     private ClaseData claseData;
+    private  ArrayList<Clase> listaClase;
+    private Clase claseActual;
      DefaultListModel<Socio> modelListaItem = new DefaultListModel<>();
     
     /**
@@ -28,14 +31,25 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         initComponents();
        //conexion
         
-       
+        claseData = new ClaseData();
+        listaClase = new ArrayList<>();
+        claseActual=null;
+        listaClase=claseData.listarClasesDisponibles();
+        if (listaClase.size() > 0) {
+            cargarClases();
+            fecha();
+            modificarDni();
+            armarEncabezado();
+            armarEncabezadoListaSocio();
+            jListSocios.setModel(modelListaItem);
+           
+        }else{
+             libs.FuncionesComunes.vistaDialogo("No se puede gestionar la asistencia sin las clases. valla a la gestion de clases.", 0,this);
+            
+        }
         
          
-        fecha();
-        modificarDni();
-        armarEncabezado();
-        armarEncabezadoListaSocio();
-        jListSocios.setModel(modelListaItem);
+        
        
        
     }
@@ -90,6 +104,12 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/clases.png"))); // NOI18N
         jLabel3.setText("Selecione una clase:");
+
+        jCbClase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCbClaseActionPerformed(evt);
+            }
+        });
 
         jTblDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -206,7 +226,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
             jPnlContendorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPnlContendorLayout.createSequentialGroup()
-                .addGap(16, 412, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbtnGuardar)
                 .addGap(29, 29, 29)
                 .addComponent(jbtnLimpiar)
@@ -383,6 +403,12 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
     
     }//GEN-LAST:event_jbtnBuscarMouseClicked
 
+    private void jCbClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbClaseActionPerformed
+            claseActual=null;
+            SeleccionarClaseActual();
+           
+    }//GEN-LAST:event_jCbClaseActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Clase> jCbClase;
@@ -449,6 +475,22 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         
     } 
      
+     
+    private void cargarClases(){
+       jCbClase.addItem(new Clase());
+        for (Clase clase : listaClase) {
+            jCbClase.addItem(clase);
+        }
+    } 
+    
+    
+//     private void armadoComboBox() {
+//        for (Alumno alumno : listaAlumno) {
+//            jCbAlumnos.addItem(alumno);
+//
+//        }
+//    }
+     
      //buscar Socio y agregar a la lista
      
     
@@ -478,5 +520,14 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                  jTxtDni.requestFocus();
      }
      
+     private void SeleccionarClaseActual(){
+          claseActual = (Clase) jCbClase.getSelectedItem();
+     }
      
+     private void CargarClaseCuposDisponibles(){
+         if(claseActual!=null){
+             claseData=new ClaseData();
+             
+         }
+     }
 }
