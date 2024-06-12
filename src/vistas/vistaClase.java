@@ -524,7 +524,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
             }
         } catch (NullPointerException | NumberFormatException e) {
-             libs.FuncionesComunes.vistaDialogo("Error al cargar los datos " + e.getMessage(), 0, this);
+            libs.FuncionesComunes.vistaDialogo("Error al cargar los datos " + e.getMessage(), 0, this);
         }
     }
 
@@ -620,11 +620,15 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private void buscarHorario() {
-        int hora = Integer.parseInt(buscar);
-        if (setHorario(hora)) {
-            claseB = cData.buscarHorario(LocalTime.of(hora, 0));
-            ltaClases.add(claseB);
-            actualizarTablaConClases(ltaClases);
+        try {
+            int hora = Integer.parseInt(buscar);
+            if (setHorario(hora)) {
+                claseB = cData.buscarHorario(LocalTime.of(hora, 0));
+                ltaClases.add(claseB);
+                actualizarTablaConClases(ltaClases);
+            }
+        }catch(NumberFormatException e){
+            libs.FuncionesComunes.vistaDialogo("No se encuentra el horario " + e.getMessage(), 0, this);
         }
     }
 
@@ -634,7 +638,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
             ltaClases.add(claseB);
             actualizarTablaConClases(ltaClases);
         } catch (NullPointerException e) {
-            libs.FuncionesComunes.vistaDialogo("No se encuentra la clase " + e.getMessage() , 0, this);
+            libs.FuncionesComunes.vistaDialogo("No se encuentra la clase " + e.getMessage(), 0, this);
         }
     }
 
