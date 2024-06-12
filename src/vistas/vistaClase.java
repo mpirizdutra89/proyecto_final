@@ -558,32 +558,32 @@ public class vistaClase extends javax.swing.JInternalFrame {
     private int fitrado() {
         jTbuscar.setEnabled(true);
         jBbuscar.setEnabled(true);
-        libs.FuncionesComunes.eliminarFilas(modeloTabla);
+        
         libs.FuncionesComunes.textPrompt(jTbuscar, "");
         if (jRtodos.isSelected()) {
+            libs.FuncionesComunes.eliminarFilas(modeloTabla);
             libs.FuncionesComunes.textPrompt(jTbuscar, "Todas las clases activas");
             jTbuscar.setEnabled(false);
-            jBbuscar.setEnabled(false);
             return 1;
         } else if (jRnombre.isSelected()) {
+            libs.FuncionesComunes.eliminarFilas(modeloTabla);
             libs.FuncionesComunes.textPrompt(jTbuscar, "Nombre de la clase ej. Zumba");
             return 2;
         } else if (jRHorario.isSelected()) {
-            
+            libs.FuncionesComunes.eliminarFilas(modeloTabla);
+            libs.FuncionesComunes.textPrompt(jTbuscar, "Ingrese una hora entre 7 y 22 ej. 14");
             return 3;
         } else if (jRentrenador.isSelected()) {
+            libs.FuncionesComunes.eliminarFilas(modeloTabla);
+            libs.FuncionesComunes.textPrompt(jTbuscar, "Seleccione un entrenador");
+            jTbuscar.setEnabled(false);
             return 4;
         }
         return 0;
     }
 
     private boolean validarBuscar() {
-        buscar = jTbuscar.getText().trim();
-        System.out.println(buscar);
-        if (buscar.isEmpty()) {
-            libs.FuncionesComunes.vistaDialogo("El campo de búsqueda está vació", 0, this);
-            return false;
-        }
+        
         if (btnRadio == 0) {
             libs.FuncionesComunes.vistaDialogo("Debe seleccionar un filtro", 0, this);
             return false;
@@ -591,14 +591,25 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
         switch (btnRadio) {
             case 1:
+                buscar = "c";
                 return true;
             case 2:
+                buscar = jTbuscar.getText().trim();
+                if (buscar.isEmpty()) {
+                    libs.FuncionesComunes.vistaDialogo("El campo de búsqueda está vació", 0, this);
+                    return false;
+                }
                 if (!libs.FuncionesComunes.validarNombre(buscar)) {
                     libs.FuncionesComunes.vistaDialogo("Únicamente letras", 0, this);
                     return false;
                 }
                 break;
             case 3:
+                buscar = jTbuscar.getText().trim();
+                if (buscar.isEmpty()) {
+                    libs.FuncionesComunes.vistaDialogo("El campo de búsqueda está vació", 0, this);
+                    return false;
+                }
                 if (!libs.FuncionesComunes.validarNumericos(buscar)) {
                     libs.FuncionesComunes.vistaDialogo("Únicamente números", 0, this);
                     return false;
@@ -629,7 +640,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
                 ltaClases.add(claseB);
                 actualizarTablaConClases(ltaClases);
             }
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             libs.FuncionesComunes.vistaDialogo("No se encuentra el horario " + e.getMessage(), 0, this);
         }
     }
@@ -645,7 +656,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private void listarTodos() {
-        
+
         ltaClases = cData.listarClasesDisponibles();
         actualizarTablaConClases(ltaClases);
     }

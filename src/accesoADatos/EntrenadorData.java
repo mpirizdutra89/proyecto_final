@@ -331,4 +331,39 @@ public class EntrenadorData {
             Conexion.msjError.add("Entrenador: modificarEntrenador() ->" + ex.getMessage());
         }
     }
+    
+    public boolean estaDadoDeAlta(String dni) {
+        String sql = "SELECT estado FROM entrenadores WHERE dni = ?";
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setString(1, dni);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int estado = rs.getInt("estado");
+                return estado == 1;
+            }
+        } catch (SQLException ex) {
+            Conexion.msjError.add("Error al verificar el estado del entrenador: " + ex.getMessage());
+        }
+        return false;
+    }
+    
+        public boolean estaDadoDeBaja(String dni) {
+        String sql = "SELECT estado FROM entrenadores WHERE dni = ?";
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setString(1, dni);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int estado = rs.getInt("estado");
+                return estado == 0;
+            }
+        } catch (SQLException ex) {
+            Conexion.msjError.add("Error al verificar el estado del entrenador: " + ex.getMessage());
+        }
+        return false;
+    }
+    
+    
+
 }
