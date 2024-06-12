@@ -184,11 +184,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-<<<<<<< Updated upstream
-                .addContainerGap(35, Short.MAX_VALUE))
-=======
                 .addContainerGap(48, Short.MAX_VALUE))
->>>>>>> Stashed changes
         );
 
         jtbpContenedor.addTab("tab1", jPanel1);
