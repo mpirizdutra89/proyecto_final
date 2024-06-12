@@ -93,15 +93,15 @@ public class ClaseData {
             rs.close();
             //Captura de excepciones y se añade el error a una lista de errores 
         } catch (SQLException | NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
             Conexion.msjError.add("Clase: ClasesDisponibles -> " + ex.getMessage());
         }
         //Se retorna la lista de clases disponibles
         return listaClases;
     }
 
-    public Clase buscarClasePorNombre(String nombre) {
+    public ArrayList<Clase> buscarClasePorNombre(String nombre) {
         this.clase = null;
+        ArrayList<Clase> listaNombres = new ArrayList<Clase>();
         //Consulta SQL
         String query = "SELECT idClase,idEntrenador,nombre,horario,capacidad,estado "
                 + "FROM clases "
@@ -112,16 +112,20 @@ public class ClaseData {
             ps.setString(1, nombre);
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
-                this.clase = new Clase();
-
-                this.clase.setIdClase(rs.getInt("idClase"));
+            while (rs.next()) {
+                clase = new Clase();//Nueva instancia de clase
+                //Se establecen los datos de la clase 
+                clase.setIdClase(rs.getInt("idClase"));
                 int idEntrenador = rs.getInt("idEntrenador"); // Guarda el ID del entrenador
-                this.clase.setIdEntrenador(idEntrenador);
-                this.clase.setNombre(rs.getString("nombre"));
-                this.clase.setHorario(rs.getTime("horario").toLocalTime());
-                this.clase.setCapacidad(rs.getInt("capacidad"));
-                this.clase.setEstado(true);
+                Entrenador el = EntrenadorData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
+                clase.setIdEntrenador(idEntrenador);
+                clase.setNombre(rs.getString("nombre"));
+                clase.setHorario(rs.getTime("horario").toLocalTime());
+                clase.setCapacidad(rs.getInt("capacidad"));
+                clase.setEstado(true);
+                //Se añade la clase a la lista
+                clase.setEntrenador(el);
+                listaNombres.add(clase);
             }
             ps.close();
             rs.close();
@@ -129,7 +133,7 @@ public class ClaseData {
             Conexion.msjError.add("Clase: buscarClasePorNommbre -> " + ex.getMessage());
         }
 
-        return clase;
+        return listaNombres;
     }
 
     public Clase buscarEntrenador(int id) {
@@ -162,8 +166,10 @@ public class ClaseData {
         return clase;
     }
 
-    public Clase buscarHorario(LocalTime horario) {
+    public ArrayList<Clase> buscarHorario(LocalTime horario) {
         this.clase = null;
+        ArrayList<Clase> listaHorarios = new ArrayList<Clase>();
+        
         String query = "SELECT idClase,idEntrenador,nombre,horario,capacidad,estado "
                 + "FROM clases "
                 + "WHERE horario = ? and estado = 1 ";
@@ -172,23 +178,26 @@ public class ClaseData {
             ps.setTime(1, Time.valueOf(horario));
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                this.clase = new Clase();
-
-                this.clase.setIdClase(rs.getInt("idClase"));
+                clase = new Clase();//Nueva instancia de clase
+                //Se establecen los datos de la clase 
+                clase.setIdClase(rs.getInt("idClase"));
                 int idEntrenador = rs.getInt("idEntrenador"); // Guarda el ID del entrenador
-                //Entrenador el = EntrenadorData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
-                this.clase.setIdEntrenador(idEntrenador);
-                this.clase.setNombre(rs.getString("nombre"));
-                this.clase.setHorario(rs.getTime("horario").toLocalTime());
-                this.clase.setCapacidad(rs.getInt("capacidad"));
-                this.clase.setEstado(true);
+                Entrenador el = EntrenadorData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
+                clase.setIdEntrenador(idEntrenador);
+                clase.setNombre(rs.getString("nombre"));
+                clase.setHorario(rs.getTime("horario").toLocalTime());
+                clase.setCapacidad(rs.getInt("capacidad"));
+                clase.setEstado(true);
+                //Se añade la clase a la lista
+                clase.setEntrenador(el);
+                listaHorarios.add(clase);
             }
             ps.close();
             rs.close();
         } catch (SQLException | NullPointerException ex) {
             Conexion.msjError.add("Clase: buscarHorario -> " + ex.getMessage());
         }
-        return clase;
+        return listaHorarios;
     }
 
     public boolean bajaClase(int id) {
