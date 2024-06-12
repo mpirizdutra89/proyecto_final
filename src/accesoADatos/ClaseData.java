@@ -63,6 +63,7 @@ public class ClaseData {
     }
 
     public ArrayList<Clase> listarClasesDisponibles() {
+        this.clase = null;
         //Lista para almacenar las clases disponibles
         ArrayList<Clase> listaClases = new ArrayList<>();
         //Consulta SQL
@@ -100,7 +101,7 @@ public class ClaseData {
     }
 
     public Clase buscarClasePorNombre(String nombre) {
-
+        this.clase = null;
         //Consulta SQL
         String query = "SELECT idClase,idEntrenador,nombre,horario,capacidad,estado "
                 + "FROM clases "
@@ -132,7 +133,7 @@ public class ClaseData {
     }
 
     public Clase buscarEntrenador(int id) {
-
+        this.clase = null;
         String query = "SELECT idClase,idEntrenador,nombre,horario,capacidad,estado "
                 + "FROM clases "
                 + "WHERE idEntrenador = ? and estado = 1 ";

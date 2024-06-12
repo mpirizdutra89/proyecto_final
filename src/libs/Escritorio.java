@@ -16,7 +16,8 @@ public class Escritorio extends JDesktopPane {
     public Escritorio() {
         try {
             
-            img = ImageIO.read(getClass().getResourceAsStream("/resources/fondo/fondo1.jpg"));
+            img = ImageIO.read(getClass().getResourceAsStream("/resources/fondo/fondo2.png"));
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
