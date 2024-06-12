@@ -649,7 +649,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
     private void listarTodos() {
         if (validarBuscar()) {
-            ltaClases = (List<Clase>) cData.listarClasesDisponibles();
+            ltaClases =cData.listarClasesDisponibles();
             libs.FuncionesComunes.eliminarFilas(jTData);
             if (!ltaClases.isEmpty()) {
                 for (Clase item : ltaClases) {
