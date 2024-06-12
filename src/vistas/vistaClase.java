@@ -551,49 +551,52 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private int fitrado() {
-        int radio = 0;
-        ButtonModel selectedModel = btnGseleccion.getSelection();
-        jTbuscar.setEnabled(true);
-        jBbuscar.setEnabled(true);
-
-        if (selectedModel != null) {
-            libs.FuncionesComunes.eliminarFilas(jTData);
-            jTbuscar.requestFocus();
-            libs.FuncionesComunes.textPrompt(jTbuscar, " ");
-            if (selectedModel == jRnombre.getModel()) {
-                libs.FuncionesComunes.textPrompt(jTbuscar, "Nombre de la clase - Zumba -");
-                radio = 2;
-            } else if (selectedModel == jRHorario.getModel()) {
-                libs.FuncionesComunes.textPrompt(jTbuscar, "Ingrese de a una hora - 10 hs -");
-                radio = 3;
-            } else if (selectedModel == jRentrenador.getModel()) {
-                libs.FuncionesComunes.textPrompt(jTbuscar, "Seleccione un entrenador");
-                jTbuscar.setEnabled(false);
-                radio = 4;
-            } else if (selectedModel == jRtodos.getModel()) {
-                libs.FuncionesComunes.textPrompt(jTbuscar, "Se muestran todas las clases activas");
-                radio = 1;
-                jTbuscar.setEnabled(false);
-                jBbuscar.setEnabled(false);
-            }
+        libs.FuncionesComunes.textPrompt(jTbuscar,"");
+        if(jRtodos.isSelected()){
+            libs.FuncionesComunes.textPrompt(jTbuscar, "Todas las clases activas");
+            return 1;
+        }else if(jRnombre.isSelected()){
+            return 2;
+        }else if (jRHorario.isSelected()){
+            return 3;
+        }else if (jRentrenador.isSelected()){
+            return 4;
         }
-        return radio;
+        return 0;
     }
 
     private boolean validarBuscar() {
         buscar = jTbuscar.getText().trim();
-        if (btnRadio != 0 && !buscar.isEmpty()) {
-            if (btnRadio == 2 && !libs.FuncionesComunes.validarNombre(buscar)) {
-                libs.FuncionesComunes.vistaDialogo("Únicamente letras", 0);
-                return false;
-            }
-            if (btnRadio == 3 && !libs.FuncionesComunes.validarNumericos(buscar)) {
-                libs.FuncionesComunes.vistaDialogo("Únicamente números", 0);
-                return false;
-            }
-            return true;
+        if (buscar.isEmpty()) {
+            libs.FuncionesComunes.vistaDialogo("El campo de búsqueda está vació", 0);
+            return false;
         }
-        return btnRadio == 1;
+        if (btnRadio == 0) {
+            libs.FuncionesComunes.vistaDialogo("Debe seleccionar un filtro", 0);
+            return false;
+        }
+        
+        switch (btnRadio) {
+            case 1:
+                return true;
+            case 2: 
+                if(!libs.FuncionesComunes.validarNombre(buscar)){
+                    libs.FuncionesComunes.vistaDialogo("Únicamente letras",0);
+                    return false;
+                }
+                break;
+            case 3:
+                if(!libs.FuncionesComunes.validarNumericos(buscar)){
+                    libs.FuncionesComunes.vistaDialogo("Únicamente números",0);
+                    return false;
+                }
+                break;
+            
+            default:
+                libs.FuncionesComunes.vistaDialogo("Filtro desconocido",0);
+                return false;
+        }
+        return true;
     }
 
     private void buscarEntrenador() {
@@ -621,7 +624,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private void listarTodos() {
-        System.out.println("entro");
+        //System.out.println("entro");
         ltaClases = cData.listarClasesDisponibles();
         actualizarTablaConClases(ltaClases);
     }
