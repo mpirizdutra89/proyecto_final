@@ -35,6 +35,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
     private static final int MAX_HORA = 22;
 
     public vistaClase() {
+
         initComponents();
         placeholders();
         btnInicioDisable();
@@ -388,6 +389,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
         if (validarBuscar()) {
+            System.out.println(btnRadio);
             switch (btnRadio) {
                 case 1:
                     listarTodos();
@@ -469,17 +471,19 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private void btnRadioEnlace() {
+        // Asigna el mismo ActionListener a todos los botones de radio
+        ActionListener rBtnListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnRadio = fitrado();
+            }
+        };
+        // Añade el ActionListener a cada botón de radio
         jRtodos.addActionListener(rBtnListener);
         jRnombre.addActionListener(rBtnListener);
         jRentrenador.addActionListener(rBtnListener);
         jRHorario.addActionListener(rBtnListener);
     }
-    ActionListener rBtnListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            btnRadio = fitrado();
-        }
-    };
 
     private void guardarClase() {
         if (!validarCampos()) {
@@ -488,7 +492,9 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
         if (claseB == null) {
             Clase cls = new Clase();
-
+            
+            jTFidClase.setText(String.valueOf(cls.getIdClase()));
+            
             cls.setNombre(jTFnombre.getText().trim());
 
             int idEntrenador = parseIdFromCombo(jCBentrenadorA.getSelectedItem().toString());
@@ -502,6 +508,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
             int hora = Integer.parseInt(jTFhorario.getText().trim());
 
             if (libs.FuncionesComunes.validarNumericos(jTFhorario.getText().trim()) && setHorario(hora)) {
+
                 cls.setHorario(LocalTime.of(hora, 0));
 
                 cls.setEstado(jCkBestado.isSelected());
@@ -511,6 +518,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
                     libs.FuncionesComunes.vistaDialogo("Clase guardada correctamente", 1, this);
                     btnEditarDisable();
                 }
+
             }
         }
     }
@@ -558,10 +566,11 @@ public class vistaClase extends javax.swing.JInternalFrame {
             } else if (selectedModel == jRHorario.getModel()) {
                 libs.FuncionesComunes.textPrompt(jTbuscar, "Ingrese de a una hora - 10 hs -");
                 radio = 3;
-            } else if (selectedModel == jRentrenador) {
-                libs.FuncionesComunes.textPrompt(jTbuscar, "Seleccione un entrenador en el desplegable");
+            } else if (selectedModel == jRentrenador.getModel()) {
+                libs.FuncionesComunes.textPrompt(jTbuscar, "Seleccione un entrenador");
+                jTbuscar.setEnabled(false);
                 radio = 4;
-            } else if (selectedModel == jRtodos) {
+            } else if (selectedModel == jRtodos.getModel()) {
                 libs.FuncionesComunes.textPrompt(jTbuscar, "Se muestran todas las clases activas");
                 radio = 1;
                 jTbuscar.setEnabled(false);
@@ -612,6 +621,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private void listarTodos() {
+        System.out.println("entro");
         ltaClases = cData.listarClasesDisponibles();
         actualizarTablaConClases(ltaClases);
     }
