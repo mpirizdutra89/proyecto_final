@@ -222,6 +222,7 @@ public class ClaseData {
                 + "    SELECT idClase, "
                 + "           COUNT(*) AS asistentes "
                 + "    FROM asistencias "
+                + " WHERE fecha_asistencia = CURDATE() "
                 + "    GROUP BY idClase "
                 + " ) a ON c.idClase = a.idClase "
                 + " INNER JOIN entrenadores e ON c.idEntrenador = e.idEntrenador "
