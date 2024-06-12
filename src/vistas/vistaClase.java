@@ -484,7 +484,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
                 Clase cls = new Clase();
                 cls.setNombre(jTFnombre.getText().trim());
                 String comboDato = jCBentrenadorA.getSelectedItem().toString();
-                int idEnt = Integer.parseInt(comboDato.substring(0, 2).trim());
+                int idEnt = Integer.parseInt(comboDato.substring(0, 1).trim());
                 cls.setIdEntrenador(idEnt);
                 e = accesoADatos.EntrenadorData.buscarEntrenadorPorId(idEnt);
                 cls.setEntrenador(e);

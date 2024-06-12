@@ -38,7 +38,6 @@ public class EntrenadorData {
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
                 entrenador.setIdEntrenador(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Entrenador guardado con exito");
                 res = true;
             }
             ps.close();
@@ -333,7 +332,6 @@ public class EntrenadorData {
             
             int resultado = ps.executeUpdate();
             if(resultado == 1){
-                JOptionPane.showMessageDialog(null, "Entrenador modificado con exito!!");
             }
             ps.close();
         } catch (SQLException | NullPointerException ex) {

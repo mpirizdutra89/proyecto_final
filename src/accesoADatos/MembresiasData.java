@@ -86,7 +86,6 @@ public class MembresiasData {
             // Si hay claves, son asignadas a la membresía
             if (rs.next()) {
                 membresia.setIdMembresia(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Membresía guardada exitosamente!!");
             }
 
             // Se cierran el PreparedStatement y el ResultSet
@@ -375,7 +374,6 @@ public Membresias buscarSocio(int idSocio) {
             }
             if(resultado){
             
-            JOptionPane.showMessageDialog(null, "Membresia renovada con exito!!");
             }
             ps.close();
         } catch (SQLException | NullPointerException ex) {

@@ -323,10 +323,11 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
                 entrenadorExistente.setApellido(apellido);
                 entrenadorExistente.setEspecialidad(especialidad);
                 eData.modificarEntrenador(entrenadorExistente);
-
+                JOptionPane.showMessageDialog(this, "Entrenador modificado con éxito");
             } else {
                 eNuevo = new Entrenador(dni, nombre, apellido, especialidad);
                 eData.guardarEntrenador(eNuevo);
+                JOptionPane.showMessageDialog(this, "Entrenador guardado con éxito");
             }
             listaEntrenadores = (ArrayList<Entrenador>) eData.listarEntrenadores();
             limpiarCampos();
