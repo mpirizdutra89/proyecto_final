@@ -563,15 +563,16 @@ public class vistaClase extends javax.swing.JInternalFrame {
         if (jRtodos.isSelected()) {
             libs.FuncionesComunes.textPrompt(jTbuscar, "Todas las clases activas");
             jTbuscar.setEnabled(false);
-            jBbuscar.setEnabled(false);
             return 1;
         } else if (jRnombre.isSelected()) {
             libs.FuncionesComunes.textPrompt(jTbuscar, "Nombre de la clase ej. Zumba");
             return 2;
         } else if (jRHorario.isSelected()) {
-            
+            libs.FuncionesComunes.textPrompt(jTbuscar, "Ingrese una hora entre 7 y 22 ej. 14");
             return 3;
         } else if (jRentrenador.isSelected()) {
+            libs.FuncionesComunes.textPrompt(jTbuscar, "Seleccione un entrenador");
+            jTbuscar.setEnabled(false);
             return 4;
         }
         return 0;
