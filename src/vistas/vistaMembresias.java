@@ -162,8 +162,6 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         jBBaja = new javax.swing.JButton();
         jBAlta = new javax.swing.JButton();
         jBMembresiasCanceladas = new javax.swing.JButton();
-        jCbSociosLista1 = new javax.swing.JComboBox<>();
-        lblIdSocio1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblIdSocio2 = new javax.swing.JLabel();
         jCbSociosHistorial = new javax.swing.JComboBox<>();
@@ -347,8 +345,6 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                         .addGap(30, 30, 30))))
         );
 
-        lblIdSocio1.setText("Seleccione un Socio:");
-
         lblIdSocio2.setText("Seleccione un Socio:");
 
         jCbSociosHistorial.addActionListener(new java.awt.event.ActionListener() {
@@ -389,19 +385,11 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlHistorialLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPnlHistorialLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPnlHistorialLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPnlHistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPnlHistorialLayout.createSequentialGroup()
-                    .addGap(70, 70, 70)
-                    .addGroup(jPnlHistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblIdSocio1)
-                        .addComponent(jCbSociosLista1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGap(71, 71, 71)))
         );
         jPnlHistorialLayout.setVerticalGroup(
             jPnlHistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -413,13 +401,6 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jPnlHistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPnlHistorialLayout.createSequentialGroup()
-                    .addGap(201, 201, 201)
-                    .addComponent(lblIdSocio1)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jCbSociosLista1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(201, Short.MAX_VALUE)))
         );
 
         jtbpContenedor.addTab("Historial", jPnlHistorial);
@@ -609,7 +590,6 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBMembresiasCanceladas;
     private javax.swing.JComboBox<Socio> jCbSociosHistorial;
     private javax.swing.JComboBox<Socio> jCbSociosLista;
-    private javax.swing.JComboBox<Socio> jCbSociosLista1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -624,7 +604,6 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblFechaFin;
     private javax.swing.JLabel lblFechaInicio;
     private javax.swing.JLabel lblIdSocio;
-    private javax.swing.JLabel lblIdSocio1;
     private javax.swing.JLabel lblIdSocio2;
     private javax.swing.JTextField txtCantidadPases;
     private javax.swing.JTextField txtCosto;
