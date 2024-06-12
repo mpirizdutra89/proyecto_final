@@ -16,6 +16,7 @@ import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
+import libs.FuncionesComunes;
 import static libs.FuncionesComunes.validarNumericos;
 
 /**
@@ -62,9 +63,57 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                 if (text.matches("[0-9]*")) {
                     super.replace(fb, offset, length, text, attrs);
                 }
-            }
+                }
+            
         });
-    
+        // Aplicar filtro de números al campo txtCantidadPases
+        ((AbstractDocument) txtCantidadPases.getDocument()).setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(DocumentFilter.FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+                if (string.matches("[0-9]*")) {
+                    super.insertString(fb, offset, string, attr);
+                }
+            }
+
+            @Override
+            public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                if (text.matches("[0-9]*")) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+                }
+    });
+        // Aplicar filtro de números al campo txtCosto
+        ((AbstractDocument) txtCosto.getDocument()).setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(DocumentFilter.FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+                if (string.matches("[0-9]*")) {
+                    super.insertString(fb, offset, string, attr);
+                }
+            }
+
+            @Override
+            public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                if (text.matches("[0-9]*")) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+                }
+    });
+        // Aplicar filtro de números al campo txtIdSocio2
+        ((AbstractDocument) txtIdSocio2.getDocument()).setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(DocumentFilter.FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+                if (string.matches("[0-9]*")) {
+                    super.insertString(fb, offset, string, attr);
+                }
+            }
+
+            @Override
+            public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                if (text.matches("[0-9]*")) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+                }
+    });
 
     }
 
@@ -104,6 +153,8 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         lblValMembre = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
+
+        setIconifiable(true);
 
         txtIdSocio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,7 +279,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
-        jtbpContenedor.addTab("tab1", jPanel1);
+        jtbpContenedor.addTab("Inscripcion", jPanel1);
 
         jTMembresias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -338,7 +389,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jtbpContenedor.addTab("tab2", jPanel2);
+        jtbpContenedor.addTab("Validacion", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -445,11 +496,9 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBMembresiasCanceladasActionPerformed
 
     private void txtCantidadPasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadPasesActionPerformed
-        String CantidadPases = txtCantidadPases.getText();
-    if (!validarNumericos(CantidadPases)) {
-        JOptionPane.showMessageDialog(this, "Por favor, ingrese solo números en la cantidad de pases.");
-        txtCantidadPases.setText("");
-    }
+        
+    
+    
     }//GEN-LAST:event_txtCantidadPasesActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
