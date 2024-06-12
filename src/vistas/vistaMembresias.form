@@ -150,11 +150,7 @@
                           <Component id="btnLimpiar" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                           <Component id="btnGuardar" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                       </Group>
-<<<<<<< Updated upstream
-                      <EmptySpace pref="35" max="32767" attributes="0"/>
-=======
                       <EmptySpace pref="48" max="32767" attributes="0"/>
->>>>>>> Stashed changes
                   </Group>
               </Group>
             </DimensionLayout>
