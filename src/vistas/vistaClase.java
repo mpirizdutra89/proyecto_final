@@ -29,7 +29,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
     private DefaultTableModel modeloTabla;
 
     private int btnRadio = 0;
-    private String buscar ="";
+    private String buscar = "";
 
     private static final int MIN_HORA = 7;
     private static final int MAX_HORA = 22;
@@ -404,7 +404,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
                     buscarEntrenador();
                     break;
                 default:
-                    libs.FuncionesComunes.vistaDialogo("Selecione un filtro", 0,this);
+                    libs.FuncionesComunes.vistaDialogo("Selecione un filtro", 0, this);
             }
         }
     }//GEN-LAST:event_jBbuscarActionPerformed
@@ -486,40 +486,45 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private void guardarClase() {
-        if (!validarCampos()) {
-            return;
-        }
 
-        if (claseB == null) {
-            Clase cls = new Clase();
-            
-            jTFidClase.setText(String.valueOf(cls.getIdClase()));
-            
-            cls.setNombre(jTFnombre.getText().trim());
+        try {
+            if (!validarCampos()) {
+                return;
+            }
+            if (claseB == null) {
 
-            int idEntrenador = parseIdFromCombo(jCBentrenadorA.getSelectedItem().toString());
-            cls.setIdEntrenador(idEntrenador);
+                Clase cls = new Clase();
 
-            Entrenador entrenador = accesoADatos.EntrenadorData.buscarEntrenadorPorId(idEntrenador);
-            cls.setEntrenador(entrenador);
+                jTFidClase.setText(String.valueOf(cls.getIdClase()));
 
-            cls.setCapacidad(Integer.parseInt(jTFcapacidad.getText().trim()));
+                cls.setNombre(jTFnombre.getText().trim());
 
-            int hora = Integer.parseInt(jTFhorario.getText().trim());
+                int idEntrenador = parseIdFromCombo(jCBentrenadorA.getSelectedItem().toString());
+                cls.setIdEntrenador(idEntrenador);
 
-            if (libs.FuncionesComunes.validarNumericos(jTFhorario.getText().trim()) && setHorario(hora)) {
+                Entrenador entrenador = accesoADatos.EntrenadorData.buscarEntrenadorPorId(idEntrenador);
+                cls.setEntrenador(entrenador);
 
-                cls.setHorario(LocalTime.of(hora, 0));
+                cls.setCapacidad(Integer.parseInt(jTFcapacidad.getText().trim()));
 
-                cls.setEstado(jCkBestado.isSelected());
+                int hora = Integer.parseInt(jTFhorario.getText().trim());
 
-                if (cData.guardarClase(cls)) {
-                    claseB = cls;
-                    libs.FuncionesComunes.vistaDialogo("Clase guardada correctamente", 1, this);
-                    btnEditarDisable();
+                if (libs.FuncionesComunes.validarNumericos(jTFhorario.getText().trim()) && setHorario(hora)) {
+
+                    cls.setHorario(LocalTime.of(hora, 0));
+
+                    cls.setEstado(jCkBestado.isSelected());
+
+                    if (cData.guardarClase(cls)) {
+                        claseB = cls;
+                        libs.FuncionesComunes.vistaDialogo("Clase guardada correctamente", 1, this);
+                        btnEditarDisable();
+                    }
                 }
 
             }
+        } catch (NullPointerException | NumberFormatException e) {
+             libs.FuncionesComunes.vistaDialogo("Error al cargar los datos " + e.getMessage(), 0, this);
         }
     }
 
@@ -554,15 +559,17 @@ public class vistaClase extends javax.swing.JInternalFrame {
         jTbuscar.setEnabled(true);
         jBbuscar.setEnabled(true);
         libs.FuncionesComunes.eliminarFilas(modeloTabla);
-        libs.FuncionesComunes.textPrompt(jTbuscar,"");
-        if(jRtodos.isSelected()){
+        libs.FuncionesComunes.textPrompt(jTbuscar, "");
+        if (jRtodos.isSelected()) {
             libs.FuncionesComunes.textPrompt(jTbuscar, "Todas las clases activas");
+            jTbuscar.setEnabled(false);
+            jBbuscar.setEnabled(false);
             return 1;
-        }else if(jRnombre.isSelected()){
+        } else if (jRnombre.isSelected()) {
             return 2;
-        }else if (jRHorario.isSelected()){
+        } else if (jRHorario.isSelected()) {
             return 3;
-        }else if (jRentrenador.isSelected()){
+        } else if (jRentrenador.isSelected()) {
             return 4;
         }
         return 0;
@@ -572,32 +579,32 @@ public class vistaClase extends javax.swing.JInternalFrame {
         buscar = jTbuscar.getText().trim();
         System.out.println(buscar);
         if (buscar.isEmpty()) {
-            libs.FuncionesComunes.vistaDialogo("El campo de búsqueda está vació", 0,this);
+            libs.FuncionesComunes.vistaDialogo("El campo de búsqueda está vació", 0, this);
             return false;
         }
         if (btnRadio == 0) {
-            libs.FuncionesComunes.vistaDialogo("Debe seleccionar un filtro", 0,this);
+            libs.FuncionesComunes.vistaDialogo("Debe seleccionar un filtro", 0, this);
             return false;
         }
-        
+
         switch (btnRadio) {
             case 1:
                 return true;
-            case 2: 
-                if(!libs.FuncionesComunes.validarNombre(buscar)){
-                    libs.FuncionesComunes.vistaDialogo("Únicamente letras",0,this);
+            case 2:
+                if (!libs.FuncionesComunes.validarNombre(buscar)) {
+                    libs.FuncionesComunes.vistaDialogo("Únicamente letras", 0, this);
                     return false;
                 }
                 break;
             case 3:
-                if(!libs.FuncionesComunes.validarNumericos(buscar)){
-                    libs.FuncionesComunes.vistaDialogo("Únicamente números",0,this);
+                if (!libs.FuncionesComunes.validarNumericos(buscar)) {
+                    libs.FuncionesComunes.vistaDialogo("Únicamente números", 0, this);
                     return false;
                 }
                 break;
-            
+
             default:
-                libs.FuncionesComunes.vistaDialogo("Filtro desconocido",0,this);
+                libs.FuncionesComunes.vistaDialogo("Filtro desconocido", 0, this);
                 return false;
         }
         return true;
@@ -622,10 +629,13 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private void buscarNombre() {
-        
-        claseB = cData.buscarClasePorNombre(buscar);
-        ltaClases.add(claseB);
-        actualizarTablaConClases(ltaClases);
+        try {
+            claseB = cData.buscarClasePorNombre(buscar);
+            ltaClases.add(claseB);
+            actualizarTablaConClases(ltaClases);
+        } catch (NullPointerException e) {
+            libs.FuncionesComunes.vistaDialogo("No se encuentra la clase " + e.getMessage() , 0, this);
+        }
     }
 
     private void listarTodos() {
