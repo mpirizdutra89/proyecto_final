@@ -566,8 +566,10 @@ public class vistaClase extends javax.swing.JInternalFrame {
             jBbuscar.setEnabled(false);
             return 1;
         } else if (jRnombre.isSelected()) {
+            libs.FuncionesComunes.textPrompt(jTbuscar, "Nombre de la clase ej. Zumba");
             return 2;
         } else if (jRHorario.isSelected()) {
+            
             return 3;
         } else if (jRentrenador.isSelected()) {
             return 4;
@@ -643,7 +645,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private void listarTodos() {
-        //System.out.println("entro");
+        
         ltaClases = cData.listarClasesDisponibles();
         actualizarTablaConClases(ltaClases);
     }
