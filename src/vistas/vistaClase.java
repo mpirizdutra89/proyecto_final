@@ -422,8 +422,8 @@ public class vistaClase extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBguardar;
     private javax.swing.JButton jBnuevo;
     private javax.swing.JButton jBsalir;
-    private javax.swing.JComboBox<String> jCBentrenadorA;
-    private javax.swing.JComboBox<String> jCBentrenadorB;
+    private javax.swing.JComboBox<Entrenador> jCBentrenadorA;
+    private javax.swing.JComboBox<Entrenador> jCBentrenadorB;
     private javax.swing.JCheckBox jCkBestado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLcapacidad;
@@ -559,8 +559,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
     private int fitrado() {
         jTbuscar.setEnabled(true);
         jBbuscar.setEnabled(true);
-       
-        
+
         if (jRtodos.isSelected()) {
             libs.FuncionesComunes.eliminarFilas(modeloTabla);
             libs.FuncionesComunes.textPrompt(jTbuscar, "Todas las clases activas");
@@ -626,23 +625,23 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
     private void buscarEntrenador() {
         int idEntrenador = parseIdFromCombo(jCBentrenadorB.getSelectedItem().toString());
-        ltaClases.clear();
-        claseB = cData.buscarEntrenador(idEntrenador);
-        if (claseB != null) {
-            ltaClases.add(claseB);
+        ArrayList<Clase> listaEntrenadores = cData.buscarEntrenador(idEntrenador);
+
+        if (!listaEntrenadores.isEmpty()) {
+
+            actualizarTablaConClases(ltaClases);
 
         }
-        actualizarTablaConClases(ltaClases);
 
     }
 
     private void buscarHorario() {
-        ArrayList<Clase> lista=new ArrayList<Clase>();
+        ArrayList<Clase> lista = new ArrayList<Clase>();
         try {
             int hora = Integer.parseInt(buscar);
 
             if (setHorario(hora)) {
-               lista = cData.buscarHorario(LocalTime.of(hora, 0));
+                lista = cData.buscarHorario(LocalTime.of(hora, 0));
             }
             if (!lista.isEmpty()) {
                 actualizarTablaConClases(lista);
