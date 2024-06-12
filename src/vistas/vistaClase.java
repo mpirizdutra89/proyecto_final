@@ -23,8 +23,8 @@ public class vistaClase extends javax.swing.JInternalFrame {
     private ClaseData cData;
     private EntrenadorData eData;
     private Clase claseB;
-    private List<Clase> ltaClases = new ArrayList<Clase>();
-    private List<Entrenador> ltaEntrenadores = new ArrayList<>();
+    private ArrayList<Clase> ltaClases = new ArrayList<Clase>();
+    private ArrayList<Entrenador> ltaEntrenadores = new ArrayList<>();
     private DefaultTableModel modeloTabla;
 
     private int btnRadio = 0;
@@ -37,7 +37,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
         claseB = null;
         cData = new ClaseData();
         eData = new EntrenadorData();
-        ltaEntrenadores = eData.listarEntrenadores();
+        ltaEntrenadores = (ArrayList<Entrenador>) eData.listarEntrenadores();
 
         cargarEntrenador();
         armarEncabezado();
@@ -592,8 +592,9 @@ public class vistaClase extends javax.swing.JInternalFrame {
     private void buscarEntrenador() {
         String comboDato = jCBentrenadorB.getSelectedItem().toString();
         int idEnt;
-        idEnt = Integer.parseInt(comboDato.substring(0,2).trim());
-        ltaClases = (List<Clase>) cData.buscarEntrenador(idEnt);
+        idEnt = Integer.parseInt(comboDato.substring(0,1).trim());
+        claseB = cData.buscarEntrenador(idEnt);
+        ltaClases.add(claseB);
         libs.FuncionesComunes.eliminarFilas(jTData);
         if (!ltaClases.isEmpty()) {
             for (Clase item : ltaClases) {
@@ -612,8 +613,8 @@ public class vistaClase extends javax.swing.JInternalFrame {
     private void buscarHorario() {
 
         int hora = Integer.parseInt(jTbuscar.getText().trim());
-
-        ltaClases = (List<Clase>) cData.buscarHorario(LocalTime.of(hora, 0));
+        claseB = cData.buscarHorario(LocalTime.of(hora, 0));
+        ltaClases.add(claseB);
         libs.FuncionesComunes.eliminarFilas(jTData);
         if (!ltaClases.isEmpty()) {
             for (Clase item : ltaClases) {
@@ -631,7 +632,8 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
     private void buscarNombre() {
 
-        ltaClases = (List<Clase>) cData.buscarClasePorNombre(buscar);
+        claseB = cData.buscarClasePorNombre(buscar);
+        ltaClases.add(claseB);
         libs.FuncionesComunes.eliminarFilas(jTData);
         if (!ltaClases.isEmpty()) {
             for (Clase item : ltaClases) {
