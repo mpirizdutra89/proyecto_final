@@ -16,6 +16,7 @@ import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
+import static libs.FuncionesComunes.validarNumericos;
 
 /**
  *
@@ -45,6 +46,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         
         
         armarTabla();
+        Limpiar();
         
         // Aplicar filtro de números al campo txtIdSocio
         ((AbstractDocument) txtIdSocio.getDocument()).setDocumentFilter(new DocumentFilter() {
@@ -99,12 +101,19 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         jBAlta = new javax.swing.JButton();
         jBBaja = new javax.swing.JButton();
         jBMembresiasCanceladas = new javax.swing.JButton();
+        lblValMembre = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
 
         txtIdSocio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdSocioActionPerformed(evt);
+            }
+        });
+
+        txtCantidadPases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadPasesActionPerformed(evt);
             }
         });
 
@@ -118,6 +127,11 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         });
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         lblIdSocio.setText("ID Socio:");
 
@@ -131,16 +145,13 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
 
         lblEstado.setText("Estado:");
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Light", 3, 18)); // NOI18N
         jLabel1.setText("Inscripcion de Membresias");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addComponent(jLabel1)
-                .addContainerGap(284, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -153,8 +164,10 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                             .addComponent(lblFechaFin)
                             .addComponent(lblEstado)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(296, Short.MAX_VALUE)
-                        .addComponent(btnGuardar)
+                        .addContainerGap(197, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(btnGuardar))
                         .addGap(47, 47, 47)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -174,13 +187,14 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                                 .addComponent(txtCantidadPases, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
                                 .addComponent(txtIdSocio)
                                 .addComponent(txtCosto)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(28, 28, 28)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -211,7 +225,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         jtbpContenedor.addTab("tab1", jPanel1);
@@ -236,7 +250,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             }
         });
 
-        lblHistorial.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lblHistorial.setFont(new java.awt.Font("Garamond", 3, 18)); // NOI18N
         lblHistorial.setText("Membresias");
         lblHistorial.setToolTipText("");
 
@@ -264,17 +278,15 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             }
         });
 
+        lblValMembre.setFont(new java.awt.Font("Yu Gothic Medium", 2, 18)); // NOI18N
+        lblValMembre.setText("Dar validacion a las membresias ");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(txtIdSocio2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(248, 248, 248)
                         .addComponent(lblHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -291,17 +303,28 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                             .addComponent(jBMembresiasCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                             .addGap(17, 17, 17)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(16, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtIdSocio2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(33, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblValMembre)
+                .addGap(161, 161, 161))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtIdSocio2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(lblValMembre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtIdSocio2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(lblHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -421,6 +444,19 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         cargarMembresiasCanceladas();
     }//GEN-LAST:event_jBMembresiasCanceladasActionPerformed
 
+    private void txtCantidadPasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadPasesActionPerformed
+        String CantidadPases = txtCantidadPases.getText();
+    if (!validarNumericos(CantidadPases)) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese solo números en la cantidad de pases.");
+        txtCantidadPases.setText("");
+    }
+    }//GEN-LAST:event_txtCantidadPasesActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+         
+         Limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
     private void armarTabla() {
         tablaM.addColumn("ID Membresia");
         tablaM.addColumn("Socio nombre");
@@ -496,9 +532,19 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblFechaInicio;
     private javax.swing.JLabel lblHistorial;
     private javax.swing.JLabel lblIdSocio;
+    private javax.swing.JLabel lblValMembre;
     private javax.swing.JTextField txtCantidadPases;
     private javax.swing.JTextField txtCosto;
     private javax.swing.JTextField txtIdSocio;
     private javax.swing.JTextField txtIdSocio2;
     // End of variables declaration//GEN-END:variables
+
+    private void Limpiar() {
+    txtIdSocio.setText("");
+    txtCantidadPases.setText("");
+    txtCosto.setText("");
+    jdcFechaInicio.setDate(null);
+    jdcFechaFin.setDate(null);
+    chkEstado.setSelected(false);
+    }        
 }
