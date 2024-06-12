@@ -209,6 +209,36 @@ public class MembresiasData {
         }
         return lista;
     }  
+      
+       public ArrayList<Socio> listarSocioConMembresia() {
+       
+        String sql = "SELECT s.idSocio, s.dni, s.nombre, s.apellido, s.edad, s.correo, s.telefono, s.estado FROM socios s LEFT JOIN membresias m ON s.idSocio = m.idSocio WHERE m.estado=1;";
+        ArrayList<Socio> lista = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+           
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                 
+                int idSocio=rs.getInt("idSocio");
+                String dni=rs.getString("dni");
+                String nombre=rs.getString("nombre");
+                String apellido=rs.getString("apellido");
+                int edad=rs.getInt("edad");
+                String correo=rs.getString("correo");
+                String telefono=rs.getString("telefono");
+                
+                 Socio socio = new Socio(idSocio,dni,nombre,apellido,edad,correo,telefono);
+                lista.add(socio);
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException  | NullPointerException ex) {
+            Conexion.msjError.add("Socios: listarSocioSinMembresia ->" + ex.getMessage());
+        }
+        return lista;
+    }  
 
 //
 //// en este ejemplo (ArrayList<Membreias> historialMembreias()) no entiendo bien si lo tengo que hacer general
