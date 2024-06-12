@@ -115,7 +115,6 @@ public class Clase {
     /*METODO SOBREESCRITO toString*/
     @Override
     public String toString() {
-        return "idClases: " + idClase + ", idEntrenador: " + idEntrenador+ ", nombre: " + nombre
-                + ", horario: " + horario + ", capacidad: " + capacidad + ", estado: " + estado;
+        return nombre;
     }
 }

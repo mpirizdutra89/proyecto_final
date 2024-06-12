@@ -68,7 +68,7 @@ public class Asistencia {
     }
    
      public enum  CabeceraAsistencia{
-       Clase,Profesor,Horario,Cupo
+       Clase,Entrenador,Horario,Cupo
      }
      
       public enum  CabeceraAsistencia2{
