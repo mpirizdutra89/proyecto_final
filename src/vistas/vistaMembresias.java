@@ -31,9 +31,12 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         socio = new Socio();
         listaM = new ArrayList<>();
         tablaM = new DefaultTableModel();
+        jTMembresias.setDefaultEditor(Object.class, null);
         Calendar cal = Calendar.getInstance();
         Date fechaActual = cal.getTime();
         jdcFechaInicio.setDate(fechaActual);
+        
+        armarTabla();
     }
 
     
@@ -41,6 +44,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToggleButton1 = new javax.swing.JToggleButton();
         jtbpContenedor = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         txtIdSocio = new javax.swing.JTextField();
@@ -60,10 +64,16 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         jdcFechaFin = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTMembresias = new javax.swing.JTable();
         txtIdSocio2 = new javax.swing.JTextField();
         btnBuscar2 = new javax.swing.JButton();
         lblHistorial = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jBAlta = new javax.swing.JButton();
+        jBBaja = new javax.swing.JButton();
+        jBMembresiasCanceladas = new javax.swing.JButton();
+
+        jToggleButton1.setText("jToggleButton1");
 
         txtIdSocio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,7 +127,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                             .addComponent(lblEstado))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(117, Short.MAX_VALUE)
+                        .addContainerGap(276, Short.MAX_VALUE)
                         .addComponent(btnGuardar)
                         .addGap(47, 47, 47)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,12 +184,16 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< Updated upstream
                 .addContainerGap(35, Short.MAX_VALUE))
+=======
+                .addContainerGap(48, Short.MAX_VALUE))
+>>>>>>> Stashed changes
         );
 
         jtbpContenedor.addTab("tab1", jPanel1);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTMembresias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -190,48 +204,92 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTMembresias);
 
-        txtIdSocio2.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar2.setText("Buscar");
+        btnBuscar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdSocio2ActionPerformed(evt);
+                btnBuscar2ActionPerformed(evt);
             }
         });
 
-        btnBuscar2.setText("Buscar");
+        lblHistorial.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lblHistorial.setText("Membresias");
+        lblHistorial.setToolTipText("");
 
-        lblHistorial.setText("Historial");
+        jLabel2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel2.setText("ID del socio:");
+
+        jBAlta.setText("Alta");
+        jBAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAltaActionPerformed(evt);
+            }
+        });
+
+        jBBaja.setText("Baja");
+        jBBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBajaActionPerformed(evt);
+            }
+        });
+
+        jBMembresiasCanceladas.setText("Membresias Canceladas");
+        jBMembresiasCanceladas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBMembresiasCanceladasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtIdSocio2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75)
-                        .addComponent(btnBuscar2))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(172, 172, 172)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(txtIdSocio2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(248, 248, 248)
+                        .addComponent(lblHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(261, 261, 261)
+                        .addComponent(btnBuscar2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jBAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(28, 28, 28)
+                            .addComponent(jBBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBMembresiasCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addGap(17, 17, 17)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(16, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(180, 180, 180))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(42, 42, 42)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIdSocio2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtIdSocio2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(lblHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(btnBuscar2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBAlta)
+                    .addComponent(jBBaja)
+                    .addComponent(jBMembresiasCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jtbpContenedor.addTab("tab2", jPanel2);
@@ -267,23 +325,23 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             return;
         }
 
-        // Crear un objeto Socio y asignarle el ID
+
         Socio socio = new Socio();
         socio.setIdSocio(idSocio);
 
-        // Crear una nueva instancia de Membresias
+
         
         membre.setSocio(socio);
         membre.setCantidadPases(cantidadPases);
         membre.setCosto (costo);
         membre.setFechaInicio(fechaInicio);
         membre.setFechaFin(fechaFin);
-        membre.setEstado(true); // Suponiendo que una nueva membresía está activa por defecto
+        membre.setEstado(true);
 
-        // Guardar la membresía usando MembresiasData
+
         mData.guardarMembresia(membre);
 
-        // Mostrar mensaje de éxito
+
         JOptionPane.showMessageDialog(this, "Membresía registrada exitosamente.");
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Por favor, ingresa valores válidos para ID de Socio y Cantidad de Pases.");
@@ -292,21 +350,119 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void txtIdSocio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdSocio2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdSocio2ActionPerformed
+    private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
+        int idSocio = Integer.parseInt(txtIdSocio2.getText());
+           listaM = mData.historialMembresias(idSocio);
+            cargarMembresiasTabla();
+    }//GEN-LAST:event_btnBuscar2ActionPerformed
 
+    private void jBBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBajaActionPerformed
+    int filaSeleccionada = jTMembresias.getSelectedRow();
+    
+    if (filaSeleccionada == -1) {
+        JOptionPane.showMessageDialog(this,"Seleccione una membresía para dar de baja.");
+    } else {
+        int idMembresia = (int) jTMembresias.getValueAt(filaSeleccionada, 0);
+        
+        boolean exito = mData.removerMembresias(idMembresia);
+        
+        if (exito) {
+            JOptionPane.showMessageDialog(this, "La membresía se ha dado de baja correctamente.");
+            cargarMembresiasTabla();
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al dar de baja la membresía.");
+        }
+    }
+    }//GEN-LAST:event_jBBajaActionPerformed
+
+    private void jBAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAltaActionPerformed
+    int filaSeleccionada = jTMembresias.getSelectedRow();
+
+    if (filaSeleccionada == -1) {
+        JOptionPane.showMessageDialog(this, "Seleccione una membresía para dar de alta.");
+    } else {
+        int idMembresia = (int) jTMembresias.getValueAt(filaSeleccionada, 0); 
+
+        boolean exito = mData.altaMembresia(idMembresia);
+
+        if (exito) {
+            JOptionPane.showMessageDialog(this, "La membresía se ha dado de alta correctamente.");
+            cargarMembresiasTabla();
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al dar de alta la membresía.");
+        }
+    }
+    }//GEN-LAST:event_jBAltaActionPerformed
+
+    private void jBMembresiasCanceladasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMembresiasCanceladasActionPerformed
+        cargarMembresiasCanceladas();
+    }//GEN-LAST:event_jBMembresiasCanceladasActionPerformed
+
+    private void armarTabla() {
+        tablaM.addColumn("ID Membresia");
+        tablaM.addColumn("Socio nombre");
+        tablaM.addColumn("Cant. Pases");
+        tablaM.addColumn("Costo");
+        tablaM.addColumn("Fecha Inicio");
+        tablaM.addColumn("Fecha Fin");
+        jTMembresias.setModel(tablaM);
+    }
+
+    private void borrarFilas() {
+        DefaultTableModel modeloTabla = (DefaultTableModel) jTMembresias.getModel();
+        modeloTabla.setRowCount(0);
+    }
+
+    private void cargarMembresiasTabla() {
+        borrarFilas();
+
+        for (Membresias membresia : listaM) {
+            tablaM.addRow(new Object[]{
+                membresia.getIdMembresia(),
+                membresia.getSocio().getNombre() + " " + membresia.getSocio().getApellido(),
+                membresia.getCantidadPases(),
+                membresia.getCosto(),
+                membresia.getFechaInicio(),
+                membresia.getFechaFin()
+            });
+        }
+    }
+    
+    private void cargarMembresiasCanceladas() {
+    DefaultTableModel modeloTabla = (DefaultTableModel) jTMembresias.getModel();
+    modeloTabla.setRowCount(0);
+    
+    ArrayList<Membresias> membresiasCanceladas = mData.obtenerMembresiasCanceladas();
+    
+    for (Membresias membresia : membresiasCanceladas) {
+        // Agregar cada membresía cancelada a la tabla
+        modeloTabla.addRow(new Object[]{
+            membresia.getIdMembresia(),
+            membresia.getSocio().getNombre() + " " + membresia.getSocio().getApellido(),
+            membresia.getCantidadPases(),
+            membresia.getCosto(),
+            membresia.getFechaInicio(),
+            membresia.getFechaFin()
+        });
+    }
+}
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar2;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JCheckBox chkEstado;
+    private javax.swing.JButton jBAlta;
+    private javax.swing.JButton jBBaja;
+    private javax.swing.JButton jBMembresiasCanceladas;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTMembresias;
+    private javax.swing.JToggleButton jToggleButton1;
     private com.toedter.calendar.JDateChooser jdcFechaFin;
     private com.toedter.calendar.JDateChooser jdcFechaInicio;
     private javax.swing.JTabbedPane jtbpContenedor;

@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
  * @author Ariel Zurita
  */
 public class MembresiasData {
-
 //    private static Connection conec = null;
 //
 //    public MembresiasData() {
@@ -100,53 +99,88 @@ public class MembresiasData {
 
     public ArrayList<Membresias> historialMembresias(int idSocio) {
         ArrayList<Membresias> membresiasList = new ArrayList<>();
-        String query = "SELECT * FROM membresias WHERE idSocio = ?";
+           String query = "SELECT m.*, s.nombre AS nombreSocio, s.apellido AS apellidoSocio " +
+                   "FROM membresias m " +
+                   "INNER JOIN socios s ON m.idSocio = s.idSocio " +
+                   "WHERE m.idSocio = ? AND m.estado = 1";
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
 
         try {
 
-            ps = conec.prepareStatement(query);
+            PreparedStatement ps = conec.prepareStatement(query);
             ps.setInt(1, idSocio);
+            ResultSet rs = ps.executeQuery();
+           
 
-            // Ejecuta la consulta y obtiene el ResultSet
-            rs = ps.executeQuery();
-
-            // Itera sobre el ResultSet y crea objetos Membresias
             while (rs.next()) {
                 int idMembresia = rs.getInt("idMembresia");
-                int socioId = rs.getInt("idSocio");
-                Socio socio = new Socio();
-                socio.setIdSocio(socioId);
-
+                String nombre = rs.getString("nombreSocio");
+                String apellido = rs.getString("apellidoSocio");
                 int cantidadPases = rs.getInt("cantidadPases");
                 double costo = rs.getDouble("costo");
                 Date fechaInicio = rs.getDate("fecha_inicio");
                 Date fechaFin = rs.getDate("fecha_fin");
                 boolean estado = rs.getBoolean("estado");
+                
+                Socio socio = new Socio();
+                socio.setNombre(nombre);
+                socio.setApellido(apellido);
 
                 Membresias membresia = new Membresias(idMembresia, socio, cantidadPases, costo, fechaInicio, fechaFin, estado);
                 membresiasList.add(membresia);
+                
             }
-        } catch (SQLException ex) {
+            ps.close();
+            rs.close();
+        } catch (SQLException | NullPointerException ex) {
             Conexion.msjError.add("Error al obtener el historial de membresías: " + ex.getMessage());
-        } finally {
-            // Cierra ResultSet y PreparedStatement
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (ps != null) {
-                    ps.close();
-                }
-            } catch (SQLException ex) {
-                Conexion.msjError.add("Error al cerrar recursos: " + ex.getMessage());
-            }
         }
-
         return membresiasList;
+        
     }
+    
+        public ArrayList<Membresias> obtenerMembresiasCanceladas() {
+        ArrayList<Membresias> membresiasCanceladas = new ArrayList<>();
+           String query = "SELECT m.*, s.nombre AS nombreSocio, s.apellido AS apellidoSocio " +
+                   "FROM membresias m " +
+                   "INNER JOIN socios s ON m.idSocio = s.idSocio " +
+                    "AND m.estado = 0";
+
+
+        try {
+
+            PreparedStatement ps = conec.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+           
+
+            while (rs.next()) {
+                int idMembresia = rs.getInt("idMembresia");
+                String nombre = rs.getString("nombreSocio");
+                String apellido = rs.getString("apellidoSocio");
+                int cantidadPases = rs.getInt("cantidadPases");
+                double costo = rs.getDouble("costo");
+                Date fechaInicio = rs.getDate("fecha_inicio");
+                Date fechaFin = rs.getDate("fecha_fin");
+                boolean estado = rs.getBoolean("estado");
+                
+                Socio socio = new Socio();
+                socio.setNombre(nombre);
+                socio.setApellido(apellido);
+
+                Membresias membresia = new Membresias(idMembresia, socio, cantidadPases, costo, fechaInicio, fechaFin, estado);
+                membresiasCanceladas.add(membresia);
+                
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException | NullPointerException ex) {
+            Conexion.msjError.add("Error al obtener el historial de membresías canceladas: " + ex.getMessage());
+        }
+        return membresiasCanceladas;
+        
+    }
+    
+
 
 //
 //// en este ejemplo (ArrayList<Membreias> historialMembreias()) no entiendo bien si lo tengo que hacer general
@@ -311,10 +345,6 @@ public Membresias buscarSocio(int idSocio) {
             if (filasAfectadas > 0) {
                 resultado = true;
             }
-            if(resultado){
-            
-            JOptionPane.showMessageDialog(null, "Membresia cancelada!!");
-            }
             ps.close();
         } catch (SQLException | NullPointerException ex) {
             Conexion.msjError.add("MembresiasData: removerMembresias() -> " + ex.getMessage());
@@ -397,20 +427,17 @@ public Membresias buscarSocio(int idSocio) {
     }
     
     
-        public boolean darAltaMembresia(int idMembresia) {
-        String sql = "UPDATE membresias SET estado = ? WHERE idMembresia = ?";
+        public boolean altaMembresia(int idMembresia) {
+        String sql = "UPDATE membresias SET estado = 1 WHERE idMembresia = ?";
         boolean resultado = false;
 
         try {
             PreparedStatement ps = conec.prepareStatement(sql);
-            ps.setBoolean(1, true);
-            ps.setInt(2, idMembresia);
-            int filasAfectadas = ps.executeUpdate();
+            ps.setInt(1, idMembresia);
+            int filasAfectadas =ps.executeUpdate();
             if (filasAfectadas > 0) {
-                resultado = true;
-                JOptionPane.showMessageDialog(null, "Alta de membresia exitosa!!");
-            }
-            
+            resultado = true;
+        }
             ps.close();
         } catch (SQLException | NullPointerException ex) {
             Conexion.msjError.add("MembresiasData: darAltaMembresia() -> " + ex.getMessage());
