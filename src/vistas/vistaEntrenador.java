@@ -387,39 +387,90 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTEntrenadoresMouseClicked
 
     private void jBBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBajaActionPerformed
-        int filaSeleccionada = jTEntrenadores.getSelectedRow();
-        if (filaSeleccionada != -1) {
-            String dni = jTEntrenadores.getValueAt(filaSeleccionada, 0).toString();
-            try {
-                boolean bajaExitosa = eData.bajaEntrenador(dni);
-                if (bajaExitosa) {
-                    JOptionPane.showMessageDialog(this, "Baja de entrenador exitosa");
-                } else {
-                    JOptionPane.showMessageDialog(this, "El entrenador ya está dado de baja.");
+//        int filaSeleccionada = jTEntrenadores.getSelectedRow();
+//        if (filaSeleccionada != -1) {
+//            String dni = jTEntrenadores.getValueAt(filaSeleccionada, 0).toString();
+//            try {
+//                boolean bajaExitosa = eData.bajaEntrenador(dni);
+//                if (bajaExitosa) {
+//                    JOptionPane.showMessageDialog(this, "Baja de entrenador exitosa");
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "El entrenador ya está dado de baja.");
+//                }
+//            } catch (Exception e) {
+//                JOptionPane.showMessageDialog(this, "Hubo un problema al dar de alta al entrenador.");
+//            }
+//            cargarEntrenadores();
+//        }
+        int[] filasSeleccionadas = jTEntrenadores.getSelectedRows();
+        if (filasSeleccionadas.length > 0) {
+            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de dar de baja a los entrenadores seleccionados?", "Confirmar Baja", JOptionPane.YES_NO_OPTION);
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                for (int fila : filasSeleccionadas) {
+                    String dni = jTEntrenadores.getValueAt(fila, 0).toString();
+                    try {
+                        boolean estaDadoDeBaja = eData.estaDadoDeBaja(dni);
+                        if (estaDadoDeBaja) {
+                            JOptionPane.showMessageDialog(this, "El entrenador con DNI: " + dni + " ya está dado de baja.");
+                        } else {
+                            boolean bajaExitosa = eData.bajaEntrenador(dni);
+                            if (bajaExitosa) {
+                                JOptionPane.showMessageDialog(this, "Baja de entrenador exitosa para el DNI: " + dni);
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Hubo un problema al dar de baja al entrenador con DNI: " + dni);
+                            }
+                        }
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "Hubo un problema al dar de baja al entrenador con DNI: " + dni);
+                    }
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Hubo un problema al dar de alta al entrenador.");
+                cargarEntrenadores();
             }
-            cargarEntrenadores();
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona al menos un entrenador para dar de baja.");
         }
     }//GEN-LAST:event_jBBajaActionPerformed
 
     private void jBAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAltaActionPerformed
-        int filaSeleccionada = jTEntrenadores.getSelectedRow();
-        if (filaSeleccionada != -1) {
-            String dni = jTEntrenadores.getValueAt(filaSeleccionada, 0).toString();
-
-            try {
-                boolean altaExitosa = eData.altaEntrenador(dni);
-                if (altaExitosa) {
-                    JOptionPane.showMessageDialog(this, "Alta de entrenador exitosa");
-                } else {
-                    JOptionPane.showMessageDialog(this, "El entrenador ya está dado de baja.");
+//        int filaSeleccionada = jTEntrenadores.getSelectedRow();
+//        if (filaSeleccionada != -1) {
+//            String dni = jTEntrenadores.getValueAt(filaSeleccionada, 0).toString();
+//
+//            try {
+//                boolean altaExitosa = eData.altaEntrenador(dni);
+//                if (altaExitosa) {
+//                    JOptionPane.showMessageDialog(this, "Alta de entrenador exitosa");
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "El entrenador ya está dado de baja.");
+//                }
+//            } catch (Exception e) {
+//                JOptionPane.showMessageDialog(this, "Hubo un problema al dar de alta al entrenador.");
+//            }
+//            cargarEntrenadores();
+//        }
+        int[] filasSeleccionadas = jTEntrenadores.getSelectedRows();
+        if (filasSeleccionadas.length > 0) {
+            for (int fila : filasSeleccionadas) {
+                String dni = jTEntrenadores.getValueAt(fila, 0).toString();
+                try {
+                    boolean estaDadoDeAlta = eData.estaDadoDeAlta(dni);
+                    if (estaDadoDeAlta) {
+                        JOptionPane.showMessageDialog(this, "El entrenador ya está dado de alta");
+                    } else {
+                        boolean altaExitosa = eData.altaEntrenador(dni);
+                        if (altaExitosa) {
+                            JOptionPane.showMessageDialog(this, "Alta de entrenador exitosa");
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Hubo un problema al dar de alta al entrenador");
+                        }
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Hubo un problema al dar de alta al entrenador");
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Hubo un problema al dar de alta al entrenador.");
             }
             cargarEntrenadores();
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona al menos un entrenador para dar de alta");
         }
     }//GEN-LAST:event_jBAltaActionPerformed
 
