@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 import javax.swing.JInternalFrame;
 import javax.swing.SwingConstants;
+import javax.swing.SwingWorker;
 /**
  *
  * @author Nicolas
@@ -184,7 +185,7 @@ public class FuncionesComunes {
     private static final Pattern PATRON = Pattern.compile(NOMBRE_REGEX);
     public static boolean validarNombre(String nombre){
         if(validarVacio(nombre)){
-            JOptionPane.showMessageDialog(null,"El campo no puede quedar vacío");
+            //JOptionPane.showMessageDialog(null,"El campo no puede quedar vacío"); usar en la vista no aca
             return false;
         }
         Matcher matcher = PATRON.matcher(nombre);
@@ -195,15 +196,29 @@ public class FuncionesComunes {
      public static void vistaDialogo(String msj, String titulo, int tipo) {
         JOptionPane.showMessageDialog(null, msj, titulo, tipo);
     }
-      public static void vistaDialogo(String msj, String titulo, int tipo,JInternalFrame jif) {
-        JOptionPane.showMessageDialog(jif, msj, titulo, tipo);
+      public static void vistaDialogo(String msj, String titulo, int tipo,JInternalFrame view) {
+//        JOptionPane.showMessageDialog(jif, msj, titulo, tipo);
+            new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                JOptionPane.showMessageDialog(view, msj, titulo, tipo);
+                return null;
+            }
+        }.execute();
     }
 
     public static void vistaDialogo(String msj, int tipo) {
         JOptionPane.showMessageDialog(null, msj, "", tipo);
     }
-     public static void vistaDialogo(String msj, int tipo,JInternalFrame jif) {
-        JOptionPane.showMessageDialog(jif, msj, "", tipo);
+     public static void vistaDialogo(String msj, int tipo,JInternalFrame view) {
+        //JOptionPane.showMessageDialog(jif, msj, "", tipo);
+            new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+               JOptionPane.showMessageDialog(view, msj, "", tipo);
+                return null;
+            }
+        }.execute();
     }
 //devuelve true si acepta
     public static boolean vistaDialogoSiNo() {

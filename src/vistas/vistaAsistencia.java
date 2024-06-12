@@ -5,6 +5,7 @@ import accesoADatos.SocioData;
 import entidades.Asistencia;
 import entidades.Clase;
 import entidades.Socio;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -53,7 +54,8 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
            
            
         }else{
-             libs.FuncionesComunes.vistaDialogo("No se puede gestionar la asistencia sin las clases. valla a la gestion de clases.", 0,this);
+            
+            libs.FuncionesComunes.vistaDialogo("No hay clases para poder operar.", 0,this);
             
         }
         
@@ -256,9 +258,9 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(jbtnGuardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addComponent(jbtnLimpiar)
                 .addGap(25, 25, 25))
         );
