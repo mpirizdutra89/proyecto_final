@@ -177,7 +177,7 @@ public class ClaseData {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setTime(1, Time.valueOf(horario));
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 clase = new Clase();//Nueva instancia de clase
                 //Se establecen los datos de la clase 
                 clase.setIdClase(rs.getInt("idClase"));

@@ -407,6 +407,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
                     libs.FuncionesComunes.vistaDialogo("Selecione un filtro", 0, this);
             }
         }
+        jTbuscar.setText("");
     }//GEN-LAST:event_jBbuscarActionPerformed
 
     private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
@@ -559,7 +560,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
         jTbuscar.setEnabled(true);
         jBbuscar.setEnabled(true);
        
-        libs.FuncionesComunes.textPrompt(jTbuscar, "");
+        
         if (jRtodos.isSelected()) {
             libs.FuncionesComunes.eliminarFilas(modeloTabla);
             libs.FuncionesComunes.textPrompt(jTbuscar, "Todas las clases activas");
