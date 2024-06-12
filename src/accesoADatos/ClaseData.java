@@ -42,6 +42,7 @@ public class ClaseData {
             //Se ejecuta la actualización en la BD
             ps.executeUpdate();
             //Se obtienen las claves generadas automáticamente
+            
             ResultSet rs = ps.getGeneratedKeys();
             //Si hay claves son asignadas a la clase
             if (rs.next()) {
@@ -289,26 +290,26 @@ public class ClaseData {
         return listaClases;
     }
 
-    public boolean guardarAsistencias(ArrayList<Asistencia> lista) {
+    public boolean guardarAsistencias(Asistencia asistencia) {
         //Consulta SQL para insertar una nueva clase
-        String query = "INSERT INTO clases(idSocio, idClase) "
-                + "VALUES(?,?)";
+        String query = "INSERT INTO asistencias (idSocio, idClase,fecha_asistencia)  VALUES(?,?,CURDATE())";
+                
         boolean flag = false;
         try {
 
-            PreparedStatement ps = con.prepareStatement(query);
+            PreparedStatement ps = con.prepareStatement( query, Statement.RETURN_GENERATED_KEYS);
 
-            ps.setInt(1, clase.getEntrenador().getIdEntrenador());
-            ps.setString(2, clase.getNombre());
-
-            for (Asistencia asistencia : lista) {
-                ps.setInt(1, asistencia.getIntSocio());
-                ps.setInt(2, asistencia.getIdClase());
-                ps.setDate(3, Date.valueOf(asistencia.getFecha_asitencia()));
+            ps.setInt(1, asistencia.getidSocio());
+            ps.setInt(2, asistencia.getIdClase());
+            ps.executeUpdate();
+             
+            ResultSet rs = ps.getGeneratedKeys();
+            //Si hay claves son asignadas a la clase
+            if (rs.next()) {
+                asistencia.setIdAsistencia(rs.getInt(1));
+                
+                flag = true;
             }
-
-            ps.executeBatch();
-
             ps.close();
 
         } catch (SQLException | NullPointerException ex) {
@@ -318,5 +319,37 @@ public class ClaseData {
 
         return flag;
     }
+    
+    
+      public boolean descontarPases(int idSocio) {
+        //Consulta SQL para insertar una nueva clase
+         String query = "UPDATE membresias "
+                      + "SET cantidadPases = cantidadPases - 1 "
+                      + "WHERE idSocio = ? AND cantidadPases > 0 AND estado = 1";
+                
+        boolean flag = false;
+        try {
+
+            PreparedStatement ps = con.prepareStatement( query);
+
+            ps.setInt(1, idSocio);
+           
+            int res=ps.executeUpdate();
+             
+           
+            //Si hay claves son asignadas a la clase
+            if (res>0) {
+                flag = true;
+            }
+            ps.close();
+
+        } catch (SQLException | NullPointerException ex) {
+
+            Conexion.msjError.add("Clase: guardarClase -> " + ex.getMessage());
+        }
+
+        return flag;
+    }
+
 
 }

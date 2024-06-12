@@ -292,5 +292,58 @@ public class SocioData {
 
         return verificar;
     }
+     
     
+     public int verificarSocioAsistenciaRepetida(int idSocio,int idClase) {
+        int verificar = 1;
+        String query = "SELECT count(idSocio) as cant FROM asistencias WHERE fecha_asistencia = CURDATE() and idSocio=? and idClase=? ;";
+        try {
+             PreparedStatement ps = conec.prepareStatement(query);
+             ps.setInt(1, idSocio);
+              ps.setInt(2, idClase);
+             ResultSet rs = ps.executeQuery();
+           
+            if (rs.next()) {
+                verificar=rs.getInt("cant");
+            }
+            
+            ps.close();
+            rs.close();
+            //Captura de excepciones y se añade el error a una lista de errores 
+        } catch (SQLException | NullPointerException ex) {
+            //JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
+            Conexion.msjError.add("Clase: ClasesDisponibles -> " + ex.getMessage());
+        }
+
+        return verificar;
+    }
+     
+      public int verificarClasesHorario(int idSocio,String horario) {
+        int verificar = 1;
+          String query = "SELECT COUNT(*) as cant "
+                  + " FROM asistencias a "
+                  + " JOIN clases c ON a.idClase = c.idClase "
+                  + " WHERE a.idSocio = ? "
+                  + "  AND c.horario = ? "
+                  + "  AND a.fecha_asistencia = CURDATE() ";
+        try {
+             PreparedStatement ps = conec.prepareStatement(query);
+             ps.setInt(1, idSocio);
+             ps.setString(2, horario);
+             ResultSet rs = ps.executeQuery();
+           
+            if (rs.next()) {
+                verificar=rs.getInt("cant");
+            }
+            
+            ps.close();
+            rs.close();
+            //Captura de excepciones y se añade el error a una lista de errores 
+        } catch (SQLException | NullPointerException ex) {
+            //JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clases!!.");
+            Conexion.msjError.add("Clase: ClasesDisponibles -> " + ex.getMessage());
+        }
+
+        return verificar;
+    }
 }

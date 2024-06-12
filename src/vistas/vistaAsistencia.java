@@ -37,6 +37,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
        //conexion
         
         claseData = new ClaseData();
+        socioData=new SocioData();
         listaClase = new ArrayList<>();
         ListaCupos=new ArrayList<>();
         
@@ -422,15 +423,52 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
     private void jbtnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnGuardarMouseClicked
        /*
          Falta el guardar:
-        verificar que alla socios
-        verificar que selecione una clase
-        verificar hasta cuantos se puede guardar (si tengo 3 socios pero el cupo es de dos , va a guardar los 2 primero socios, y lso saca de la lista)
-        Guardar asitencia se genera un array list clase y socio (varios)
-        y depues se decunta un pasde de membresia
+        verificar que alla socios Seleccionado (Esta echo) if
+        verificar que selecione una clase (ok) if
         
+        verificar si ese socio ya esta en la clase
+        
+        Final
+        DEpues de guardar haya  decontar un pasde de membresia de ese socio 
+        Borrar socio seleccionado (limpiar label y el objeto interno)
         Falta el listar
          que lista los socio por clase
         */
+       int idClase=devulveIdclaseSeleccionadoTabla();
+       String hora=devulveHoraSeleccionadoTabla();
+       if(socioBuscado!=null){
+            if(idClase>0){
+                
+                if(socioData.verificarSocioAsistenciaRepetida(socioBuscado.getIdSocio(),idClase)<1){
+                    if(socioData.verificarClasesHorario(idClase,hora)<1){
+                        if(claseData.guardarAsistencias(new Asistencia(socioBuscado.getIdSocio(),idClase))){
+                                 claseData.descontarPases(idClase);
+                                 resetAsistencia();
+                                 CargarClaseCuposDisponibles();
+                                 libs.FuncionesComunes.vistaDialogo("Asistencia para el socio, guardada.", 1,this);
+                                
+                    
+                        }else{
+                                libs.FuncionesComunes.vistaDialogo("Asistencia fallida: ", 1,this);
+                    
+                        }
+                        
+                    }else{
+                        libs.FuncionesComunes.vistaDialogo("EL socio esta inscripto en una clase que tiene el mismo horario: "+hora+"hs", 1,this);
+                    }
+                    
+                }else{
+                     libs.FuncionesComunes.vistaDialogo("EL socio ya esta en esta clase. No se puede repetir", 1,this);
+                }
+               
+            }else{
+                 libs.FuncionesComunes.vistaDialogo("Seleccione una clase disponible en la tabla, haga click en una de las filas", 1,this);
+            }
+       }else{
+           libs.FuncionesComunes.vistaDialogo("No hay un socio para la asistencia.", 0,this);
+       }
+       
+       
     }//GEN-LAST:event_jbtnGuardarMouseClicked
 
     private void jbtnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseClicked
@@ -444,7 +482,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
 
     private void jCbClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbClaseActionPerformed
             claseActual=null;
-            SeleccionarClaseActual();
+           
             CargarClaseCuposDisponibles();
            
     }//GEN-LAST:event_jCbClaseActionPerformed
@@ -568,7 +606,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
          socioBuscado=null;
          
          if(libs.FuncionesComunes.validarNumericos(buscar) && libs.FuncionesComunes.validarVacio(buscar)){
-             socioData=new SocioData();
+             
              socioBuscado=socioData.buscarSocioPorDni(buscar,1);
              if(socioBuscado!=null){
                int[] verificar= socioData.verificarSocioHabilitadoAsistencia(socioBuscado.getIdSocio());
@@ -602,12 +640,11 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                  jTxtDni.requestFocus();
      }
      
-     private void SeleccionarClaseActual(){
-          claseActual = (Clase) jCbClase.getSelectedItem();
-     }
+    
      
     private void CargarClaseCuposDisponibles() {
         ListaCupos=null;
+        SeleccionarClaseActual();
         try {
 
             if (claseActual != null && claseActual.getNombre() != null) {
@@ -618,12 +655,15 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                 if (ListaCupos.size() > 0) {
                   libs.FuncionesComunes.eliminarFilas(modeloTable);
                     for (Clase clase1 : ListaCupos) {
-                       
-                        modeloTable.addRow(new Object[]{
+                       if(clase1.getCapacidad()>0){
+                           modeloTable.addRow(new Object[]{
+                            clase1.getIdClase(),
                             clase1.getNombre(),
                             clase1.getHorario(),
                             clase1.getCapacidad()
                         });
+                       }
+                        
 
                     }
 
@@ -641,6 +681,33 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
             System.out.println(e.toString());
         }
     }
+    
+     private void SeleccionarClaseActual(){
+          claseActual = (Clase) jCbClase.getSelectedItem();
+     }
+    
+    private int devulveIdclaseSeleccionadoTabla(){
+        int row=jTblDatos.getSelectedRow();
+        int idClase=0;
+        if(row!=-1){
+            idClase= Integer.parseInt(jTblDatos.getValueAt(row, 0).toString());
+        }
+        
+        return idClase;
+    }
+    
+    private String devulveHoraSeleccionadoTabla(){
+        int row=jTblDatos.getSelectedRow();
+        String hora="00:00";
+        if(row!=-1){
+            hora= jTblDatos.getValueAt(row, 2).toString();
+        }
+        
+        return hora;
+    }
      
-     
+     public void resetAsistencia(){
+         socioBuscado=null;
+        jLblSocioSeleccionado.setText("#");
+     }
 }

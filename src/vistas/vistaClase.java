@@ -402,7 +402,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
                     buscarEntrenador();
                     break;
                 default:
-                    libs.FuncionesComunes.vistaDialogo("Selecione un filtro", 0);
+                    libs.FuncionesComunes.vistaDialogo("Selecione un filtro", 0,this);
             }
         }
     }//GEN-LAST:event_jBbuscarActionPerformed

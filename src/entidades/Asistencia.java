@@ -8,23 +8,28 @@ import java.time.LocalDate;
  */
 public class Asistencia {
    private int idAsistencia;
-   private int intSocio;
+   private int idSocio;
    private int idClase;
    private LocalDate fecha_asitencia;
    
     public Asistencia() {
     }
 
-    public Asistencia(int idAsistencia, int intSocio, int idClase, LocalDate fecha_asitencia) {
+    public Asistencia(int idSocio, int idClase) {
+        this.idSocio = idSocio;
+        this.idClase = idClase;
+    }
+
+    public Asistencia(int idAsistencia, int idSocio, int idClase, LocalDate fecha_asitencia) {
         this.idAsistencia = idAsistencia;
-        this.intSocio = intSocio;
+        this.idSocio = idSocio;
         this.idClase = idClase;
         this.fecha_asitencia = fecha_asitencia;
     }
     
-     public Asistencia(int intSocio, int idClase, LocalDate fecha_asitencia) {
+     public Asistencia(int idSocio, int idClase, LocalDate fecha_asitencia) {
      
-        this.intSocio = intSocio;
+        this.idSocio = idSocio;
         this.idClase = idClase;
         this.fecha_asitencia = fecha_asitencia;
     }
@@ -37,12 +42,12 @@ public class Asistencia {
         this.idAsistencia = idAsistencia;
     }
 
-    public int getIntSocio() {
-        return intSocio;
+    public int getidSocio() {
+        return idSocio;
     }
 
-    public void setIntSocio(int intSocio) {
-        this.intSocio = intSocio;
+    public void setidSocio(int intSocio) {
+        this.idSocio = intSocio;
     }
 
     public int getIdClase() {
@@ -66,7 +71,7 @@ public class Asistencia {
 
    
      public enum  CabeceraAsistencia{
-       Clase,Horario,Cupo
+       Codigo,Clase,Horario,Cupo
      }
      
       public enum  CabeceraAsistencia2{
