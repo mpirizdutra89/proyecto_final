@@ -389,22 +389,18 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
         if (validarBuscar()) {
-            System.out.println(btnRadio);
+            libs.FuncionesComunes.eliminarFilas(modeloTabla);
             switch (btnRadio) {
                 case 1:
-                    libs.FuncionesComunes.eliminarFilas(modeloTabla);
                     listarTodos();
                     break;
                 case 2:
-                    libs.FuncionesComunes.eliminarFilas(modeloTabla);
                     buscarNombre();
                     break;
                 case 3:
-                    libs.FuncionesComunes.eliminarFilas(modeloTabla);
                     buscarHorario();
                     break;
                 case 4:
-                    libs.FuncionesComunes.eliminarFilas(modeloTabla);
                     buscarEntrenador();
                     break;
                 default:
@@ -562,7 +558,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
     private int fitrado() {
         jTbuscar.setEnabled(true);
         jBbuscar.setEnabled(true);
-        
+       
         libs.FuncionesComunes.textPrompt(jTbuscar, "");
         if (jRtodos.isSelected()) {
             libs.FuncionesComunes.eliminarFilas(modeloTabla);
@@ -587,7 +583,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private boolean validarBuscar() {
-        
+
         if (btnRadio == 0) {
             libs.FuncionesComunes.vistaDialogo("Debe seleccionar un filtro", 0, this);
             return false;
@@ -629,43 +625,53 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
     private void buscarEntrenador() {
         int idEntrenador = parseIdFromCombo(jCBentrenadorB.getSelectedItem().toString());
-
+        ltaClases.clear();
         claseB = cData.buscarEntrenador(idEntrenador);
-        ltaClases.add(claseB);
+        if (claseB != null) {
+            ltaClases.add(claseB);
+
+        }
         actualizarTablaConClases(ltaClases);
-        
+
     }
 
     private void buscarHorario() {
+        ArrayList<Clase> lista=new ArrayList<Clase>();
         try {
             int hora = Integer.parseInt(buscar);
+
             if (setHorario(hora)) {
-                claseB = cData.buscarHorario(LocalTime.of(hora, 0));
-                ltaClases.add(claseB);
-                actualizarTablaConClases(ltaClases);
+               lista = cData.buscarHorario(LocalTime.of(hora, 0));
+            }
+            if (!lista.isEmpty()) {
+                actualizarTablaConClases(lista);
             }
         } catch (NumberFormatException | NullPointerException e) {
             libs.FuncionesComunes.vistaDialogo("No se encuentra el horario " + e.getMessage(), 0, this);
         }
-        
+
     }
 
     private void buscarNombre() {
         try {
-            claseB = cData.buscarClasePorNombre(buscar);
-            ltaClases.add(claseB);
-            actualizarTablaConClases(ltaClases);
+            List<Clase> clasesFiltradas = cData.buscarClasePorNombre(buscar);
+
+            if (!clasesFiltradas.isEmpty()) {
+                actualizarTablaConClases(clasesFiltradas);
+            } else {
+                libs.FuncionesComunes.vistaDialogo("Lista vacia", 0, this);
+            }
         } catch (NullPointerException e) {
             libs.FuncionesComunes.vistaDialogo("No se encuentra la clase " + e.getMessage(), 0, this);
         }
-        
+
     }
 
     private void listarTodos() {
 
         ltaClases = cData.listarClasesDisponibles();
         actualizarTablaConClases(ltaClases);
-        
+
     }
 
     private void bajaLogica() {
@@ -703,7 +709,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
                 });
             });
         }
-        
+
     }
 
 }
