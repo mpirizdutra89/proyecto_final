@@ -171,6 +171,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         setIconifiable(true);
 
         jtbpContenedor.setBackground(new java.awt.Color(16, 41, 64));
+        jtbpContenedor.setForeground(new java.awt.Color(255, 255, 255));
         jtbpContenedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtbpContenedorMouseClicked(evt);
@@ -181,6 +182,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         jPnlInscripciones.setForeground(new java.awt.Color(242, 242, 242));
 
         jLabel1.setFont(new java.awt.Font("Gill Sans MT", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Inscripcion de Membresias");
 
         jPanel1.setBackground(new java.awt.Color(16, 41, 64));
@@ -385,6 +387,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         jPanel2.setBackground(new java.awt.Color(16, 41, 64));
 
         lblIdSocio2.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        lblIdSocio2.setForeground(new java.awt.Color(255, 255, 255));
         lblIdSocio2.setText("Seleccione un Socio:");
 
         jCbSociosHistorial.addActionListener(new java.awt.event.ActionListener() {
