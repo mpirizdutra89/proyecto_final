@@ -180,7 +180,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         jPnlInscripciones.setBackground(new java.awt.Color(16, 41, 64));
         jPnlInscripciones.setForeground(new java.awt.Color(242, 242, 242));
 
-        jLabel1.setFont(new java.awt.Font("Gill Sans MT", 3, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Gill Sans MT", 0, 24)); // NOI18N
         jLabel1.setText("Inscripcion de Membresias");
 
         jPanel1.setBackground(new java.awt.Color(16, 41, 64));
@@ -209,6 +209,9 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         lblFechaFin.setForeground(new java.awt.Color(242, 242, 242));
         lblFechaFin.setText("Fecha de Fin:");
 
+        btnGuardar.setBackground(new java.awt.Color(153, 177, 39));
+        btnGuardar.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(0, 1, 13));
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,6 +219,9 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             }
         });
 
+        btnLimpiar.setBackground(new java.awt.Color(166, 46, 68));
+        btnLimpiar.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(242, 242, 242));
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,8 +240,8 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                     .addComponent(lblFechaInicio)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnGuardar)
-                        .addGap(57, 57, 57)
-                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(51, 51, 51)
+                        .addComponent(btnLimpiar))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(txtCantidadPases, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -320,6 +326,9 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
 
         jPanel3.setBackground(new java.awt.Color(16, 41, 64));
 
+        jBBaja.setBackground(new java.awt.Color(166, 46, 68));
+        jBBaja.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jBBaja.setForeground(new java.awt.Color(242, 242, 242));
         jBBaja.setText("Baja");
         jBBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,6 +336,9 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             }
         });
 
+        jBAlta.setBackground(new java.awt.Color(153, 177, 39));
+        jBAlta.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jBAlta.setForeground(new java.awt.Color(0, 1, 13));
         jBAlta.setText("Alta");
         jBAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -334,6 +346,9 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             }
         });
 
+        jBMembresiasCanceladas.setBackground(new java.awt.Color(166, 46, 68));
+        jBMembresiasCanceladas.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jBMembresiasCanceladas.setForeground(new java.awt.Color(242, 242, 242));
         jBMembresiasCanceladas.setText("Membresias Canceladas");
         jBMembresiasCanceladas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -351,26 +366,25 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                     .addComponent(jBAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBMembresiasCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBMembresiasCanceladas)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(39, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                    .addComponent(jBMembresiasCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jBAlta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBBaja)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jBMembresiasCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))))
+                        .addComponent(jBBaja)))
+                .addGap(18, 18, 18))
         );
 
         jPanel2.setBackground(new java.awt.Color(16, 41, 64));
 
+        lblIdSocio2.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         lblIdSocio2.setText("Seleccione un Socio:");
 
         jCbSociosHistorial.addActionListener(new java.awt.event.ActionListener() {
@@ -384,20 +398,20 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(112, 112, 112)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblIdSocio2)
-                    .addComponent(jCbSociosHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCbSociosHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIdSocio2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(lblIdSocio2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCbSociosHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPnlHistorialLayout = new javax.swing.GroupLayout(jPnlHistorial);
@@ -408,7 +422,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                 .addGroup(jPnlHistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPnlHistorialLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlHistorialLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -423,7 +437,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
