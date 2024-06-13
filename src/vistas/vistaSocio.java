@@ -78,19 +78,24 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         jTxtApellido = new javax.swing.JTextField();
         jTxtTelefono = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(16, 41, 64));
         setClosable(true);
         setIconifiable(true);
         setTitle("Gestion de socios");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/socios.png"))); // NOI18N
 
+        jtbpContenedor.setBackground(new java.awt.Color(16, 41, 64));
+        jtbpContenedor.setForeground(new java.awt.Color(242, 242, 242));
         jtbpContenedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtbpContenedorMouseClicked(evt);
             }
         });
 
-        jPnlSocios.setBackground(new java.awt.Color(51, 153, 255));
+        jPnlSocios.setBackground(new java.awt.Color(16, 41, 64));
 
+        jTblDatos.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jTblDatos.setForeground(new java.awt.Color(0, 1, 13));
         jTblDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -109,17 +114,22 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTblDatos);
 
-        jTxtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTxtBuscar.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         jTxtBuscar.setEnabled(false);
 
         btnGrup.add(jRbCodigo);
-        jRbCodigo.setForeground(new java.awt.Color(255, 255, 255));
+        jRbCodigo.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jRbCodigo.setForeground(new java.awt.Color(242, 242, 242));
         jRbCodigo.setText("Codigo");
 
         btnGrup.add(jRbNombreApellido);
-        jRbNombreApellido.setForeground(new java.awt.Color(255, 255, 255));
+        jRbNombreApellido.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jRbNombreApellido.setForeground(new java.awt.Color(242, 242, 242));
         jRbNombreApellido.setText("Nombre y apellido");
 
+        jBtnBuscar.setBackground(new java.awt.Color(153, 177, 39));
+        jBtnBuscar.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jBtnBuscar.setForeground(new java.awt.Color(0, 1, 13));
         jBtnBuscar.setText("Buscar");
         jBtnBuscar.setEnabled(false);
         jBtnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,19 +139,23 @@ public class vistaSocio extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Gill Sans MT", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(242, 242, 242));
         jLabel1.setText("# Seleccione  la fila para gestionar al socio");
 
         btnGrup.add(jRbTodos);
-        jRbTodos.setForeground(new java.awt.Color(255, 255, 255));
+        jRbTodos.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jRbTodos.setForeground(new java.awt.Color(242, 242, 242));
         jRbTodos.setText("Todos");
 
         btnGrup.add(jRbDni);
-        jRbDni.setForeground(new java.awt.Color(255, 255, 255));
+        jRbDni.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jRbDni.setForeground(new java.awt.Color(242, 242, 242));
         jRbDni.setText("Dni");
 
         jCbBaja.setBackground(new java.awt.Color(255, 102, 102));
-        jCbBaja.setForeground(new java.awt.Color(255, 255, 255));
+        jCbBaja.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jCbBaja.setForeground(new java.awt.Color(242, 242, 242));
         jCbBaja.setText("Baja");
         jCbBaja.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102)));
         jCbBaja.addActionListener(new java.awt.event.ActionListener() {
@@ -206,12 +220,15 @@ public class vistaSocio extends javax.swing.JInternalFrame {
 
         jtbpContenedor.addTab("Busqueda", jPnlSocios);
 
-        jPnlEdicion.setBackground(new java.awt.Color(51, 153, 255));
+        jPnlEdicion.setBackground(new java.awt.Color(16, 41, 64));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Gill Sans MT", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(242, 242, 242));
         jLabel2.setText("Gestion de socios");
 
+        jBtnNuevo.setBackground(new java.awt.Color(153, 177, 39));
+        jBtnNuevo.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jBtnNuevo.setForeground(new java.awt.Color(0, 1, 13));
         jBtnNuevo.setText("Nuevo");
         jBtnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,6 +236,9 @@ public class vistaSocio extends javax.swing.JInternalFrame {
             }
         });
 
+        jBtnGuardar.setBackground(new java.awt.Color(153, 177, 39));
+        jBtnGuardar.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jBtnGuardar.setForeground(new java.awt.Color(0, 1, 13));
         jBtnGuardar.setText("Guardar");
         jBtnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,7 +246,9 @@ public class vistaSocio extends javax.swing.JInternalFrame {
             }
         });
 
-        jBtnSalir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jBtnSalir.setBackground(new java.awt.Color(166, 46, 68));
+        jBtnSalir.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jBtnSalir.setForeground(new java.awt.Color(242, 242, 242));
         jBtnSalir.setText("Salir");
         jBtnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,6 +256,9 @@ public class vistaSocio extends javax.swing.JInternalFrame {
             }
         });
 
+        jBtnEliminar.setBackground(new java.awt.Color(166, 46, 68));
+        jBtnEliminar.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jBtnEliminar.setForeground(new java.awt.Color(242, 242, 242));
         jBtnEliminar.setText("Baja");
         jBtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,28 +266,28 @@ public class vistaSocio extends javax.swing.JInternalFrame {
             }
         });
 
-        jlbliDsocio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jlbliDsocio.setForeground(new java.awt.Color(255, 255, 255));
+        jlbliDsocio.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jlbliDsocio.setForeground(new java.awt.Color(242, 242, 242));
         jlbliDsocio.setText(" # ");
 
-        jPnlContnedorGestion.setBackground(new java.awt.Color(51, 153, 255));
+        jPnlContnedorGestion.setBackground(new java.awt.Color(16, 41, 64));
 
-        jTxtDni.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTxtDni.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         jTxtDni.setNextFocusableComponent(jTxtNombre);
 
-        jTxtEdad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTxtEdad.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         jTxtEdad.setNextFocusableComponent(jTxtCorreo);
 
-        jTxtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTxtCorreo.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         jTxtCorreo.setNextFocusableComponent(jTxtTelefono);
 
-        jTxtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTxtNombre.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         jTxtNombre.setNextFocusableComponent(jTxtApellido);
 
-        jTxtApellido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTxtApellido.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         jTxtApellido.setNextFocusableComponent(jTxtEdad);
 
-        jTxtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTxtTelefono.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPnlContnedorGestionLayout = new javax.swing.GroupLayout(jPnlContnedorGestion);
         jPnlContnedorGestion.setLayout(jPnlContnedorGestionLayout);
@@ -314,13 +339,13 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                     .addGroup(jPnlEdicionLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPnlContnedorGestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
             .addGroup(jPnlEdicionLayout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addComponent(jBtnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(jBtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
+                .addComponent(jBtnGuardar)
+                .addGap(68, 68, 68)
                 .addComponent(jBtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jBtnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -335,7 +360,7 @@ public class vistaSocio extends javax.swing.JInternalFrame {
                 .addComponent(jlbliDsocio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPnlContnedorGestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71)
+                .addGap(47, 47, 47)
                 .addGroup(jPnlEdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                     .addComponent(jBtnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
