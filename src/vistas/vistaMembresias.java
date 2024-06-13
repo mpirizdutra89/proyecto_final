@@ -615,7 +615,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             });
         }
         
-        jCbSociosHistorial.setSelectedIndex(0);
+     //   jCbSociosHistorial.setSelectedIndex(0);
     }
 
 
