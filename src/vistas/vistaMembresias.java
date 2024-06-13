@@ -563,11 +563,15 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             //Aca llamr un metod que filre por socio y se coloce en la tabla
             //para que depues al selecionar una fila podes dar de baja o alta etc
             //
-
+            cargarHistorialMembresiasTabla(socioActualHistorial.getIdSocio());
             System.out.println(socioActualHistorial);
         }
     }//GEN-LAST:event_jCbSociosHistorialActionPerformed
 
+    private void cargarHistorialMembresiasTabla(int idSocio) {
+    listaM = mData.historialMembresias(idSocio);
+    cargarMembresiasTabla();
+}
     private void armarTabla() {
         tablaM.addColumn("ID Membresia");
         tablaM.addColumn("Socio nombre");
