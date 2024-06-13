@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.ButtonModel;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -741,17 +743,17 @@ public class vistaClase extends javax.swing.JInternalFrame {
     private void cargarDatos(int id) {
         claseB = null;
         claseB = cData.buscarClasePorId(id);
-        ArrayList<Clase> e = cData.buscarEntrenador(claseB.getIdEntrenador());
+        //ArrayList<Clase> e = cData.buscarEntrenador(claseB.getIdEntrenador());
         if (claseB != null) {
             jTFidClase.setText(String.valueOf(claseB.getIdClase()));
-            String combo = e.toString();
-            jCBentrenadorA.setSelectedItem(combo);
+            int idEntrenador = claseB.getIdEntrenador() - 1;
+            jCBentrenadorA.setSelectedIndex(idEntrenador);
             jTFnombre.setText(claseB.getNombre());
             jTFhorario.setText(String.valueOf(claseB.getHorario()));
             jTFcapacidad.setText(String.valueOf(claseB.getCapacidad()));
             jCkBestado.setSelected(claseB.isEstado());
         } else {
-            libs.FuncionesComunes.vistaDialogo("No se pudo cargar la clase", 0,this);
+            libs.FuncionesComunes.vistaDialogo("No se pudo cargar la clase", 0, this);
             libs.FuncionesComunes.resetFormContentPanel(jPAdmin);
             jTabPcontenedor.setSelectedIndex(0);
             jTbuscar.setText("");

@@ -103,7 +103,7 @@ public class ClaseData {
 
     public Clase buscarClasePorId(int id) {
         this.clase = null;
-        String query = "SELECT * FROM clases WHERE id = ?";
+        String query = "SELECT * FROM clases WHERE idClase = ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(query);
