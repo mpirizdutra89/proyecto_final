@@ -89,22 +89,21 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         jTxtDni = new javax.swing.JTextField();
         jLblSocioSeleccionado = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jbtnBuscar = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jbtnBuscarSocio = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jbtnGuardar = new javax.swing.JLabel();
-        jbtnLimpiar = new javax.swing.JLabel();
+        jbtnGuardarAsistencia = new javax.swing.JButton();
         jPnlLista = new javax.swing.JPanel();
         jPnlSubcontenedorListar = new javax.swing.JPanel();
         jCbClaseListar = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jbtnEliminar = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTblListado = new javax.swing.JTable();
+        jbtnEliminarSocio = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -147,15 +146,6 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
 
         jLabel5.setText("# El sistema le avisara si no hay cupo.");
 
-        jbtnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/buscar.png"))); // NOI18N
-        jbtnBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jbtnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbtnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbtnBuscarMouseClicked(evt);
-            }
-        });
-
         jLabel8.setText("# Busque un socio.");
 
         jLabel2.setText("# Seleccione una clase.");
@@ -189,6 +179,13 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setText("Asistencia para el socio:");
 
+        jbtnBuscarSocio.setText("Buscar");
+        jbtnBuscarSocio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnBuscarSocioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -203,8 +200,8 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTxtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jbtnBuscar)
+                                .addGap(42, 42, 42)
+                                .addComponent(jbtnBuscarSocio)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -219,18 +216,15 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTxtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jbtnBuscar)
-                                .addGap(10, 10, 10))))
+                        .addGap(55, 55, 55)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTxtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbtnBuscarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(13, 13, 13)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)))
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLblSocioSeleccionado)
@@ -238,21 +232,10 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                 .addComponent(jLabel5))
         );
 
-        jbtnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/guardar.png"))); // NOI18N
-        jbtnGuardar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jbtnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbtnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbtnGuardarMouseClicked(evt);
-            }
-        });
-
-        jbtnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/reiniciar.png"))); // NOI18N
-        jbtnLimpiar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jbtnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbtnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbtnLimpiarMouseClicked(evt);
+        jbtnGuardarAsistencia.setText("Guardar");
+        jbtnGuardarAsistencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnGuardarAsistenciaActionPerformed(evt);
             }
         });
 
@@ -261,20 +244,16 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(jbtnGuardar)
-                .addGap(34, 34, 34)
-                .addComponent(jbtnLimpiar)
-                .addGap(25, 25, 25))
+                .addGap(16, 16, 16)
+                .addComponent(jbtnGuardarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtnLimpiar)
-                    .addComponent(jbtnGuardar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(jbtnGuardarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPnlContendorLayout = new javax.swing.GroupLayout(jPnlContendor);
@@ -311,7 +290,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -350,16 +329,6 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/clases.png"))); // NOI18N
         jLabel7.setText("Lista de socios por clase:");
 
-        jbtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/eliminar.png"))); // NOI18N
-        jbtnEliminar.setToolTipText("Eliminar socio de asistencias");
-        jbtnEliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jbtnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbtnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbtnEliminarMouseClicked(evt);
-            }
-        });
-
         jTblListado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -373,33 +342,43 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         ));
         jScrollPane3.setViewportView(jTblListado);
 
+        jbtnEliminarSocio.setText("Eliminar");
+        jbtnEliminarSocio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnEliminarSocioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPnlSubcontenedorListarLayout = new javax.swing.GroupLayout(jPnlSubcontenedorListar);
         jPnlSubcontenedorListar.setLayout(jPnlSubcontenedorListarLayout);
         jPnlSubcontenedorListarLayout.setHorizontalGroup(
             jPnlSubcontenedorListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlSubcontenedorListarLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPnlSubcontenedorListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jCbClaseListar, 0, 237, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbtnEliminar)
-                .addGap(37, 37, 37))
-            .addGroup(jPnlSubcontenedorListarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+                .addGroup(jPnlSubcontenedorListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPnlSubcontenedorListarLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPnlSubcontenedorListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jCbClaseListar, 0, 237, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbtnEliminarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPnlSubcontenedorListarLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPnlSubcontenedorListarLayout.setVerticalGroup(
             jPnlSubcontenedorListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlSubcontenedorListarLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(jPnlSubcontenedorListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPnlSubcontenedorListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPnlSubcontenedorListarLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jCbClaseListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jbtnEliminar))
+                    .addGroup(jPnlSubcontenedorListarLayout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(jbtnEliminarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
                 .addContainerGap())
@@ -443,12 +422,24 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void jCbClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbClaseActionPerformed
+            claseActual=null;
+           
+            CargarClaseCuposDisponibles();
+           
+    }//GEN-LAST:event_jCbClaseActionPerformed
 
-    private void jbtnLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnLimpiarMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnLimpiarMouseClicked
+    private void jCbClaseListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbClaseListarActionPerformed
+        claseActualLista=null;
+        cargarSocioClases();
+    }//GEN-LAST:event_jCbClaseListarActionPerformed
 
-    private void jbtnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnGuardarMouseClicked
+    private void jbtnBuscarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarSocioActionPerformed
+         BuscarSocio();
+    }//GEN-LAST:event_jbtnBuscarSocioActionPerformed
+
+    private void jbtnGuardarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarAsistenciaActionPerformed
        /*
          Falta el guardar:
         verificar que alla socios Seleccionado (Esta echo) if
@@ -496,34 +487,16 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
            libs.FuncionesComunes.vistaDialogo("No hay un socio para la asistencia.", 0,this);
        }
        
-       
-    }//GEN-LAST:event_jbtnGuardarMouseClicked
+    }//GEN-LAST:event_jbtnGuardarAsistenciaActionPerformed
 
-    private void jbtnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseClicked
-           int selectedRow = jTblListado.getSelectedRow();
+    private void jbtnEliminarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarSocioActionPerformed
+         int selectedRow = jTblListado.getSelectedRow();
                 if (selectedRow != -1) {
                     
                     int idSocio =Integer.valueOf(jTblListado.getValueAt(selectedRow, 0).toString());
                     eliminarAsistencia(idSocio);
                 }
-    }//GEN-LAST:event_jbtnEliminarMouseClicked
-    
-    private void jbtnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnBuscarMouseClicked
-        BuscarSocio();
-    
-    }//GEN-LAST:event_jbtnBuscarMouseClicked
-
-    private void jCbClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbClaseActionPerformed
-            claseActual=null;
-           
-            CargarClaseCuposDisponibles();
-           
-    }//GEN-LAST:event_jCbClaseActionPerformed
-
-    private void jCbClaseListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbClaseListarActionPerformed
-        claseActualLista=null;
-        cargarSocioClases();
-    }//GEN-LAST:event_jCbClaseListarActionPerformed
+    }//GEN-LAST:event_jbtnEliminarSocioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -551,10 +524,9 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTblDatos;
     private javax.swing.JTable jTblListado;
     private javax.swing.JTextField jTxtDni;
-    private javax.swing.JLabel jbtnBuscar;
-    private javax.swing.JLabel jbtnEliminar;
-    private javax.swing.JLabel jbtnGuardar;
-    private javax.swing.JLabel jbtnLimpiar;
+    private javax.swing.JButton jbtnBuscarSocio;
+    private javax.swing.JButton jbtnEliminarSocio;
+    private javax.swing.JButton jbtnGuardarAsistencia;
     // End of variables declaration//GEN-END:variables
 
     private void fecha(){
@@ -687,7 +659,8 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
     private void cargarSocioClases() {
         ListaSociosInscriptos = null;
         SeleccionarClaseActualLista();
-        jbtnEliminar.setEnabled(false);
+        
+        jbtnEliminarSocio.setEnabled(false);
         try {
 
             if (claseActualLista != null && claseActualLista.getNombre() != null) {
@@ -696,7 +669,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                 ListaSociosInscriptos = socioData.listarSocioClase(claseActualLista.getNombre());
                  libs.FuncionesComunes.eliminarFilas(modeloTable2);
                 if (ListaSociosInscriptos.size() > 0) {
-                    jbtnEliminar.setEnabled(true);
+                    jbtnEliminarSocio.setEnabled(true);
                    
                     for (Socio socio : ListaSociosInscriptos) {
                             String nombre=socio.getApellido()+", "+socio.getNombre();
