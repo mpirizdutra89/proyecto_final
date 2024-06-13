@@ -490,7 +490,8 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
 
             if (exito) {
                 JOptionPane.showMessageDialog(this, "La membresía se ha dado de baja correctamente.");
-                cargarMembresiasTabla();
+                 borrarFilas();
+                 resetCombo();
             } else {
                 JOptionPane.showMessageDialog(this, "Error al dar de baja la membresía.");
             }
@@ -625,7 +626,15 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCosto;
     // End of variables declaration//GEN-END:variables
 
-    
+    private void resetCombo(){
+        jCbSociosHistorial.removeAllItems();
+        listaSocioMembresia = mData.listarSocioConMembresia();
+        jCbSociosHistorial.addItem(new Socio("-", "Seleccione", "-"));
+        for (Socio socio : listaSocioMembresia) {
+            jCbSociosHistorial.addItem(socio);
+
+        }
+    }
     private void selectComboHistorial(){
           SeleccionarSocioActualHistorial();
         //Solo va entrar si es un objeto distinto de null 
