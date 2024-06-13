@@ -94,6 +94,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
         jBeliminar = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(16, 41, 64));
         setClosable(true);
         setIconifiable(true);
         setTitle("Clases");
@@ -103,7 +104,8 @@ public class vistaClase extends javax.swing.JInternalFrame {
         setName(""); // NOI18N
         setNormalBounds(new java.awt.Rectangle(0, 0, 600, 600));
 
-        jTabPcontenedor.setBackground(new java.awt.Color(0, 0, 0));
+        jTabPcontenedor.setBackground(new java.awt.Color(16, 41, 64));
+        jTabPcontenedor.setForeground(new java.awt.Color(0, 1, 13));
         jTabPcontenedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTabPcontenedorMouseClicked(evt);
@@ -284,7 +286,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
         jBnuevo.setBackground(new java.awt.Color(153, 177, 39));
         jBnuevo.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
-        jBnuevo.setForeground(new java.awt.Color(242, 242, 242));
+        jBnuevo.setForeground(new java.awt.Color(0, 1, 13));
         jBnuevo.setText("Nuevo");
         jBnuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,7 +296,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
         jBguardar.setBackground(new java.awt.Color(153, 177, 39));
         jBguardar.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
-        jBguardar.setForeground(new java.awt.Color(242, 242, 242));
+        jBguardar.setForeground(new java.awt.Color(0, 1, 13));
         jBguardar.setText("Guardar");
         jBguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
