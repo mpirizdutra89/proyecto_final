@@ -191,7 +191,7 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
                     vmp.setContentPane(deskpto);
                     vmp.setLocationRelativeTo(null);
                     vmp.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                    vmp.setVisible(true);
+                    vmp.setAlwaysOnTop(false);
                     vmp.setVisible(true);
                     
                 }else{
