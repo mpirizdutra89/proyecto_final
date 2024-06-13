@@ -28,6 +28,17 @@ public class Membresias {
         this.estado = estado;
     }
 
+    public Membresias(Socio socio, int cantidadPases, double costo, Date fechaInicio, Date fechaFin, boolean estado) {
+        this.socio = socio;
+        this.cantidadPases = cantidadPases;
+        this.costo = costo;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.estado = estado;
+    }
+    
+    
+
     public int getIdMembresia() {
         return idMembresia;
     }
