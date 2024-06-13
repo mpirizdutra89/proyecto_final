@@ -26,20 +26,17 @@ import static libs.FuncionesComunes.validarNumericos;
  */
 public class vistaMembresias extends javax.swing.JInternalFrame {
 
-   private MembresiasData mData;
-   private Membresias membre;
-   private Socio socio;
-   private Socio socioActual;
+    private MembresiasData mData;
+    private Membresias membre;
+    private Socio socio;
+    private Socio socioActual;
     private Socio socioActualHistorial;
-   private ArrayList<Membresias> listaM;
-   private DefaultTableModel tablaM;
-   private  ArrayList<Socio> listaSocio;
-   private  ArrayList<Socio> listaSocioMembresia;
-   
-   
-   
-    public vistaMembresias()
-    {
+    private ArrayList<Membresias> listaM;
+    private DefaultTableModel tablaM;
+    private ArrayList<Socio> listaSocio;
+    private ArrayList<Socio> listaSocioMembresia;
+
+    public vistaMembresias() {
         initComponents();
         mData = new MembresiasData();
         membre = new Membresias();
@@ -47,9 +44,9 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         listaM = new ArrayList<>();
         listaSocio = new ArrayList<>();
         listaSocioMembresia = new ArrayList<>();
-        
+
         tablaM = new DefaultTableModel();
-        
+
         jTMembresias.setDefaultEditor(Object.class, null);
         Calendar cal = Calendar.getInstance();
         Date fechaActual = cal.getTime();
@@ -57,18 +54,18 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         armarTabla();
         Limpiar();
         edicioTxt();
-        
-        listaSocio=mData.listarSocioSinMembresia();
-        listaSocioMembresia=mData.listarSocioConMembresia();
-        if(listaSocio.size()<=0){
-            libs.FuncionesComunes.vistaDialogo("No hay socios o todo los socios tienen membresias.", 1,this);
+
+        listaSocio = mData.listarSocioSinMembresia();
+        listaSocioMembresia = mData.listarSocioConMembresia();
+        if (listaSocio.size() <= 0) {
+            libs.FuncionesComunes.vistaDialogo("No hay socios o todo los socios tienen membresias.", 1, this);
             btnGuardar.setEnabled(false);
-            
-        }else{
-            
+
+        } else {
+
         }
         cargarSociosCb();
-        
+
         // Aplicar filtro de números al campo txtIdSocio
 //        ((AbstractDocument) txtIdSocio.getDocument()).setDocumentFilter(new DocumentFilter() {
 //            @Override
@@ -100,8 +97,8 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                 if (text.matches("[0-9]*")) {
                     super.replace(fb, offset, length, text, attrs);
                 }
-                }
-    });
+            }
+        });
         // Aplicar filtro de números al campo txtCosto
         ((AbstractDocument) txtCosto.getDocument()).setDocumentFilter(new DocumentFilter() {
             @Override
@@ -116,8 +113,8 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                 if (text.matches("[0-9]*")) {
                     super.replace(fb, offset, length, text, attrs);
                 }
-                }
-    });
+            }
+        });
         // Aplicar filtro de números al campo txtIdSocio2
 //        ((AbstractDocument) txtIdSocio2.getDocument()).setDocumentFilter(new DocumentFilter() {
 //            @Override
@@ -134,10 +131,8 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
 //                }
 //                }
 //    });
-
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -465,78 +460,76 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
-        //int idSocio = Integer.parseInt(txtIdSocio.getText());
-        int cantidadPases = Integer.parseInt(txtCantidadPases.getText());
-        int costo = Integer.parseInt(txtCosto.getText());
-        Date fechaInicio = jdcFechaInicio.getDate();
-        Date fechaFin = jdcFechaFin.getDate();
+            //int idSocio = Integer.parseInt(txtIdSocio.getText());
+            int cantidadPases = Integer.parseInt(txtCantidadPases.getText());
+            int costo = Integer.parseInt(txtCosto.getText());
+            Date fechaInicio = jdcFechaInicio.getDate();
+            Date fechaFin = jdcFechaFin.getDate();
 
-        if (fechaInicio == null || fechaFin == null) {
-            JOptionPane.showMessageDialog(this, "Por favor, selecciona las fechas de inicio y fin.");
-            return;
+            if (fechaInicio == null || fechaFin == null) {
+                JOptionPane.showMessageDialog(this, "Por favor, selecciona las fechas de inicio y fin.");
+                return;
+            }
+
+            // socio.setIdSocio(idSocio);
+            SeleccionarSocioActual();
+
+            membre.setSocio(socioActual);
+            membre.setCantidadPases(cantidadPases);
+            membre.setCosto(costo);
+            membre.setFechaInicio(fechaInicio);
+            membre.setFechaFin(fechaFin);
+            membre.setEstado(true);
+
+            mData.guardarMembresia(membre);
+
+            if (membre != null) {
+
+                JOptionPane.showMessageDialog(this, "Membresía registrada exitosamente.");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingresa valores válidos para ID de Socio y Cantidad de Pases.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al registrar la membresía: " + e.getMessage());
         }
-
-
-        
-       // socio.setIdSocio(idSocio);
-SeleccionarSocioActual();
-
-        
-        membre.setSocio(socioActual);
-        membre.setCantidadPases(cantidadPases);
-        membre.setCosto (costo);
-        membre.setFechaInicio(fechaInicio);
-        membre.setFechaFin(fechaFin);
-        membre.setEstado(true);
-
-
-        mData.guardarMembresia(membre);
-
-
-        JOptionPane.showMessageDialog(this, "Membresía registrada exitosamente.");
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Por favor, ingresa valores válidos para ID de Socio y Cantidad de Pases.");
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error al registrar la membresía: " + e.getMessage());
-    }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void jBBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBajaActionPerformed
-    int filaSeleccionada = jTMembresias.getSelectedRow();
-    
-    if (filaSeleccionada == -1) {
-        JOptionPane.showMessageDialog(this,"Seleccione una membresía para dar de baja.");
-    } else {
-        int idMembresia = (int) jTMembresias.getValueAt(filaSeleccionada, 0);
-        
-        boolean exito = mData.removerMembresias(idMembresia);
-        
-        if (exito) {
-            JOptionPane.showMessageDialog(this, "La membresía se ha dado de baja correctamente.");
-            cargarMembresiasTabla();
+        int filaSeleccionada = jTMembresias.getSelectedRow();
+
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una membresía para dar de baja.");
         } else {
-            JOptionPane.showMessageDialog(this, "Error al dar de baja la membresía.");
+            int idMembresia = (int) jTMembresias.getValueAt(filaSeleccionada, 0);
+
+            boolean exito = mData.removerMembresias(idMembresia);
+
+            if (exito) {
+                JOptionPane.showMessageDialog(this, "La membresía se ha dado de baja correctamente.");
+                cargarMembresiasTabla();
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al dar de baja la membresía.");
+            }
         }
-    }
     }//GEN-LAST:event_jBBajaActionPerformed
 
     private void jBAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAltaActionPerformed
-    int filaSeleccionada = jTMembresias.getSelectedRow();
+        int filaSeleccionada = jTMembresias.getSelectedRow();
 
-    if (filaSeleccionada == -1) {
-        JOptionPane.showMessageDialog(this, "Seleccione una membresía para dar de alta.");
-    } else {
-        int idMembresia = (int) jTMembresias.getValueAt(filaSeleccionada, 0); 
-
-        boolean exito = mData.altaMembresia(idMembresia);
-
-        if (exito) {
-            JOptionPane.showMessageDialog(this, "La membresía se ha dado de alta correctamente.");
-            cargarMembresiasTabla();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una membresía para dar de alta.");
         } else {
-            JOptionPane.showMessageDialog(this, "Error al dar de alta la membresía.");
+            int idMembresia = (int) jTMembresias.getValueAt(filaSeleccionada, 0);
+
+            boolean exito = mData.altaMembresia(idMembresia);
+
+            if (exito) {
+                JOptionPane.showMessageDialog(this, "La membresía se ha dado de alta correctamente.");
+                cargarMembresiasTabla();
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al dar de alta la membresía.");
+            }
         }
-    }
     }//GEN-LAST:event_jBAltaActionPerformed
 
     private void jBMembresiasCanceladasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMembresiasCanceladasActionPerformed
@@ -544,35 +537,34 @@ SeleccionarSocioActual();
     }//GEN-LAST:event_jBMembresiasCanceladasActionPerformed
 
     private void txtCantidadPasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadPasesActionPerformed
-        
-    
-    
+
+
     }//GEN-LAST:event_txtCantidadPasesActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-         
-         Limpiar();
+
+        Limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void jtbpContenedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbpContenedorMouseClicked
-       int selectedIndex = jtbpContenedor.getSelectedIndex();
+        int selectedIndex = jtbpContenedor.getSelectedIndex();
 
         if (selectedIndex == 2) {//historial El tab
-           if(listaSocioMembresia.size()==0){
-               libs.FuncionesComunes.vistaDialogo("No hay socios con membresias", 0, this);
-           }
+            if (listaSocioMembresia.size() == 0) {
+                libs.FuncionesComunes.vistaDialogo("No hay socios con membresias", 0, this);
+            }
         }
     }//GEN-LAST:event_jtbpContenedorMouseClicked
 
     private void jCbSociosHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbSociosHistorialActionPerformed
-       SeleccionarSocioActualHistorial();
-       //Solo va entrar si es un objeto distinto de null 
-       if (socioActualHistorial != null && socioActualHistorial.getNombre()!= "Seleccione") {
+        SeleccionarSocioActualHistorial();
+        //Solo va entrar si es un objeto distinto de null 
+        if (socioActualHistorial != null && socioActualHistorial.getNombre() != "Seleccione") {
             //Aca llamr un metod que filre por socio y se coloce en la tabla
             //para que depues al selecionar una fila podes dar de baja o alta etc
             //
-            
-           System.out.println(socioActualHistorial);
+
+            System.out.println(socioActualHistorial);
         }
     }//GEN-LAST:event_jCbSociosHistorialActionPerformed
 
@@ -605,26 +597,26 @@ SeleccionarSocioActual();
             });
         }
     }
-    
+
     private void cargarMembresiasCanceladas() {
-    DefaultTableModel modeloTabla = (DefaultTableModel) jTMembresias.getModel();
-    modeloTabla.setRowCount(0);
-    
-    ArrayList<Membresias> membresiasCanceladas = mData.obtenerMembresiasCanceladas();
-    
-    for (Membresias membresia : membresiasCanceladas) {
-        // Agregar cada membresía cancelada a la tabla
-        modeloTabla.addRow(new Object[]{
-            membresia.getIdMembresia(),
-            membresia.getSocio().getNombre() + " " + membresia.getSocio().getApellido(),
-            membresia.getCantidadPases(),
-            membresia.getCosto(),
-            membresia.getFechaInicio(),
-            membresia.getFechaFin()
-        });
+        DefaultTableModel modeloTabla = (DefaultTableModel) jTMembresias.getModel();
+        modeloTabla.setRowCount(0);
+
+        ArrayList<Membresias> membresiasCanceladas = mData.obtenerMembresiasCanceladas();
+
+        for (Membresias membresia : membresiasCanceladas) {
+            // Agregar cada membresía cancelada a la tabla
+            modeloTabla.addRow(new Object[]{
+                membresia.getIdMembresia(),
+                membresia.getSocio().getNombre() + " " + membresia.getSocio().getApellido(),
+                membresia.getCantidadPases(),
+                membresia.getCosto(),
+                membresia.getFechaInicio(),
+                membresia.getFechaFin()
+            });
+        }
     }
-}
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
@@ -654,43 +646,41 @@ SeleccionarSocioActual();
     // End of variables declaration//GEN-END:variables
 
     private void Limpiar() {
-   // txtIdSocio.setText("");
-    txtCantidadPases.setText("");
-    txtCosto.setText("");
-    jdcFechaInicio.setDate(null);
-    jdcFechaFin.setDate(null);
-    //chkEstado.setSelected(false);
+        // txtIdSocio.setText("");
+        txtCantidadPases.setText("");
+        txtCosto.setText("");
+        jdcFechaInicio.setDate(null);
+        jdcFechaFin.setDate(null);
+        //chkEstado.setSelected(false);
     }
-    
-    
-    private void cargarSociosCb(){
-        
+
+    private void cargarSociosCb() {
+
         for (Socio socio : listaSocio) {
             jCbSociosLista.addItem(socio);
-           
+
         }
         //El socio vacio es para que puedas hacer la accione de eleguir y llamar algun metodo que liste en la tabla
-        jCbSociosHistorial.addItem(new Socio("-","Seleccione","-"));
+        jCbSociosHistorial.addItem(new Socio("-", "Seleccione", "-"));
         for (Socio socio : listaSocioMembresia) {
             jCbSociosHistorial.addItem(socio);
-           
+
         }
-        
-        
+
     }
-    private void edicioTxt(){
+
+    private void edicioTxt() {
         libs.FuncionesComunes.textPrompt(txtCantidadPases, "Cantidad de Pases (numerico)");
         libs.FuncionesComunes.textPrompt(txtCosto, "Costo o precio ($100.00)");
-        
+
     }
-    
-    
-      private void SeleccionarSocioActualHistorial(){
-          socioActualHistorial = (Socio) jCbSociosHistorial.getSelectedItem();
-     }
-      
-       private void SeleccionarSocioActual(){
-          socioActual = (Socio) jCbSociosLista.getSelectedItem();
-     }
-    
+
+    private void SeleccionarSocioActualHistorial() {
+        socioActualHistorial = (Socio) jCbSociosHistorial.getSelectedItem();
+    }
+
+    private void SeleccionarSocioActual() {
+        socioActual = (Socio) jCbSociosLista.getSelectedItem();
+    }
+
 }
