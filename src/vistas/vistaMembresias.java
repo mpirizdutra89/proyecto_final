@@ -571,7 +571,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             //para que depues al selecionar una fila podes dar de baja o alta etc
             //
             
-           System.out.println(socioActual);
+           System.out.println(socioActualHistorial);
         }
     }//GEN-LAST:event_jCbSociosHistorialActionPerformed
 
