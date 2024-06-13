@@ -44,7 +44,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
         eData = new EntrenadorData();
         ltaClases = new ArrayList<Clase>();
         ltaEntrenadores = new ArrayList<>();
-
+        jTFidClase.setEnabled(false);
         ltaEntrenadores = (ArrayList<Entrenador>) eData.listarEntrenadores();
 
         cargarEntrenador();
@@ -121,6 +121,11 @@ public class vistaClase extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTDataMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTData);
 
         jBbuscar.setText("Buscar");
@@ -414,6 +419,18 @@ public class vistaClase extends javax.swing.JInternalFrame {
         bajaLogica();
     }//GEN-LAST:event_jBeliminarActionPerformed
 
+    private void jTDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTDataMouseClicked
+        int sRow = jTData.getSelectedRow();
+
+        if (sRow != -1) {
+            int idClase = Integer.valueOf(jTData.getValueAt(sRow, 0).toString());
+
+            btnEditarDisable();
+            jTabPcontenedor.setSelectedIndex(1);
+            cargarDatos(idClase);
+        }
+    }//GEN-LAST:event_jTDataMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGseleccion;
@@ -453,6 +470,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
         libs.FuncionesComunes.textPrompt(jTFnombre, "Nombre de la Clase");
         libs.FuncionesComunes.textPrompt(jTFhorario, "Horario Ej(10:00)");
         libs.FuncionesComunes.textPrompt(jTFcapacidad, "Capacidad (numérico)");
+        libs.FuncionesComunes.textPrompt(jTFidClase, "ID Clase");
     }
 
     private void btnInicioDisable() {
@@ -494,17 +512,16 @@ public class vistaClase extends javax.swing.JInternalFrame {
             }
             if (claseB == null) {
 
+                Entrenador e = (Entrenador) jCBentrenadorA.getSelectedItem();
                 Clase cls = new Clase();
 
                 jTFidClase.setText(String.valueOf(cls.getIdClase()));
 
                 cls.setNombre(jTFnombre.getText().trim());
 
-                int idEntrenador = parseIdFromCombo(jCBentrenadorA.getSelectedItem().toString());
-                cls.setIdEntrenador(idEntrenador);
+                cls.setIdEntrenador(e.getIdEntrenador());
 
-                Entrenador entrenador = accesoADatos.EntrenadorData.buscarEntrenadorPorId(idEntrenador);
-                cls.setEntrenador(entrenador);
+                cls.setEntrenador(e);
 
                 cls.setCapacidad(Integer.parseInt(jTFcapacidad.getText().trim()));
 
@@ -538,10 +555,10 @@ public class vistaClase extends javax.swing.JInternalFrame {
             if (!libs.FuncionesComunes.validarNombre(jTFnombre.getText().trim())
                     || !libs.FuncionesComunes.validarNumericos(jTFhorario.getText().trim())
                     || !libs.FuncionesComunes.validarNumericos(jTFcapacidad.getText().trim())) {
-                libs.FuncionesComunes.vistaDialogo("Verificar los campos", 0);
+                libs.FuncionesComunes.vistaDialogo("Verificar los campos", 0, this);
                 return false;
             } else {
-                libs.FuncionesComunes.vistaDialogo("Los campos son obligatorios", 1);
+                libs.FuncionesComunes.vistaDialogo("Los campos son obligatorios", 1, this);
                 return false;
             }
         }
@@ -719,6 +736,27 @@ public class vistaClase extends javax.swing.JInternalFrame {
             });
         }
 
+    }
+
+    private void cargarDatos(int id) {
+        claseB = null;
+        claseB = cData.buscarClasePorId(id);
+        ArrayList<Clase> e = cData.buscarEntrenador(claseB.getIdEntrenador());
+        if (claseB != null) {
+            jTFidClase.setText(String.valueOf(claseB.getIdClase()));
+            String combo = e.toString();
+            jCBentrenadorA.setSelectedItem(combo);
+            jTFnombre.setText(claseB.getNombre());
+            jTFhorario.setText(String.valueOf(claseB.getHorario()));
+            jTFcapacidad.setText(String.valueOf(claseB.getCapacidad()));
+            jCkBestado.setSelected(claseB.isEstado());
+        } else {
+            libs.FuncionesComunes.vistaDialogo("No se pudo cargar la clase", 0,this);
+            libs.FuncionesComunes.resetFormContentPanel(jPAdmin);
+            jTabPcontenedor.setSelectedIndex(0);
+            jTbuscar.setText("");
+            libs.FuncionesComunes.eliminarFilas(jTData);
+        }
     }
 
 }

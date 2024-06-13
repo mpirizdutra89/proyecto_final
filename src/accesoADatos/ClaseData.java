@@ -6,6 +6,8 @@ import entidades.Clase;
 import java.sql.*;
 import java.time.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -42,7 +44,7 @@ public class ClaseData {
             //Se ejecuta la actualización en la BD
             ps.executeUpdate();
             //Se obtienen las claves generadas automáticamente
-            
+
             ResultSet rs = ps.getGeneratedKeys();
             //Si hay claves son asignadas a la clase
             if (rs.next()) {
@@ -83,7 +85,7 @@ public class ClaseData {
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
                 clase.setCapacidad(rs.getInt("capacidad"));
-                clase.setEstado(true);
+                clase.setEstado(rs.getBoolean("estado"));
                 //Se añade la clase a la lista
                 clase.setEntrenador(el);
                 listaClases.add(clase);
@@ -97,6 +99,37 @@ public class ClaseData {
         }
         //Se retorna la lista de clases disponibles
         return listaClases;
+    }
+
+    public Clase buscarClasePorId(int id) {
+        this.clase = null;
+        String query = "SELECT * FROM clases WHERE id = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                clase = new Clase();//Nueva instancia de clase
+                //Se establecen los datos de la clase 
+                clase.setIdClase(rs.getInt("idClase"));
+                int idEntrenador = rs.getInt("idEntrenador"); // Guarda el ID del entrenador
+                Entrenador el = EntrenadorData.buscarEntrenadorPorId(rs.getInt("idEntrenador"));
+                clase.setIdEntrenador(idEntrenador);
+                clase.setNombre(rs.getString("nombre"));
+                clase.setHorario(rs.getTime("horario").toLocalTime());
+                clase.setCapacidad(rs.getInt("capacidad"));
+                clase.setEstado(rs.getBoolean("estado"));
+                //Se añade la clase a la lista
+                clase.setEntrenador(el);
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Conexion.msjError.add("Clase: buscarClasePorId -> " + ex.getMessage());
+        }
+
+        return clase;
     }
 
     public ArrayList<Clase> buscarClasePorNombre(String nombre) {
@@ -122,7 +155,7 @@ public class ClaseData {
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
                 clase.setCapacidad(rs.getInt("capacidad"));
-                clase.setEstado(true);
+                clase.setEstado(rs.getBoolean("estado"));
                 //Se añade la clase a la lista
                 clase.setEntrenador(el);
                 listaNombres.add(clase);
@@ -157,7 +190,7 @@ public class ClaseData {
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
                 clase.setCapacidad(rs.getInt("capacidad"));
-                clase.setEstado(true);
+                clase.setEstado(rs.getBoolean("estado"));
                 //Se añade la clase a la lista
                 clase.setEntrenador(el);
                 listaEntranadores.add(clase);
@@ -173,7 +206,7 @@ public class ClaseData {
     public ArrayList<Clase> buscarHorario(LocalTime horario) {
         this.clase = null;
         ArrayList<Clase> listaHorarios = new ArrayList<Clase>();
-        
+
         String query = "SELECT idClase,idEntrenador,nombre,horario,capacidad,estado "
                 + "FROM clases "
                 + "WHERE horario = ? and estado = 1 ";
@@ -191,7 +224,7 @@ public class ClaseData {
                 clase.setNombre(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
                 clase.setCapacidad(rs.getInt("capacidad"));
-                clase.setEstado(true);
+                clase.setEstado(rs.getBoolean("estado"));
                 //Se añade la clase a la lista
                 clase.setEntrenador(el);
                 listaHorarios.add(clase);
@@ -269,7 +302,6 @@ public class ClaseData {
 
         return listaCupo;
     }
-    
 
     public ArrayList<Clase> listarClaseAsistencia() {
         //Lista para almacenar las clases disponibles
@@ -288,7 +320,7 @@ public class ClaseData {
                 LocalTime time = rs.getTime("horario").toLocalTime();
                 int capasidad = rs.getInt("capacidad");
                 boolean estado = true;
-                 //holas
+                //holas
                 Clase clase2 = new Clase(id, name, time, capasidad, estado);
 
                 listaClases.add(clase2);
@@ -308,21 +340,21 @@ public class ClaseData {
     public boolean guardarAsistencias(Asistencia asistencia) {
         //Consulta SQL para insertar una nueva clase
         String query = "INSERT INTO asistencias (idSocio, idClase,fecha_asistencia)  VALUES(?,?,CURDATE())";
-                
+
         boolean flag = false;
         try {
 
-            PreparedStatement ps = con.prepareStatement( query, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
             ps.setInt(1, asistencia.getidSocio());
             ps.setInt(2, asistencia.getIdClase());
             ps.executeUpdate();
-             
+
             ResultSet rs = ps.getGeneratedKeys();
             //Si hay claves son asignadas a la clase
             if (rs.next()) {
                 asistencia.setIdAsistencia(rs.getInt(1));
-                
+
                 flag = true;
             }
             ps.close();
@@ -334,26 +366,24 @@ public class ClaseData {
 
         return flag;
     }
-    
-    
-      public boolean descontarPases(int idSocio) {
+
+    public boolean descontarPases(int idSocio) {
         //Consulta SQL para insertar una nueva clase
-         String query = "UPDATE membresias "
-                      + "SET cantidadPases = cantidadPases - 1 "
-                      + "WHERE idSocio = ? AND cantidadPases > 0 AND estado = 1";
-                
+        String query = "UPDATE membresias "
+                + "SET cantidadPases = cantidadPases - 1 "
+                + "WHERE idSocio = ? AND cantidadPases > 0 AND estado = 1";
+
         boolean flag = false;
         try {
 
-            PreparedStatement ps = con.prepareStatement( query);
+            PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, idSocio);
-           
-            int res=ps.executeUpdate();
-             
-           
+
+            int res = ps.executeUpdate();
+
             //Si hay claves son asignadas a la clase
-            if (res>0) {
+            if (res > 0) {
                 flag = true;
             }
             ps.close();
@@ -367,7 +397,7 @@ public class ClaseData {
     }
 
     public boolean quitarAsistenciaSocio(int idSocio, int idClase) {
-        
+
         String query = "DELETE FROM asistencias "
                 + " WHERE idClase = ? "
                 + " AND idSocio = ? "
@@ -396,5 +426,5 @@ public class ClaseData {
 
         return flag;
     }
-      
+
 }
