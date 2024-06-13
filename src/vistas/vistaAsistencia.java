@@ -105,27 +105,36 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         jTblListado = new javax.swing.JTable();
         jbtnEliminarSocio = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(16, 41, 64));
         setClosable(true);
         setIconifiable(true);
         setTitle("Asistencia");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/asistencias.png"))); // NOI18N
 
-        jTabbedPane1.setBackground(new java.awt.Color(51, 51, 51));
+        jTabbedPane1.setBackground(new java.awt.Color(16, 41, 64));
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jPnlGestion.setBackground(new java.awt.Color(51, 51, 51));
+        jPnlGestion.setBackground(new java.awt.Color(16, 42, 64));
 
+        jPnlContendor.setBackground(new java.awt.Color(16, 41, 64));
+
+        jLabel3.setFont(new java.awt.Font("Gill Sans MT", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(242, 242, 242));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/clases.png"))); // NOI18N
         jLabel3.setText("Selecione una clase:");
 
-        jCbClase.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCbClase.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jCbClase.setForeground(new java.awt.Color(0, 1, 13));
+        jCbClase.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jCbClase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCbClaseActionPerformed(evt);
             }
         });
 
+        jTblDatos.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jTblDatos.setForeground(new java.awt.Color(0, 1, 13));
         jTblDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -141,15 +150,27 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
 
         jLFecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/date.png"))); // NOI18N
 
+        jPanel1.setBackground(new java.awt.Color(16, 42, 64));
+
+        jTxtDni.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+
         jLblSocioSeleccionado.setText("#");
         jLblSocioSeleccionado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel5.setText("# El sistema le avisara si no hay cupo.");
 
+        jPanel2.setBackground(new java.awt.Color(16, 41, 64));
+
+        jLabel8.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(242, 242, 242));
         jLabel8.setText("# Busque un socio.");
 
+        jLabel2.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(242, 242, 242));
         jLabel2.setText("# Seleccione una clase.");
 
+        jLabel4.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(242, 242, 242));
         jLabel4.setText("# Seleccione una horario en la tabla.");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -159,7 +180,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -176,9 +197,13 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                 .addGap(17, 17, 17))
         );
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Gill Sans MT", 0, 15)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(242, 242, 242));
         jLabel9.setText("Asistencia para el socio:");
 
+        jbtnBuscarSocio.setBackground(new java.awt.Color(153, 177, 39));
+        jbtnBuscarSocio.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jbtnBuscarSocio.setForeground(new java.awt.Color(0, 1, 13));
         jbtnBuscarSocio.setText("Buscar");
         jbtnBuscarSocio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,7 +219,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(93, 93, 93)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,7 +227,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                                 .addComponent(jTxtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(42, 42, 42)
                                 .addComponent(jbtnBuscarSocio)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -219,12 +244,11 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                         .addGap(55, 55, 55)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTxtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbtnBuscarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(42, 42, 42))
+                            .addComponent(jbtnBuscarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(41, 41, 41)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLblSocioSeleccionado)
@@ -232,6 +256,11 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                 .addComponent(jLabel5))
         );
 
+        jPanel3.setBackground(new java.awt.Color(16, 41, 64));
+
+        jbtnGuardarAsistencia.setBackground(new java.awt.Color(153, 177, 39));
+        jbtnGuardarAsistencia.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jbtnGuardarAsistencia.setForeground(new java.awt.Color(0, 1, 13));
         jbtnGuardarAsistencia.setText("Guardar");
         jbtnGuardarAsistencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -270,7 +299,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                             .addComponent(jLFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCbClase, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 347, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlContendorLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -298,7 +327,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         jPnlGestion.setLayout(jPnlGestionLayout);
         jPnlGestionLayout.setHorizontalGroup(
             jPnlGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 605, Short.MAX_VALUE)
+            .addGap(0, 632, Short.MAX_VALUE)
             .addGroup(jPnlGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPnlGestionLayout.createSequentialGroup()
                     .addContainerGap()
@@ -307,7 +336,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         );
         jPnlGestionLayout.setVerticalGroup(
             jPnlGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 622, Short.MAX_VALUE)
+            .addGap(0, 649, Short.MAX_VALUE)
             .addGroup(jPnlGestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPnlGestionLayout.createSequentialGroup()
                     .addContainerGap()
@@ -319,7 +348,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
 
         jPnlLista.setBackground(new java.awt.Color(51, 51, 51));
 
-        jCbClaseListar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCbClaseListar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jCbClaseListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCbClaseListarActionPerformed(evt);
@@ -364,7 +393,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                         .addComponent(jbtnEliminarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPnlSubcontenedorListarLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPnlSubcontenedorListarLayout.setVerticalGroup(
