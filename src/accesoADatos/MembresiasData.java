@@ -16,42 +16,6 @@ import javax.swing.JOptionPane;
  * @author Ariel Zurita
  */
 public class MembresiasData {
-//    private static Connection conec = null;
-//
-//    public MembresiasData() {
-//        conec = Conexion.getConexion();
-//     }
-//  
-//   public int guardarMembresias(Membresias membresia) {
-//    String sql = "INSERT INTO membresias (idSocio, cantidadPases, costo, fecha_inicio, fecha_fin, estado) VALUES (?, ?, ?, ?, ?, ?)";
-//    int idMembresiaGenerada = -1; // A esto no le des bola porque lo declaraste de otra forma
-//
-//    try {
-//        PreparedStatement ps = conec.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-//        ps.setInt(1, membresia.getSocio().getIdSocio());
-//        ps.setInt(2, membresia.getCantidadPases());
-//        ps.setDouble(3, membresia.getCosto());
-//        ps.setDate(4, new Date(membresia.getFechaInicio().getTime()));
-//        ps.setDate(5, new Date(membresia.getFechaFin().getTime()));
-//        ps.setBoolean(6, membresia.isEstado());
-//
-//        ps.executeUpdate();
-//        
-//        // Obtener las claves generadas automáticamente
-//        ResultSet rs = ps.getGeneratedKeys();
-//        if (rs.next()) {
-//            idMembresiaGenerada = rs.getInt(1); // Obtener el valor de la clave generada
-//        }
-//        
-//        ps.close();
-//    } catch (SQLException ex) {
-//        Conexion.msjError.add("MembresiasData: guardarMembresias() -> " + ex.getMessage());
-//    }
-//    
-//    return idMembresiaGenerada; // Esto me parece que estaria faltando el RETURN
-//  }
-//   }
-    private Membresias membresias;
 
     private static Connection conec = null;
 
@@ -240,57 +204,6 @@ public class MembresiasData {
         return lista;
     }  
 
-//
-//// en este ejemplo (ArrayList<Membreias> historialMembreias()) no entiendo bien si lo tengo que hacer general
-////Es decir hacer igual que Historial Membresias  solo que lo tengo que ser a si _ String query = "SELECT * FROM membresias";
-////Preguntar al grupo 
-//
-//
-//public ArrayList<Membresias> historialMembresias() {
-//    ArrayList<Membresias> membresiasList = new ArrayList<>();
-//    String query = "SELECT * FROM membresias";
-//
-//    PreparedStatement ps = null;
-//    ResultSet rs = null;
-//
-//    try {
-//        // Prepara la consulta SQL
-//        ps = conec.prepareStatement(query);
-//        
-//        // Ejecuta la consulta y obtiene el ResultSet
-//        rs = ps.executeQuery();
-//        
-//        // Itera sobre el ResultSet y crea objetos Membresias
-//        while (rs.next()) {
-//            int idMembresia = rs.getInt("idMembresia");
-//            int socioId = rs.getInt("idSocio");
-//            Socio socio = new Socio(); // Suponiendo que tienes un constructor vacío o un método para obtener un socio por ID
-//            socio.setIdSocio(socioId);
-//            
-//            int cantidadPases = rs.getInt("cantidadPases");
-//            double costo = rs.getDouble("costo");
-//            Date fechaInicio = rs.getDate("fechaInicio");
-//            Date fechaFin = rs.getDate("fechaFin");
-//            boolean estado = rs.getBoolean("estado");
-//
-//            Membresias membresia = new Membresias(idMembresia, socio, cantidadPases, costo, fechaInicio, fechaFin, estado);
-//            membresiasList.add(membresia);
-//        }
-//    } catch (SQLException ex) {
-//        Conexion.msjError.add("Error al obtener el historial de membresías: " + ex.getMessage());
-//    } finally {
-//        // Cierra ResultSet y PreparedStatement
-//        try {
-//            if (rs != null) rs.close();
-//            if (ps != null) ps.close();
-//        } catch (SQLException ex) {
-//            Conexion.msjError.add("Error al cerrar recursos: " + ex.getMessage());
-//        }
-//    }
-//
-//    return membresiasList;
-//}
-//
 public Membresias buscarSocio(int idSocio) {
 
     String sql = "SELECT idMembresia, socio_id, cantidadPases, costo, fechaInicio, fechaFin, estado FROM membresias WHERE socio_id = ? AND estado = 1";
