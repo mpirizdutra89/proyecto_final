@@ -65,8 +65,9 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             btnGuardar.setEnabled(false);
             
         }else{
-            cargarSociosCb();
+            
         }
+        cargarSociosCb();
         
         // Aplicar filtro de números al campo txtIdSocio
 //        ((AbstractDocument) txtIdSocio.getDocument()).setDocumentFilter(new DocumentFilter() {
