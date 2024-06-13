@@ -393,6 +393,7 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
         }
 
         buscarYCargarEntrenadores(nombre, apellido, especialidad);
+        limpiarCampos();
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBListarActionPerformed

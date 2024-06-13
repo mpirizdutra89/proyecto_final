@@ -569,9 +569,9 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCbSociosHistorialActionPerformed
 
     private void cargarHistorialMembresiasTabla(int idSocio) {
-    listaM = mData.historialMembresias(idSocio);
-    cargarMembresiasTabla();
-}
+        listaM = mData.historialMembresias(idSocio);
+        cargarMembresiasTabla();
+    }
     private void armarTabla() {
         tablaM.addColumn("ID Membresia");
         tablaM.addColumn("Socio nombre");
