@@ -536,6 +536,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
 
     private void jBMembresiasCanceladasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMembresiasCanceladasActionPerformed
         cargarMembresiasCanceladas();
+        jLblCancelados.setText("Lista de cancelados");
     }//GEN-LAST:event_jBMembresiasCanceladasActionPerformed
 
     private void txtCantidadPasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadPasesActionPerformed
