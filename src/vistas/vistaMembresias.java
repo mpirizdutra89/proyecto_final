@@ -476,12 +476,12 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         }
 
 
-        Socio socio = new Socio();
+        
        // socio.setIdSocio(idSocio);
-
+SeleccionarSocioActual();
 
         
-        membre.setSocio(socio);
+        membre.setSocio(socioActual);
         membre.setCantidadPases(cantidadPases);
         membre.setCosto (costo);
         membre.setFechaInicio(fechaInicio);
