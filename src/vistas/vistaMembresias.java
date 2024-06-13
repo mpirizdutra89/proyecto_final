@@ -327,7 +327,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         jBBaja.setBackground(new java.awt.Color(166, 46, 68));
         jBBaja.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         jBBaja.setForeground(new java.awt.Color(242, 242, 242));
-        jBBaja.setText("Baja");
+        jBBaja.setText("Cancelar");
         jBBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBBajaActionPerformed(evt);
@@ -337,7 +337,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         jBAlta.setBackground(new java.awt.Color(153, 177, 39));
         jBAlta.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         jBAlta.setForeground(new java.awt.Color(0, 1, 13));
-        jBAlta.setText("Alta");
+        jBAlta.setText("Renovar");
         jBAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAltaActionPerformed(evt);
@@ -360,9 +360,9 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBBaja, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                    .addComponent(jBAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBMembresiasCanceladas)
                 .addContainerGap())
@@ -421,7 +421,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                 .addGroup(jPnlHistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPnlHistorialLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlHistorialLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -517,11 +517,11 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         int filaSeleccionada = jTMembresias.getSelectedRow();
 
         if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione una membresía para dar de alta.");
+            JOptionPane.showMessageDialog(this, "Seleccione una membresía para renovar.");
         } else {
             int idMembresia = (int) jTMembresias.getValueAt(filaSeleccionada, 0);
 
-            boolean exito = mData.altaMembresia(idMembresia);
+            boolean exito = mData.renovarMembresias(idMembresia);
 
             if (exito) {
                 JOptionPane.showMessageDialog(this, "La membresía se ha dado de alta correctamente.");
