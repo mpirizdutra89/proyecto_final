@@ -86,9 +86,15 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
         setTitle("Getion Entrenadores");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/entrenador.png"))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(16, 41, 64));
+        jPanel1.setForeground(new java.awt.Color(242, 242, 242));
+
+        jLabel1.setFont(new java.awt.Font("Gill Sans MT", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(242, 242, 242));
         jLabel1.setText("Gestion de Entrenadores");
 
+        jTEntrenadores.setFont(new java.awt.Font("Gill Sans MT", 0, 12)); // NOI18N
+        jTEntrenadores.setForeground(new java.awt.Color(0, 1, 13));
         jTEntrenadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -107,6 +113,8 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTEntrenadores);
 
+        jBGuardar.setBackground(new java.awt.Color(153, 177, 39));
+        jBGuardar.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
         jBGuardar.setText("Guardar");
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +122,9 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
+        jBListar.setBackground(new java.awt.Color(153, 177, 39));
         jBListar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jBListar.setForeground(new java.awt.Color(0, 1, 13));
         jBListar.setText("Entrenadores Activos");
         jBListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,12 +132,22 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
+        jPanel3.setBackground(new java.awt.Color(16, 41, 64));
+
+        jLabel2.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(242, 242, 242));
         jLabel2.setText("DNI:");
 
+        jLabel3.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(242, 242, 242));
         jLabel3.setText("Nombre");
 
+        jLabel4.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(242, 242, 242));
         jLabel4.setText("Apellido");
 
+        jLabel5.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(242, 242, 242));
         jLabel5.setText("Especialidad");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -174,6 +194,8 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
                 .addGap(17, 17, 17))
         );
 
+        jBBuscar.setBackground(new java.awt.Color(153, 177, 39));
+        jBBuscar.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
         jBBuscar.setText("Buscar");
         jBBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +203,9 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
+        jBAlta.setBackground(new java.awt.Color(153, 177, 39));
+        jBAlta.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jBAlta.setForeground(new java.awt.Color(0, 1, 13));
         jBAlta.setText("Alta");
         jBAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,6 +213,9 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
+        jBBaja.setBackground(new java.awt.Color(166, 46, 68));
+        jBBaja.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jBBaja.setForeground(new java.awt.Color(242, 242, 242));
         jBBaja.setText("Baja");
         jBBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,7 +223,9 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
-        jBListarInactivos.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jBListarInactivos.setBackground(new java.awt.Color(166, 46, 68));
+        jBListarInactivos.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jBListarInactivos.setForeground(new java.awt.Color(242, 242, 242));
         jBListarInactivos.setText("Entrenadores Inactivos");
         jBListarInactivos.setMaximumSize(new java.awt.Dimension(182, 32));
         jBListarInactivos.setMinimumSize(new java.awt.Dimension(182, 32));
@@ -205,6 +235,8 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Gill Sans MT", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(242, 242, 242));
         jLabel6.setText("#Para modificar seleccione en la tabla y luego edite en los campos de texto.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -229,10 +261,10 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel1))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jBAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jBAlta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jBBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 25, Short.MAX_VALUE))
+                        .addGap(0, 22, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1)))
@@ -266,16 +298,16 @@ public class vistaEntrenador extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
                         .addComponent(jLabel6)
-                        .addGap(115, 115, 115))
+                        .addGap(107, 107, 107))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jBListarInactivos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBListar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39)))
+                        .addGap(31, 31, 31)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBAlta)
                     .addComponent(jBBaja))
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -103,15 +103,18 @@ public class vistaClase extends javax.swing.JInternalFrame {
         setName(""); // NOI18N
         setNormalBounds(new java.awt.Rectangle(0, 0, 600, 600));
 
-        jTabPcontenedor.setBackground(new java.awt.Color(204, 204, 204));
+        jTabPcontenedor.setBackground(new java.awt.Color(0, 0, 0));
         jTabPcontenedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTabPcontenedorMouseClicked(evt);
             }
         });
 
-        jPBuscar.setBackground(new java.awt.Color(204, 204, 204));
+        jPBuscar.setBackground(new java.awt.Color(16, 41, 64));
+        jPBuscar.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
 
+        jTData.setFont(new java.awt.Font("Gill Sans MT", 0, 12)); // NOI18N
+        jTData.setForeground(new java.awt.Color(0, 1, 13));
         jTData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -130,6 +133,9 @@ public class vistaClase extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTData);
 
+        jBbuscar.setBackground(new java.awt.Color(153, 177, 39));
+        jBbuscar.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jBbuscar.setForeground(new java.awt.Color(0, 1, 13));
         jBbuscar.setText("Buscar");
         jBbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,18 +144,33 @@ public class vistaClase extends javax.swing.JInternalFrame {
         });
 
         btnGseleccion.add(jRtodos);
+        jRtodos.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jRtodos.setForeground(new java.awt.Color(242, 242, 242));
         jRtodos.setText("Todos");
 
         btnGseleccion.add(jRnombre);
+        jRnombre.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jRnombre.setForeground(new java.awt.Color(242, 242, 242));
         jRnombre.setText("Nombre");
 
         btnGseleccion.add(jRentrenador);
+        jRentrenador.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jRentrenador.setForeground(new java.awt.Color(242, 242, 242));
         jRentrenador.setText("Entrenador");
 
         btnGseleccion.add(jRHorario);
+        jRHorario.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jRHorario.setForeground(new java.awt.Color(242, 242, 242));
         jRHorario.setText("Horario");
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jTbuscar.setFont(new java.awt.Font("Gill Sans MT", 0, 12)); // NOI18N
+        jTbuscar.setForeground(new java.awt.Color(0, 1, 13));
+
+        jCBentrenadorB.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jCBentrenadorB.setForeground(new java.awt.Color(0, 1, 13));
+
+        jLabel1.setFont(new java.awt.Font("Gill Sans MT", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(242, 242, 242));
         jLabel1.setText("Sistema de Busqueda");
 
         javax.swing.GroupLayout jPBuscarLayout = new javax.swing.GroupLayout(jPBuscar);
@@ -157,7 +178,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
         jPBuscarLayout.setHorizontalGroup(
             jPBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPBuscarLayout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
+                .addContainerGap(57, Short.MAX_VALUE)
                 .addGroup(jPBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPBuscarLayout.createSequentialGroup()
                         .addGroup(jPBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,7 +199,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
                         .addGap(72, 72, 72))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPBuscarLayout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(179, 179, 179))))
+                        .addGap(201, 201, 201))))
         );
         jPBuscarLayout.setVerticalGroup(
             jPBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +210,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
                 .addGroup(jPBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, Short.MAX_VALUE)
                 .addGroup(jPBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRtodos)
                     .addComponent(jRnombre)
@@ -205,47 +226,65 @@ public class vistaClase extends javax.swing.JInternalFrame {
 
         jTabPcontenedor.addTab("Buscar", jPBuscar);
 
-        jPAdmin.setBackground(new java.awt.Color(204, 204, 204));
+        jPAdmin.setBackground(new java.awt.Color(16, 41, 64));
 
         jLtitulo.setFont(new java.awt.Font("Gill Sans MT", 0, 24)); // NOI18N
+        jLtitulo.setForeground(new java.awt.Color(242, 242, 242));
         jLtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLtitulo.setText("Administración de Clases");
 
-        jLidClase.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLidClase.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jLidClase.setForeground(new java.awt.Color(242, 242, 242));
         jLidClase.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLidClase.setText("ID Clase ");
 
         jTFidClase.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jTFidClase.setForeground(new java.awt.Color(0, 1, 13));
 
-        jLidEntrenadores.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLidEntrenadores.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jLidEntrenadores.setForeground(new java.awt.Color(242, 242, 242));
         jLidEntrenadores.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLidEntrenadores.setText("Entrenador");
 
-        jLnombre.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jCBentrenadorA.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jCBentrenadorA.setForeground(new java.awt.Color(0, 1, 13));
+
+        jLnombre.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jLnombre.setForeground(new java.awt.Color(242, 242, 242));
         jLnombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLnombre.setText("Nombre");
 
         jTFnombre.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jTFnombre.setForeground(new java.awt.Color(0, 1, 13));
 
-        jLhorario.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLhorario.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jLhorario.setForeground(new java.awt.Color(242, 242, 242));
         jLhorario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLhorario.setText("Horario");
 
         jTFhorario.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jTFhorario.setForeground(new java.awt.Color(0, 1, 13));
 
-        jLcapacidad.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLcapacidad.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jLcapacidad.setForeground(new java.awt.Color(242, 242, 242));
         jLcapacidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLcapacidad.setText("Capacidad");
 
         jTFcapacidad.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jTFcapacidad.setForeground(new java.awt.Color(0, 1, 13));
 
-        jLestado.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jLestado.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jLestado.setForeground(new java.awt.Color(242, 242, 242));
         jLestado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLestado.setText("Estado");
 
         jCkBestado.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        jCkBestado.setForeground(new java.awt.Color(242, 242, 242));
         jCkBestado.setText("Activo");
 
+        jBnuevo.setBackground(new java.awt.Color(153, 177, 39));
+        jBnuevo.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jBnuevo.setForeground(new java.awt.Color(242, 242, 242));
         jBnuevo.setText("Nuevo");
         jBnuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,6 +292,9 @@ public class vistaClase extends javax.swing.JInternalFrame {
             }
         });
 
+        jBguardar.setBackground(new java.awt.Color(153, 177, 39));
+        jBguardar.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jBguardar.setForeground(new java.awt.Color(242, 242, 242));
         jBguardar.setText("Guardar");
         jBguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,6 +302,9 @@ public class vistaClase extends javax.swing.JInternalFrame {
             }
         });
 
+        jBeliminar.setBackground(new java.awt.Color(166, 46, 68));
+        jBeliminar.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jBeliminar.setForeground(new java.awt.Color(242, 242, 242));
         jBeliminar.setText("Eliminar");
         jBeliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,6 +312,9 @@ public class vistaClase extends javax.swing.JInternalFrame {
             }
         });
 
+        jBsalir.setBackground(new java.awt.Color(166, 46, 68));
+        jBsalir.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jBsalir.setForeground(new java.awt.Color(242, 242, 242));
         jBsalir.setText("Salir");
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,49 +326,47 @@ public class vistaClase extends javax.swing.JInternalFrame {
         jPAdmin.setLayout(jPAdminLayout);
         jPAdminLayout.setHorizontalGroup(
             jPAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAdminLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(116, 116, 116))
             .addGroup(jPAdminLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(jPAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLidEntrenadores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLidClase, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLnombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLhorario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLcapacidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLestado, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jBnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPAdminLayout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addGroup(jPAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLidEntrenadores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLidClase, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLnombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLhorario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLcapacidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLestado, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(46, 46, 46)
                         .addGroup(jPAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jCkBestado)
                             .addComponent(jTFidClase, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTFnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAdminLayout.createSequentialGroup()
-                                .addGroup(jPAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTFcapacidad, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTFhorario, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                                .addContainerGap(130, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTFcapacidad, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTFhorario))
                             .addComponent(jCBentrenadorA, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPAdminLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(36, 36, 36)
+                        .addComponent(jBnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jBguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jBeliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(45, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAdminLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(104, 104, 104))
+                        .addGap(18, 18, 18)
+                        .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPAdminLayout.setVerticalGroup(
             jPAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPAdminLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addContainerGap()
                 .addComponent(jLtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(63, 63, 63)
                 .addGroup(jPAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFidClase, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLidClase))
@@ -340,17 +386,17 @@ public class vistaClase extends javax.swing.JInternalFrame {
                 .addGroup(jPAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFcapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLcapacidad))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCkBestado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLestado))
-                .addGap(43, 43, 43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(jPAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBeliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addGap(53, 53, 53))
         );
 
         jTabPcontenedor.addTab("Administracion", jPAdmin);
@@ -365,7 +411,7 @@ public class vistaClase extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabPcontenedor)
+            .addComponent(jTabPcontenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
         );
 
         jTabPcontenedor.getAccessibleContext().setAccessibleName("");
