@@ -64,6 +64,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         } else {
 
         }
+        
         cargarSociosCb();
 
         // Aplicar filtro de números al campo txtIdSocio
@@ -476,6 +477,11 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             if (membre != null) {
 
                 JOptionPane.showMessageDialog(this, "Membresía registrada exitosamente.");
+                
+                listaSocioMembresia = mData.listarSocioConMembresia();
+                listaSocio = mData.listarSocioSinMembresia();
+                Limpiar();
+                cargarSociosCb();
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Por favor, ingresa valores válidos para ID de Socio y Cantidad de Pases.");
@@ -677,7 +683,16 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     }
 
     private void cargarSociosCb() {
-
+        
+          try {
+                jCbSociosLista.removeAllItems();
+                jCbSociosHistorial.removeAllItems();
+            } catch (Exception ex) {
+                System.out.println("Error al limpiar el JComboBox: " + ex.getMessage());
+            }
+          
+          
+        
         for (Socio socio : listaSocio) {
             jCbSociosLista.addItem(socio);
 

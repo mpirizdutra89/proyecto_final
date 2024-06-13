@@ -176,7 +176,12 @@ public class MembresiasData {
       
        public ArrayList<Socio> listarSocioConMembresia() {
        
-        String sql = "SELECT s.idSocio, s.dni, s.nombre, s.apellido, s.edad, s.correo, s.telefono, s.estado FROM socios s LEFT JOIN membresias m ON s.idSocio = m.idSocio WHERE m.estado=1;";
+        //String sql = "SELECT s.idSocio, s.dni, s.nombre, s.apellido, s.edad, s.correo, s.telefono, s.estado FROM socios s LEFT JOIN membresias m ON s.idSocio = m.idSocio WHERE m.estado=1;";
+           String sql = "SELECT s.idSocio, s.dni, s.nombre, s.apellido, s.edad, s.correo, s.telefono, s.estado "
+                   + " FROM socios s "
+                   + " LEFT JOIN membresias m ON s.idSocio = m.idSocio "
+                   + " WHERE m.fecha_fin < CURDATE()"
+                   + "  AND m.estado = 1; ";
         ArrayList<Socio> lista = new ArrayList<>();
 
         try {
