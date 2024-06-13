@@ -643,7 +643,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             //para que depues al selecionar una fila podes dar de baja o alta etc
             //
             cargarHistorialMembresiasTabla(socioActualHistorial.getIdSocio());
-            System.out.println(socioActualHistorial);
+            //System.out.println(socioActualHistorial);
         }
     }
     
