@@ -514,7 +514,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             boolean exito = mData.renovarMembresias(idMembresia);
 
             if (exito) {
-                JOptionPane.showMessageDialog(this, "La membresía  se renovo por 30 dias mas.");
+                JOptionPane.showMessageDialog(this, "La membresía  se renovo por 30 dias mas. Y se dio de alta");
                 selectComboHistorial();
             } else {
                 JOptionPane.showMessageDialog(this, "Error al renovar la membresía.");
@@ -652,6 +652,9 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             //
             cargarHistorialMembresiasTabla(socioActualHistorial.getIdSocio());
             //System.out.println(socioActualHistorial);
+        }else{
+           // jCbSociosHistorial.setSelectedIndex(0);
+          cargarMembresiasCanceladas();
         }
     }
     
