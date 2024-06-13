@@ -55,7 +55,6 @@ public class vistaMenuPrincipal extends javax.swing.JFrame {
         setMaximizedBounds(new java.awt.Rectangle(0, 0, 1440, 810));
         setMaximumSize(new java.awt.Dimension(1440, 810));
         setMinimumSize(new java.awt.Dimension(1440, 810));
-        setPreferredSize(new java.awt.Dimension(960, 540));
         setResizable(false);
         setSize(new java.awt.Dimension(1440, 810));
 
