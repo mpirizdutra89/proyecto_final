@@ -329,7 +329,7 @@ public Membresias buscarSocio(int idSocio) {
 
     // Método para renovar una membresía
     public boolean renovarMembresias(int id) {
-        String sql = "UPDATE membresias SET fecha_inicio = ?, fecha_fin = ?, cantidadPases = ? WHERE idMembresia = ?";
+        String sql = "UPDATE membresias SET fecha_inicio = ?, fecha_fin = ?, cantidadPases = ?, estado=? WHERE idMembresia = ?";
         boolean resultado = false;
         Date fechaInicio = new Date(System.currentTimeMillis());
         Date fechaFin = new Date(fechaInicio.getTime() + (30L * 24 * 60 * 60 * 1000)); // 30 días
@@ -340,6 +340,7 @@ public Membresias buscarSocio(int idSocio) {
             ps.setDate(2, (java.sql.Date) fechaFin);
             ps.setInt(3, 30); // Suponiendo que cada mes tiene 30 pases
             ps.setInt(4, id);
+            ps.setInt(5, 1);
             int filasAfectadas = ps.executeUpdate();
             if (filasAfectadas > 0) {
                 resultado = true;

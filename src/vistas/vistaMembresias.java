@@ -505,7 +505,12 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Seleccione una membresía para renovar.");
         } else {
             int idMembresia = (int) jTMembresias.getValueAt(filaSeleccionada, 0);
-
+            //2 y 5
+            //int pases=(int) jTMembresias.getValueAt(filaSeleccionada, 2);
+           // String fechafin=(String) jTMembresias.getValueAt(filaSeleccionada, 5);
+            //System.out.println(idMembresia+" "+pases+" "+fechafin);
+            
+            
             boolean exito = mData.renovarMembresias(idMembresia);
 
             if (exito) {
@@ -580,6 +585,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     }
 
     private void cargarMembresiasCanceladas() {
+        
         DefaultTableModel modeloTabla = (DefaultTableModel) jTMembresias.getModel();
         modeloTabla.setRowCount(0);
 
@@ -596,6 +602,8 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                 membresia.getFechaFin()
             });
         }
+        
+        jCbSociosHistorial.setSelectedIndex(0);
     }
 
 
