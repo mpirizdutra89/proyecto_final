@@ -166,28 +166,47 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         lblIdSocio2 = new javax.swing.JLabel();
         jCbSociosHistorial = new javax.swing.JComboBox<>();
 
+        setBackground(new java.awt.Color(16, 41, 64));
         setClosable(true);
         setIconifiable(true);
 
+        jtbpContenedor.setBackground(new java.awt.Color(16, 41, 64));
         jtbpContenedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtbpContenedorMouseClicked(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Light", 3, 18)); // NOI18N
+        jPnlInscripciones.setBackground(new java.awt.Color(16, 41, 64));
+        jPnlInscripciones.setForeground(new java.awt.Color(242, 242, 242));
+
+        jLabel1.setFont(new java.awt.Font("Gill Sans MT", 3, 24)); // NOI18N
         jLabel1.setText("Inscripcion de Membresias");
 
+        jPanel1.setBackground(new java.awt.Color(16, 41, 64));
+        jPanel1.setForeground(new java.awt.Color(242, 242, 242));
+
+        lblIdSocio.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        lblIdSocio.setForeground(new java.awt.Color(242, 242, 242));
         lblIdSocio.setText("Seleccione un Socio:");
 
+        jCbSociosLista.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+
+        txtCantidadPases.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         txtCantidadPases.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCantidadPasesActionPerformed(evt);
             }
         });
 
+        txtCosto.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+
+        lblFechaInicio.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        lblFechaInicio.setForeground(new java.awt.Color(242, 242, 242));
         lblFechaInicio.setText("Fecha de Inicio:");
 
+        lblFechaFin.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
+        lblFechaFin.setForeground(new java.awt.Color(242, 242, 242));
         lblFechaFin.setText("Fecha de Fin:");
 
         btnGuardar.setText("Guardar");
@@ -278,10 +297,13 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jtbpContenedor.addTab("Inscripcion", jPnlInscripciones);
+
+        jPnlHistorial.setBackground(new java.awt.Color(16, 41, 64));
+        jPnlHistorial.setForeground(new java.awt.Color(242, 242, 242));
 
         jTMembresias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -295,6 +317,8 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(jTMembresias);
+
+        jPanel3.setBackground(new java.awt.Color(16, 41, 64));
 
         jBBaja.setText("Baja");
         jBBaja.addActionListener(new java.awt.event.ActionListener() {
@@ -344,6 +368,8 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                         .addComponent(jBMembresiasCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))))
         );
+
+        jPanel2.setBackground(new java.awt.Color(16, 41, 64));
 
         lblIdSocio2.setText("Seleccione un Socio:");
 
