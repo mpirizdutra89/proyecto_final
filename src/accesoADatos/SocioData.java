@@ -346,4 +346,45 @@ public class SocioData {
 
         return verificar;
     }
+      
+      
+        public ArrayList<Socio> listarSocioClase(String nombreClase) {
+        ArrayList<Socio> lista = new ArrayList<Socio>();
+
+            String query = "SELECT s.idSocio, s.dni, s.nombre, s.apellido,s.edad,s.telefono "
+                    + " FROM socios s "
+                    + " JOIN asistencias a ON s.idSocio = a.idSocio "
+                    + " JOIN clases c ON a.idClase = c.idClase "
+                    + " WHERE c.nombre = ? and fecha_asistencia=CURDATE(); ";
+
+        try {
+            PreparedStatement ps = conec.prepareStatement(query);
+            ps.setString(1, nombreClase);
+           // System.out.println(""+ps.toString());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                int idSocio = rs.getInt("idSocio");
+                String dni = rs.getString("dni");
+                String nombre=rs.getString("nombre");
+                String apellido=rs.getString("apellido");
+                int edad=rs.getInt("edad");
+                String telefono=     rs.getString("telefono");   
+//int idSocio, String dni, String nombre, String apellido, int edad, String correo, String telefono
+                Socio socio = new Socio(idSocio, dni, nombre, apellido,edad,"b",telefono);
+                //  System.out.println(claseCupo.getNombre()+" - "+claseCupo.getIdClase()+" - "+claseCupo.getCapacidad());
+                lista.add(socio);
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException | NullPointerException ex) {
+
+            Conexion.msjError.add("Clase: listarSocioClase -> " + ex.getMessage());
+        }
+
+        return lista;
+    }
+      
+      
+      
 }

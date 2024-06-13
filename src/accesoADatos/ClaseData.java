@@ -269,6 +269,7 @@ public class ClaseData {
 
         return listaCupo;
     }
+    
 
     public ArrayList<Clase> listarClaseAsistencia() {
         //Lista para almacenar las clases disponibles
@@ -365,5 +366,35 @@ public class ClaseData {
         return flag;
     }
 
+    public boolean quitarAsistenciaSocio(int idSocio, int idClase) {
+        
+        String query = "DELETE FROM asistencias "
+                + " WHERE idClase = ? "
+                + " AND idSocio = ? "
+                + " AND fecha_asistencia = CURDATE(); ";
 
+        boolean flag = false;
+        try {
+
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setInt(1, idClase);
+            ps.setInt(2, idSocio);
+
+            int res = ps.executeUpdate();
+
+            //Si hay claves son asignadas a la clase
+            if (res > 0) {
+                flag = true;
+            }
+            ps.close();
+
+        } catch (SQLException | NullPointerException ex) {
+
+            Conexion.msjError.add("Clase: quitarAsistenciaSocio -> " + ex.getMessage());
+        }
+
+        return flag;
+    }
+      
 }

@@ -26,7 +26,9 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
     private ClaseData claseData;
     private  ArrayList<Clase> listaClase;
     private  ArrayList<Clase> ListaCupos;
+    private  ArrayList<Socio> ListaSociosInscriptos;
     private Clase claseActual;
+    private Clase claseActualLista;
     private Socio socioBuscado;
    
     
@@ -41,6 +43,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         socioData=new SocioData();
         listaClase = new ArrayList<>();
         ListaCupos=new ArrayList<>();
+        ListaSociosInscriptos=new ArrayList<>();
         
        
         listaClase=claseData.listarClaseAsistencia();
@@ -338,12 +341,17 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         jPnlLista.setBackground(new java.awt.Color(51, 51, 51));
 
         jCbClaseListar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCbClaseListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCbClaseListarActionPerformed(evt);
+            }
+        });
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/clases.png"))); // NOI18N
         jLabel7.setText("Lista de socios por clase:");
 
-        jbtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/quitarlista.png"))); // NOI18N
-        jbtnEliminar.setToolTipText("Listar socios por clase");
+        jbtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/eliminar.png"))); // NOI18N
+        jbtnEliminar.setToolTipText("Eliminar socio de asistencias");
         jbtnEliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jbtnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -414,7 +422,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Lista", jPnlLista);
+        jTabbedPane1.addTab("Lista de Asistencias", jPnlLista);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -460,7 +468,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
             if(idClase>0){
                 
                 if(socioData.verificarSocioAsistenciaRepetida(socioBuscado.getIdSocio(),idClase)<1){
-                    if(socioData.verificarClasesHorario(idClase,hora)<1){
+                    if(socioData.verificarClasesHorario(socioBuscado.getIdSocio(),hora)<1){
                         if(claseData.guardarAsistencias(new Asistencia(socioBuscado.getIdSocio(),idClase))){
                                  claseData.descontarPases(idClase);
                                  resetAsistencia();
@@ -492,9 +500,14 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbtnGuardarMouseClicked
 
     private void jbtnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnEliminarMouseClicked
-        // TODO add your handling code here:
+           int selectedRow = jTblListado.getSelectedRow();
+                if (selectedRow != -1) {
+                    
+                    int idSocio =Integer.valueOf(jTblListado.getValueAt(selectedRow, 0).toString());
+                    eliminarAsistencia(idSocio);
+                }
     }//GEN-LAST:event_jbtnEliminarMouseClicked
-
+    
     private void jbtnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnBuscarMouseClicked
         BuscarSocio();
     
@@ -506,6 +519,11 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
             CargarClaseCuposDisponibles();
            
     }//GEN-LAST:event_jCbClaseActionPerformed
+
+    private void jCbClaseListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbClaseListarActionPerformed
+        claseActualLista=null;
+        cargarSocioClases();
+    }//GEN-LAST:event_jCbClaseListarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -585,14 +603,18 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
 //    }
     private void cargarClases() {
         jCbClase.addItem(new Clase()); // Agregar un elemento vacío si es necesario
+        jCbClaseListar.addItem(new Clase());
         Set<Clase> clasesUnicas = new HashSet<>(listaClase);
         for (Clase clase : clasesUnicas) {
             if(buscarRepetidos(clase)){
                  jCbClase.addItem(clase);
+                 jCbClaseListar.addItem(clase);
             }
            
         }
     }
+    
+    
     
     private boolean buscarRepetidos(Clase clase1) {
         if (clase1 == null) {
@@ -662,6 +684,46 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
      }
      
     
+    private void cargarSocioClases() {
+        ListaSociosInscriptos = null;
+        SeleccionarClaseActualLista();
+        jbtnEliminar.setEnabled(false);
+        try {
+
+            if (claseActualLista != null && claseActualLista.getNombre() != null) {
+               
+
+                ListaSociosInscriptos = socioData.listarSocioClase(claseActualLista.getNombre());
+                 libs.FuncionesComunes.eliminarFilas(modeloTable2);
+                if (ListaSociosInscriptos.size() > 0) {
+                    jbtnEliminar.setEnabled(true);
+                   
+                    for (Socio socio : ListaSociosInscriptos) {
+                            String nombre=socio.getApellido()+", "+socio.getNombre();
+                            modeloTable2.addRow(new Object[]{
+                                socio.getIdSocio(),
+                                socio.getDni(),
+                                nombre,
+                                socio.getTelefono()
+                            });
+                        
+
+                    }
+
+                } else {
+                    libs.FuncionesComunes.vistaDialogo("No hay socios para esta clase.", 0, this);
+                }
+
+            }
+        } catch (NullPointerException e) {
+            libs.FuncionesComunes.vistaDialogo("Ocurrio un fallo inesperado" + e.toString(), 0, this);
+            System.out.println(e.toString());
+        } catch (Exception e) {
+            libs.FuncionesComunes.vistaDialogo("Ocurrio un fallo inesperado" + e.toString(), 0, this);
+            System.out.println(e.toString());
+        }
+    }
+     
      
     private void CargarClaseCuposDisponibles() {
         ListaCupos=null;
@@ -694,17 +756,37 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
 
             }
         } catch ( NullPointerException e) {
-            libs.FuncionesComunes.vistaDialogo("Ocurrio un fallo inesperado"+e.toString(), 0, this);
+            libs.FuncionesComunes.vistaDialogo("Ocurrio un fallo inesperado", 0, this);
             System.out.println(e.toString());
         }
         catch(Exception e){
-            libs.FuncionesComunes.vistaDialogo("Ocurrio un fallo inesperado"+e.toString(), 0, this);
+            libs.FuncionesComunes.vistaDialogo("Ocurrio un fallo inesperado", 0, this);
             System.out.println(e.toString());
         }
     }
     
+    
+    private void eliminarAsistencia(int idSocio){
+        claseActualLista=null;
+        SeleccionarClaseActualLista();
+        if(claseActualLista!=null && idSocio!=0){
+            if(claseData.quitarAsistenciaSocio(idSocio, claseActualLista.getIdClase())){
+                cargarSocioClases();
+            }else{
+                libs.FuncionesComunes.vistaDialogo("No se pudo quitar de la lista.", 1, this);
+            }
+        }else{
+            libs.FuncionesComunes.vistaDialogo("Falta informacion", 1, this);
+        }
+        
+    }
+    
      private void SeleccionarClaseActual(){
           claseActual = (Clase) jCbClase.getSelectedItem();
+     }
+     
+     private void SeleccionarClaseActualLista(){
+          claseActualLista = (Clase) jCbClaseListar.getSelectedItem();
      }
     
     private int devulveIdclaseSeleccionadoTabla(){

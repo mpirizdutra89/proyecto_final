@@ -442,8 +442,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Lista">
-                <Property name="tabTitle" type="java.lang.String" value="Lista"/>
+              <JTabbedPaneConstraints tabName="Lista de Asistencias">
+                <Property name="tabTitle" type="java.lang.String" value="Lista de Asistencias"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -520,6 +520,9 @@
                       <Color id="Cursor de Mano"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCbClaseListarActionPerformed"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Clase&gt;"/>
                   </AuxValues>
@@ -535,9 +538,9 @@
                 <Component class="javax.swing.JLabel" name="jbtnEliminar">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/resources/iconos/quitarlista.png"/>
+                      <Image iconType="3" name="/resources/iconos/eliminar.png"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Listar socios por clase"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Eliminar socio de asistencias"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                         <BevelBorder/>
