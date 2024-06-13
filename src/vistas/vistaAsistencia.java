@@ -346,8 +346,11 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Gestion", jPnlGestion);
 
-        jPnlLista.setBackground(new java.awt.Color(51, 51, 51));
+        jPnlLista.setBackground(new java.awt.Color(16, 41, 64));
 
+        jPnlSubcontenedorListar.setBackground(new java.awt.Color(16, 41, 64));
+
+        jCbClaseListar.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         jCbClaseListar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jCbClaseListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -355,9 +358,11 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/iconos/clases.png"))); // NOI18N
         jLabel7.setText("Lista de socios por clase:");
 
+        jTblListado.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         jTblListado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -371,6 +376,8 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
         ));
         jScrollPane3.setViewportView(jTblListado);
 
+        jbtnEliminarSocio.setBackground(new java.awt.Color(166, 46, 68));
+        jbtnEliminarSocio.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
         jbtnEliminarSocio.setText("Eliminar");
         jbtnEliminarSocio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -409,7 +416,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                         .addGap(85, 85, 85)
                         .addComponent(jbtnEliminarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
