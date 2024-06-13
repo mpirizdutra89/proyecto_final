@@ -22,7 +22,7 @@ public class Socio {
     }
     
     public enum CabeceraSocio2{
-        Codigo,Dni,Nombre,Apellido
+        Codigo,Dni,Nombre,Telefono
     }
     
     
@@ -53,7 +53,7 @@ public class Socio {
         this.edad = edad;
         this.correo = correo;
         this.telefono = telefono;
-        this.estado=estado;
+      
     }
 
     //estado se guardar solo por default en la base de datos
