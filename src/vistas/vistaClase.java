@@ -549,11 +549,12 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private void cargarEntrenador() {
-        ltaEntrenadores.forEach(item -> {
-            String entrenadorInfo = item.getIdEntrenador() + "-" + item.getApellido();
-            jCBentrenadorA.addItem(entrenadorInfo);
-            jCBentrenadorB.addItem(entrenadorInfo);
+        ltaEntrenadores.forEach(entrenador -> {
+            jCBentrenadorA.addItem(entrenador);
+            jCBentrenadorB.addItem(entrenador);
+
         });
+
     }
 
     private int fitrado() {
@@ -615,7 +616,14 @@ public class vistaClase extends javax.swing.JInternalFrame {
                     return false;
                 }
                 break;
-
+            case 4:
+                Entrenador entrenadorSeleccionado = (Entrenador) jCBentrenadorB.getSelectedItem();
+                if (entrenadorSeleccionado == null) {
+                    libs.FuncionesComunes.vistaDialogo("Seleccione un entrenador válido", 0, this);
+                    return false;
+                }
+                buscar = String.valueOf(entrenadorSeleccionado.getIdEntrenador());
+                break;
             default:
                 libs.FuncionesComunes.vistaDialogo("Filtro desconocido", 0, this);
                 return false;
@@ -624,15 +632,16 @@ public class vistaClase extends javax.swing.JInternalFrame {
     }
 
     private void buscarEntrenador() {
-        int idEntrenador = parseIdFromCombo(jCBentrenadorB.getSelectedItem().toString());
-        ArrayList<Clase> listaEntrenadores = cData.buscarEntrenador(idEntrenador);
-
-        if (!listaEntrenadores.isEmpty()) {
-
-            actualizarTablaConClases(ltaClases);
-
+        Entrenador entrenadorSeleccionado = (Entrenador) jCBentrenadorB.getSelectedItem();
+        if (entrenadorSeleccionado == null) {
+            libs.FuncionesComunes.vistaDialogo("Seleccione un entrenador válido", 0, this);
+            return;
         }
-
+        ltaClases.clear();
+        ArrayList<Clase> clasesEntrenador = cData.buscarEntrenador(entrenadorSeleccionado.getIdEntrenador());
+        if (!clasesEntrenador.isEmpty()) {
+            actualizarTablaConClases(clasesEntrenador);
+        }
     }
 
     private void buscarHorario() {
