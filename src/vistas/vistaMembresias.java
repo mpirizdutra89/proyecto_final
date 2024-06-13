@@ -508,10 +508,10 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             boolean exito = mData.renovarMembresias(idMembresia);
 
             if (exito) {
-                JOptionPane.showMessageDialog(this, "La membresía se ha dado de alta correctamente.");
-                cargarMembresiasTabla();
+                JOptionPane.showMessageDialog(this, "La membresía  se renovo por 30 dias mas.");
+                selectComboHistorial();
             } else {
-                JOptionPane.showMessageDialog(this, "Error al dar de alta la membresía.");
+                JOptionPane.showMessageDialog(this, "Error al renovar la membresía.");
             }
         }
     }//GEN-LAST:event_jBAltaActionPerformed
@@ -541,15 +541,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtbpContenedorMouseClicked
 
     private void jCbSociosHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbSociosHistorialActionPerformed
-        SeleccionarSocioActualHistorial();
-        //Solo va entrar si es un objeto distinto de null 
-        if (socioActualHistorial != null && socioActualHistorial.getNombre() != "Seleccione") {
-            //Aca llamr un metod que filre por socio y se coloce en la tabla
-            //para que depues al selecionar una fila podes dar de baja o alta etc
-            //
-            cargarHistorialMembresiasTabla(socioActualHistorial.getIdSocio());
-            System.out.println(socioActualHistorial);
-        }
+        selectComboHistorial();
     }//GEN-LAST:event_jCbSociosHistorialActionPerformed
 
     private void cargarHistorialMembresiasTabla(int idSocio) {
@@ -633,6 +625,19 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCosto;
     // End of variables declaration//GEN-END:variables
 
+    
+    private void selectComboHistorial(){
+          SeleccionarSocioActualHistorial();
+        //Solo va entrar si es un objeto distinto de null 
+        if (socioActualHistorial != null && socioActualHistorial.getNombre() != "Seleccione") {
+            //Aca llamr un metod que filre por socio y se coloce en la tabla
+            //para que depues al selecionar una fila podes dar de baja o alta etc
+            //
+            cargarHistorialMembresiasTabla(socioActualHistorial.getIdSocio());
+            System.out.println(socioActualHistorial);
+        }
+    }
+    
     private void Limpiar() {
         // txtIdSocio.setText("");
         txtCantidadPases.setText("");
