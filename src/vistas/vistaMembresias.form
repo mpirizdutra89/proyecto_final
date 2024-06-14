@@ -523,7 +523,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Seleccione un Socio:"/>
+                    <Property name="text" type="java.lang.String" value="Seleccione un Socio con membresia vencida:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="jCbSociosHistorial">

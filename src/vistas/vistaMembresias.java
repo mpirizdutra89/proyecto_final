@@ -383,7 +383,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
 
         lblIdSocio2.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         lblIdSocio2.setForeground(new java.awt.Color(255, 255, 255));
-        lblIdSocio2.setText("Seleccione un Socio:");
+        lblIdSocio2.setText("Seleccione un Socio con membresia vencida:");
 
         jCbSociosHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
