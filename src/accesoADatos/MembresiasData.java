@@ -421,5 +421,43 @@ public Membresias buscarSocio(int idSocio) {
 
         return resultado;
     }
+        
+           public ArrayList<Membresias> obtenerTodasMembresias() {
+    ArrayList<Membresias> membresiasList = new ArrayList<>();
+    String query = "SELECT m.*, s.nombre AS nombreSocio, s.apellido AS apellidoSocio " +
+                   "FROM membresias m " +
+                   "INNER JOIN socios s ON m.idSocio = s.idSocio " +
+                   "WHERE m.estado = 1"; // Obtener todas las membresías activas
+
+    try {
+        PreparedStatement ps = conec.prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            int idMembresia = rs.getInt("idMembresia");
+            String nombre = rs.getString("nombreSocio");
+            String apellido = rs.getString("apellidoSocio");
+            int cantidadPases = rs.getInt("cantidadPases");
+            double costo = rs.getDouble("costo");
+            Date fechaInicio = rs.getDate("fecha_inicio");
+            Date fechaFin = rs.getDate("fecha_fin");
+            boolean estado = rs.getBoolean("estado");
+
+            Socio socio = new Socio();
+            socio.setNombre(nombre);
+            socio.setApellido(apellido);
+
+            Membresias membresia = new Membresias(idMembresia, socio, cantidadPases, costo, fechaInicio, fechaFin, estado);
+            membresiasList.add(membresia);
+        }
+
+        ps.close();
+        rs.close();
+    } catch (SQLException | NullPointerException ex) {
+        Conexion.msjError.add("Error al obtener todas las membresías: " + ex.getMessage());
+    }
+
+    return membresiasList;
+}
 }
 

@@ -500,7 +500,7 @@ public class vistaAsistencia extends javax.swing.JInternalFrame {
                 if(socioData.verificarSocioAsistenciaRepetida(socioBuscado.getIdSocio(),idClase)<1){
                     if(socioData.verificarClasesHorario(socioBuscado.getIdSocio(),hora)<1){
                         if(claseData.guardarAsistencias(new Asistencia(socioBuscado.getIdSocio(),idClase))){
-                                 claseData.descontarPases(idClase);
+                                 claseData.descontarPases(socioBuscado.getIdSocio());
                                  resetAsistencia();
                                  CargarClaseCuposDisponibles();
                                  libs.FuncionesComunes.vistaDialogo("Asistencia para el socio, guardada.", 1,this);

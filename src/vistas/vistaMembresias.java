@@ -143,6 +143,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         jBBaja = new javax.swing.JButton();
         jBAlta = new javax.swing.JButton();
         jBMembresiasCanceladas = new javax.swing.JButton();
+        jBHistorialMembresia = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lblIdSocio2 = new javax.swing.JLabel();
         jCbSociosHistorial = new javax.swing.JComboBox<>();
@@ -340,37 +341,49 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             }
         });
 
+        jBHistorialMembresia.setBackground(new java.awt.Color(153, 177, 39));
+        jBHistorialMembresia.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jBHistorialMembresia.setForeground(new java.awt.Color(242, 242, 242));
+        jBHistorialMembresia.setText("Historial Membresias");
+        jBHistorialMembresia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBHistorialMembresiaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBBaja, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-                    .addComponent(jBAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBMembresiasCanceladas)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBMembresiasCanceladas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBHistorialMembresia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jBBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jBHistorialMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBMembresiasCanceladas, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBMembresiasCanceladas, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jBAlta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBBaja)))
-                .addGap(18, 18, 18))
+                    .addComponent(jBAlta)
+                    .addComponent(jBBaja)))
         );
 
         jPanel2.setBackground(new java.awt.Color(16, 41, 64));
 
         lblIdSocio2.setFont(new java.awt.Font("Gill Sans MT", 0, 14)); // NOI18N
         lblIdSocio2.setForeground(new java.awt.Color(255, 255, 255));
-        lblIdSocio2.setText("Seleccione un Socio:");
+        lblIdSocio2.setText("Seleccione un Socio con membresia vencida:");
 
         jCbSociosHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -416,9 +429,9 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
             .addGroup(jPnlHistorialLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPnlHistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPnlHistorialLayout.setVerticalGroup(
@@ -427,7 +440,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -443,7 +456,9 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jtbpContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jtbpContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -563,6 +578,30 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
         selectComboHistorial();
     }//GEN-LAST:event_jCbSociosHistorialActionPerformed
 
+    private void jBHistorialMembresiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBHistorialMembresiaActionPerformed
+        jLblCancelados.setText("Historial de Membresías:");
+        borrarFilas();
+        cargarTodasMembresias();
+    }//GEN-LAST:event_jBHistorialMembresiaActionPerformed
+
+    private void cargarTodasMembresias() {
+    DefaultTableModel modeloTabla = (DefaultTableModel) jTMembresias.getModel();
+
+    borrarFilas();
+
+    ArrayList<Membresias> todasMembresias = mData.obtenerTodasMembresias();
+
+    for (Membresias membresia : todasMembresias) {
+        modeloTabla.addRow(new Object[]{
+            membresia.getIdMembresia(),
+            membresia.getSocio().getNombre() + " " + membresia.getSocio().getApellido(),
+            membresia.getCantidadPases(),
+            membresia.getCosto(),
+            membresia.getFechaInicio(),
+            membresia.getFechaFin()
+        });
+    }
+    }
     private void cargarHistorialMembresiasTabla(int idSocio) {
         listaM = mData.historialMembresias(idSocio);
         cargarMembresiasTabla();
@@ -625,6 +664,7 @@ public class vistaMembresias extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton jBAlta;
     private javax.swing.JButton jBBaja;
+    private javax.swing.JButton jBHistorialMembresia;
     private javax.swing.JButton jBMembresiasCanceladas;
     private javax.swing.JComboBox<Socio> jCbSociosHistorial;
     private javax.swing.JComboBox<Socio> jCbSociosLista;
